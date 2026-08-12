@@ -18,6 +18,8 @@ from .statistics import (
     nanmean,
     safe_kendall,
     safe_spearman,
+    spearman_brown,
+    split_half_spearman,
     topk_similarity,
 )
 
@@ -27,6 +29,7 @@ def analyze_results(
     bootstrap_replicates: int = 100,
     bootstrap_seed: int | None = None,
     specialized_per_layer: int = 10,
+    split_half_replicates: int = 100,
 ) -> dict[str, Any]:
     collection_config = read_json(input_dir / "collection_config.json")
     architecture = read_json(input_dir / "architecture.json")
@@ -87,6 +90,14 @@ def analyze_results(
         layer_metadata,
         specialized_per_layer,
     )
+    split_half_rows = _same_domain_split_half(
+        domains,
+        statistics,
+        layer_ids,
+        metrics,
+        split_half_replicates,
+        seed + 7_919,
+    )
 
     _write_analysis_csvs(
         input_dir,
@@ -97,9 +108,10 @@ def analyze_results(
         specialized_rows,
         domains,
         include_gradient="gradient_attribution" in metrics,
+        split_half_rows=split_half_rows,
     )
     results = {
-        "schema_version": 1,
+        "schema_version": 2,
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "model": {
             "checkpoint": collection_config["model"],
@@ -121,6 +133,9 @@ def analyze_results(
             "dtype": collection_config["dtype"],
             "bootstrap_replicates": bootstrap_replicates,
             "bootstrap_seed": seed,
+            "split_half_replicates": split_half_replicates,
+            "prompt_style": collection_config.get("prompt_style", "legacy"),
+            "controlled_input": collection_config.get("controlled_input"),
         },
         "package_versions": collection_config.get(
             "package_versions", package_versions()
@@ -166,6 +181,7 @@ def analyze_results(
         "topk_overlap": topk_rows,
         "routing_vs_functional_correlation": routing_functional_rows,
         "domain_specialized_experts": specialized_rows,
+        "same_domain_split_half": split_half_rows,
     }
     atomic_write_json(input_dir / "results.json", results)
     return results
@@ -476,6 +492,60 @@ def _specialized_experts(
     return rows
 
 
+def _same_domain_split_half(
+    domains: list[str],
+    statistics: dict[str, DomainStatistics],
+    layer_ids: list[int],
+    metrics: list[str],
+    replicates: int,
+    seed: int,
+) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    rng = np.random.default_rng(seed)
+    for metric in metrics:
+        for domain in domains:
+            values, half_size = split_half_spearman(
+                statistics[domain], metric, replicates, rng
+            )
+            for ordinal, layer_id in enumerate(layer_ids):
+                mean, low, high = confidence_interval(
+                    values[:, ordinal] if len(values) else np.asarray([])
+                )
+                rows.append(
+                    {
+                        "domain": domain,
+                        "metric": metric,
+                        "layer": layer_id,
+                        "layer_ordinal": ordinal,
+                        "split_half_mean_spearman": mean,
+                        "split_half_ci_low": low,
+                        "split_half_ci_high": high,
+                        "spearman_brown_corrected": spearman_brown(mean),
+                        "replicates": replicates,
+                        "half_size": half_size,
+                    }
+                )
+            aggregate = (
+                np.nanmean(values, axis=1) if len(values) else np.asarray([])
+            )
+            mean, low, high = confidence_interval(aggregate)
+            rows.append(
+                {
+                    "domain": domain,
+                    "metric": metric,
+                    "layer": "average",
+                    "layer_ordinal": "average",
+                    "split_half_mean_spearman": mean,
+                    "split_half_ci_low": low,
+                    "split_half_ci_high": high,
+                    "spearman_brown_corrected": spearman_brown(mean),
+                    "replicates": replicates,
+                    "half_size": half_size,
+                }
+            )
+    return rows
+
+
 def _write_analysis_csvs(
     output_dir: Path,
     expert_rows: list[dict[str, Any]],
@@ -485,6 +555,7 @@ def _write_analysis_csvs(
     specialized_rows: list[dict[str, Any]],
     domains: list[str],
     include_gradient: bool,
+    split_half_rows: list[dict[str, Any]],
 ) -> None:
     expert_fields = [
         "domain",
@@ -578,6 +649,22 @@ def _write_analysis_csvs(
         output_dir / "domain_specialized_experts.csv",
         specialized_rows,
         specialized_fields,
+    )
+    write_csv(
+        output_dir / "same_domain_split_half.csv",
+        split_half_rows,
+        [
+            "domain",
+            "metric",
+            "layer",
+            "layer_ordinal",
+            "split_half_mean_spearman",
+            "split_half_ci_low",
+            "split_half_ci_high",
+            "spearman_brown_corrected",
+            "replicates",
+            "half_size",
+        ],
     )
 
 

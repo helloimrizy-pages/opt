@@ -24,9 +24,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--bootstrap-replicates", type=int, default=100)
     parser.add_argument("--bootstrap-seed", type=int, default=None)
     parser.add_argument("--specialized-per-layer", type=int, default=10)
+    parser.add_argument("--split-half-replicates", type=int, default=100)
     args = parser.parse_args()
-    if args.bootstrap_replicates < 0 or args.specialized_per_layer < 1:
-        parser.error("bootstrap-replicates must be >= 0 and specialized-per-layer >= 1")
+    if (
+        args.bootstrap_replicates < 0
+        or args.split_half_replicates < 0
+        or args.specialized_per_layer < 1
+    ):
+        parser.error(
+            "bootstrap/split-half replicates must be >= 0 and specialized-per-layer >= 1"
+        )
     return args
 
 
@@ -38,6 +45,7 @@ def main() -> int:
         bootstrap_replicates=args.bootstrap_replicates,
         bootstrap_seed=args.bootstrap_seed,
         specialized_per_layer=args.specialized_per_layer,
+        split_half_replicates=args.split_half_replicates,
     )
     write_summary(results, input_dir / "SUMMARY.md")
     print(f"Analysis complete: {input_dir / 'results.json'}")

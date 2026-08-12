@@ -108,6 +108,44 @@ def bootstrap_spearman_pair(
     return output
 
 
+def split_half_spearman(
+    statistics: DomainStatistics,
+    metric: str,
+    replicates: int,
+    rng: np.random.Generator,
+) -> tuple[np.ndarray, int]:
+    """Repeated disjoint split-half rank correlations within one domain.
+
+    Returns correlations with shape ``[replicate, layer]`` and the number of
+    examples in each half. For an odd sample count, one randomly positioned
+    example is omitted per replicate so both halves have equal size.
+    """
+    if statistics.num_examples < 2:
+        raise ValueError("Split-half reliability requires at least two examples")
+    half_size = statistics.num_examples // 2
+    if replicates < 1:
+        return np.empty((0, statistics.num_layers), dtype=np.float64), half_size
+    values = raw_example_values(statistics, metric)
+    output = np.full((replicates, statistics.num_layers), np.nan, dtype=np.float64)
+    for replicate in range(replicates):
+        permutation = rng.permutation(statistics.num_examples)
+        first = values[permutation[:half_size]].sum(axis=0, dtype=np.float64)
+        second = values[permutation[half_size : 2 * half_size]].sum(
+            axis=0, dtype=np.float64
+        )
+        for layer in range(statistics.num_layers):
+            output[replicate, layer] = safe_spearman(first[layer], second[layer])
+    return output, half_size
+
+
+def spearman_brown(reliability: float) -> float:
+    """Project equal split-half reliability to the full sample size."""
+    if not np.isfinite(reliability) or reliability <= -1.0:
+        return float("nan")
+    corrected = 2.0 * reliability / (1.0 + reliability)
+    return float(np.clip(corrected, -1.0, 1.0))
+
+
 def confidence_interval(
     values: Iterable[float] | np.ndarray, confidence: float = 0.95
 ) -> tuple[float, float, float]:

@@ -86,12 +86,14 @@ class AnalysisTests(unittest.TestCase):
                 "topk_overlap.csv",
                 "routing_vs_functional_correlation.csv",
                 "domain_specialized_experts.csv",
+                "same_domain_split_half.csv",
                 "results.json",
                 "SUMMARY.md",
             ]
             for filename in expected:
                 self.assertTrue((output / filename).exists(), filename)
             self.assertEqual(len(results["expert_importance"]), 4 * 2 * 4)
+            self.assertEqual(len(results["same_domain_split_half"]), 4 * 3 * 3)
             self.assertIn("# Go / No-Go Assessment", (output / "SUMMARY.md").read_text())
 
 

@@ -8,6 +8,7 @@ from expert_analysis.metrics import DomainStatistics
 from expert_analysis.statistics import (
     bootstrap_spearman_pair,
     descending_ranks,
+    split_half_spearman,
     topk_similarity,
     topk_size,
 )
@@ -44,6 +45,27 @@ class StatisticsTests(unittest.TestCase):
             first, second, "routing_frequency", 8, np.random.default_rng(5)
         )
         self.assertEqual(one.shape, (8, 2))
+        np.testing.assert_allclose(one, two, equal_nan=True)
+
+    def test_split_half_shape_disjointness_and_reproducibility(self) -> None:
+        statistics = DomainStatistics.zeros(8, 2, 4, ["a", "b"])
+        rng = np.random.default_rng(19)
+        statistics.contribution_sums[:] = rng.random((8, 2, 4))
+        statistics.token_counts[:] = 12
+        one, half_size = split_half_spearman(
+            statistics,
+            "functional_contribution",
+            7,
+            np.random.default_rng(4),
+        )
+        two, second_half_size = split_half_spearman(
+            statistics,
+            "functional_contribution",
+            7,
+            np.random.default_rng(4),
+        )
+        self.assertEqual(one.shape, (7, 2))
+        self.assertEqual((half_size, second_half_size), (4, 4))
         np.testing.assert_allclose(one, two, equal_nan=True)
 
 
