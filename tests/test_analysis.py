@@ -9,6 +9,7 @@ import numpy as np
 from expert_analysis.analysis import analyze_results
 from expert_analysis.io_utils import atomic_write_json
 from expert_analysis.metrics import DomainStatistics
+from expert_analysis.plotting import create_all_figures
 from expert_analysis.report import write_summary
 
 
@@ -95,6 +96,58 @@ class AnalysisTests(unittest.TestCase):
             self.assertEqual(len(results["expert_importance"]), 4 * 2 * 4)
             self.assertEqual(len(results["same_domain_split_half"]), 4 * 3 * 3)
             self.assertIn("# Go / No-Go Assessment", (output / "SUMMARY.md").read_text())
+
+            results["controlled_corpus"] = {
+                "prompt_style": "neutral_fixed_token_control",
+                "neutral_prefix": "Input:\n",
+                "measured_tokens_per_example": 8,
+                "lookahead_tokens_per_example": 1,
+                "measured_tokens_per_domain": 48,
+            }
+            results["expert_masking_loss"] = [
+                {
+                    "layer": 0,
+                    "expert_id": 2,
+                    "domain": domain,
+                    "functional_rank": index + 1,
+                    "fraction_tokens_routed": 0.1 + index * 0.01,
+                    "delta_nll": 0.01 + index * 0.002,
+                    "delta_nll_ci_low": 0.005,
+                    "delta_nll_ci_high": 0.02,
+                    "normalized_contribution": 0.03 + index * 0.01,
+                }
+                for index, domain in enumerate(domains)
+            ]
+            results["expert_masking_domain_contrasts"] = [
+                {
+                    "layer": 0,
+                    "expert_id": 2,
+                    "contrast_high_domain": "coding",
+                    "contrast_low_domain": "general",
+                    "proxy_high_domain": "coding",
+                    "proxy_low_domain": "general",
+                    "high_minus_low_delta_nll": 0.004,
+                    "contrast_ci_low": 0.001,
+                    "contrast_ci_high": 0.008,
+                    "proxy_loss_spearman": 0.8,
+                    "direction_aligned": True,
+                    "high_domain_loss_harm_ci_excludes_zero": True,
+                    "positive_contrast_ci_excludes_zero": True,
+                    "causal_specialization_supported": True,
+                }
+            ]
+            summary = write_summary(results, output / "SUMMARY.md")
+            self.assertIn("## Controlled expert-masking loss effects", summary)
+            self.assertIn("# Controlled Causal-Validation Assessment", summary)
+            figure_paths = create_all_figures(results, output)
+            for filename in (
+                "split_half_reliability.png",
+                "expert_masking_loss_heatmap.png",
+                "proxy_vs_masking_loss.png",
+            ):
+                path = output / "figures" / filename
+                self.assertIn(path, figure_paths)
+                self.assertGreater(path.stat().st_size, 0)
 
 
 if __name__ == "__main__":

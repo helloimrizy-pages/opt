@@ -67,6 +67,11 @@ def create_all_figures(results: dict[str, Any], output_dir: Path) -> list[Path]:
     paths.extend(_expert_rank_change(results, figure_dir, plt))
     paths.extend(_routing_functional_scatter(results, figure_dir, plt))
     paths.extend(_top25_by_layer(results, figure_dir, plt))
+    if results.get("same_domain_split_half"):
+        paths.extend(_split_half_reliability(results, figure_dir, plt))
+    if results.get("expert_masking_loss"):
+        paths.extend(_masking_loss_heatmap(results, figure_dir, plt))
+        paths.extend(_proxy_vs_masking_loss(results, figure_dir, plt))
     return paths
 
 
@@ -311,6 +316,134 @@ def _strongest_functional_layers(results: dict[str, Any]) -> list[int]:
             scored.append((float(finite.mean()), layer))
     scored.sort()
     return [layer for _, layer in scored]
+
+
+def _split_half_reliability(
+    results: dict[str, Any], output_dir: Path, plt: Any
+) -> list[Path]:
+    rows = [
+        row
+        for row in results.get("same_domain_split_half", [])
+        if row["metric"] == "functional_contribution" and row["layer"] != "average"
+    ]
+    if not rows:
+        return []
+    figure, axis = plt.subplots(figsize=(7.4, 4.5))
+    domains = results["experiment"]["domains"]
+    for domain in domains:
+        selected = [row for row in rows if row["domain"] == domain]
+        selected.sort(key=lambda row: int(row["layer_ordinal"]))
+        axis.plot(
+            [row["layer"] for row in selected],
+            [row["split_half_mean_spearman"] for row in selected],
+            marker="o",
+            markersize=3.5,
+            linewidth=1.5,
+            label=domain.title(),
+            color=DOMAIN_COLORS.get(domain, "#4C78A8"),
+        )
+    axis.axhline(0.5, color="#777777", linestyle="--", linewidth=1, label="0.5 heuristic")
+    axis.axhline(0.8, color="#AAAAAA", linestyle=":", linewidth=1, label="0.8 heuristic")
+    axis.set_ylim(-1.02, 1.02)
+    axis.set_xlabel("MoE layer")
+    axis.set_ylabel("Mean split-half Spearman")
+    axis.set_title("Within-domain functional-ranking reliability")
+    axis.grid(axis="y", alpha=0.22)
+    axis.legend(ncol=3)
+    return _save_both(figure, output_dir / "split_half_reliability", plt)
+
+
+def _masking_loss_heatmap(
+    results: dict[str, Any], output_dir: Path, plt: Any
+) -> list[Path]:
+    rows = results.get("expert_masking_loss", [])
+    if not rows:
+        return []
+    domains = results["experiment"]["domains"]
+    targets = []
+    for row in rows:
+        key = (int(row["layer"]), int(row["expert_id"]))
+        if key not in targets:
+            targets.append(key)
+    matrix = np.full((len(targets), len(domains)), np.nan, dtype=float)
+    for row in rows:
+        target = (int(row["layer"]), int(row["expert_id"]))
+        matrix[targets.index(target), domains.index(row["domain"])] = _float_or_nan(
+            row["delta_nll"]
+        )
+    finite = np.abs(matrix[np.isfinite(matrix)])
+    limit = max(float(finite.max()) if finite.size else 0.0, 1e-8)
+    figure, axis = plt.subplots(
+        figsize=(5.6, max(2.6, 0.65 * len(targets) + 1.5)),
+        constrained_layout=True,
+    )
+    image = axis.imshow(matrix, vmin=-limit, vmax=limit, cmap="coolwarm", aspect="auto")
+    axis.set_xticks(range(len(domains)), [domain.title() for domain in domains], rotation=25)
+    axis.set_yticks(
+        range(len(targets)), [f"L{layer}/E{expert}" for layer, expert in targets]
+    )
+    axis.set_title("Next-token NLL change under selected-route expert masking")
+    for row_index in range(matrix.shape[0]):
+        for column in range(matrix.shape[1]):
+            value = matrix[row_index, column]
+            if np.isfinite(value):
+                color = "white" if abs(value) > 0.55 * limit else "black"
+                axis.text(
+                    column,
+                    row_index,
+                    f"{value:.4f}",
+                    ha="center",
+                    va="center",
+                    fontsize=8,
+                    color=color,
+                )
+    colorbar = figure.colorbar(image, ax=axis)
+    colorbar.set_label("Delta NLL (nats/token; positive = worse)")
+    return _save_both(figure, output_dir / "expert_masking_loss_heatmap", plt)
+
+
+def _proxy_vs_masking_loss(
+    results: dict[str, Any], output_dir: Path, plt: Any
+) -> list[Path]:
+    rows = results.get("expert_masking_loss", [])
+    if not rows:
+        return []
+    figure, axis = plt.subplots(figsize=(6.8, 4.8))
+    markers = ("o", "s", "^", "D", "P", "X")
+    targets = []
+    for row in rows:
+        key = (int(row["layer"]), int(row["expert_id"]))
+        if key not in targets:
+            targets.append(key)
+    for target_index, target in enumerate(targets):
+        selected = [
+            row
+            for row in rows
+            if (int(row["layer"]), int(row["expert_id"])) == target
+        ]
+        for row in selected:
+            axis.scatter(
+                row["normalized_contribution"],
+                row["delta_nll"],
+                s=55,
+                marker=markers[target_index % len(markers)],
+                color=DOMAIN_COLORS.get(row["domain"], "#4C78A8"),
+                edgecolor="white",
+                linewidth=0.6,
+            )
+            axis.annotate(
+                f"{row['domain'][0].upper()} · L{target[0]}/E{target[1]}",
+                (row["normalized_contribution"], row["delta_nll"]),
+                xytext=(4, 4),
+                textcoords="offset points",
+                fontsize=7,
+            )
+    axis.axhline(0, color="#777777", linewidth=1)
+    axis.set_xlabel("Normalized functional contribution")
+    axis.set_ylabel("Mask delta NLL (nats/token)")
+    axis.set_title("Activation proxy versus causal selected-route masking effect")
+    axis.grid(alpha=0.2)
+    return _save_both(figure, output_dir / "proxy_vs_masking_loss", plt)
 
 
 def _save_both(figure: Any, base_path: Path, plt: Any) -> list[Path]:

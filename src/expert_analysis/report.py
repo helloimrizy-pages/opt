@@ -12,6 +12,15 @@ def write_summary(results: dict[str, Any], output_path: Path) -> str:
     topk = results["topk_overlap"]
     routing_functional = results["routing_vs_functional_correlation"]
     specialized = results["domain_specialized_experts"]
+    split_half = results.get("same_domain_split_half", [])
+    controlled = results.get("controlled_corpus") or results["experiment"].get(
+        "controlled_input"
+    )
+    masking_rows = results.get("expert_masking_loss", [])
+    masking_contrasts = results.get("expert_masking_domain_contrasts", [])
+    tested_positions = int(results["architecture"].get("num_moe_layers", 0)) * int(
+        results["architecture"].get("num_experts", 0)
+    )
     functional_aggregate = [
         row
         for row in correlations
@@ -62,13 +71,30 @@ def write_summary(results: dict[str, Any], output_path: Path) -> str:
         "## Experimental setup",
         "",
         f"- Checkpoint: {results['model']['checkpoint']}",
-        f"- Resolved model revision: {results['model'].get('resolved_revision') or 'not available'}",
+        "- Resolved model revision: "
+        f"{results['model'].get('resolved_revision') or 'not available'}",
         f"- Device: {results['experiment']['device_description']} "
         f"({results['experiment']['device']}, {results['experiment']['dtype']})",
         f"- Seed: {results['experiment']['seed']}",
         f"- Maximum sequence length: {results['experiment']['max_sequence_length']} tokens",
         f"- Bootstrap replicates: {results['experiment']['bootstrap_replicates']}",
         f"- Reference answers included: {results['experiment']['include_reference_answers']}",
+    ]
+    if controlled:
+        lines.extend(
+            [
+                f"- Prompt style: {controlled.get('prompt_style', 'neutral fixed-token control')}",
+                f"- Shared neutral prefix: `{_inline_code(controlled['neutral_prefix'])}`",
+                "- Measured source positions per example: "
+                f"{controlled['measured_tokens_per_example']}",
+                "- Look-ahead next-token labels per example: "
+                f"{controlled.get('lookahead_tokens_per_example', 1)}",
+                "- Exact measured token budget per domain: "
+                f"{controlled['measured_tokens_per_domain']}",
+            ]
+        )
+    lines.extend(
+        [
         "",
         "The model was evaluated without generation or weight updates. Routing utilization, "
         "selected gate mass, and the L2 magnitude of each weighted expert output were collected "
@@ -79,7 +105,8 @@ def write_summary(results: dict[str, Any], output_path: Path) -> str:
         "",
         "| Domain | Dataset | Split | Examples | Tokens | Mean tokens/example | Substitution |",
         "|---|---|---:|---:|---:|---:|---|",
-    ]
+        ]
+    )
     for domain in domains:
         dataset = results["datasets"][domain]
         counts = results["token_counts"][domain]
@@ -233,6 +260,43 @@ def write_summary(results: dict[str, Any], output_path: Path) -> str:
             )
         lines.extend(["", comparison])
 
+    if split_half:
+        lines.extend(
+            [
+                "",
+                "## Same-domain split-half reliability",
+                "",
+                "Repeated disjoint half-splits estimate how reproducible each domain's ranking "
+                "is at half the available sample size. The Spearman–Brown column projects the "
+                "mean split-half value to the full sample size; it is a reliability diagnostic, "
+                "not a cross-domain correction.",
+                "",
+                "| Domain | Metric | Mean split-half Spearman | 95% interval | "
+                "Spearman–Brown |",
+                "|---|---|---:|---:|---:|",
+            ]
+        )
+        for domain in domains:
+            for metric, label in (
+                ("routing_frequency", "Routing frequency"),
+                ("gate_mass", "Gate mass"),
+                ("functional_contribution", "Functional contribution"),
+            ):
+                row = next(
+                    item
+                    for item in split_half
+                    if item["domain"] == domain
+                    and item["metric"] == metric
+                    and item["layer"] == "average"
+                )
+                lines.append(
+                    f"| {domain.title()} | {label} | "
+                    f"{_fmt(row['split_half_mean_spearman'])} | "
+                    f"[{_fmt(row['split_half_ci_low'])}, "
+                    f"{_fmt(row['split_half_ci_high'])}] | "
+                    f"{_fmt(row['spearman_brown_corrected'])} |"
+                )
+
     lines.extend(
         [
             "",
@@ -253,15 +317,84 @@ def write_summary(results: dict[str, Any], output_path: Path) -> str:
             f"[{_fmt(row['bootstrap_ci_low'])}, {_fmt(row['bootstrap_ci_high'])}] |"
         )
 
+    if masking_rows:
+        lines.extend(
+            [
+                "",
+                "## Controlled expert-masking loss effects",
+                "",
+                "For each pre-registered layer/expert pair, its selected gate coefficient was "
+                "set to zero at the measured source positions only. Tokens were not rerouted, "
+                "and model weights were not changed. Positive delta NLL means masking made "
+                "next-token prediction worse.",
+                "",
+                "| Layer/expert | Domain | Proxy rank | Routed-token fraction | "
+                "Delta NLL (nats/token) | 95% paired-bootstrap CI |",
+                "|---|---|---:|---:|---:|---:|",
+            ]
+        )
+        for row in masking_rows:
+            lines.append(
+                f"| L{row['layer']}/E{row['expert_id']} | {row['domain'].title()} | "
+                f"{_fmt(row['functional_rank'], 1)} | "
+                f"{_fmt(row['fraction_tokens_routed'], 4)} | "
+                f"{_fmt(row['delta_nll'], 6)} | "
+                f"[{_fmt(row['delta_nll_ci_low'], 6)}, "
+                f"{_fmt(row['delta_nll_ci_high'], 6)}] |"
+            )
+
+    if masking_contrasts:
+        lines.extend(
+            [
+                "",
+                "## Proxy-versus-causal domain contrasts",
+                "",
+                "For pre-registered targets, the high and low domains come from the prior "
+                "prompt-only run rather than being selected from these masking outcomes. The "
+                "contrast is high-domain minus low-domain mask delta NLL, with domains "
+                "resampled independently. Controlled proxy extrema are shown as a replication "
+                "check.",
+                "",
+                "| Layer/expert | Tested high vs low | Controlled proxy high vs low | "
+                "Loss-delta contrast | 95% CI | Across-domain proxy/loss Spearman | "
+                "Direction aligned |",
+                "|---|---|---|---:|---:|---:|---|",
+            ]
+        )
+        for row in masking_contrasts:
+            lines.append(
+                f"| L{row['layer']}/E{row['expert_id']} | "
+                f"{row['contrast_high_domain'].title()} vs "
+                f"{row['contrast_low_domain'].title()} | "
+                f"{row['proxy_high_domain'].title()} vs "
+                f"{row['proxy_low_domain'].title()} | "
+                f"{_fmt(row['high_minus_low_delta_nll'], 6)} | "
+                f"[{_fmt(row['contrast_ci_low'], 6)}, "
+                f"{_fmt(row['contrast_ci_high'], 6)}] | "
+                f"{_fmt(row['proxy_loss_spearman'])} | "
+                f"{'yes' if row['direction_aligned'] else 'no'} |"
+            )
+
     lines.extend(
         [
             "",
             "## Limitations",
             "",
-            "- The functional metric is a weighted-output norm. It does not measure the loss "
-            "increase caused by removing or perturbing an expert.",
-            "- Domain datasets differ in style, sequence length, and availability of reference "
-            "answers. Token normalization reduces but does not remove these confounds.",
+            "- The functional metric remains a weighted-output norm. The masking experiment "
+            "measures loss sensitivity only for the explicitly tested experts.",
+            *(
+                [
+                    "- Sequence lengths, token budgets, answer inclusion, and the wrapper prefix "
+                    "are controlled, but domain remains entangled with dataset choice and the "
+                    "content's natural surface form."
+                ]
+                if controlled
+                else [
+                    "- Domain datasets differ in style, sequence length, and availability of "
+                    "reference answers. Token normalization reduces but does not remove these "
+                    "confounds."
+                ]
+            ),
             *(
                 [
                     "- At least one domain reached the mean sequence-length cap in this run; "
@@ -275,19 +408,56 @@ def write_summary(results: dict[str, Any], output_path: Path) -> str:
             "- Bootstrap intervals capture example-sampling uncertainty for these corpora, not "
             "model, checkpoint, prompt-format, or dataset-choice uncertainty.",
             "- This is one base checkpoint. Conclusions should be checked on another MoE model "
-            "and with intervention-based expert ablations before guiding compression.",
+            "before guiding compression.",
+            *(
+                [
+                    "- Selected-route zeroing does not reroute tokens to replacement experts and "
+                    "is not identical to quantizing, deleting, or globally disabling an expert.",
+                    "- Only a small pre-registered expert set was intervened on; it does not "
+                    f"characterize causal sensitivity for all {tested_positions:,} "
+                    "layer/expert positions.",
+                    "- The three high-versus-low domain pairs were pre-registered from the prior "
+                    "prompt-only run. Across-domain proxy/loss Spearman values use only four "
+                    "domains and are descriptive; bootstrap intervals have no multiplicity "
+                    "adjustment."
+                ]
+                if masking_rows
+                else []
+            ),
             "",
             "# Go / No-Go Assessment",
             "",
             f"**{decision}: {assessment} support.** {assessment_reason}",
             "",
-            "This result is evidence about distribution-conditioned routing utilization and an "
-            "activation-magnitude proxy. It is not yet evidence that a specific mixed-precision "
-            "allocation improves downstream quality. The next stage should preserve this "
-            "diagnostic boundary: validate selected high-disagreement layers with expert "
-            "ablation or masking before implementing quantization.",
+            *(
+                [
+                    "The activation results are now accompanied by controlled selected-route "
+                    "masking for the pre-registered experts. They still do not establish that a "
+                    "specific mixed-precision allocation improves downstream quality."
+                ]
+                if masking_rows
+                else [
+                    "This result is evidence about distribution-conditioned routing utilization "
+                    "and an activation-magnitude proxy. It is not yet evidence that a specific "
+                    "mixed-precision allocation improves downstream quality. The next stage "
+                    "should validate selected high-disagreement layers with expert ablation or "
+                    "masking before implementing quantization."
+                ]
+            ),
         ]
     )
+    if masking_contrasts:
+        causal_decision, causal_reason = _causal_assessment(
+            masking_contrasts, split_half
+        )
+        lines.extend(
+            [
+                "",
+                "# Controlled Causal-Validation Assessment",
+                "",
+                f"**{causal_decision}.** {causal_reason}",
+            ]
+        )
     requested_examples = results["experiment"]["requested_examples_per_domain"]
     if requested_examples < 100:
         lines.extend(
@@ -309,6 +479,62 @@ def write_summary(results: dict[str, Any], output_path: Path) -> str:
     text = "\n".join(lines) + "\n"
     output_path.write_text(text, encoding="utf-8")
     return text
+
+
+def _causal_assessment(
+    contrasts: list[dict[str, Any]], split_half: list[dict[str, Any]]
+) -> tuple[str, str]:
+    aligned = sum(bool(row["direction_aligned"]) for row in contrasts)
+    robust = sum(bool(row["causal_specialization_supported"]) for row in contrasts)
+    majority = len(contrasts) // 2 + 1
+    reliability_values = []
+    for row in split_half:
+        if row["metric"] != "functional_contribution" or row["layer"] != "average":
+            continue
+        value = _sort_float(row.get("split_half_mean_spearman"))
+        if np.isfinite(value):
+            reliability_values.append(value)
+    reliability = _finite_mean(reliability_values)
+    reliability_text = (
+        f"Mean functional split-half reliability was {_fmt(reliability)}. "
+        if np.isfinite(reliability)
+        else ""
+    )
+    if np.isfinite(reliability) and reliability < 0.5:
+        return (
+            "INCONCLUSIVE—IMPROVE RANKING RELIABILITY",
+            reliability_text
+            + "Within-domain rankings are too unstable to interpret the proxy/loss alignment "
+            "confidently, even if individual masking effects are nonzero.",
+        )
+    if robust >= majority:
+        return (
+            "GO FOR A LIMITED, REVERSIBLE COMPRESSION PILOT",
+            reliability_text
+            + f"{robust}/{len(contrasts)} pre-registered experts showed both positive "
+            "high-domain masking harm and a positive high-versus-low loss contrast, with both "
+            "bootstrap intervals excluding zero. This supports testing a small reversible "
+            "allocation pilot, not deployment-scale quantization.",
+        )
+    if aligned >= majority:
+        return (
+            "CONDITIONAL GO—EXPAND CAUSAL VALIDATION",
+            reliability_text
+            + f"{aligned}/{len(contrasts)} expert contrasts were directionally aligned with the "
+            "functional proxy, but fewer than a majority had positive intervals excluding zero. "
+            "Test more pre-registered experts and examples before bit allocation.",
+        )
+    return (
+        "NO-GO FOR DOMAIN-AWARE BIT ALLOCATION AT THIS STAGE",
+        reliability_text
+        + f"Only {aligned}/{len(contrasts)} pre-registered expert contrasts aligned with the "
+        "functional proxy. The activation ranking is not yet a reliable basis for domain-aware "
+        "precision decisions.",
+    )
+
+
+def _inline_code(value: Any) -> str:
+    return str(value).replace("`", "\\`").replace("\n", "\\n")
 
 
 def _assessment(
