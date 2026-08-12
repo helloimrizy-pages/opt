@@ -49,11 +49,16 @@ def load_domain_examples(
     revision: str | None = None,
     include_answers: bool = True,
     allow_substitution: bool = True,
+    format_style: str = "legacy",
 ) -> DomainExamples:
     if domain not in DATASET_CANDIDATES:
         raise ValueError(f"Unknown domain {domain!r}; expected {sorted(DATASET_CANDIDATES)}")
     if num_examples < 1:
         raise ValueError("num_examples must be positive")
+    if format_style not in {"legacy", "neutral_content"}:
+        raise ValueError("format_style must be 'legacy' or 'neutral_content'")
+    if format_style == "neutral_content" and include_answers:
+        raise ValueError("neutral_content formatting does not include reference answers")
     try:
         from datasets import load_dataset
     except ImportError as exc:
@@ -79,7 +84,11 @@ def load_domain_examples(
         try:
             dataset = load_dataset(**load_kwargs)
             shuffled = dataset.shuffle(seed=seed + DOMAIN_SEED_OFFSETS[domain])
-            formatter = FORMATTERS[candidate.formatter]
+            formatter = (
+                FORMATTERS[candidate.formatter]
+                if format_style == "legacy"
+                else NEUTRAL_CONTENT_FORMATTERS[candidate.formatter]
+            )
             texts: list[str] = []
             example_ids: list[str] = []
             for row_index, row in enumerate(shuffled):
@@ -102,6 +111,7 @@ def load_domain_examples(
                 substituted=candidate_index > 0,
                 failures=failures,
                 example_ids=example_ids,
+                format_style=format_style,
             )
             return DomainExamples(domain=domain, texts=texts, metadata=metadata)
         except Exception as exc:  # dataset/network errors vary by datasets version
@@ -194,6 +204,55 @@ def _format_arc(row: Mapping[str, Any], include_answers: bool) -> str:
     return f"{prompt} {answer}" if include_answers and answer else prompt
 
 
+def _neutral_wikitext(row: Mapping[str, Any], include_answers: bool) -> str:
+    del include_answers
+    return str(row.get("text", ""))
+
+
+def _neutral_lambada(row: Mapping[str, Any], include_answers: bool) -> str:
+    del include_answers
+    return str(row.get("text", row.get("sentence", "")))
+
+
+def _neutral_gsm8k(row: Mapping[str, Any], include_answers: bool) -> str:
+    del include_answers
+    return str(row.get("question", ""))
+
+
+def _neutral_hendrycks_math(row: Mapping[str, Any], include_answers: bool) -> str:
+    del include_answers
+    return str(row.get("problem", ""))
+
+
+def _neutral_mbpp(row: Mapping[str, Any], include_answers: bool) -> str:
+    del include_answers
+    task = str(row.get("text", row.get("prompt", "")))
+    tests = row.get("test_list", [])
+    test_text = "\n".join(str(item) for item in tests[:3]) if isinstance(tests, list) else ""
+    return f"{task}\n\n{test_text}" if test_text else task
+
+
+def _neutral_humaneval(row: Mapping[str, Any], include_answers: bool) -> str:
+    del include_answers
+    return str(row.get("prompt", ""))
+
+
+def _neutral_arc(row: Mapping[str, Any], include_answers: bool) -> str:
+    del include_answers
+    question = str(row.get("question", row.get("question_stem", "")))
+    choices = row.get("choices", {})
+    labels: list[Any] = []
+    texts: list[Any] = []
+    if isinstance(choices, Mapping):
+        labels = list(choices.get("label", []))
+        texts = list(choices.get("text", []))
+    elif isinstance(choices, list):
+        labels = [choice.get("label", index + 1) for index, choice in enumerate(choices)]
+        texts = [choice.get("text", "") for choice in choices]
+    rendered = "\n".join(f"{label}. {text}" for label, text in zip(labels, texts))
+    return f"{question}\n\n{rendered}" if rendered else question
+
+
 FORMATTERS: dict[str, Callable[[Mapping[str, Any], bool], str]] = {
     "wikitext": _format_wikitext,
     "lambada": _format_lambada,
@@ -202,6 +261,17 @@ FORMATTERS: dict[str, Callable[[Mapping[str, Any], bool], str]] = {
     "mbpp": _format_mbpp,
     "humaneval": _format_humaneval,
     "arc": _format_arc,
+}
+
+
+NEUTRAL_CONTENT_FORMATTERS: dict[str, Callable[[Mapping[str, Any], bool], str]] = {
+    "wikitext": _neutral_wikitext,
+    "lambada": _neutral_lambada,
+    "gsm8k": _neutral_gsm8k,
+    "hendrycks_math": _neutral_hendrycks_math,
+    "mbpp": _neutral_mbpp,
+    "humaneval": _neutral_humaneval,
+    "arc": _neutral_arc,
 }
 
 
@@ -222,6 +292,7 @@ def _dataset_metadata(
     substituted: bool,
     failures: list[dict[str, str]],
     example_ids: list[str],
+    format_style: str,
 ) -> dict[str, Any]:
     info = getattr(dataset, "info", None)
     resolved_revision = None
@@ -239,6 +310,7 @@ def _dataset_metadata(
         "config": candidate.config,
         "split": candidate.split,
         "formatter": candidate.formatter,
+        "format_style": format_style,
         "requested_revision": requested_revision,
         "resolved_revision": resolved_revision,
         "dataset_fingerprint": getattr(dataset, "_fingerprint", None),

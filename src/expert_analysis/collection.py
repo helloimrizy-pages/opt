@@ -11,6 +11,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
+from .controlled import PreparedDomainExamples
 from .datasets import DomainExamples, validation_prompts
 from .hooks import ExpertInstrumentation
 from .io_utils import atomic_write_json
@@ -156,6 +157,93 @@ def collect_domain(
             "max_tokens_per_example": int(stats.token_counts.max()),
             "mean_tokens_per_example": float(stats.token_counts.mean()),
             "max_sequence_length": max_length,
+            "batch_size": batch_size,
+            "elapsed_seconds": time.monotonic() - started,
+            "compute_gradient_attribution": compute_gradient_attribution,
+        }
+    )
+    return CollectionResult(stats, metadata, instrumentation.diagnostic_report())
+
+
+def collect_prepared_domain(
+    bundle: ModelBundle,
+    layer_specs: list[MoeLayerSpec],
+    examples: PreparedDomainExamples,
+    batch_size: int,
+    compute_gradient_attribution: bool = False,
+) -> CollectionResult:
+    """Collect statistics from fixed, pretokenized controlled inputs.
+
+    ``measurement_mask`` selects the source-token positions accumulated by the
+    hooks. The model still attends to the shared neutral prefix and one look-ahead
+    token, but neither is included in the expert statistics.
+    """
+    examples.validate()
+    if batch_size < 1:
+        raise ValueError("batch_size must be positive")
+    stats = DomainStatistics.zeros(
+        num_examples=examples.num_examples,
+        num_layers=len(layer_specs),
+        num_experts=layer_specs[0].num_experts,
+        layer_names=[spec.block_name for spec in layer_specs],
+        compute_gradient=compute_gradient_attribution,
+    )
+    started = time.monotonic()
+    instrumentation = ExpertInstrumentation(
+        layer_specs,
+        stats,
+        compute_gradient_attribution=compute_gradient_attribution,
+    )
+    with instrumentation:
+        for start in range(0, examples.num_examples, batch_size):
+            stop = min(start + batch_size, examples.num_examples)
+            encoded = {
+                "input_ids": torch.as_tensor(
+                    examples.input_ids[start:stop],
+                    dtype=torch.long,
+                    device=bundle.runtime.device,
+                ),
+                "attention_mask": torch.as_tensor(
+                    examples.attention_mask[start:stop],
+                    dtype=torch.long,
+                    device=bundle.runtime.device,
+                ),
+            }
+            measurement_mask = torch.as_tensor(
+                examples.measurement_mask[start:stop],
+                dtype=torch.long,
+                device=bundle.runtime.device,
+            )
+            with instrumentation.batch(list(range(start, stop)), measurement_mask):
+                _forward_batch(
+                    bundle,
+                    encoded,
+                    instrumentation,
+                    compute_gradient_attribution,
+                )
+            if stop == examples.num_examples or stop % max(batch_size, 10) == 0:
+                elapsed = time.monotonic() - started
+                print(
+                    f"[{examples.domain}] {stop}/{examples.num_examples} controlled examples "
+                    f"({stats.token_counts[:stop].sum()} measured tokens, {elapsed:.1f}s)",
+                    flush=True,
+                )
+    stats.validate()
+    expected_per_example = examples.measurement_mask.sum(axis=1).astype(np.uint32)
+    if not np.array_equal(stats.token_counts, expected_per_example):
+        raise RuntimeError(
+            f"Controlled token counts changed during collection for {examples.domain!r}"
+        )
+    metadata = dict(examples.metadata)
+    metadata.update(
+        {
+            "domain": examples.domain,
+            "num_examples": examples.num_examples,
+            "total_tokens": int(stats.token_counts.sum()),
+            "min_tokens_per_example": int(stats.token_counts.min()),
+            "max_tokens_per_example": int(stats.token_counts.max()),
+            "mean_tokens_per_example": float(stats.token_counts.mean()),
+            "model_sequence_length": examples.sequence_length,
             "batch_size": batch_size,
             "elapsed_seconds": time.monotonic() - started,
             "compute_gradient_attribution": compute_gradient_attribution,
