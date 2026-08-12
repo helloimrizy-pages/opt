@@ -5,6 +5,10 @@ This repository implements a diagnostic experiment for the question:
 > Do per-layer expert-importance rankings in OLMoE change across general text,
 > mathematics, coding, and reasoning inputs?
 
+The latest validated runs, cross-run comparison, current go/no-go decision, and
+next experimental gate are recorded in [`EXPERIMENT_STATUS.md`](EXPERIMENT_STATUS.md).
+Future Codex sessions are directed there by the repository-level `AGENTS.md`.
+
 It collects routing utilization, selected gate mass, and a functional-contribution
 proxy. It does not quantize, compress, fine-tune, generate from, or modify the model.
 
