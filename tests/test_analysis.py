@@ -103,6 +103,18 @@ class AnalysisTests(unittest.TestCase):
                 "measured_tokens_per_example": 8,
                 "lookahead_tokens_per_example": 1,
                 "measured_tokens_per_domain": 48,
+                "domains": {
+                    domain: {
+                        "candidate_pool_actual": 12,
+                        "candidate_pool_eligible": 9,
+                        "actual_examples": 6,
+                        "control": {
+                            "selected_original_content_token_min": 9,
+                            "selected_original_content_token_max": 14,
+                        },
+                    }
+                    for domain in domains
+                },
             }
             results["expert_masking_loss"] = [
                 {
@@ -137,6 +149,7 @@ class AnalysisTests(unittest.TestCase):
                 }
             ]
             summary = write_summary(results, output / "SUMMARY.md")
+            self.assertIn("## Controlled-corpus eligibility", summary)
             self.assertIn("## Controlled expert-masking loss effects", summary)
             self.assertIn("# Controlled Causal-Validation Assessment", summary)
             figure_paths = create_all_figures(results, output)

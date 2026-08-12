@@ -132,6 +132,32 @@ def write_summary(results: dict[str, Any], output_path: Path) -> str:
                 "widespread truncation and should be revisited at the intended 512-token cap.",
             ]
         )
+    controlled_domains = controlled.get("domains", {}) if controlled else {}
+    if controlled_domains:
+        lines.extend(
+            [
+                "",
+                "## Controlled-corpus eligibility",
+                "",
+                "Only examples with enough content for all measured positions and the "
+                "look-ahead label are eligible. This table makes that length-conditioned "
+                "selection explicit.",
+                "",
+                "| Domain | Candidate texts | Length-eligible | Selected | "
+                "Selected original-token range |",
+                "|---|---:|---:|---:|---:|",
+            ]
+        )
+        for domain in domains:
+            metadata = controlled_domains[domain]
+            control = metadata["control"]
+            lines.append(
+                f"| {domain.title()} | {metadata['candidate_pool_actual']} | "
+                f"{metadata['candidate_pool_eligible']} | "
+                f"{metadata['actual_examples']} | "
+                f"{control['selected_original_content_token_min']}–"
+                f"{control['selected_original_content_token_max']} |"
+            )
 
     lines.extend(
         [
@@ -386,7 +412,11 @@ def write_summary(results: dict[str, Any], output_path: Path) -> str:
                 [
                     "- Sequence lengths, token budgets, answer inclusion, and the wrapper prefix "
                     "are controlled, but domain remains entangled with dataset choice and the "
-                    "content's natural surface form."
+                    "content's natural surface form.",
+                    "- The fixed-token design selects examples long enough to supply every "
+                    "measured position and its next-token label. Eligibility rates differ by "
+                    "dataset, so results describe length-matched subsets rather than each "
+                    "benchmark's complete distribution."
                 ]
                 if controlled
                 else [
