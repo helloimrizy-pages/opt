@@ -124,6 +124,73 @@ Dataset revisions can be pinned independently:
     --dataset-revision general=REVISION \
     --dataset-revision math=REVISION
 
+## Controlled causal validation
+
+The next project gate is implemented as a single command. It uses a separately
+tokenized, identical `Input:\n` prefix for every domain, removes reference answers
+and domain-name wrappers, and retains exactly 64 measured content positions plus
+one look-ahead next-token label per example. At 100 examples, every domain therefore
+has the same 6,400-token measurement and loss budget. The shared prefix and
+look-ahead token condition the model but are excluded from expert statistics. This
+is a length-conditioned sample: the report records how many candidates in each
+dataset were long enough to enter the controlled corpus.
+
+Run this on the A40 RunPod instance:
+
+    python scripts/run_causal_validation.py \
+      --model allenai/OLMoE-1B-7B-0924 \
+      --model-revision 6d84c48581ece794365f2b8e9cfb043c68ade9c5 \
+      --domains general math coding reasoning \
+      --num-examples 100 \
+      --tokens-per-example 64 \
+      --candidate-pool-size 1000 \
+      --max-length 512 \
+      --batch-size 1 \
+      --seed 42 \
+      --device cuda \
+      --dtype bfloat16 \
+      --no-allow-dataset-substitution \
+      --dataset-revision general=b08601e04326c79dfdd32d625aee71d232d685c3 \
+      --dataset-revision math=740312add88f781978c0658806c59bc2815b9866 \
+      --dataset-revision coding=4bb6404fdc6cacfda99d4ac4205087b89d32030c \
+      --dataset-revision reasoning=210d026faf9955653af8916fad021475a3f00453 \
+      --mask-expert 11:27:coding:reasoning \
+      --mask-expert 10:56:coding:general \
+      --mask-expert 1:25:coding:general \
+      --bootstrap-replicates 100 \
+      --split-half-replicates 100 \
+      --mask-bootstrap-replicates 1000 \
+      --output-dir results/expert_domain_causal_validation
+
+This one invocation validates instrumentation and masking, constructs and verifies
+the controlled corpus, collects all three activation metrics, computes the original
+cross-domain analysis, estimates repeated same-domain split-half reliability, runs
+the three pre-registered expert/domain contrasts, bootstraps loss effects, writes
+the summary, and creates all figures. Completed collection domains and individual
+loss passes resume automatically.
+
+The 100-example run is the controlled quick experiment and remains preliminary.
+Its generated report states whether the evidence supports expanding causal
+validation, stopping, or considering only a limited reversible pilot; it does not
+authorize quantization automatically.
+
+The intervention zeros the selected expert's gate coefficient only at the measured
+source-token positions. It does not reroute the token, change model parameters, or
+claim to simulate quantization. The evaluated next-token loss positions are exactly
+aligned with the positions used for routing and contribution collection.
+
+Additional causal-validation outputs include:
+
+- `controlled_corpus.json` and `controlled_inputs/DOMAIN.npz`
+- `same_domain_split_half.csv`
+- `expert_masking_loss.csv`
+- `expert_masking_domain_contrasts.csv`
+- `masking_results.json` and resumable per-example arrays under `masking/`
+- split-half, masking-loss, and proxy-versus-loss figures in PNG and PDF
+
+This output directory remains ignored until the completed run is copied back,
+audited, and deliberately promoted as a validated snapshot.
+
 ## Outputs
 
 The analysis creates:
@@ -133,6 +200,7 @@ The analysis creates:
 - topk_overlap.csv
 - routing_vs_functional_correlation.csv
 - domain_specialized_experts.csv
+- same_domain_split_half.csv
 - results.json
 - SUMMARY.md, including the go/no-go assessment
 - PNG and PDF figures under figures/
@@ -163,9 +231,11 @@ Run the dependency-light local tests with:
 
     PYTHONPATH=src python -m unittest discover -s tests -v
 
-The tests cover current tensorized OLMoE-style experts, older ModuleList-style
-experts, padding exclusion, optional gradient attribution, bootstrapping, ranking,
-top-k overlap, and complete analysis/report artifact generation.
+The tests cover the current Hugging Face OLMoE router and tensorized experts, older
+ModuleList-style experts, the production checkpoint tokenizer API, exact controlled
+token geometry, padding exclusion, optional gradient attribution, expert masking,
+hook cleanup, unchanged parameters, bootstrapping, split-half reliability, ranking,
+top-k overlap, causal report generation, and PNG/PDF figure creation.
 
 ## Scientific limitations
 

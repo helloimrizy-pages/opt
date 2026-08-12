@@ -24,6 +24,9 @@ quantization or compression**. The domain-dependence signal survives removal of
 reference answers, but length, prompt-format, dataset, and proxy-metric controls
 remain necessary before using these rankings for bit allocation.
 
+The controlled causal-validation code is implemented but has not yet been run on
+the full OLMoE checkpoint. Do not infer its outcome from the implementation tests.
+
 ## Code baseline
 
 The implemented and committed workflow consists of:
@@ -33,6 +36,12 @@ The implemented and committed workflow consists of:
 - `6cdb41c` — Add cross-domain analysis and reporting
 - `aa53fdc` — Add expert analysis validation tests
 - `116d4c1` — Document the expert-domain experiment workflow
+- `2703de2` — Add controlled fixed-token domain inputs
+- `eb5f8c0` — Add split-half expert ranking reliability
+- `38d46bc` — Support current OLMoE tokenizer API
+- `1f04739` — Add reversible expert masking analysis
+- `fccf288` — Add controlled causal validation runner
+- `40c83e4` — Report controlled corpus eligibility
 
 The code is split across collection, analysis, plotting, model discovery,
 instrumentation, datasets, statistics, reporting, and tests. See `README.md` for
@@ -296,22 +305,55 @@ Do not overstate this conclusion:
 
 ## Required next experiment before compression
 
-Run a controlled 2x design on paired examples:
+The required controlled experiment is now implemented in
+`scripts/run_causal_validation.py`. Its exact pinned RunPod command is in the
+`Controlled causal validation` section of `README.md`.
 
-1. Preserve an identical prompt prefix and either append or omit the answer.
-2. Remove domain-name labels or apply the same neutral wrapper to all domains.
-3. Filter or bucket examples into a shared token-length range and use equal total
-   token budgets per domain.
-4. Compute same-domain split-half correlations to establish the ranking-reliability
-   ceiling at the chosen sample size.
-5. Repeat the layer-wise Spearman, Kendall, top-k, bootstrap, specialization, and
-   routing-versus-functional analyses.
-6. If the signal persists, mask a small set of robust specialists—starting with
-   layer 11/expert 27, layer 10/expert 56, and layer 1/expert 25—and measure
-   domain-conditioned next-token loss deltas.
+The implementation performs the following controls:
 
-Only after those causal masking results should the project decide whether to begin
-mixed-precision or distributionally robust bit-allocation experiments.
+1. Uses the identical separately tokenized neutral prefix `Input:\n` for every
+   example, with no domain label or reference answer.
+2. Selects examples from deterministic shuffled candidate pools and retains exactly
+   64 measured content source positions plus one look-ahead label per example.
+3. Gives every domain the exact same length distribution and 6,400 measured-token
+   budget at 100 examples.
+4. Aligns expert statistics, expert zeroing, and next-token cross-entropy to the
+   same source positions; prefix and look-ahead positions are excluded.
+5. Computes repeated same-domain split-half Spearman correlations and
+   Spearman–Brown full-sample estimates for all three metrics.
+6. Repeats all cross-domain rankings, bootstraps, top-k comparisons, specialization,
+   and routing-versus-functional analyses.
+7. Pre-registers layer 11/expert 27, layer 10/expert 56, and layer 1/expert 25 from
+   the prior prompt-only run. Their high-versus-low contrasts are pre-registered as
+   Coding–Reasoning, Coding–General, and Coding–General, respectively. It then
+   zeroes their selected gate weights without rerouting and measures paired
+   per-example next-token loss changes.
+8. Produces paired-bootstrap loss intervals, high-versus-low domain contrasts, and
+   activation-proxy versus causal-loss alignment diagnostics.
+
+The masking smoke test dynamically finds a routed expert, verifies finite baseline
+and masked losses, verifies that the loss actually changes, and checks hook cleanup.
+Every full intervention also verifies that its zeroed route counts exactly equal the
+independently collected routing counts. No parameters are modified.
+
+Local validation completed with all 14 tests passing in the project environment.
+This includes a tiny current Hugging Face `OlmoeForCausalLM`, bitwise checks that
+parameters remain unchanged, hook-leak checks, end-to-end masking artifacts, causal
+summary generation, and PNG/PDF figure creation. The actual checkpoint tokenizer
+was also loaded from the local cache under Transformers 5.15: `Input:\n` maps to
+token IDs `[8982, 27, 187]`, and the controlled 64-position construction produces a
+68-token model sequence with one excluded look-ahead token. These implementation
+checks are not a substitute for the pending full-checkpoint RunPod run.
+
+Because fixed-length control requires at least 65 content tokens, the experiment
+conditions on longer examples. The generated summary reports candidate-pool size,
+eligible count, selected count, and selected original-token range for every domain;
+interpret the results as applying to these length-matched subsets.
+
+After the RunPod output is copied back, audit the raw NPZ arrays, exact token-budget
+invariants, split-half reliability, loss route-count equality, bootstrap intervals,
+and generated report. Only then should the project decide whether to expand causal
+validation or begin a small reversible mixed-precision pilot.
 
 ## Fresh-session checklist
 
@@ -323,8 +365,12 @@ A new Codex session should:
    and NPZ arrays before making new numerical claims.
 4. Treat the prompt-only result as the current primary diagnostic and the
    with-answer result as a sensitivity comparison.
-5. Keep all rankings layer-wise; expert IDs are not comparable across layers.
-6. Keep “routing utilization,” “gate mass,” and “functional contribution proxy”
+5. Treat `results/expert_domain_causal_validation/` as pending until a real RunPod
+   run is present and independently audited; unit tests do not constitute a result.
+6. Keep all rankings layer-wise; expert IDs are not comparable across layers.
+7. Keep “routing utilization,” “gate mass,” and “functional contribution proxy”
    terminology unless an intervention supports a stronger claim.
-7. Do not begin quantization unless the user explicitly advances the project stage.
-8. Update this handoff after every new validated run.
+8. Describe selected-route masking as a causal loss-sensitivity intervention, not
+   as expert deletion or a quantization simulation.
+9. Do not begin quantization unless the user explicitly advances the project stage.
+10. Update this handoff after every new validated run.

@@ -9,7 +9,9 @@ Before changing this experiment or interpreting its results, read:
 The current project is a diagnostic study of domain-conditioned expert importance
 in OLMoE. Do not implement quantization, mixed-precision allocation, compression,
 fine-tuning, or weight modification unless the user explicitly changes the project
-stage. The present next step is controlled validation and expert masking/ablation.
+stage. The present next step is to run the implemented controlled causal-validation
+pipeline documented in `README.md`, audit its outputs, and only then decide whether
+a limited compression pilot is justified.
 
 The two audited 100-example snapshots are committed under
 `results/expert_domain_importance_prompts_only/` and
