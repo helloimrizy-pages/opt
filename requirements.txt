@@ -1,0 +1,9 @@
+torch>=2.2
+transformers>=4.45
+datasets>=2.19
+huggingface-hub>=0.24
+numpy>=1.26
+scipy>=1.11
+matplotlib>=3.8
+safetensors>=0.4
+accelerate>=0.33
