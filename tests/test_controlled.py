@@ -37,6 +37,15 @@ class CharacterTokenizer:
         return [1, *([0] * len(token_ids)), 1]
 
 
+class NoSpecialTokenBuilder(CharacterTokenizer):
+    build_inputs_with_special_tokens = None
+
+    @staticmethod
+    def num_special_tokens_to_add(pair=False):
+        del pair
+        return 0
+
+
 class ControlledInputTests(unittest.TestCase):
     def test_exact_shared_prefix_length_and_budget(self) -> None:
         candidates = {}
@@ -87,6 +96,28 @@ class ControlledInputTests(unittest.TestCase):
             np.testing.assert_array_equal(
                 loaded.measurement_mask, prepared["general"].measurement_mask
             )
+
+    def test_tokenizer_without_sequence_builder_when_no_specials_are_added(self) -> None:
+        domain = DomainExamples(
+            domain="general",
+            texts=["abcdefghijk", "lmnopqrstuv"],
+            metadata={
+                "repository": "test/general",
+                "split": "test",
+                "requested_examples": 2,
+                "selected_example_ids": ["0", "1"],
+            },
+        )
+        prepared, manifest = prepare_controlled_domains(
+            {"general": domain},
+            NoSpecialTokenBuilder(),
+            num_examples=2,
+            measured_tokens_per_example=6,
+            neutral_prefix="Input:\n",
+            max_length=32,
+        )
+        self.assertEqual(prepared["general"].sequence_length, 14)
+        self.assertEqual(manifest["measured_tokens_per_domain"], 12)
 
 
 if __name__ == "__main__":

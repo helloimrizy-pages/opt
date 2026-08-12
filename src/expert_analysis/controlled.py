@@ -296,13 +296,32 @@ def _encode_many(tokenizer: Any, texts: Sequence[str]) -> list[list[int]]:
 def _add_model_special_tokens(
     tokenizer: Any, raw_ids: Sequence[int]
 ) -> tuple[list[int], list[int]]:
-    sequence = [int(item) for item in tokenizer.build_inputs_with_special_tokens(list(raw_ids))]
-    special_mask = [
-        int(item)
-        for item in tokenizer.get_special_tokens_mask(
-            list(raw_ids), already_has_special_tokens=False
+    raw = [int(item) for item in raw_ids]
+    build = getattr(tokenizer, "build_inputs_with_special_tokens", None)
+    if not callable(build):
+        count_special = getattr(tokenizer, "num_special_tokens_to_add", None)
+        if callable(count_special) and int(count_special(pair=False)) == 0:
+            # Transformers 5's GPTNeoXTokenizer exposes neither a sequence builder
+            # nor an unformatted special-token mask. OLMoE adds no BOS/EOS tokens,
+            # so the already-tokenized prefix/content concatenation is final.
+            return raw, [0] * len(raw)
+        raise RuntimeError(
+            f"Tokenizer {tokenizer.__class__.__name__} cannot add special tokens "
+            "to an already-tokenized controlled sequence"
         )
-    ]
+    sequence = [int(item) for item in build(raw)]
+    try:
+        special_mask = [
+            int(item)
+            for item in tokenizer.get_special_tokens_mask(
+                raw, already_has_special_tokens=False
+            )
+        ]
+    except NotImplementedError as exc:
+        raise RuntimeError(
+            f"Tokenizer {tokenizer.__class__.__name__} added special tokens but "
+            "cannot identify their positions"
+        ) from exc
     if len(sequence) != len(special_mask):
         raise RuntimeError("Tokenizer returned inconsistent special-token metadata")
     if sum(1 for item in special_mask if item == 0) != len(raw_ids):
