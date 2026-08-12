@@ -11,10 +11,12 @@ in OLMoE. Do not implement quantization, mixed-precision allocation, compression
 fine-tuning, or weight modification unless the user explicitly changes the project
 stage. The present next step is controlled validation and expert masking/ablation.
 
-Generated experiment artifacts are intentionally not committed. Check the artifact
-paths recorded in `EXPERIMENT_STATUS.md` and validate the raw files when they are
-available locally; do not treat the handoff's rounded tables as a substitute for
-`results.json`, CSV, or NPZ data.
+The two audited 100-example snapshots are committed under
+`results/expert_domain_importance_prompts_only/` and
+`results/expert_domain_importance_with_answers/`. Other generated runs remain
+ignored. Validate the committed raw files when making numerical claims; do not
+treat the handoff's rounded tables as a substitute for `results.json`, CSV, or NPZ
+data.
 
 When a new run is completed and audited, update `EXPERIMENT_STATUS.md` with its
 configuration, exact or reconstructed command, artifact location, validation

@@ -142,6 +142,11 @@ Raw per-example arrays are stored as domains/DOMAIN.npz. Their shape is
 functional-contribution sums, and optional gradient sums. Full hidden states and
 token-level activations are never persisted.
 
+The two audited 100-example snapshots are versioned at
+`results/expert_domain_importance_with_answers/` and
+`results/expert_domain_importance_prompts_only/`. Other generated result
+directories remain ignored until explicitly promoted as validated artifacts.
+
 Bootstrap intervals independently resample the already-collected examples within
 each domain, aggregate expert vectors, recompute layer-wise Spearman correlations,
 and then average each replicate across MoE layers. Top-k comparisons report both

@@ -1,0 +1,37 @@
+{
+  "model": "allenai/OLMoE-1B-7B-0924",
+  "model_revision": null,
+  "resolved_model_revision": "6d84c48581ece794365f2b8e9cfb043c68ade9c5",
+  "domains": [
+    "general",
+    "math",
+    "coding",
+    "reasoning"
+  ],
+  "num_examples": 100,
+  "max_length": 512,
+  "seed": 42,
+  "include_reference_answers": true,
+  "compute_gradient_attribution": false,
+  "dtype": "bfloat16",
+  "dataset_revisions": {},
+  "collection_fingerprint": "64e951904e42a52caca82051cc6292e8854da1bfffaa413d99d725006bebd2be",
+  "quick": false,
+  "batch_size": 1,
+  "device": "cuda",
+  "device_description": "NVIDIA A40",
+  "deterministic": true,
+  "allow_dataset_substitution": true,
+  "package_versions": {
+    "python": "3.12.3",
+    "torch": "2.8.0+cu128",
+    "transformers": "5.15.0",
+    "datasets": "5.0.1",
+    "huggingface-hub": "1.27.0",
+    "numpy": "2.1.2",
+    "scipy": "1.18.0",
+    "matplotlib": "3.11.1",
+    "safetensors": "0.8.0"
+  },
+  "created_at_utc": "2026-08-12T03:37:23.717566+00:00"
+}

@@ -5,4 +5,9 @@ __pycache__/
 .ruff_cache/
 .venv/
 .hf_cache/
-results/
+# Ignore ad hoc/generated runs, but retain the two audited 100-example snapshots.
+results/*
+!results/expert_domain_importance_prompts_only/
+!results/expert_domain_importance_prompts_only/**
+!results/expert_domain_importance_with_answers/
+!results/expert_domain_importance_with_answers/**

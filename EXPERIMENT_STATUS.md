@@ -3,7 +3,7 @@
 Last updated: 2026-08-12
 
 This file is the durable cross-session research handoff. It records the current
-experimental state and the conclusions supported by the locally available run
+experimental state and the conclusions supported by the committed, validated run
 artifacts. The per-run `collection_config.json`, domain metadata, NPZ arrays, CSV
 files, `results.json`, and `SUMMARY.md` remain the authoritative source for exact
 values.
@@ -99,7 +99,7 @@ control.
 
 ### Reference-answer run
 
-Local artifact directory: `results copy/expert_domain_importance/`
+Tracked artifact directory: `results/expert_domain_importance_with_answers/`
 
 Exact collection command supplied for the RunPod run:
 
@@ -119,10 +119,13 @@ python scripts/collect_expert_importance.py \
 This run used the default `include_reference_answers=true` behavior. Its collection
 fingerprint is
 `64e951904e42a52caca82051cc6292e8854da1bfffaa413d99d725006bebd2be`.
+The RunPod command originally wrote `results/expert_domain_importance`; the imported
+snapshot was renamed to `expert_domain_importance_with_answers` to distinguish it
+unambiguously from the prompt-only control.
 
 ### Prompt-only run
 
-Local artifact directory: `results/expert_domain_importance_prompts_only/`
+Tracked artifact directory: `results/expert_domain_importance_prompts_only/`
 
 Reproducible equivalent command reconstructed from `collection_config.json`:
 
@@ -154,10 +157,10 @@ python scripts/plot_expert_importance.py \
   --input-dir results/expert_domain_importance_prompts_only
 ```
 
-The prompt-only directory is ignored through the repository's `results/` rule.
-The copied reference-answer directory currently has a space in its name and is
-untracked. Raw result artifacts should remain outside Git unless deliberately
-placed in external artifact storage.
+Both audited 100-example snapshots are versioned so their exact raw statistics,
+reports, and figures remain available across Codex sessions and fresh clones. The
+repository still ignores other ad hoc `results/` directories unless they are
+explicitly promoted as validated snapshots in `.gitignore`.
 
 ## Independent artifact audit
 
