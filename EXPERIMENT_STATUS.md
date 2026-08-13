@@ -19,13 +19,15 @@ This stage measures routing utilization, selected gate mass, and a functional
 contribution proxy. It does not establish causal importance. No model weights have
 been modified, fine-tuned, compressed, or quantized.
 
-Current decision: **strong-support GO for controlled validation, not yet for
-quantization or compression**. The domain-dependence signal survives removal of
-reference answers, but length, prompt-format, dataset, and proxy-metric controls
-remain necessary before using these rankings for bit allocation.
+Current decision: **GO for the frozen balanced causal-validation run, not yet for
+quantization or compression**. Prompt-only validation and the controlled causal
+run are complete and independently auditable. The balanced 12-specialist plus
+12-control panel is frozen before masking; its A40 execution is pending.
 
-The controlled causal-validation code is implemented but has not yet been run on
-the full OLMoE checkpoint. Do not infer its outcome from the implementation tests.
+The controlled run supplies strong domain-dependent functional evidence and three
+successful Coding interventions. Because those interventions are all
+Coding-specialized, the final causal gate is the frozen balanced panel across
+General, Math, Coding, and Reasoning with same-layer routing controls.
 
 ## Code baseline
 
@@ -42,6 +44,12 @@ The implemented and committed workflow consists of:
 - `1f04739` — Add reversible expert masking analysis
 - `fccf288` — Add controlled causal validation runner
 - `40c83e4` — Report controlled corpus eligibility
+- `4065720` — Document controlled causal validation workflow
+
+The balanced-panel implementation adds deterministic baseline-
+only preregistration, strict integrity gates, intervention-level resume support,
+paired control/aggregate bootstraps, figures, and reporting. No quantization or
+weight modification has been implemented.
 
 The code is split across collection, analysis, plotting, model discovery,
 instrumentation, datasets, statistics, reporting, and tests. See `README.md` for
@@ -303,57 +311,114 @@ Do not overstate this conclusion:
   uncertainty.
 - This is one 100-example/domain run on one base checkpoint.
 
-## Required next experiment before compression
+## Controlled causal validation: completed and audited
 
-The required controlled experiment is now implemented in
-`scripts/run_causal_validation.py`. Its exact pinned RunPod command is in the
-`Controlled causal validation` section of `README.md`.
+Artifact directory: `results/expert_domain_causal_validation/`
 
-The implementation performs the following controls:
+Reconstructed exact command:
 
-1. Uses the identical separately tokenized neutral prefix `Input:\n` for every
-   example, with no domain label or reference answer.
-2. Selects examples from deterministic shuffled candidate pools and retains exactly
-   64 measured content source positions plus one look-ahead label per example.
-3. Gives every domain the exact same length distribution and 6,400 measured-token
-   budget at 100 examples.
-4. Aligns expert statistics, expert zeroing, and next-token cross-entropy to the
-   same source positions; prefix and look-ahead positions are excluded.
-5. Computes repeated same-domain split-half Spearman correlations and
-   Spearman–Brown full-sample estimates for all three metrics.
-6. Repeats all cross-domain rankings, bootstraps, top-k comparisons, specialization,
-   and routing-versus-functional analyses.
-7. Pre-registers layer 11/expert 27, layer 10/expert 56, and layer 1/expert 25 from
-   the prior prompt-only run. Their high-versus-low contrasts are pre-registered as
-   Coding–Reasoning, Coding–General, and Coding–General, respectively. It then
-   zeroes their selected gate weights without rerouting and measures paired
-   per-example next-token loss changes.
-8. Produces paired-bootstrap loss intervals, high-versus-low domain contrasts, and
-   activation-proxy versus causal-loss alignment diagnostics.
+```bash
+python scripts/run_causal_validation.py \
+  --model allenai/OLMoE-1B-7B-0924 \
+  --model-revision 6d84c48581ece794365f2b8e9cfb043c68ade9c5 \
+  --domains general math coding reasoning \
+  --num-examples 100 \
+  --tokens-per-example 64 \
+  --candidate-pool-size 1000 \
+  --max-length 512 \
+  --batch-size 1 \
+  --seed 42 \
+  --device cuda \
+  --dtype bfloat16 \
+  --no-allow-dataset-substitution \
+  --dataset-revision general=b08601e04326c79dfdd32d625aee71d232d685c3 \
+  --dataset-revision math=740312add88f781978c0658806c59bc2815b9866 \
+  --dataset-revision coding=4bb6404fdc6cacfda99d4ac4205087b89d32030c \
+  --dataset-revision reasoning=210d026faf9955653af8916fad021475a3f00453 \
+  --mask-expert 11:27:coding:reasoning \
+  --mask-expert 10:56:coding:general \
+  --mask-expert 1:25:coding:general \
+  --bootstrap-replicates 100 \
+  --split-half-replicates 100 \
+  --mask-bootstrap-replicates 1000 \
+  --output-dir results/expert_domain_causal_validation
+```
 
-The masking smoke test dynamically finds a routed expert, verifies finite baseline
-and masked losses, verifies that the loss actually changes, and checks hook cleanup.
-Every full intervention also verifies that its zeroed route counts exactly equal the
-independently collected routing counts. No parameters are modified.
+The run used the fixed revision and all four pinned dataset revisions, without
+substitution, on an NVIDIA A40 in BF16. Its collection fingerprint is
+`052956d26bac03d54e637c5812b84ae8a37fd7b5f9b51f8558082af2e38cb362`.
+Each domain contains 100 examples, exactly 64 measured source positions/example,
+and exactly 6,400 measured positions. All controlled inputs use the same prefix IDs
+`[8982, 27, 187]`, the same 68-token model sequence, and the same measurement-mask
+hash.
 
-Local validation completed with all 14 tests passing in the project environment.
-This includes a tiny current Hugging Face `OlmoeForCausalLM`, bitwise checks that
-parameters remain unchanged, hook-leak checks, end-to-end masking artifacts, causal
-summary generation, and PNG/PDF figure creation. The actual checkpoint tokenizer
-was also loaded from the local cache under Transformers 5.15: `Input:\n` maps to
-token IDs `[8982, 27, 187]`, and the controlled 64-position construction produces a
-68-token model sequence with one excluded look-ahead token. These implementation
-checks are not a substitute for the pending full-checkpoint RunPod run.
+Independent raw-artifact validation on 2026-08-12 confirmed:
 
-Because fixed-length control requires at least 65 content tokens, the experiment
-conditions on longer examples. The generated summary reports candidate-pool size,
-eligible count, selected count, and selected original-token range for every domain;
-interpret the results as applying to these length-matched subsets.
+- Every domain NPZ has `routing_counts`, `gate_sums`, and `contribution_sums` with
+  shape `[100, 16, 64]` and exactly 64 token counts per example.
+- Every example/layer has exactly `64 * 8 = 512` selected expert assignments.
+- All statistics and loss arrays are finite and nonnegative.
+- Requested and resolved model/dataset revisions and controlled-input hashes match.
+- The masking smoke test changed loss and left zero hooks before and after.
+- Every intervention's route-count vector exactly matches the independently stored
+  routing tensor for that layer/expert/domain.
 
-After the RunPod output is copied back, audit the raw NPZ arrays, exact token-budget
-invariants, split-half reliability, loss route-count equality, bootstrap intervals,
-and generated report. Only then should the project decide whether to expand causal
-validation or begin a small reversible mixed-precision pilot.
+Main controlled functional results are mean cross-domain Spearman **0.317660**,
+top-25% Jaccard **0.260797**, and **75/96** layer/domain-pair correlations below
+0.5. General–Coding Spearman is **0.056321**, with 95% bootstrap interval
+**[0.002165, 0.098871]**. Mean same-domain functional split-half correlations are
+General **0.936777**, Math **0.978906**, Coding **0.981322**, and Reasoning
+**0.977453**.
+
+The three pre-registered Coding interventions all reproduced the expected causal
+direction:
+
+| Expert | Target delta NLL | Pre-registered contrast | Contrast | 95% CI |
+|---|---:|---|---:|---:|
+| L11/E27 | +0.034239 | Coding minus Reasoning | +0.035539 | [0.028813, 0.041402] |
+| L10/E56 | +0.028811 | Coding minus General | +0.031183 | [0.025796, 0.036232] |
+| L1/E25 | +0.022161 | Coding minus General | +0.030664 | [0.023681, 0.037605] |
+
+These results establish causal loss sensitivity for the tested Coding specialists,
+but not balanced generalization because all three targets are Coding.
+
+## Balanced causal validation: preregistered, execution pending
+
+Output directory: `results/expert_domain_balanced_causal_validation/`
+
+The deterministic baseline-only selection was frozen on 2026-08-12 before any new
+panel masking. Its selection-input fingerprint is
+`6555c24be1d20799239f5e38209083989790706aca5a96716da29ec1e5bcefbd` and its
+preregistration fingerprint is
+`50a9eeb1f053385abe67cc94b2c4cc62570caf6d24f562cb8bcf05f5808cf714`.
+No specialist threshold or control-matching tier required relaxation.
+
+| Target | Specialists | Same-layer matched controls |
+|---|---|---|
+| General | L13/E52, L12/E40, L3/E24 | L13/E36, L12/E2, L3/E30 |
+| Math | L8/E11, L12/E63, L2/E4 | L8/E54, L12/E43, L2/E34 |
+| Coding | L13/E2, L11/E27, L10/E56 | L13/E61, L11/E7, L10/E62 |
+| Reasoning | L13/E20, L11/E48, L14/E33 | L13/E63, L11/E47, L14/E8 |
+
+All 12 specialists meet the strict target-rank, non-target-rank, positive-margin,
+and routing-coverage criteria. All 12 controls are unique, same-layer matches with
+target specialization no greater than 25% of their specialist's margin. Exact
+candidate statistics, ranks, routing coverage, matching distances, hashes, and
+rationale are in `selected_experts_preregistered.json`, `candidate_experts.csv`,
+and `matched_controls.csv`.
+
+Implementation validation completed locally with all **16 tests passing**, including
+new deterministic-selection, unique-control, bootstrap, NPZ/CSV, and ten-figure
+checks. This is not an experimental result. The actual A40 execution remains
+pending. The ignored controlled source artifacts must be copied alongside a fresh
+RunPod checkout before execution. Do not infer balanced causal findings or a
+quantization decision until the run finishes and its raw artifacts are audited.
+
+Exact frozen commands are documented in the `Balanced causal validation` section
+of `README.md`. The required next action is to provision the A40 RunPod, copy the
+controlled source artifacts, run the resumable command, audit all 24 interventions,
+generate the full report, and then apply the pre-registered STRONG GO / GO WITH
+QUALIFICATIONS / WEAK–NO GO rule.
 
 ## Fresh-session checklist
 
@@ -363,14 +428,16 @@ A new Codex session should:
 2. Run `git status --short` and preserve local result artifacts.
 3. Inspect the relevant run's `collection_config.json`, metadata, `results.json`,
    and NPZ arrays before making new numerical claims.
-4. Treat the prompt-only result as the current primary diagnostic and the
-   with-answer result as a sensitivity comparison.
-5. Treat `results/expert_domain_causal_validation/` as pending until a real RunPod
-   run is present and independently audited; unit tests do not constitute a result.
+4. Treat `results/expert_domain_causal_validation/` as the current validated
+   controlled run; validate its raw NPZ/JSON/CSV artifacts for exact claims.
+5. Treat `results/expert_domain_balanced_causal_validation/` as a frozen
+   preregistration with execution pending until its masking checkpoints and final
+   report are present and audited.
 6. Keep all rankings layer-wise; expert IDs are not comparable across layers.
 7. Keep “routing utilization,” “gate mass,” and “functional contribution proxy”
    terminology unless an intervention supports a stronger claim.
 8. Describe selected-route masking as a causal loss-sensitivity intervention, not
    as expert deletion or a quantization simulation.
-9. Do not begin quantization unless the user explicitly advances the project stage.
+9. Do not begin quantization unless the balanced causal decision justifies it and
+   the user explicitly advances the project stage.
 10. Update this handoff after every new validated run.

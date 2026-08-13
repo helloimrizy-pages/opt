@@ -9,16 +9,18 @@ Before changing this experiment or interpreting its results, read:
 The current project is a diagnostic study of domain-conditioned expert importance
 in OLMoE. Do not implement quantization, mixed-precision allocation, compression,
 fine-tuning, or weight modification unless the user explicitly changes the project
-stage. The present next step is to run the implemented controlled causal-validation
-pipeline documented in `README.md`, audit its outputs, and only then decide whether
-a limited compression pilot is justified.
+stage. The prompt-only and controlled causal runs are complete. The present next
+step is to run the frozen balanced causal-validation panel documented in
+`README.md`, audit all specialist and routing-control outcomes, and only then decide
+whether a distributionally robust mixed-precision experiment is justified.
 
 The two audited 100-example snapshots are committed under
 `results/expert_domain_importance_prompts_only/` and
 `results/expert_domain_importance_with_answers/`. Other generated runs remain
-ignored. Validate the committed raw files when making numerical claims; do not
-treat the handoff's rounded tables as a substitute for `results.json`, CSV, or NPZ
-data.
+ignored except the frozen balanced preregistration files. Validate raw files when
+making numerical claims; do not treat the handoff's rounded tables as a substitute
+for `results.json`, CSV, or NPZ data. Never alter the frozen balanced expert panel
+in response to masking outcomes.
 
 When a new run is completed and audited, update `EXPERIMENT_STATUS.md` with its
 configuration, exact or reconstructed command, artifact location, validation

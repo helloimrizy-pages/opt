@@ -64,7 +64,12 @@ def write_csv(path: Path, rows: Iterable[dict[str, Any]], fieldnames: list[str])
     fd, temporary_name = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=path.parent)
     try:
         with os.fdopen(fd, "w", encoding="utf-8", newline="") as handle:
-            writer = csv.DictWriter(handle, fieldnames=fieldnames, extrasaction="ignore")
+            writer = csv.DictWriter(
+                handle,
+                fieldnames=fieldnames,
+                extrasaction="ignore",
+                lineterminator="\n",
+            )
             writer.writeheader()
             for row in rows:
                 writer.writerow({key: _csv_value(row.get(key)) for key in fieldnames})

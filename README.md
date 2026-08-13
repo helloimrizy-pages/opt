@@ -191,6 +191,67 @@ Additional causal-validation outputs include:
 This output directory remains ignored until the completed run is copied back,
 audited, and deliberately promoted as a validated snapshot.
 
+## Balanced causal validation
+
+After the controlled importance tensors and the first three Coding interventions
+have been audited, freeze the balanced panel in a separate command. This command
+reads only `collection_config.json`, architecture/corpus metadata, controlled
+inputs, and baseline `domains/*.npz` tensors. It deliberately does not read any
+masked-loss artifact:
+
+    PYTHONPATH=src python scripts/preregister_balanced_causal_panel.py \
+      --source-dir results/expert_domain_causal_validation \
+      --output-dir results/expert_domain_balanced_causal_validation
+
+The preregistration uses normalized functional contribution and the margin
+`I(target) - max(I(non-target))`. The strict specialist tier requires target rank
+at most 7 of 64, at least one non-target rank below the top half, positive margin,
+and at least 1% target routing coverage. It chooses three layer-diverse experts per
+domain. Controls are assigned one-to-one within the same layer by deterministic
+minimum-cost matching, primarily on target routing coverage, subject to a target
+specialization margin no larger than 25% of the paired specialist's margin. The
+complete ranking and exact hashes are frozen in
+`selected_experts_preregistered.json` before masking.
+
+The controlled source run remains intentionally ignored by Git. Before using a
+fresh RunPod checkout, copy the complete local directory
+`results/expert_domain_causal_validation/` into the same path on the pod. Do not
+regenerate or substitute it: the runner validates its frozen hashes before loading
+the model.
+
+Run the frozen panel on the NVIDIA A40 with:
+
+    PYTHONPATH=src python scripts/run_balanced_causal_validation.py \
+      --source-dir results/expert_domain_causal_validation \
+      --output-dir results/expert_domain_balanced_causal_validation \
+      --model allenai/OLMoE-1B-7B-0924 \
+      --model-revision 6d84c48581ece794365f2b8e9cfb043c68ade9c5 \
+      --device cuda \
+      --dtype bfloat16 \
+      --batch-size 1 \
+      --seed 42 \
+      --bootstrap-replicates 1000 \
+      --cache-dir .hf_cache
+
+After the model cache has been populated, `--local-files-only` may be added for a
+fully offline resume.
+
+Before panel masking, the runner revalidates every source fingerprint, requires an
+A40/CUDA/BF16 runtime, verifies the model revision and architecture, runs the mask
+smoke test, reproduces every baseline loss, and freshly reproduces every baseline
+routing tensor. It aborts on any mismatch. Every
+expert/domain pass is saved immediately under `masking/`; rerunning validates and
+skips completed checkpoints. Previously validated Coding interventions are reused
+only when the package environment and freshly reproduced baselines are bitwise
+identical; otherwise they are rerun automatically.
+
+The primary causal statistic is target delta NLL minus the arithmetic mean of the
+three non-target delta NLLs. The analysis uses 1,000 fixed-seed bootstrap replicates
+from saved per-example losses and also reports all named pairwise contrasts,
+specialist-minus-control paired differences, domain and all-panel aggregates, and
+functional/routing predictors of causal specificity. No inference is performed by
+the bootstrap analysis.
+
 ## Outputs
 
 The analysis creates:
