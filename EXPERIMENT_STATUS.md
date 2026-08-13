@@ -1,9 +1,9 @@
 # Expert-domain importance experiment: persistent handoff
 
-Last updated: 2026-08-12
+Last updated: 2026-08-13
 
 This file is the durable cross-session research handoff. It records the current
-experimental state and the conclusions supported by the committed, validated run
+experimental state and the conclusions supported by the available validated run
 artifacts. The per-run `collection_config.json`, domain metadata, NPZ arrays, CSV
 files, `results.json`, and `SUMMARY.md` remain the authoritative source for exact
 values.
@@ -15,19 +15,16 @@ The diagnostic question is:
 > Do per-layer expert-importance rankings in OLMoE change substantially across
 > general text, mathematics, coding, and reasoning inputs?
 
-This stage measures routing utilization, selected gate mass, and a functional
-contribution proxy. It does not establish causal importance. No model weights have
-been modified, fine-tuned, compressed, or quantized.
+This stage measures routing utilization, selected gate mass, a functional
+contribution proxy, and selected-route masking loss sensitivity. No model weights
+have been modified, fine-tuned, compressed, or quantized.
 
-Current decision: **GO for the frozen balanced causal-validation run, not yet for
-quantization or compression**. Prompt-only validation and the controlled causal
-run are complete and independently auditable. The balanced 12-specialist plus
-12-control panel is frozen before masking; its A40 execution is pending.
-
-The controlled run supplies strong domain-dependent functional evidence and three
-successful Coding interventions. Because those interventions are all
-Coding-specialized, the final causal gate is the frozen balanced panel across
-General, Math, Coding, and Reasoning with same-layer routing controls.
+Current decision: **STRONG GO for a separately designed, reversible
+distributionally robust mixed-precision quantization experiment**. Prompt-only,
+controlled causal, and balanced causal validation are complete and independently
+audited. The balanced 12-specialist plus 12-control panel showed positive aggregate
+specialist and specialist-minus-control effects in all four domains. This decision
+advances the scientific gate only; quantization has not been implemented.
 
 ## Code baseline
 
@@ -45,6 +42,7 @@ The implemented and committed workflow consists of:
 - `fccf288` — Add controlled causal validation runner
 - `40c83e4` — Report controlled corpus eligibility
 - `4065720` — Document controlled causal validation workflow
+- `35849b7` — Add balanced causal validation panel
 
 The balanced-panel implementation adds deterministic baseline-
 only preregistration, strict integrity gates, intervention-level resume support,
@@ -382,7 +380,7 @@ direction:
 These results establish causal loss sensitivity for the tested Coding specialists,
 but not balanced generalization because all three targets are Coding.
 
-## Balanced causal validation: preregistered, execution pending
+## Balanced causal validation: completed and independently audited
 
 Output directory: `results/expert_domain_balanced_causal_validation/`
 
@@ -407,18 +405,65 @@ candidate statistics, ranks, routing coverage, matching distances, hashes, and
 rationale are in `selected_experts_preregistered.json`, `candidate_experts.csv`,
 and `matched_controls.csv`.
 
-Implementation validation completed locally with all **16 tests passing**, including
-new deterministic-selection, unique-control, bootstrap, NPZ/CSV, and ten-figure
-checks. This is not an experimental result. The actual A40 execution remains
-pending. The ignored controlled source artifacts must be copied alongside a fresh
-RunPod checkout before execution. Do not infer balanced causal findings or a
-quantization decision until the run finishes and its raw artifacts are audited.
+Exact command used:
 
-Exact frozen commands are documented in the `Balanced causal validation` section
-of `README.md`. The required next action is to provision the A40 RunPod, copy the
-controlled source artifacts, run the resumable command, audit all 24 interventions,
-generate the full report, and then apply the pre-registered STRONG GO / GO WITH
-QUALIFICATIONS / WEAK–NO GO rule.
+```bash
+PYTHONPATH=src python scripts/run_balanced_causal_validation.py \
+  --source-dir results/expert_domain_causal_validation \
+  --output-dir results/expert_domain_balanced_causal_validation \
+  --model allenai/OLMoE-1B-7B-0924 \
+  --model-revision 6d84c48581ece794365f2b8e9cfb043c68ade9c5 \
+  --device cuda \
+  --dtype bfloat16 \
+  --batch-size 1 \
+  --seed 42 \
+  --bootstrap-replicates 1000 \
+  --cache-dir .hf_cache
+```
+
+The A40/BF16 run completed all 24 interventions across all four domains. Fresh
+baselines reproduced the source arrays bitwise, routing tensors reproduced bitwise,
+all 96 masked route-count and zeroed-gate-mass arrays exactly matched the stored
+baseline tensors, masking changed loss, and all hook checks passed. The source
+collection, selection-input, preregistration, and inference fingerprints are,
+respectively, `052956d26bac03d54e637c5812b84ae8a37fd7b5f9b51f8558082af2e38cb362`,
+`6555c24be1d20799239f5e38209083989790706aca5a96716da29ec1e5bcefbd`,
+`50a9eeb1f053385abe67cc94b2c4cc62570caf6d24f562cb8bcf05f5808cf714`,
+and `13f53ddfef0d2155626642ce68acdce3a2e4abd1a1d5a9d19fed52e4597c3bb3`.
+The preregistration JSON and selection/control CSVs are byte-identical to commit
+`35849b7`, establishing that the panel was frozen before the masking run.
+
+Independent recomputation on 2026-08-13 reconstructed all domain means, 72 named
+pairwise contrasts, 12 paired-control differences, five aggregate rows, and three
+Spearman analyses from the 96 raw checkpoint NPZs. All point estimates and all
+1,000-replicate fixed-seed confidence intervals matched the generated tables.
+
+| Target domain | Mean specialist contrast | 95% CI | Mean control contrast | Specialist minus control | 95% CI |
+|---|---:|---:|---:|---:|---:|
+| General | +0.022097 | [0.015570, 0.029472] | -0.000239 | +0.022336 | [0.015488, 0.029732] |
+| Math | +0.004781 | [0.002261, 0.007299] | -0.005931 | +0.010712 | [0.006498, 0.015448] |
+| Coding | +0.033066 | [0.029103, 0.037092] | +0.004192 | +0.028874 | [0.024813, 0.033054] |
+| Reasoning | +0.006243 | [0.003793, 0.008815] | +0.000137 | +0.006106 | [0.002624, 0.009624] |
+| All domains | +0.016547 | [0.014339, 0.018615] | -0.000460 | +0.017007 | [0.014618, 0.019411] |
+
+Eleven of 12 specialist primary contrasts were positive, ten had 95% intervals
+strictly above zero, and 11 of 12 specialist-minus-control point differences were
+positive. Functional specialization was more predictive of causal specificity
+than routing frequency alone: Spearman **0.753** [0.666, 0.804] versus **0.417**
+[0.312, 0.477]. Routing specialization Spearman was **0.711** [0.621, 0.760].
+
+Failures were retained. Math L2/E4 had target delta NLL **-0.004302** and primary
+contrast **-0.005188** [-0.008501, -0.002065]; its paired difference was positive
+but inconclusive. Reasoning L13/E20 had an inconclusive primary contrast and its
+control was nominally more target-specific. Reasoning L14/E33 had a positive
+primary contrast but an inconclusive paired-control difference.
+
+The pre-registered decision rule yields **STRONG GO**: all four domain aggregates
+have positive specialist contrasts and positive specialist-minus-control effects,
+the overall paired effect is positive, and 91.7% of paired point differences are
+positive. The evidence supports designing the next distributionally robust
+mixed-precision quantization experiment, while retaining the one-checkpoint,
+fixed-corpus, selected-route-masking limitations. No quantization was performed.
 
 ## Fresh-session checklist
 
@@ -430,14 +475,15 @@ A new Codex session should:
    and NPZ arrays before making new numerical claims.
 4. Treat `results/expert_domain_causal_validation/` as the current validated
    controlled run; validate its raw NPZ/JSON/CSV artifacts for exact claims.
-5. Treat `results/expert_domain_balanced_causal_validation/` as a frozen
-   preregistration with execution pending until its masking checkpoints and final
-   report are present and audited.
+5. Treat `results/expert_domain_balanced_causal_validation/` as the completed,
+   independently audited balanced causal run; preserve its frozen preregistration,
+   masking checkpoints, final tables, and figures.
 6. Keep all rankings layer-wise; expert IDs are not comparable across layers.
 7. Keep “routing utilization,” “gate mass,” and “functional contribution proxy”
    terminology unless an intervention supports a stronger claim.
 8. Describe selected-route masking as a causal loss-sensitivity intervention, not
    as expert deletion or a quantization simulation.
-9. Do not begin quantization unless the balanced causal decision justifies it and
+9. The balanced causal decision scientifically justifies a separately designed
+   distributionally robust quantization experiment, but do not implement it until
    the user explicitly advances the project stage.
 10. Update this handoff after every new validated run.

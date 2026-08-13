@@ -1157,9 +1157,16 @@ def create_balanced_figures(results: Mapping[str, Any], output_dir: Path) -> lis
         axis.set_ylabel("Delta NLL (nats/token)")
         axis.grid(axis="y", alpha=0.2)
     handles, labels = axes.flat[0].get_legend_handles_labels()
-    figure.legend(handles, labels, loc="upper center", ncol=4, frameon=False)
-    figure.suptitle("Domain-specialized selected-route masking effects", y=0.995)
-    figure.tight_layout(rect=(0, 0, 1, 0.95))
+    figure.suptitle("Domain-specialized selected-route masking effects", y=0.985)
+    figure.legend(
+        handles,
+        labels,
+        loc="upper center",
+        bbox_to_anchor=(0.5, 0.955),
+        ncol=4,
+        frameon=False,
+    )
+    figure.tight_layout(rect=(0, 0, 1, 0.90))
     paths.extend(
         _save_both(
             figure, figure_dir / "figure_1_domain_specialized_masking_effects", plt

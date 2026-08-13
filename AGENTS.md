@@ -9,10 +9,10 @@ Before changing this experiment or interpreting its results, read:
 The current project is a diagnostic study of domain-conditioned expert importance
 in OLMoE. Do not implement quantization, mixed-precision allocation, compression,
 fine-tuning, or weight modification unless the user explicitly changes the project
-stage. The prompt-only and controlled causal runs are complete. The present next
-step is to run the frozen balanced causal-validation panel documented in
-`README.md`, audit all specialist and routing-control outcomes, and only then decide
-whether a distributionally robust mixed-precision experiment is justified.
+stage. The prompt-only, controlled causal, and balanced causal runs are complete
+and audited. The balanced panel met its pre-registered STRONG GO rule, so a
+separately designed distributionally robust mixed-precision experiment is the next
+scientifically justified stage once the user explicitly authorizes it.
 
 The two audited 100-example snapshots are committed under
 `results/expert_domain_importance_prompts_only/` and
