@@ -13,6 +13,9 @@ results/expert_domain_balanced_causal_validation/*
 !results/expert_domain_balanced_causal_validation/selected_experts_preregistered.json
 !results/expert_domain_balanced_causal_validation/candidate_experts.csv
 !results/expert_domain_balanced_causal_validation/matched_controls.csv
+!results/expert_quantization_pilot/
+results/expert_quantization_pilot/*
+!results/expert_quantization_pilot/pilot_panel_preregistered.json
 !results/expert_domain_importance_prompts_only/
 !results/expert_domain_importance_prompts_only/**
 !results/expert_domain_importance_with_answers/

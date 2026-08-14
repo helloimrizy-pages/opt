@@ -10,7 +10,10 @@ next experimental gate are recorded in [`EXPERIMENT_STATUS.md`](EXPERIMENT_STATU
 Future Codex sessions are directed there by the repository-level `AGENTS.md`.
 
 It collects routing utilization, selected gate mass, and a functional-contribution
-proxy. It does not quantize, compress, fine-tune, generate from, or modify the model.
+proxy. The completed diagnostic stages also apply reversible selected-route masks.
+The Stage-1 pilot code can temporarily replace one expert's FFN weights with
+quantize-dequantize values, but it never saves modified model weights, fine-tunes,
+generates from, or permanently compresses the model.
 
 The default checkpoint is the official base model
 [allenai/OLMoE-1B-7B-0924](https://huggingface.co/allenai/OLMoE-1B-7B-0924).
@@ -252,6 +255,67 @@ specialist-minus-control paired differences, domain and all-panel aggregates, an
 functional/routing predictors of causal specificity. No inference is performed by
 the bootstrap analysis.
 
+## Stage-1 quantization sensitivity pilot
+
+The mandatory pilot between causal masking and any mixed-precision allocator is
+implemented in `scripts/run_quantization_pilot.py`. It selects the two specialists
+with the largest frozen functional-specialization margins in each domain, retains
+their already preregistered same-layer routing controls, and freezes the resulting
+8-pair/16-intervention panel before reading masking or quantization outcomes.
+
+The intervention applies deterministic symmetric group-wise weight-only fake
+quantization to one expert at a time. OLMoE stores `gate_up_proj` and `down_proj` as
+three-dimensional `[expert, output, input]` parameters; the runner indexes the
+expert axis structurally and groups each two-dimensional expert slice along its
+final input-feature dimension. Scales are rounded to FP16 for the simulated format;
+maximum, round/clamp, and dequantization calculations use FP32 around those stored
+scales. Router, attention, embeddings,
+normalization, language-model head, and every unrelated expert remain unchanged.
+Each context fingerprints all experts in the affected layer, verifies isolation,
+then restores the selected expert bit-for-bit.
+
+Run the dependency-light local smoke path without materializing the full model. If
+the pinned checkpoint is present in `.hf_cache`, this also audits its safetensors
+headers and applies reversible QDQ to two loaded real expert slices:
+
+    PYTHONPATH=src python scripts/run_quantization_pilot.py --smoke-only
+
+Copy the complete frozen controlled and balanced result directories to the A40;
+the three tracked panel-selection files alone are not enough because the runner
+revalidates controlled inputs, BF16 baselines, and raw per-example masking changes.
+Then run:
+
+    PYTHONPATH=src python scripts/run_quantization_pilot.py \
+      --source-dir results/expert_domain_causal_validation \
+      --balanced-results-dir results/expert_domain_balanced_causal_validation \
+      --output-dir results/expert_quantization_pilot \
+      --model allenai/OLMoE-1B-7B-0924 \
+      --model-revision 6d84c48581ece794365f2b8e9cfb043c68ade9c5 \
+      --device cuda \
+      --dtype bfloat16 \
+      --group-size 128 \
+      --primary-bits 4 \
+      --fallback-bits 3 \
+      --bootstrap-replicates 1000 \
+      --seed 42 \
+      --batch-size 1 \
+      --cache-dir .hf_cache \
+      --resume
+
+The production path requires CUDA/BF16 and repeats a real-checkpoint expert
+isolation/restoration smoke test before inference. It evaluates 4-bit first. The
+3-bit fallback runs automatically only if the 4-bit result meets the preregistered
+too-small-to-measure condition; a clearly negative or otherwise unattractive
+4-bit result does not trigger fallback. Every expert/domain/bit-width loss pass is
+atomically checkpointed and validated on resume.
+
+The pilot writes the frozen panel, result/pairwise/control/masking-comparison and
+distortion CSVs, per-example NPZ arrays, exact projected expert-storage accounting,
+five figures in PNG and PDF, `results.json`, `stage1_decision.json`, and `SUMMARY.md`
+under `results/expert_quantization_pilot/`. Projected bytes include packed weight
+bits and FP16 scales; they are not measured runtime-memory savings. This runner does
+not implement Stage 2 or a mixed-precision optimizer.
+
 ## Outputs
 
 The analysis creates:
@@ -296,7 +360,10 @@ The tests cover the current Hugging Face OLMoE router and tensorized experts, ol
 ModuleList-style experts, the production checkpoint tokenizer API, exact controlled
 token geometry, padding exclusion, optional gradient attribution, expert masking,
 hook cleanup, unchanged parameters, bootstrapping, split-half reliability, ranking,
-top-k overlap, causal report generation, and PNG/PDF figure creation.
+top-k overlap, causal report generation, deterministic group-wise QDQ, tensorized
+expert isolation and exact restoration, projected storage accounting, frozen pilot
+selection, checkpoint resume, Stage-1 fallback decisions, and PNG/PDF figure
+creation.
 
 ## Scientific limitations
 

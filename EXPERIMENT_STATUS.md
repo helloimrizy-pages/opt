@@ -15,16 +15,17 @@ The diagnostic question is:
 > Do per-layer expert-importance rankings in OLMoE change substantially across
 > general text, mathematics, coding, and reasoning inputs?
 
-This stage measures routing utilization, selected gate mass, a functional
-contribution proxy, and selected-route masking loss sensitivity. No model weights
-have been modified, fine-tuned, compressed, or quantized.
+The completed audited evidence measures routing utilization, selected gate mass, a
+functional-contribution proxy, and selected-route masking loss sensitivity. No
+modified checkpoint has been saved, fine-tuned, or compressed. The newly
+implemented Stage-1 code applies only temporary, exactly restored expert QDQ.
 
-Current decision: **STRONG GO for a separately designed, reversible
-distributionally robust mixed-precision quantization experiment**. Prompt-only,
-controlled causal, and balanced causal validation are complete and independently
-audited. The balanced 12-specialist plus 12-control panel showed positive aggregate
-specialist and specialist-minus-control effects in all four domains. This decision
-advances the scientific gate only; quantization has not been implemented.
+Current decision: balanced causal validation remains **STRONG GO** and complete.
+The mandatory Stage-1 reversible quantization-sensitivity pilot is now implemented
+and locally tested, but it has not been executed on the NVIDIA A40. Therefore no
+Stage-1 `GO` or `NO_GO` decision exists yet, and robust mixed-precision allocation
+remains out of scope pending the actual pilot. Prompt-only, controlled causal, and
+balanced causal validation remain complete and independently audited.
 
 ## Code baseline
 
@@ -44,10 +45,11 @@ The implemented and committed workflow consists of:
 - `4065720` — Document controlled causal validation workflow
 - `35849b7` — Add balanced causal validation panel
 
-The balanced-panel implementation adds deterministic baseline-
-only preregistration, strict integrity gates, intervention-level resume support,
-paired control/aggregate bootstraps, figures, and reporting. No quantization or
-weight modification has been implemented.
+The balanced-panel implementation adds deterministic baseline-only
+preregistration, strict integrity gates, intervention-level resume support, paired
+control/aggregate bootstraps, figures, and reporting. The new Stage-1 pilot adds
+temporary expert-only fake quantization/QDQ with exact restoration; it does not
+save modified model weights or implement a mixed-precision allocator.
 
 The code is split across collection, analysis, plotting, model discovery,
 instrumentation, datasets, statistics, reporting, and tests. See `README.md` for
@@ -465,6 +467,114 @@ positive. The evidence supports designing the next distributionally robust
 mixed-precision quantization experiment, while retaining the one-checkpoint,
 fixed-corpus, selected-route-masking limitations. No quantization was performed.
 
+## Stage-1 quantization sensitivity pilot: implemented, pending A40 execution
+
+Implementation status: **READY FOR GPU EXECUTION; NO STAGE-1 DECISION YET**.
+
+The pilot was implemented on 2026-08-13 as the mandatory mechanism-consistency gate
+between balanced causal masking and any future mixed-precision allocator. It does
+not implement robust allocation, optimization, Stage 2, pruning, fine-tuning, or a
+low-bit runtime kernel. The local machine was not used for the full checkpoint run
+because no appropriate CUDA environment was available.
+
+The panel was frozen at
+`results/expert_quantization_pilot/pilot_panel_preregistered.json` before any
+quantization result was inspected. Its fingerprint is
+`404927664048259fb623a7b3181e811c8f18c68d5e32825b943b056257220af7`.
+Selection uses only the functional-specialization margin already frozen by the
+balanced causal preregistration; masking effects and quantization behavior are
+explicitly excluded.
+
+| Target | Selected specialists, strongest first | Existing matched controls |
+|---|---|---|
+| General | L13/E52, L12/E40 | L13/E36, L12/E2 |
+| Math | L8/E11, L12/E63 | L8/E54, L12/E43 |
+| Coding | L13/E2, L11/E27 | L13/E61, L11/E7 |
+| Reasoning | L13/E20, L11/E48 | L13/E63, L11/E47 |
+
+The implementation applies deterministic symmetric group-wise weight-only QDQ to
+one expert at a time. The primary precision is 4-bit, the preregistered fallback is
+3-bit, and the group size is 128 along the input-feature dimension. OLMoE's fused
+`gate_up_proj` and `down_proj` parameters are indexed structurally on their expert
+axis. Quantization arithmetic is performed in FP32 around FP16-stored scales, and
+dequantized tensors are restored to the model dtype. Each intervention fingerprints
+the selected expert and every unrelated expert in the layer, verifies isolation,
+evaluates all four frozen controlled domains, restores the original slices exactly,
+and checks for hook leakage.
+
+Projected expert storage accounts for packed quantized weight bits, the exact
+number of groups, and one FP16 scale per group. BF16 uses 16 bits/weight without
+scale overhead. These are projected format bytes and effective bits/weight, not
+measured runtime-memory savings.
+
+The runner checkpoints each expert/domain/bit-width pass independently, validates
+the run, input, original-weight, and quantized-weight fingerprints on resume, and
+recomputes only incomplete checkpoint pairs. It reproduces the four BF16 baselines,
+audits the frozen raw per-example masking array, repeats a real-checkpoint expert
+isolation/restoration smoke test, and then runs 4-bit. The 3-bit fallback is launched
+only when the 4-bit result satisfies the preregistered too-small-to-measure rule; a
+clearly negative result does not trigger fallback.
+
+The analysis saves per-example losses and reports target and non-target delta NLL,
+all target-minus-domain contrasts, normalized relative delta NLL, routing coverage,
+weight distortion, specialist-control differences, masking-versus-quantization
+Spearman/Kendall/sign agreement, frozen importance correlations, fixed functional
+and routing risk-proxy correlations, 1,000-replicate confidence intervals, and all
+four Stage-1 gates. The final decision file can contain `GO` or `NO_GO`; the internal
+`PENDING_FALLBACK` state is never emitted as the final production decision.
+
+Recommended A40 command:
+
+```bash
+PYTHONPATH=src python scripts/run_quantization_pilot.py \
+  --source-dir results/expert_domain_causal_validation \
+  --balanced-results-dir results/expert_domain_balanced_causal_validation \
+  --output-dir results/expert_quantization_pilot \
+  --model allenai/OLMoE-1B-7B-0924 \
+  --model-revision 6d84c48581ece794365f2b8e9cfb043c68ade9c5 \
+  --device cuda \
+  --dtype bfloat16 \
+  --group-size 128 \
+  --primary-bits 4 \
+  --fallback-bits 3 \
+  --bootstrap-replicates 1000 \
+  --seed 42 \
+  --batch-size 1 \
+  --cache-dir .hf_cache \
+  --resume
+```
+
+The complete ignored controlled-causal and balanced-causal result directories must
+be copied to the A40 at the same paths before running. The tracked balanced
+selection files alone do not contain the controlled inputs, BF16 baselines, or raw
+per-example masking losses required by the integrity gates.
+
+Expected final outputs are
+`quantization_pilot_results.csv`, `quantization_pilot_pairwise.csv`,
+`specialist_vs_control.csv`, `quantization_vs_masking.csv`,
+`quantization_distortion.csv`, `per_example_quantization_losses.npz`,
+`results.json`, `stage1_decision.json`, `SUMMARY.md`, and five PNG/PDF figure pairs,
+plus resumable checkpoints under `quantization/`.
+
+Local validation completed so far:
+
+- synthetic tensor smoke validation passed;
+- pinned-checkpoint safetensors-header inspection passed for all 16 layers and all
+  64 experts/layer; two real BF16 expert slices were loaded without materializing
+  the model, one was QDQ-quantized, its neighbor stayed unchanged, and exact
+  restoration plus zero hook leakage were verified;
+- current-Transformers tiny OLMoE inspection confirmed two tensorized expert
+  matrices with expert axis 0 and input-feature grouping on the final axis;
+- full-checkpoint/A40 smoke validation is pending and will run automatically before
+  production inference;
+- the complete local suite passed **30/30 tests** on 2026-08-13, including all
+  pre-existing tests and the new QDQ, isolation, memory, selection, bootstrap,
+  fallback, resume, report, and figure tests.
+
+Until the A40 run completes and its raw artifacts are audited, the scientific
+decision remains **PENDING GPU EXECUTION**. In particular, the balanced masking
+`STRONG GO` must not be reported as a quantization Stage-1 `GO`.
+
 ## Fresh-session checklist
 
 A new Codex session should:
@@ -483,7 +593,9 @@ A new Codex session should:
    terminology unless an intervention supports a stronger claim.
 8. Describe selected-route masking as a causal loss-sensitivity intervention, not
    as expert deletion or a quantization simulation.
-9. The balanced causal decision scientifically justifies a separately designed
-   distributionally robust quantization experiment, but do not implement it until
-   the user explicitly advances the project stage.
-10. Update this handoff after every new validated run.
+9. Treat `results/expert_quantization_pilot/pilot_panel_preregistered.json` as
+   frozen. Never replace experts using masking or quantization outcomes.
+10. Stage-1 pilot code is implemented, but its decision remains pending the A40
+    run and audit. Do not implement Stage 2 or robust mixed-precision allocation
+    unless the user explicitly authorizes that later stage.
+11. Update this handoff after every new validated run.

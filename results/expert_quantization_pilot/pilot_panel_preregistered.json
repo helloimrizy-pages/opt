@@ -1,0 +1,1231 @@
+{
+  "status": "FROZEN_BEFORE_QUANTIZATION",
+  "created_at_utc": "2026-08-13T19:40:49.588693+00:00",
+  "schema_version": 1,
+  "selection_version": "balanced_frozen_top2_functional_margin_v1",
+  "source": {
+    "model": "allenai/OLMoE-1B-7B-0924",
+    "model_revision": "6d84c48581ece794365f2b8e9cfb043c68ade9c5",
+    "dataset_revisions": {
+      "general": "b08601e04326c79dfdd32d625aee71d232d685c3",
+      "math": "740312add88f781978c0658806c59bc2815b9866",
+      "coding": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "reasoning": "210d026faf9955653af8916fad021475a3f00453"
+    },
+    "balanced_selection_input_fingerprint": "6555c24be1d20799239f5e38209083989790706aca5a96716da29ec1e5bcefbd",
+    "balanced_preregistration_fingerprint": "50a9eeb1f053385abe67cc94b2c4cc62570caf6d24f562cb8bcf05f5808cf714",
+    "balanced_preregistration_sha256": "4a4830773d41ea0ffd78e9a848e1302a06751cd0456e5fe50b7c18690bb79d20",
+    "balanced_matched_controls_sha256": "d2e2eb8869129c7cf3945fd17f23a1145e861760cac2a4b37d3aff95c97b93b6",
+    "controlled_input_file_sha256": {
+      "general": "29dd1dce6496e2d049324bd9153c991e38cfbd353313c4f7a1d5438132790f19",
+      "math": "9de4496b2d67b4f479be5f787acfa70df175fa425b703b06c395a6d245198b9b",
+      "coding": "adbed3fc8e8113e0ce9e25365441d76167e0de4b5122d565143ff88293d356de",
+      "reasoning": "89ca862ab65b93eac04de9465462729bc3aaa7659dde292a04786e0ba5db2861"
+    },
+    "examples_per_domain": 100,
+    "measured_positions_per_example": 64,
+    "measured_positions_per_domain": 6400
+  },
+  "selection": {
+    "specialists_per_domain": 2,
+    "specialist_score": "frozen specialization_margin = I_functional(target) - max I_functional(non-target)",
+    "ordering": [
+      "specialization margin descending",
+      "target functional rank ascending",
+      "layer ascending",
+      "expert ID ascending"
+    ],
+    "controls": "already preregistered one-to-one routing-matched controls",
+    "masking_effect_sizes_used": false,
+    "quantization_results_used": false,
+    "intervention_results_read_by_selection": false
+  },
+  "quantization_preregistration": {
+    "method": "deterministic symmetric group-wise weight-only fake quantization/QDQ",
+    "scope": "one expert FFN at a time; all non-expert parameters remain BF16",
+    "grouping_axis": "input-feature dimension (last axis of expert matrix)",
+    "group_size": 128,
+    "scale_storage_dtype": "float16",
+    "primary_bits": 4,
+    "fallback_bits": 3,
+    "qmax": "2^(bits-1)-1",
+    "zero_group_behavior": "scale and dequantized values remain exactly zero"
+  },
+  "analysis_preregistration": {
+    "version": "expert_qdq_bootstrap_v1",
+    "bootstrap_replicates": 1000,
+    "bootstrap_seed": 42,
+    "primary_contrast": "target-domain delta NLL minus arithmetic mean of three non-target-domain delta NLL values",
+    "resampling": "examples independently resampled within domain; shared indices across interventions preserve specialist-control pairing",
+    "gates": {
+      "A": "overall specialist contrast > 0 with 95% CI excluding zero",
+      "B": "at least 3 of 4 domain aggregate specialist contrasts > 0",
+      "C": "overall specialist-minus-control contrast > 0; CI exclusion reported",
+      "D": "median absolute domain-level delta NLL exceeds the clear-noise threshold"
+    },
+    "numerical_noise_rule": {
+      "minimum_noise_floor_nll": 1e-07,
+      "clear_signal_multiplier": 10.0,
+      "threshold": "max(1e-7, 10 * maximum per-token BF16 baseline reproduction error)"
+    },
+    "fallback_rule": {
+      "trigger_only_when_gate_d_fails": true,
+      "overall_specialist_contrast_within_noise_threshold": true,
+      "overall_specialist_control_difference_within_noise_threshold": true,
+      "no_domain_aggregate_more_negative_than_noise_threshold": true,
+      "rationale": "3-bit is run only when 4-bit failure is consistent with an unmeasurably small perturbation, never merely an unattractive result"
+    },
+    "risk_proxies": {
+      "functional": "I_functional(expert, domain) * Q_weight(expert, bits)",
+      "routing": "I_routing(expert, domain) * Q_weight(expert, bits)",
+      "coefficient_fitting": false
+    }
+  },
+  "pairs": [
+    {
+      "pair_id": "general_L13_E52",
+      "target_domain": "general",
+      "pilot_functional_specialization_rank": 1,
+      "selection_score_name": "frozen_functional_specialization_margin",
+      "selection_score": 0.07409712109589489,
+      "specialist": {
+        "target_domain": "general",
+        "layer": 13,
+        "expert_id": 52,
+        "specialization_margin": 0.07409712109589489,
+        "target_normalized_contribution": 0.07668137589970109,
+        "max_non_target_normalized_contribution": 0.002584254803806199,
+        "max_non_target_domain": "reasoning",
+        "target_functional_contribution": 0.4007404817640781,
+        "target_gate_mass": 0.02952211380004883,
+        "target_rank": 1.0,
+        "worst_non_target_rank": 64.0,
+        "cross_domain_rank_range": 63.0,
+        "target_routing_frequency": 0.045703125,
+        "target_routing_coverage": 0.365625,
+        "target_example_coverage": 0.82,
+        "routing_specialization_margin": 0.042851562499999996,
+        "routing_coverage_specialization_margin": 0.34281249999999996,
+        "eligible_strict": true,
+        "strict_checks": {
+          "target_top_10_percent": true,
+          "non_target_bottom_half": true,
+          "positive_specialization_margin": true,
+          "target_routing_coverage_at_least_1_percent": true
+        },
+        "normalized_contribution_by_domain": {
+          "general": 0.07668137589970109,
+          "math": 0.0007621278707831914,
+          "coding": 3.4419175570423848e-06,
+          "reasoning": 0.002584254803806199
+        },
+        "functional_rank_by_domain": {
+          "general": 1.0,
+          "math": 63.0,
+          "coding": 64.0,
+          "reasoning": 54.0
+        },
+        "routing_frequency_by_domain": {
+          "general": 0.045703125,
+          "math": 0.00134765625,
+          "coding": 1.953125e-05,
+          "reasoning": 0.0028515625
+        },
+        "routing_coverage_by_domain": {
+          "general": 0.365625,
+          "math": 0.01078125,
+          "coding": 0.00015625,
+          "reasoning": 0.0228125
+        },
+        "routing_example_coverage_by_domain": {
+          "general": 0.82,
+          "math": 0.16,
+          "coding": 0.01,
+          "reasoning": 0.24
+        },
+        "target_measured_positions": 6400,
+        "candidate_rank": 1,
+        "strict_eligible_rank": 1,
+        "role": "specialized",
+        "selection_order_within_domain": 1,
+        "selection_tier": "strict",
+        "selection_rationale": "strict eligibility; highest remaining functional specialization margin subject to layer diversity"
+      },
+      "matched_control": {
+        "target_domain": "general",
+        "layer": 13,
+        "expert_id": 36,
+        "specialization_margin": 0.001630752321791995,
+        "target_normalized_contribution": 0.029217834704552192,
+        "max_non_target_normalized_contribution": 0.027587082382760197,
+        "max_non_target_domain": "math",
+        "target_functional_contribution": 0.15269378018099813,
+        "target_gate_mass": 0.012556438446044921,
+        "target_rank": 5.0,
+        "worst_non_target_rank": 50.0,
+        "cross_domain_rank_range": 45.0,
+        "target_routing_frequency": 0.028828125,
+        "target_routing_coverage": 0.230625,
+        "target_example_coverage": 1.0,
+        "routing_specialization_margin": 0.0016015625000000006,
+        "routing_coverage_specialization_margin": 0.012812500000000004,
+        "eligible_strict": true,
+        "strict_checks": {
+          "target_top_10_percent": true,
+          "non_target_bottom_half": true,
+          "positive_specialization_margin": true,
+          "target_routing_coverage_at_least_1_percent": true
+        },
+        "normalized_contribution_by_domain": {
+          "general": 0.029217834704552192,
+          "math": 0.027587082382760197,
+          "coding": 0.0006867516887705435,
+          "reasoning": 0.025159803450638105
+        },
+        "functional_rank_by_domain": {
+          "general": 5.0,
+          "math": 12.0,
+          "coding": 50.0,
+          "reasoning": 13.0
+        },
+        "routing_frequency_by_domain": {
+          "general": 0.028828125,
+          "math": 0.0272265625,
+          "coding": 0.00087890625,
+          "reasoning": 0.0254296875
+        },
+        "routing_coverage_by_domain": {
+          "general": 0.230625,
+          "math": 0.2178125,
+          "coding": 0.00703125,
+          "reasoning": 0.2034375
+        },
+        "routing_example_coverage_by_domain": {
+          "general": 1.0,
+          "math": 1.0,
+          "coding": 0.37,
+          "reasoning": 1.0
+        },
+        "target_measured_positions": 6400,
+        "candidate_rank": 273,
+        "strict_eligible_rank": 62,
+        "role": "control",
+        "paired_specialist_layer": 13,
+        "paired_specialist_expert_id": 52
+      },
+      "matching": {
+        "same_layer": true,
+        "control_reused": false,
+        "target_routing_frequency_absolute_difference": 0.016874999999999998,
+        "target_routing_coverage_absolute_difference": 0.13499999999999998,
+        "control_to_specialist_positive_margin_ratio": 0.022008308793556374,
+        "matching_tier_specialization_cap_ratio": 0.25,
+        "matching_cost": 0.14950579740964984,
+        "fallback_used": false,
+        "matching_rationale": "unique same-layer minimum-cost assignment using target routing coverage, rank balance, and residual specialization"
+      }
+    },
+    {
+      "pair_id": "general_L12_E40",
+      "target_domain": "general",
+      "pilot_functional_specialization_rank": 2,
+      "selection_score_name": "frozen_functional_specialization_margin",
+      "selection_score": 0.07250632709365802,
+      "specialist": {
+        "target_domain": "general",
+        "layer": 12,
+        "expert_id": 40,
+        "specialization_margin": 0.07250632709365802,
+        "target_normalized_contribution": 0.0779692318549982,
+        "max_non_target_normalized_contribution": 0.005462904761340173,
+        "max_non_target_domain": "reasoning",
+        "target_functional_contribution": 0.3178199233463965,
+        "target_gate_mass": 0.033988304138183593,
+        "target_rank": 1.0,
+        "worst_non_target_rank": 53.0,
+        "cross_domain_rank_range": 52.0,
+        "target_routing_frequency": 0.05341796875,
+        "target_routing_coverage": 0.42734375,
+        "target_example_coverage": 0.97,
+        "routing_specialization_margin": 0.04638671875,
+        "routing_coverage_specialization_margin": 0.37109375,
+        "eligible_strict": true,
+        "strict_checks": {
+          "target_top_10_percent": true,
+          "non_target_bottom_half": true,
+          "positive_specialization_margin": true,
+          "target_routing_coverage_at_least_1_percent": true
+        },
+        "normalized_contribution_by_domain": {
+          "general": 0.0779692318549982,
+          "math": 0.003616201935654489,
+          "coding": 0.0009340867540273625,
+          "reasoning": 0.005462904761340173
+        },
+        "functional_rank_by_domain": {
+          "general": 1.0,
+          "math": 53.0,
+          "coding": 50.0,
+          "reasoning": 43.0
+        },
+        "routing_frequency_by_domain": {
+          "general": 0.05341796875,
+          "math": 0.0056640625,
+          "coding": 0.00302734375,
+          "reasoning": 0.00703125
+        },
+        "routing_coverage_by_domain": {
+          "general": 0.42734375,
+          "math": 0.0453125,
+          "coding": 0.02421875,
+          "reasoning": 0.05625
+        },
+        "routing_example_coverage_by_domain": {
+          "general": 0.97,
+          "math": 0.8,
+          "coding": 0.61,
+          "reasoning": 0.45
+        },
+        "target_measured_positions": 6400,
+        "candidate_rank": 2,
+        "strict_eligible_rank": 2,
+        "role": "specialized",
+        "selection_order_within_domain": 2,
+        "selection_tier": "strict",
+        "selection_rationale": "strict eligibility; highest remaining functional specialization margin subject to layer diversity"
+      },
+      "matched_control": {
+        "target_domain": "general",
+        "layer": 12,
+        "expert_id": 2,
+        "specialization_margin": -0.07043933176641251,
+        "target_normalized_contribution": 0.03132404226999431,
+        "max_non_target_normalized_contribution": 0.10176337403640683,
+        "max_non_target_domain": "math",
+        "target_functional_contribution": 0.12768376032821835,
+        "target_gate_mass": 0.013874530792236328,
+        "target_rank": 3.0,
+        "worst_non_target_rank": 14.0,
+        "cross_domain_rank_range": 13.0,
+        "target_routing_frequency": 0.027734375,
+        "target_routing_coverage": 0.221875,
+        "target_example_coverage": 0.87,
+        "routing_specialization_margin": -0.059863281250000004,
+        "routing_coverage_specialization_margin": -0.47890625000000003,
+        "eligible_strict": false,
+        "strict_checks": {
+          "target_top_10_percent": true,
+          "non_target_bottom_half": false,
+          "positive_specialization_margin": false,
+          "target_routing_coverage_at_least_1_percent": true
+        },
+        "normalized_contribution_by_domain": {
+          "general": 0.03132404226999431,
+          "math": 0.10176337403640683,
+          "coding": 0.03480311886286061,
+          "reasoning": 0.019494837154712067
+        },
+        "functional_rank_by_domain": {
+          "general": 3.0,
+          "math": 1.0,
+          "coding": 9.0,
+          "reasoning": 14.0
+        },
+        "routing_frequency_by_domain": {
+          "general": 0.027734375,
+          "math": 0.08759765625,
+          "coding": 0.04984375,
+          "reasoning": 0.0242578125
+        },
+        "routing_coverage_by_domain": {
+          "general": 0.221875,
+          "math": 0.70078125,
+          "coding": 0.39875,
+          "reasoning": 0.1940625
+        },
+        "routing_example_coverage_by_domain": {
+          "general": 0.87,
+          "math": 1.0,
+          "coding": 0.96,
+          "reasoning": 0.92
+        },
+        "target_measured_positions": 6400,
+        "candidate_rank": 966,
+        "strict_eligible_rank": null,
+        "role": "control",
+        "paired_specialist_layer": 12,
+        "paired_specialist_expert_id": 40
+      },
+      "matching": {
+        "same_layer": true,
+        "control_reused": false,
+        "target_routing_frequency_absolute_difference": 0.025683593750000004,
+        "target_routing_coverage_absolute_difference": 0.20546875000000003,
+        "control_to_specialist_positive_margin_ratio": 0.0,
+        "matching_tier_specialization_cap_ratio": 0.25,
+        "matching_cost": 0.20959573412898416,
+        "fallback_used": false,
+        "matching_rationale": "unique same-layer minimum-cost assignment using target routing coverage, rank balance, and residual specialization"
+      }
+    },
+    {
+      "pair_id": "math_L8_E11",
+      "target_domain": "math",
+      "pilot_functional_specialization_rank": 1,
+      "selection_score_name": "frozen_functional_specialization_margin",
+      "selection_score": 0.0862908961771788,
+      "specialist": {
+        "target_domain": "math",
+        "layer": 8,
+        "expert_id": 11,
+        "specialization_margin": 0.0862908961771788,
+        "target_normalized_contribution": 0.11533557248750632,
+        "max_non_target_normalized_contribution": 0.029044676310327526,
+        "max_non_target_domain": "reasoning",
+        "target_functional_contribution": 0.12752485705073924,
+        "target_gate_mass": 0.03952640533447266,
+        "target_rank": 1.0,
+        "worst_non_target_rank": 34.0,
+        "cross_domain_rank_range": 33.0,
+        "target_routing_frequency": 0.0826171875,
+        "target_routing_coverage": 0.6609375,
+        "target_example_coverage": 1.0,
+        "routing_specialization_margin": 0.04880859375,
+        "routing_coverage_specialization_margin": 0.39046875,
+        "eligible_strict": true,
+        "strict_checks": {
+          "target_top_10_percent": true,
+          "non_target_bottom_half": true,
+          "positive_specialization_margin": true,
+          "target_routing_coverage_at_least_1_percent": true
+        },
+        "normalized_contribution_by_domain": {
+          "general": 0.013908569191521416,
+          "math": 0.11533557248750632,
+          "coding": 0.009744648548223432,
+          "reasoning": 0.029044676310327526
+        },
+        "functional_rank_by_domain": {
+          "general": 34.0,
+          "math": 1.0,
+          "coding": 20.0,
+          "reasoning": 7.0
+        },
+        "routing_frequency_by_domain": {
+          "general": 0.0155859375,
+          "math": 0.0826171875,
+          "coding": 0.01587890625,
+          "reasoning": 0.03380859375
+        },
+        "routing_coverage_by_domain": {
+          "general": 0.1246875,
+          "math": 0.6609375,
+          "coding": 0.12703125,
+          "reasoning": 0.27046875
+        },
+        "routing_example_coverage_by_domain": {
+          "general": 0.7,
+          "math": 1.0,
+          "coding": 0.78,
+          "reasoning": 0.97
+        },
+        "target_measured_positions": 6400,
+        "candidate_rank": 2,
+        "strict_eligible_rank": 1,
+        "role": "specialized",
+        "selection_order_within_domain": 1,
+        "selection_tier": "strict",
+        "selection_rationale": "strict eligibility; highest remaining functional specialization margin subject to layer diversity"
+      },
+      "matched_control": {
+        "target_domain": "math",
+        "layer": 8,
+        "expert_id": 54,
+        "specialization_margin": -0.1206704694985715,
+        "target_normalized_contribution": 0.047658737879294574,
+        "max_non_target_normalized_contribution": 0.16832920737786608,
+        "max_non_target_domain": "coding",
+        "target_functional_contribution": 0.0526955700153485,
+        "target_gate_mass": 0.021213722229003907,
+        "target_rank": 3.0,
+        "worst_non_target_rank": 47.0,
+        "cross_domain_rank_range": 46.0,
+        "target_routing_frequency": 0.0632421875,
+        "target_routing_coverage": 0.5059375,
+        "target_example_coverage": 1.0,
+        "routing_specialization_margin": -0.05605468749999999,
+        "routing_coverage_specialization_margin": -0.44843749999999993,
+        "eligible_strict": false,
+        "strict_checks": {
+          "target_top_10_percent": true,
+          "non_target_bottom_half": true,
+          "positive_specialization_margin": false,
+          "target_routing_coverage_at_least_1_percent": true
+        },
+        "normalized_contribution_by_domain": {
+          "general": 0.007354809971887816,
+          "math": 0.047658737879294574,
+          "coding": 0.16832920737786608,
+          "reasoning": 0.015487712013943233
+        },
+        "functional_rank_by_domain": {
+          "general": 47.0,
+          "math": 3.0,
+          "coding": 1.0,
+          "reasoning": 28.0
+        },
+        "routing_frequency_by_domain": {
+          "general": 0.01126953125,
+          "math": 0.0632421875,
+          "coding": 0.119296875,
+          "reasoning": 0.0265234375
+        },
+        "routing_coverage_by_domain": {
+          "general": 0.09015625,
+          "math": 0.5059375,
+          "coding": 0.954375,
+          "reasoning": 0.2121875
+        },
+        "routing_example_coverage_by_domain": {
+          "general": 1.0,
+          "math": 1.0,
+          "coding": 1.0,
+          "reasoning": 1.0
+        },
+        "target_measured_positions": 6400,
+        "candidate_rank": 1007,
+        "strict_eligible_rank": null,
+        "role": "control",
+        "paired_specialist_layer": 8,
+        "paired_specialist_expert_id": 11
+      },
+      "matching": {
+        "same_layer": true,
+        "control_reused": false,
+        "target_routing_frequency_absolute_difference": 0.01937499999999999,
+        "target_routing_coverage_absolute_difference": 0.15499999999999992,
+        "control_to_specialist_positive_margin_ratio": 0.0,
+        "matching_tier_specialization_cap_ratio": 0.25,
+        "matching_cost": 0.16960317465717453,
+        "fallback_used": false,
+        "matching_rationale": "unique same-layer minimum-cost assignment using target routing coverage, rank balance, and residual specialization"
+      }
+    },
+    {
+      "pair_id": "math_L12_E63",
+      "target_domain": "math",
+      "pilot_functional_specialization_rank": 2,
+      "selection_score_name": "frozen_functional_specialization_margin",
+      "selection_score": 0.06154668406386274,
+      "specialist": {
+        "target_domain": "math",
+        "layer": 12,
+        "expert_id": 63,
+        "specialization_margin": 0.06154668406386274,
+        "target_normalized_contribution": 0.06835945475256952,
+        "max_non_target_normalized_contribution": 0.00681277068870678,
+        "max_non_target_domain": "general",
+        "target_functional_contribution": 0.2807839296618477,
+        "target_gate_mass": 0.031291866302490236,
+        "target_rank": 2.0,
+        "worst_non_target_rank": 62.0,
+        "cross_domain_rank_range": 60.0,
+        "target_routing_frequency": 0.060078125,
+        "target_routing_coverage": 0.480625,
+        "target_example_coverage": 0.99,
+        "routing_specialization_margin": 0.05140625,
+        "routing_coverage_specialization_margin": 0.41125,
+        "eligible_strict": true,
+        "strict_checks": {
+          "target_top_10_percent": true,
+          "non_target_bottom_half": true,
+          "positive_specialization_margin": true,
+          "target_routing_coverage_at_least_1_percent": true
+        },
+        "normalized_contribution_by_domain": {
+          "general": 0.00681277068870678,
+          "math": 0.06835945475256952,
+          "coding": 5.189770367889208e-06,
+          "reasoning": 0.003378898472218922
+        },
+        "functional_rank_by_domain": {
+          "general": 54.0,
+          "math": 2.0,
+          "coding": 62.0,
+          "reasoning": 50.0
+        },
+        "routing_frequency_by_domain": {
+          "general": 0.008671875,
+          "math": 0.060078125,
+          "coding": 1.953125e-05,
+          "reasoning": 0.0044921875
+        },
+        "routing_coverage_by_domain": {
+          "general": 0.069375,
+          "math": 0.480625,
+          "coding": 0.00015625,
+          "reasoning": 0.0359375
+        },
+        "routing_example_coverage_by_domain": {
+          "general": 0.69,
+          "math": 0.99,
+          "coding": 0.01,
+          "reasoning": 0.53
+        },
+        "target_measured_positions": 6400,
+        "candidate_rank": 5,
+        "strict_eligible_rank": 2,
+        "role": "specialized",
+        "selection_order_within_domain": 2,
+        "selection_tier": "strict",
+        "selection_rationale": "strict eligibility; highest remaining functional specialization margin subject to layer diversity"
+      },
+      "matched_control": {
+        "target_domain": "math",
+        "layer": 12,
+        "expert_id": 43,
+        "specialization_margin": -0.09298878115788758,
+        "target_normalized_contribution": 0.05628832831566035,
+        "max_non_target_normalized_contribution": 0.14927710947354794,
+        "max_non_target_domain": "coding",
+        "target_functional_contribution": 0.23120222470723092,
+        "target_gate_mass": 0.029849395751953126,
+        "target_rank": 3.0,
+        "worst_non_target_rank": 34.0,
+        "cross_domain_rank_range": 33.0,
+        "target_routing_frequency": 0.0641015625,
+        "target_routing_coverage": 0.5128125,
+        "target_example_coverage": 1.0,
+        "routing_specialization_margin": -0.03791015624999999,
+        "routing_coverage_specialization_margin": -0.30328124999999995,
+        "eligible_strict": false,
+        "strict_checks": {
+          "target_top_10_percent": true,
+          "non_target_bottom_half": true,
+          "positive_specialization_margin": false,
+          "target_routing_coverage_at_least_1_percent": true
+        },
+        "normalized_contribution_by_domain": {
+          "general": 0.013181742957155781,
+          "math": 0.05628832831566035,
+          "coding": 0.14927710947354794,
+          "reasoning": 0.08600241944715464
+        },
+        "functional_rank_by_domain": {
+          "general": 34.0,
+          "math": 3.0,
+          "coding": 1.0,
+          "reasoning": 2.0
+        },
+        "routing_frequency_by_domain": {
+          "general": 0.01306640625,
+          "math": 0.0641015625,
+          "coding": 0.10201171875,
+          "reasoning": 0.075859375
+        },
+        "routing_coverage_by_domain": {
+          "general": 0.10453125,
+          "math": 0.5128125,
+          "coding": 0.81609375,
+          "reasoning": 0.606875
+        },
+        "routing_example_coverage_by_domain": {
+          "general": 0.93,
+          "math": 1.0,
+          "coding": 1.0,
+          "reasoning": 1.0
+        },
+        "target_measured_positions": 6400,
+        "candidate_rank": 990,
+        "strict_eligible_rank": null,
+        "role": "control",
+        "paired_specialist_layer": 12,
+        "paired_specialist_expert_id": 63
+      },
+      "matching": {
+        "same_layer": true,
+        "control_reused": false,
+        "target_routing_frequency_absolute_difference": 0.0040234374999999975,
+        "target_routing_coverage_absolute_difference": 0.03218749999999998,
+        "control_to_specialist_positive_margin_ratio": 0.0,
+        "matching_tier_specialization_cap_ratio": 0.25,
+        "matching_cost": 0.04266369051919046,
+        "fallback_used": false,
+        "matching_rationale": "unique same-layer minimum-cost assignment using target routing coverage, rank balance, and residual specialization"
+      }
+    },
+    {
+      "pair_id": "coding_L13_E2",
+      "target_domain": "coding",
+      "pilot_functional_specialization_rank": 1,
+      "selection_score_name": "frozen_functional_specialization_margin",
+      "selection_score": 0.1963999998224886,
+      "specialist": {
+        "target_domain": "coding",
+        "layer": 13,
+        "expert_id": 2,
+        "specialization_margin": 0.1963999998224886,
+        "target_normalized_contribution": 0.20227750448513132,
+        "max_non_target_normalized_contribution": 0.005877504662642729,
+        "max_non_target_domain": "reasoning",
+        "target_functional_contribution": 0.9560246402025223,
+        "target_gate_mass": 0.09213857650756836,
+        "target_rank": 1.0,
+        "worst_non_target_rank": 59.0,
+        "cross_domain_rank_range": 58.0,
+        "target_routing_frequency": 0.1108984375,
+        "target_routing_coverage": 0.8871875,
+        "target_example_coverage": 1.0,
+        "routing_specialization_margin": 0.0985546875,
+        "routing_coverage_specialization_margin": 0.7884375,
+        "eligible_strict": true,
+        "strict_checks": {
+          "target_top_10_percent": true,
+          "non_target_bottom_half": true,
+          "positive_specialization_margin": true,
+          "target_routing_coverage_at_least_1_percent": true
+        },
+        "normalized_contribution_by_domain": {
+          "general": 0.0027755881159287235,
+          "math": 0.0037863121758635316,
+          "coding": 0.20227750448513132,
+          "reasoning": 0.005877504662642729
+        },
+        "functional_rank_by_domain": {
+          "general": 59.0,
+          "math": 50.0,
+          "coding": 1.0,
+          "reasoning": 43.0
+        },
+        "routing_frequency_by_domain": {
+          "general": 0.0045703125,
+          "math": 0.0078515625,
+          "coding": 0.1108984375,
+          "reasoning": 0.01234375
+        },
+        "routing_coverage_by_domain": {
+          "general": 0.0365625,
+          "math": 0.0628125,
+          "coding": 0.8871875,
+          "reasoning": 0.09875
+        },
+        "routing_example_coverage_by_domain": {
+          "general": 0.83,
+          "math": 0.93,
+          "coding": 1.0,
+          "reasoning": 0.96
+        },
+        "target_measured_positions": 6400,
+        "candidate_rank": 1,
+        "strict_eligible_rank": 1,
+        "role": "specialized",
+        "selection_order_within_domain": 1,
+        "selection_tier": "strict",
+        "selection_rationale": "strict eligibility; highest remaining functional specialization margin subject to layer diversity"
+      },
+      "matched_control": {
+        "target_domain": "coding",
+        "layer": 13,
+        "expert_id": 61,
+        "specialization_margin": 0.03402857783211669,
+        "target_normalized_contribution": 0.04295108828757004,
+        "max_non_target_normalized_contribution": 0.008922510455453348,
+        "max_non_target_domain": "math",
+        "target_functional_contribution": 0.20299982853233814,
+        "target_gate_mass": 0.03113636016845703,
+        "target_rank": 8.0,
+        "worst_non_target_rank": 55.0,
+        "cross_domain_rank_range": 47.0,
+        "target_routing_frequency": 0.0542578125,
+        "target_routing_coverage": 0.4340625,
+        "target_example_coverage": 1.0,
+        "routing_specialization_margin": 0.04537109375,
+        "routing_coverage_specialization_margin": 0.36296875,
+        "eligible_strict": false,
+        "strict_checks": {
+          "target_top_10_percent": false,
+          "non_target_bottom_half": true,
+          "positive_specialization_margin": true,
+          "target_routing_coverage_at_least_1_percent": true
+        },
+        "normalized_contribution_by_domain": {
+          "general": 0.005947912464197026,
+          "math": 0.008922510455453348,
+          "coding": 0.04295108828757004,
+          "reasoning": 0.00703134350397754
+        },
+        "functional_rank_by_domain": {
+          "general": 55.0,
+          "math": 36.0,
+          "coding": 8.0,
+          "reasoning": 39.0
+        },
+        "routing_frequency_by_domain": {
+          "general": 0.00767578125,
+          "math": 0.00888671875,
+          "coding": 0.0542578125,
+          "reasoning": 0.00802734375
+        },
+        "routing_coverage_by_domain": {
+          "general": 0.06140625,
+          "math": 0.07109375,
+          "coding": 0.4340625,
+          "reasoning": 0.06421875
+        },
+        "routing_example_coverage_by_domain": {
+          "general": 0.96,
+          "math": 0.88,
+          "coding": 1.0,
+          "reasoning": 0.95
+        },
+        "target_measured_positions": 6400,
+        "candidate_rank": 71,
+        "strict_eligible_rank": null,
+        "role": "control",
+        "paired_specialist_layer": 13,
+        "paired_specialist_expert_id": 2
+      },
+      "matching": {
+        "same_layer": true,
+        "control_reused": false,
+        "target_routing_frequency_absolute_difference": 0.056640625,
+        "target_routing_coverage_absolute_difference": 0.453125,
+        "control_to_specialist_positive_margin_ratio": 0.1732615980797994,
+        "matching_tier_specialization_cap_ratio": 0.25,
+        "matching_cost": 0.4697782509624329,
+        "fallback_used": false,
+        "matching_rationale": "unique same-layer minimum-cost assignment using target routing coverage, rank balance, and residual specialization"
+      }
+    },
+    {
+      "pair_id": "coding_L11_E27",
+      "target_domain": "coding",
+      "pilot_functional_specialization_rank": 2,
+      "selection_score_name": "frozen_functional_specialization_margin",
+      "selection_score": 0.18131425324730793,
+      "specialist": {
+        "target_domain": "coding",
+        "layer": 11,
+        "expert_id": 27,
+        "specialization_margin": 0.18131425324730793,
+        "target_normalized_contribution": 0.1902995740411176,
+        "max_non_target_normalized_contribution": 0.008985320793809662,
+        "max_non_target_domain": "math",
+        "target_functional_contribution": 0.5981733763217926,
+        "target_gate_mass": 0.09237663269042969,
+        "target_rank": 1.0,
+        "worst_non_target_rank": 55.0,
+        "cross_domain_rank_range": 54.0,
+        "target_routing_frequency": 0.12041015625,
+        "target_routing_coverage": 0.96328125,
+        "target_example_coverage": 1.0,
+        "routing_specialization_margin": 0.10095703125,
+        "routing_coverage_specialization_margin": 0.80765625,
+        "eligible_strict": true,
+        "strict_checks": {
+          "target_top_10_percent": true,
+          "non_target_bottom_half": true,
+          "positive_specialization_margin": true,
+          "target_routing_coverage_at_least_1_percent": true
+        },
+        "normalized_contribution_by_domain": {
+          "general": 0.004144519735752082,
+          "math": 0.008985320793809662,
+          "coding": 0.1902995740411176,
+          "reasoning": 0.004675163127152328
+        },
+        "functional_rank_by_domain": {
+          "general": 55.0,
+          "math": 36.0,
+          "coding": 1.0,
+          "reasoning": 47.0
+        },
+        "routing_frequency_by_domain": {
+          "general": 0.00732421875,
+          "math": 0.019453125,
+          "coding": 0.12041015625,
+          "reasoning": 0.00876953125
+        },
+        "routing_coverage_by_domain": {
+          "general": 0.05859375,
+          "math": 0.155625,
+          "coding": 0.96328125,
+          "reasoning": 0.07015625
+        },
+        "routing_example_coverage_by_domain": {
+          "general": 0.97,
+          "math": 1.0,
+          "coding": 1.0,
+          "reasoning": 1.0
+        },
+        "target_measured_positions": 6400,
+        "candidate_rank": 2,
+        "strict_eligible_rank": 2,
+        "role": "specialized",
+        "selection_order_within_domain": 2,
+        "selection_tier": "strict",
+        "selection_rationale": "strict eligibility; highest remaining functional specialization margin subject to layer diversity"
+      },
+      "matched_control": {
+        "target_domain": "coding",
+        "layer": 11,
+        "expert_id": 7,
+        "specialization_margin": 0.037154782091150446,
+        "target_normalized_contribution": 0.05855890422483795,
+        "max_non_target_normalized_contribution": 0.0214041221336875,
+        "max_non_target_domain": "reasoning",
+        "target_functional_contribution": 0.18406965769827366,
+        "target_gate_mass": 0.033809261322021486,
+        "target_rank": 4.0,
+        "worst_non_target_rank": 43.0,
+        "cross_domain_rank_range": 39.0,
+        "target_routing_frequency": 0.0715234375,
+        "target_routing_coverage": 0.5721875,
+        "target_example_coverage": 1.0,
+        "routing_specialization_margin": 0.04246093749999999,
+        "routing_coverage_specialization_margin": 0.3396874999999999,
+        "eligible_strict": true,
+        "strict_checks": {
+          "target_top_10_percent": true,
+          "non_target_bottom_half": true,
+          "positive_specialization_margin": true,
+          "target_routing_coverage_at_least_1_percent": true
+        },
+        "normalized_contribution_by_domain": {
+          "general": 0.009623685597532516,
+          "math": 0.012362979147940918,
+          "coding": 0.05855890422483795,
+          "reasoning": 0.0214041221336875
+        },
+        "functional_rank_by_domain": {
+          "general": 43.0,
+          "math": 30.0,
+          "coding": 4.0,
+          "reasoning": 21.0
+        },
+        "routing_frequency_by_domain": {
+          "general": 0.016953125,
+          "math": 0.01892578125,
+          "coding": 0.0715234375,
+          "reasoning": 0.0290625
+        },
+        "routing_coverage_by_domain": {
+          "general": 0.135625,
+          "math": 0.15140625,
+          "coding": 0.5721875,
+          "reasoning": 0.2325
+        },
+        "routing_example_coverage_by_domain": {
+          "general": 0.94,
+          "math": 0.96,
+          "coding": 1.0,
+          "reasoning": 0.99
+        },
+        "target_measured_positions": 6400,
+        "candidate_rank": 66,
+        "strict_eligible_rank": 52,
+        "role": "control",
+        "paired_specialist_layer": 11,
+        "paired_specialist_expert_id": 27
+      },
+      "matching": {
+        "same_layer": true,
+        "control_reused": false,
+        "target_routing_frequency_absolute_difference": 0.04888671875,
+        "target_routing_coverage_absolute_difference": 0.39109375,
+        "control_to_specialist_positive_margin_ratio": 0.20491925717760473,
+        "matching_tier_specialization_cap_ratio": 0.25,
+        "matching_cost": 0.40552389495972846,
+        "fallback_used": false,
+        "matching_rationale": "unique same-layer minimum-cost assignment using target routing coverage, rank balance, and residual specialization"
+      }
+    },
+    {
+      "pair_id": "reasoning_L13_E20",
+      "target_domain": "reasoning",
+      "pilot_functional_specialization_rank": 1,
+      "selection_score_name": "frozen_functional_specialization_margin",
+      "selection_score": 0.09723800948452825,
+      "specialist": {
+        "target_domain": "reasoning",
+        "layer": 13,
+        "expert_id": 20,
+        "specialization_margin": 0.09723800948452825,
+        "target_normalized_contribution": 0.11086009576682761,
+        "max_non_target_normalized_contribution": 0.01362208628229936,
+        "max_non_target_domain": "general",
+        "target_functional_contribution": 0.5506681156158447,
+        "target_gate_mass": 0.05575789451599121,
+        "target_rank": 1.0,
+        "worst_non_target_rank": 33.0,
+        "cross_domain_rank_range": 32.0,
+        "target_routing_frequency": 0.09068359375,
+        "target_routing_coverage": 0.72546875,
+        "target_example_coverage": 1.0,
+        "routing_specialization_margin": 0.07091796875,
+        "routing_coverage_specialization_margin": 0.56734375,
+        "eligible_strict": true,
+        "strict_checks": {
+          "target_top_10_percent": true,
+          "non_target_bottom_half": true,
+          "positive_specialization_margin": true,
+          "target_routing_coverage_at_least_1_percent": true
+        },
+        "normalized_contribution_by_domain": {
+          "general": 0.01362208628229936,
+          "math": 0.01044196167300729,
+          "coding": 0.00905799733353255,
+          "reasoning": 0.11086009576682761
+        },
+        "functional_rank_by_domain": {
+          "general": 33.0,
+          "math": 30.0,
+          "coding": 18.0,
+          "reasoning": 1.0
+        },
+        "routing_frequency_by_domain": {
+          "general": 0.012890625,
+          "math": 0.019765625,
+          "coding": 0.01599609375,
+          "reasoning": 0.09068359375
+        },
+        "routing_coverage_by_domain": {
+          "general": 0.103125,
+          "math": 0.158125,
+          "coding": 0.12796875,
+          "reasoning": 0.72546875
+        },
+        "routing_example_coverage_by_domain": {
+          "general": 0.52,
+          "math": 0.89,
+          "coding": 0.91,
+          "reasoning": 1.0
+        },
+        "target_measured_positions": 6400,
+        "candidate_rank": 2,
+        "strict_eligible_rank": 1,
+        "role": "specialized",
+        "selection_order_within_domain": 1,
+        "selection_tier": "strict",
+        "selection_rationale": "strict eligibility; highest remaining functional specialization margin subject to layer diversity"
+      },
+      "matched_control": {
+        "target_domain": "reasoning",
+        "layer": 13,
+        "expert_id": 63,
+        "specialization_margin": -0.0030509976122976637,
+        "target_normalized_contribution": 0.044363002264920834,
+        "max_non_target_normalized_contribution": 0.0474139998772185,
+        "max_non_target_domain": "math",
+        "target_functional_contribution": 0.22036144467769192,
+        "target_gate_mass": 0.017486515045166014,
+        "target_rank": 3.0,
+        "worst_non_target_rank": 55.0,
+        "cross_domain_rank_range": 52.0,
+        "target_routing_frequency": 0.03462890625,
+        "target_routing_coverage": 0.27703125,
+        "target_example_coverage": 0.97,
+        "routing_specialization_margin": -0.009980468749999999,
+        "routing_coverage_specialization_margin": -0.07984374999999999,
+        "eligible_strict": false,
+        "strict_checks": {
+          "target_top_10_percent": true,
+          "non_target_bottom_half": true,
+          "positive_specialization_margin": false,
+          "target_routing_coverage_at_least_1_percent": true
+        },
+        "normalized_contribution_by_domain": {
+          "general": 0.03472469974630584,
+          "math": 0.0474139998772185,
+          "coding": 0.0004038398095436973,
+          "reasoning": 0.044363002264920834
+        },
+        "functional_rank_by_domain": {
+          "general": 3.0,
+          "math": 3.0,
+          "coding": 55.0,
+          "reasoning": 3.0
+        },
+        "routing_frequency_by_domain": {
+          "general": 0.02947265625,
+          "math": 0.044609375,
+          "coding": 0.00064453125,
+          "reasoning": 0.03462890625
+        },
+        "routing_coverage_by_domain": {
+          "general": 0.23578125,
+          "math": 0.356875,
+          "coding": 0.00515625,
+          "reasoning": 0.27703125
+        },
+        "routing_example_coverage_by_domain": {
+          "general": 0.92,
+          "math": 1.0,
+          "coding": 0.1,
+          "reasoning": 0.97
+        },
+        "target_measured_positions": 6400,
+        "candidate_rank": 418,
+        "strict_eligible_rank": null,
+        "role": "control",
+        "paired_specialist_layer": 13,
+        "paired_specialist_expert_id": 20
+      },
+      "matching": {
+        "same_layer": true,
+        "control_reused": false,
+        "target_routing_frequency_absolute_difference": 0.0560546875,
+        "target_routing_coverage_absolute_difference": 0.4484375,
+        "control_to_specialist_positive_margin_ratio": 0.0,
+        "matching_tier_specialization_cap_ratio": 0.25,
+        "matching_cost": 0.4649454365709365,
+        "fallback_used": false,
+        "matching_rationale": "unique same-layer minimum-cost assignment using target routing coverage, rank balance, and residual specialization"
+      }
+    },
+    {
+      "pair_id": "reasoning_L11_E48",
+      "target_domain": "reasoning",
+      "pilot_functional_specialization_rank": 2,
+      "selection_score_name": "frozen_functional_specialization_margin",
+      "selection_score": 0.09526556459827443,
+      "specialist": {
+        "target_domain": "reasoning",
+        "layer": 11,
+        "expert_id": 48,
+        "specialization_margin": 0.09526556459827443,
+        "target_normalized_contribution": 0.10959927286075233,
+        "max_non_target_normalized_contribution": 0.014333708262477901,
+        "max_non_target_domain": "general",
+        "target_functional_contribution": 0.3199546992965043,
+        "target_gate_mass": 0.04235097885131836,
+        "target_rank": 1.0,
+        "worst_non_target_rank": 62.0,
+        "cross_domain_rank_range": 61.0,
+        "target_routing_frequency": 0.0881640625,
+        "target_routing_coverage": 0.7053125,
+        "target_example_coverage": 1.0,
+        "routing_specialization_margin": 0.076015625,
+        "routing_coverage_specialization_margin": 0.608125,
+        "eligible_strict": true,
+        "strict_checks": {
+          "target_top_10_percent": true,
+          "non_target_bottom_half": true,
+          "positive_specialization_margin": true,
+          "target_routing_coverage_at_least_1_percent": true
+        },
+        "normalized_contribution_by_domain": {
+          "general": 0.014333708262477901,
+          "math": 0.003752030629624664,
+          "coding": 1.6157871264854626e-05,
+          "reasoning": 0.10959927286075233
+        },
+        "functional_rank_by_domain": {
+          "general": 28.0,
+          "math": 51.0,
+          "coding": 62.0,
+          "reasoning": 1.0
+        },
+        "routing_frequency_by_domain": {
+          "general": 0.0121484375,
+          "math": 0.00666015625,
+          "coding": 7.8125e-05,
+          "reasoning": 0.0881640625
+        },
+        "routing_coverage_by_domain": {
+          "general": 0.0971875,
+          "math": 0.05328125,
+          "coding": 0.000625,
+          "reasoning": 0.7053125
+        },
+        "routing_example_coverage_by_domain": {
+          "general": 0.53,
+          "math": 0.45,
+          "coding": 0.04,
+          "reasoning": 1.0
+        },
+        "target_measured_positions": 6400,
+        "candidate_rank": 3,
+        "strict_eligible_rank": 2,
+        "role": "specialized",
+        "selection_order_within_domain": 2,
+        "selection_tier": "strict",
+        "selection_rationale": "strict eligibility; highest remaining functional specialization margin subject to layer diversity"
+      },
+      "matched_control": {
+        "target_domain": "reasoning",
+        "layer": 11,
+        "expert_id": 47,
+        "specialization_margin": -0.13704025646886694,
+        "target_normalized_contribution": 0.03446912714975047,
+        "max_non_target_normalized_contribution": 0.17150938361861742,
+        "max_non_target_domain": "coding",
+        "target_functional_contribution": 0.1006262078601867,
+        "target_gate_mass": 0.017818489074707032,
+        "target_rank": 4.0,
+        "worst_non_target_rank": 35.0,
+        "cross_domain_rank_range": 33.0,
+        "target_routing_frequency": 0.04634765625,
+        "target_routing_coverage": 0.37078125,
+        "target_example_coverage": 1.0,
+        "routing_specialization_margin": -0.06419921875000001,
+        "routing_coverage_specialization_margin": -0.5135937500000001,
+        "eligible_strict": false,
+        "strict_checks": {
+          "target_top_10_percent": true,
+          "non_target_bottom_half": true,
+          "positive_specialization_margin": false,
+          "target_routing_coverage_at_least_1_percent": true
+        },
+        "normalized_contribution_by_domain": {
+          "general": 0.012943423619648597,
+          "math": 0.05379504202218304,
+          "coding": 0.17150938361861742,
+          "reasoning": 0.03446912714975047
+        },
+        "functional_rank_by_domain": {
+          "general": 35.0,
+          "math": 3.0,
+          "coding": 2.0,
+          "reasoning": 4.0
+        },
+        "routing_frequency_by_domain": {
+          "general": 0.01576171875,
+          "math": 0.0718359375,
+          "coding": 0.110546875,
+          "reasoning": 0.04634765625
+        },
+        "routing_coverage_by_domain": {
+          "general": 0.12609375,
+          "math": 0.5746875,
+          "coding": 0.884375,
+          "reasoning": 0.37078125
+        },
+        "routing_example_coverage_by_domain": {
+          "general": 0.98,
+          "math": 1.0,
+          "coding": 1.0,
+          "reasoning": 1.0
+        },
+        "target_measured_positions": 6400,
+        "candidate_rank": 1012,
+        "strict_eligible_rank": null,
+        "role": "control",
+        "paired_specialist_layer": 11,
+        "paired_specialist_expert_id": 48
+      },
+      "matching": {
+        "same_layer": true,
+        "control_reused": false,
+        "target_routing_frequency_absolute_difference": 0.04181640625,
+        "target_routing_coverage_absolute_difference": 0.33453125,
+        "control_to_specialist_positive_margin_ratio": 0.0,
+        "matching_tier_specialization_cap_ratio": 0.25,
+        "matching_cost": 0.3450074405231905,
+        "fallback_used": false,
+        "matching_rationale": "unique same-layer minimum-cost assignment using target routing coverage, rank balance, and residual specialization"
+      }
+    }
+  ],
+  "pilot_panel_fingerprint": "404927664048259fb623a7b3181e811c8f18c68d5e32825b943b056257220af7"
+}
