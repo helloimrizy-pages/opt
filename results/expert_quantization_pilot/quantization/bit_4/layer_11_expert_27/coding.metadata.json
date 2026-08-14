@@ -1,0 +1,23 @@
+{
+  "inference_fingerprint": "082aad66cabb047abd889beba99a2ab6201b3f98e26cd4254883bee25a217884",
+  "pilot_panel_fingerprint": "404927664048259fb623a7b3181e811c8f18c68d5e32825b943b056257220af7",
+  "intervention_id": "specialist_coding_L11_E27",
+  "pair_id": "coding_L11_E27",
+  "role": "specialist",
+  "target_domain": "coding",
+  "layer": 11,
+  "expert_id": 27,
+  "bit_width": 4,
+  "group_size": 128,
+  "original_expert_fingerprint": "bb29691cb6fc3b9dc64c5b3687aa3d0157f73eee9e3684f127636534eb1d0d49",
+  "quantized_expert_fingerprint": "f6607207444585ddd88059f90630a0696a9e8856fdf9d2b425f3d13dd32cdaee",
+  "quantization_distortion": 0.014097038106684511,
+  "domain": "coding",
+  "controlled_input_sha256": "adbed3fc8e8113e0ce9e25365441d76167e0de4b5122d565143ff88293d356de",
+  "diagnostics": {
+    "elapsed_seconds": 5.63267164863646,
+    "hooks_before": 0,
+    "hooks_after": 0,
+    "mask": null
+  }
+}

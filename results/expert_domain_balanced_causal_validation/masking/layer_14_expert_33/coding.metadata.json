@@ -1,0 +1,24 @@
+{
+  "inference_fingerprint": "13f53ddfef0d2155626642ce68acdce3a2e4abd1a1d5a9d19fed52e4597c3bb3",
+  "source": "new_inference",
+  "domain": "coding",
+  "controlled_input_sha256": "adbed3fc8e8113e0ce9e25365441d76167e0de4b5122d565143ff88293d356de",
+  "layer": 14,
+  "expert_id": 33,
+  "diagnostics": {
+    "elapsed_seconds": 6.609689945355058,
+    "hooks_before": 0,
+    "hooks_after": 0,
+    "mask": {
+      "layer": 14,
+      "layer_ordinal": 14,
+      "layer_name": "model.layers.14.mlp",
+      "expert_id": 33,
+      "intervention": "zero_selected_gate_weight_without_rerouting",
+      "router_calls": 100,
+      "zeroed_routes": 265,
+      "zeroed_gate_mass": 8.8604736328125,
+      "hooks_remaining": 0
+    }
+  }
+}

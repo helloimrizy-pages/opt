@@ -1,0 +1,54 @@
+{
+  "decision": "GO",
+  "passing_bit_widths": [
+    4
+  ],
+  "selected_bit_width": 4,
+  "gates_by_bit_width": [
+    {
+      "bit_width": 4,
+      "gate_a": {
+        "passed": true,
+        "overall_mean_specialist_contrast": 0.0005037086208661397,
+        "ci_low": 0.00020825832833846407,
+        "ci_high": 0.0008088873537878196,
+        "rationale": "requires a positive overall specialist contrast with a 95% interval strictly above zero"
+      },
+      "gate_b": {
+        "passed": true,
+        "positive_domain_count": 3,
+        "positive_domains": [
+          "general",
+          "coding",
+          "reasoning"
+        ],
+        "domain_contrasts": {
+          "general": 0.0006034276882807413,
+          "math": -0.00038530011971791585,
+          "coding": 0.0014051397641499839,
+          "reasoning": 0.0003915671507517496
+        },
+        "rationale": "requires positive aggregate specialist contrasts in 3 of 4 domains"
+      },
+      "gate_c": {
+        "passed": true,
+        "overall_mean_specialist_minus_control": 0.00033701996008555097,
+        "ci_low": -4.978133738040925e-05,
+        "ci_high": 0.0007285565795997778,
+        "ci_excludes_zero": false,
+        "rationale": "requires a positive overall specialist-control difference"
+      },
+      "gate_d": {
+        "passed": true,
+        "statistic": "median absolute domain-level delta NLL",
+        "observed": 0.0002159029245376587,
+        "clear_noise_threshold": 1e-07,
+        "baseline_reproduction_noise_nll": 0.0,
+        "rationale": "requires perturbations above the preregistered numerical-noise rule"
+      },
+      "all_required_gates_passed": true,
+      "three_bit_fallback_eligible_due_only_to_small_effects": false
+    }
+  ],
+  "rationale": "4-bit satisfied all four preregistered Stage-1 gates; Stage 2 remains a separate future task"
+}

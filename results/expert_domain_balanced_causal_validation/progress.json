@@ -1,0 +1,32 @@
+{
+  "inference_fingerprint": "13f53ddfef0d2155626642ce68acdce3a2e4abd1a1d5a9d19fed52e4597c3bb3",
+  "completed_interventions": [
+    "specialized_general_L13_E52",
+    "specialized_general_L12_E40",
+    "specialized_general_L3_E24",
+    "specialized_math_L8_E11",
+    "specialized_math_L12_E63",
+    "specialized_math_L2_E4",
+    "specialized_coding_L13_E2",
+    "specialized_coding_L11_E27",
+    "specialized_coding_L10_E56",
+    "specialized_reasoning_L13_E20",
+    "specialized_reasoning_L11_E48",
+    "specialized_reasoning_L14_E33",
+    "control_general_L13_E52_L13_E36",
+    "control_general_L12_E40_L12_E2",
+    "control_general_L3_E24_L3_E30",
+    "control_math_L8_E11_L8_E54",
+    "control_math_L12_E63_L12_E43",
+    "control_math_L2_E4_L2_E34",
+    "control_coding_L13_E2_L13_E61",
+    "control_coding_L11_E27_L11_E7",
+    "control_coding_L10_E56_L10_E62",
+    "control_reasoning_L13_E20_L13_E63",
+    "control_reasoning_L11_E48_L11_E47",
+    "control_reasoning_L14_E33_L14_E8"
+  ],
+  "completed_count": 24,
+  "total_interventions": 24,
+  "last_completed_at_utc": "2026-08-14T15:17:07.883533+00:00"
+}

@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "reference": "balanced causal validation fresh BF16 baselines",
+  "domains": {
+    "general": {
+      "passed": true,
+      "resumed": false,
+      "bitwise_equal": true,
+      "max_absolute_loss_sum_difference": 0.0,
+      "max_absolute_per_token_nll_difference": 0.0,
+      "mean_absolute_loss_sum_difference": 0.0,
+      "fresh_mean_nll": 2.991833852529526,
+      "balanced_mean_nll": 2.991833852529526,
+      "atol": 1e-06,
+      "rtol": 1e-07
+    },
+    "math": {
+      "passed": true,
+      "resumed": false,
+      "bitwise_equal": true,
+      "max_absolute_loss_sum_difference": 0.0,
+      "max_absolute_per_token_nll_difference": 0.0,
+      "mean_absolute_loss_sum_difference": 0.0,
+      "fresh_mean_nll": 2.2662287080287933,
+      "balanced_mean_nll": 2.2662287080287933,
+      "atol": 1e-06,
+      "rtol": 1e-07
+    },
+    "coding": {
+      "passed": true,
+      "resumed": false,
+      "bitwise_equal": true,
+      "max_absolute_loss_sum_difference": 0.0,
+      "max_absolute_per_token_nll_difference": 0.0,
+      "mean_absolute_loss_sum_difference": 0.0,
+      "fresh_mean_nll": 1.7902204298973083,
+      "balanced_mean_nll": 1.7902204298973083,
+      "atol": 1e-06,
+      "rtol": 1e-07
+    },
+    "reasoning": {
+      "passed": true,
+      "resumed": false,
+      "bitwise_equal": true,
+      "max_absolute_loss_sum_difference": 0.0,
+      "max_absolute_per_token_nll_difference": 0.0,
+      "mean_absolute_loss_sum_difference": 0.0,
+      "fresh_mean_nll": 1.9561886489391327,
+      "balanced_mean_nll": 1.9561886489391327,
+      "atol": 1e-06,
+      "rtol": 1e-07
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "inference_fingerprint": "13f53ddfef0d2155626642ce68acdce3a2e4abd1a1d5a9d19fed52e4597c3bb3",
+  "source": "fresh_baseline_reproduction",
+  "domain": "math",
+  "diagnostics": {
+    "elapsed_seconds": 6.271274749189615,
+    "hooks_before": 0,
+    "hooks_after": 0,
+    "mask": null
+  }
+}

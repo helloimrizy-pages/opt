@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "layer": 0,
+  "expert_id": 6,
+  "zeroed_routes": 43,
+  "baseline_nll": 3.0154662132263184,
+  "masked_nll": 3.026092052459717,
+  "absolute_loss_sum_change": 0.6800537109375,
+  "loss_changed": true,
+  "hooks_before": 0,
+  "hooks_after": 0
+}

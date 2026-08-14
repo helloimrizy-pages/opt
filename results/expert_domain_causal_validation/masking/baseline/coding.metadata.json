@@ -1,0 +1,13 @@
+{
+  "masking_fingerprint": "416c4217c7bf0ad8fec52cc6d6e981b2bf16cd11e14e5de16b623fef9fb72616",
+  "domain": "coding",
+  "layer": null,
+  "expert_id": null,
+  "num_examples": 100,
+  "diagnostics": {
+    "elapsed_seconds": 5.8258642419968965,
+    "hooks_before": 0,
+    "hooks_after": 0,
+    "mask": null
+  }
+}

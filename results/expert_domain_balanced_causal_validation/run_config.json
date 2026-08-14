@@ -1,0 +1,212 @@
+{
+  "model": "allenai/OLMoE-1B-7B-0924",
+  "model_revision": "6d84c48581ece794365f2b8e9cfb043c68ade9c5",
+  "source_collection_fingerprint": "052956d26bac03d54e637c5812b84ae8a37fd7b5f9b51f8558082af2e38cb362",
+  "selection_input_fingerprint": "6555c24be1d20799239f5e38209083989790706aca5a96716da29ec1e5bcefbd",
+  "preregistration_fingerprint": "50a9eeb1f053385abe67cc94b2c4cc62570caf6d24f562cb8bcf05f5808cf714",
+  "method": "zero_selected_gate_weight_without_rerouting",
+  "scope": "measured_next_token_source_positions_only",
+  "device": "cuda",
+  "dtype": "bfloat16",
+  "batch_size": 1,
+  "seed": 42,
+  "interventions": [
+    {
+      "intervention_id": "specialized_general_L13_E52",
+      "pair_id": "general_L13_E52",
+      "role": "specialized",
+      "target_domain": "general",
+      "layer": 13,
+      "expert_id": 52
+    },
+    {
+      "intervention_id": "specialized_general_L12_E40",
+      "pair_id": "general_L12_E40",
+      "role": "specialized",
+      "target_domain": "general",
+      "layer": 12,
+      "expert_id": 40
+    },
+    {
+      "intervention_id": "specialized_general_L3_E24",
+      "pair_id": "general_L3_E24",
+      "role": "specialized",
+      "target_domain": "general",
+      "layer": 3,
+      "expert_id": 24
+    },
+    {
+      "intervention_id": "specialized_math_L8_E11",
+      "pair_id": "math_L8_E11",
+      "role": "specialized",
+      "target_domain": "math",
+      "layer": 8,
+      "expert_id": 11
+    },
+    {
+      "intervention_id": "specialized_math_L12_E63",
+      "pair_id": "math_L12_E63",
+      "role": "specialized",
+      "target_domain": "math",
+      "layer": 12,
+      "expert_id": 63
+    },
+    {
+      "intervention_id": "specialized_math_L2_E4",
+      "pair_id": "math_L2_E4",
+      "role": "specialized",
+      "target_domain": "math",
+      "layer": 2,
+      "expert_id": 4
+    },
+    {
+      "intervention_id": "specialized_coding_L13_E2",
+      "pair_id": "coding_L13_E2",
+      "role": "specialized",
+      "target_domain": "coding",
+      "layer": 13,
+      "expert_id": 2
+    },
+    {
+      "intervention_id": "specialized_coding_L11_E27",
+      "pair_id": "coding_L11_E27",
+      "role": "specialized",
+      "target_domain": "coding",
+      "layer": 11,
+      "expert_id": 27
+    },
+    {
+      "intervention_id": "specialized_coding_L10_E56",
+      "pair_id": "coding_L10_E56",
+      "role": "specialized",
+      "target_domain": "coding",
+      "layer": 10,
+      "expert_id": 56
+    },
+    {
+      "intervention_id": "specialized_reasoning_L13_E20",
+      "pair_id": "reasoning_L13_E20",
+      "role": "specialized",
+      "target_domain": "reasoning",
+      "layer": 13,
+      "expert_id": 20
+    },
+    {
+      "intervention_id": "specialized_reasoning_L11_E48",
+      "pair_id": "reasoning_L11_E48",
+      "role": "specialized",
+      "target_domain": "reasoning",
+      "layer": 11,
+      "expert_id": 48
+    },
+    {
+      "intervention_id": "specialized_reasoning_L14_E33",
+      "pair_id": "reasoning_L14_E33",
+      "role": "specialized",
+      "target_domain": "reasoning",
+      "layer": 14,
+      "expert_id": 33
+    },
+    {
+      "intervention_id": "control_general_L13_E52_L13_E36",
+      "pair_id": "general_L13_E52",
+      "role": "control",
+      "target_domain": "general",
+      "layer": 13,
+      "expert_id": 36
+    },
+    {
+      "intervention_id": "control_general_L12_E40_L12_E2",
+      "pair_id": "general_L12_E40",
+      "role": "control",
+      "target_domain": "general",
+      "layer": 12,
+      "expert_id": 2
+    },
+    {
+      "intervention_id": "control_general_L3_E24_L3_E30",
+      "pair_id": "general_L3_E24",
+      "role": "control",
+      "target_domain": "general",
+      "layer": 3,
+      "expert_id": 30
+    },
+    {
+      "intervention_id": "control_math_L8_E11_L8_E54",
+      "pair_id": "math_L8_E11",
+      "role": "control",
+      "target_domain": "math",
+      "layer": 8,
+      "expert_id": 54
+    },
+    {
+      "intervention_id": "control_math_L12_E63_L12_E43",
+      "pair_id": "math_L12_E63",
+      "role": "control",
+      "target_domain": "math",
+      "layer": 12,
+      "expert_id": 43
+    },
+    {
+      "intervention_id": "control_math_L2_E4_L2_E34",
+      "pair_id": "math_L2_E4",
+      "role": "control",
+      "target_domain": "math",
+      "layer": 2,
+      "expert_id": 34
+    },
+    {
+      "intervention_id": "control_coding_L13_E2_L13_E61",
+      "pair_id": "coding_L13_E2",
+      "role": "control",
+      "target_domain": "coding",
+      "layer": 13,
+      "expert_id": 61
+    },
+    {
+      "intervention_id": "control_coding_L11_E27_L11_E7",
+      "pair_id": "coding_L11_E27",
+      "role": "control",
+      "target_domain": "coding",
+      "layer": 11,
+      "expert_id": 7
+    },
+    {
+      "intervention_id": "control_coding_L10_E56_L10_E62",
+      "pair_id": "coding_L10_E56",
+      "role": "control",
+      "target_domain": "coding",
+      "layer": 10,
+      "expert_id": 62
+    },
+    {
+      "intervention_id": "control_reasoning_L13_E20_L13_E63",
+      "pair_id": "reasoning_L13_E20",
+      "role": "control",
+      "target_domain": "reasoning",
+      "layer": 13,
+      "expert_id": 63
+    },
+    {
+      "intervention_id": "control_reasoning_L11_E48_L11_E47",
+      "pair_id": "reasoning_L11_E48",
+      "role": "control",
+      "target_domain": "reasoning",
+      "layer": 11,
+      "expert_id": 47
+    },
+    {
+      "intervention_id": "control_reasoning_L14_E33_L14_E8",
+      "pair_id": "reasoning_L14_E33",
+      "role": "control",
+      "target_domain": "reasoning",
+      "layer": 14,
+      "expert_id": 8
+    }
+  ],
+  "inference_fingerprint": "13f53ddfef0d2155626642ce68acdce3a2e4abd1a1d5a9d19fed52e4597c3bb3",
+  "bootstrap_replicates": 1000,
+  "bootstrap_seed": 42,
+  "resume": true,
+  "created_at_utc": "2026-08-14T15:03:28.012307+00:00"
+}

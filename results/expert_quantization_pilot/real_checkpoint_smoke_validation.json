@@ -1,0 +1,247 @@
+{
+  "passed": true,
+  "runtime_description": "NVIDIA A40",
+  "intervention_id": "specialist_general_L13_E52",
+  "loss_nll": 3.0154662132263184,
+  "loss_diagnostics": {
+    "elapsed_seconds": 0.65266746096313,
+    "hooks_before": 0,
+    "hooks_after": 0,
+    "mask": null
+  },
+  "quantization": {
+    "method": "symmetric_groupwise_weight_only_qdq",
+    "layer": 13,
+    "layer_ordinal": 13,
+    "expert_id": 52,
+    "bits": 4,
+    "group_size": 128,
+    "original_expert_fingerprint": "1d2866092a6e8b99db9f2964f759248d08025aa2f9a4370943dd7ceb95d0ebcb",
+    "quantized_expert_fingerprint": "4c04fdaac661e636bc8556e9690a3876ef6b1a515ddf0d825eb96f428253740b",
+    "quantization_distortion": 0.013894860693057462,
+    "tensor_distortions": [
+      {
+        "structural_name": "down_proj",
+        "shape": [
+          2048,
+          1024
+        ],
+        "number_of_groups": 16384,
+        "squared_error": 7.994121069881368,
+        "squared_norm": 573.4707047344197,
+        "relative_squared_error": 0.013939894407655104,
+        "scale_dtype": "float16"
+      },
+      {
+        "structural_name": "gate_up_proj",
+        "shape": [
+          2048,
+          2048
+        ],
+        "number_of_groups": 32768,
+        "squared_error": 18.459278457671708,
+        "squared_norm": 1330.3554732977545,
+        "relative_squared_error": 0.013875448200257249,
+        "scale_dtype": "float16"
+      }
+    ],
+    "unrelated_experts_verified_unchanged": true,
+    "exact_restoration_verified": true,
+    "hooks_before": 0,
+    "hooks_after": 0,
+    "memory_accounting": {
+      "raw_nominal_bit_width": 4,
+      "group_size": 128,
+      "weight_count": 6291456,
+      "number_of_groups": 49152,
+      "quantized_weight_payload_bits": 25165824,
+      "quantized_weight_packed_bytes": 3145728,
+      "weight_packing_padding_bits": 0,
+      "scale_storage_dtype": "float16",
+      "scale_storage_bits_per_group": 16,
+      "scale_storage_bits": 786432,
+      "scale_storage_bytes": 98304,
+      "zero_point_storage_bits": 0,
+      "zero_point_storage_bytes": 0,
+      "other_required_metadata_bits": 0,
+      "other_required_metadata_bytes": 0,
+      "metadata_rationale": "symmetric quantization needs no zero point; bit width, group size, tensor shape, and grouping axis are fixed globally by the pilot format",
+      "projected_bytes": 3244032,
+      "bf16_projected_bytes": 12582912,
+      "effective_bits_per_weight": 4.125,
+      "compression_ratio_vs_bf16": 3.878787878787879,
+      "tensor_accounting": [
+        {
+          "shape": [
+            2048,
+            1024
+          ],
+          "weights": 2097152,
+          "input_features": 1024,
+          "groups": 16384,
+          "quantized_weight_bits": 8388608,
+          "packed_weight_bytes": 1048576,
+          "packing_padding_bits": 0
+        },
+        {
+          "shape": [
+            2048,
+            2048
+          ],
+          "weights": 4194304,
+          "input_features": 2048,
+          "groups": 32768,
+          "quantized_weight_bits": 16777216,
+          "packed_weight_bytes": 2097152,
+          "packing_padding_bits": 0
+        }
+      ],
+      "is_projected_not_measured_runtime_memory": true
+    }
+  },
+  "hooks_before": 0,
+  "hooks_after": 0,
+  "runtime_expert_layout_validation": {
+    "passed": true,
+    "validated_layers": [
+      8,
+      11,
+      12,
+      13
+    ],
+    "expected_expert_slice_shapes": [
+      [
+        2048,
+        1024
+      ],
+      [
+        2048,
+        2048
+      ]
+    ],
+    "expected_expert_axis": 0,
+    "grouping_axis_within_expert_slice": -1,
+    "layers": {
+      "8": {
+        "layer": 8,
+        "layer_ordinal": 8,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      },
+      "11": {
+        "layer": 11,
+        "layer_ordinal": 11,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      },
+      "12": {
+        "layer": 12,
+        "layer_ordinal": 12,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      },
+      "13": {
+        "layer": 13,
+        "layer_ordinal": 13,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "inference_fingerprint": "082aad66cabb047abd889beba99a2ab6201b3f98e26cd4254883bee25a217884",
+  "pilot_panel_fingerprint": "404927664048259fb623a7b3181e811c8f18c68d5e32825b943b056257220af7",
+  "completed_expert_domain_bit_width_evaluations": 64,
+  "total_primary_evaluations": 64,
+  "current_bit_width": 4,
+  "last_completed_intervention_id": "control_reasoning_L11_E48_L11_E47",
+  "last_completed_at_utc": "2026-08-14T15:34:27.227537+00:00"
+}

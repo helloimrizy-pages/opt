@@ -1,0 +1,180 @@
+{
+  "passed": true,
+  "method": "synthetic_tensor_qdq",
+  "deterministic": true,
+  "sixteen_bit_identity": true,
+  "zero_groups_safe": true,
+  "distortion": 0.004065752029418945,
+  "memory_accounting": {
+    "raw_nominal_bit_width": 4,
+    "group_size": 3,
+    "weight_count": 10,
+    "number_of_groups": 4,
+    "quantized_weight_payload_bits": 40,
+    "quantized_weight_packed_bytes": 5,
+    "weight_packing_padding_bits": 0,
+    "scale_storage_dtype": "float16",
+    "scale_storage_bits_per_group": 16,
+    "scale_storage_bits": 64,
+    "scale_storage_bytes": 8,
+    "zero_point_storage_bits": 0,
+    "zero_point_storage_bytes": 0,
+    "other_required_metadata_bits": 0,
+    "other_required_metadata_bytes": 0,
+    "metadata_rationale": "symmetric quantization needs no zero point; bit width, group size, tensor shape, and grouping axis are fixed globally by the pilot format",
+    "projected_bytes": 13,
+    "bf16_projected_bytes": 20,
+    "effective_bits_per_weight": 10.4,
+    "compression_ratio_vs_bf16": 1.5384615384615385,
+    "tensor_accounting": [
+      {
+        "shape": [
+          2,
+          5
+        ],
+        "weights": 10,
+        "input_features": 5,
+        "groups": 4,
+        "quantized_weight_bits": 40,
+        "packed_weight_bytes": 5,
+        "packing_padding_bits": 0
+      }
+    ],
+    "is_projected_not_measured_runtime_memory": true
+  },
+  "cached_checkpoint_structure": {
+    "available": true,
+    "passed": true,
+    "inspection": "safetensors_headers_only_no_weight_materialization",
+    "snapshot": "/workspace/opt/.hf_cache/models--allenai--OLMoE-1B-7B-0924/snapshots/6d84c48581ece794365f2b8e9cfb043c68ade9c5",
+    "num_moe_layers": 16,
+    "num_experts_per_layer": 64,
+    "serialized_matrices_per_expert": 3,
+    "serialized_expert_matrix_shapes": [
+      [
+        1024,
+        2048
+      ],
+      [
+        1024,
+        2048
+      ],
+      [
+        2048,
+        1024
+      ]
+    ],
+    "runtime_layout_note": "Transformers converts separate gate/up/down checkpoint matrices into tensorized gate_up_proj/down_proj parameters with expert axis 0",
+    "runtime_expert_axis": 0,
+    "runtime_matrices_per_expert": 2,
+    "runtime_expert_matrix_shapes": [
+      [
+        2048,
+        2048
+      ],
+      [
+        2048,
+        1024
+      ]
+    ],
+    "grouping_axis_within_expert_slice": -1,
+    "grouping_axis_semantics": "input_feature_dimension",
+    "real_weight_slice_qdq": {
+      "passed": true,
+      "source_experts": [
+        {
+          "layer": 0,
+          "expert_id": 0
+        },
+        {
+          "layer": 0,
+          "expert_id": 1
+        }
+      ],
+      "selected_source_expert": {
+        "layer": 0,
+        "expert_id": 0
+      },
+      "unrelated_source_expert": {
+        "layer": 0,
+        "expert_id": 1
+      },
+      "runtime_tensor_shapes": [
+        {
+          "structural_name": "down_proj",
+          "expert_axis": 0,
+          "expert_slice_shape": [
+            2048,
+            1024
+          ],
+          "dtype": "bfloat16"
+        },
+        {
+          "structural_name": "gate_up_proj",
+          "expert_axis": 0,
+          "expert_slice_shape": [
+            2048,
+            2048
+          ],
+          "dtype": "bfloat16"
+        }
+      ],
+      "quantization_distortion": 0.014611290325806572,
+      "original_expert_fingerprint": "6a6f4d1be8a9837385edbe23cf30aebb61d28793c16bf8267184f516e0f32670",
+      "quantized_expert_fingerprint": "53f7d8faa290bccb6dff362c297ad5d5692c1a30411792b775833b9f0902d901",
+      "unrelated_expert_unchanged": true,
+      "exact_restoration_verified": true,
+      "hooks_before": 0,
+      "hooks_after": 0,
+      "memory_accounting": {
+        "raw_nominal_bit_width": 4,
+        "group_size": 128,
+        "weight_count": 6291456,
+        "number_of_groups": 49152,
+        "quantized_weight_payload_bits": 25165824,
+        "quantized_weight_packed_bytes": 3145728,
+        "weight_packing_padding_bits": 0,
+        "scale_storage_dtype": "float16",
+        "scale_storage_bits_per_group": 16,
+        "scale_storage_bits": 786432,
+        "scale_storage_bytes": 98304,
+        "zero_point_storage_bits": 0,
+        "zero_point_storage_bytes": 0,
+        "other_required_metadata_bits": 0,
+        "other_required_metadata_bytes": 0,
+        "metadata_rationale": "symmetric quantization needs no zero point; bit width, group size, tensor shape, and grouping axis are fixed globally by the pilot format",
+        "projected_bytes": 3244032,
+        "bf16_projected_bytes": 12582912,
+        "effective_bits_per_weight": 4.125,
+        "compression_ratio_vs_bf16": 3.878787878787879,
+        "tensor_accounting": [
+          {
+            "shape": [
+              2048,
+              1024
+            ],
+            "weights": 2097152,
+            "input_features": 1024,
+            "groups": 16384,
+            "quantized_weight_bits": 8388608,
+            "packed_weight_bytes": 1048576,
+            "packing_padding_bits": 0
+          },
+          {
+            "shape": [
+              2048,
+              2048
+            ],
+            "weights": 4194304,
+            "input_features": 2048,
+            "groups": 32768,
+            "quantized_weight_bits": 16777216,
+            "packed_weight_bytes": 2097152,
+            "packing_padding_bits": 0
+          }
+        ],
+        "is_projected_not_measured_runtime_memory": true
+      }
+    }
+  }
+}

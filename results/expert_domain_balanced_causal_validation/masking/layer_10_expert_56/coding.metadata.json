@@ -1,0 +1,28 @@
+{
+  "inference_fingerprint": "13f53ddfef0d2155626642ce68acdce3a2e4abd1a1d5a9d19fed52e4597c3bb3",
+  "source": "reused_validated_source",
+  "source_path": "/workspace/opt/results/expert_domain_causal_validation/masking/layer_10_expert_56/coding.npz",
+  "source_file_sha256": "a3a6e0f12c50b0f6f70f05bb3df26eb89ddb2a3104e0ef3e429ff6dce85fbac0",
+  "source_metadata_sha256": "f8e9f1da24b0e94494fdb80d0f162d49e304be7adb05fb18a29294ca5850b356",
+  "source_masking_fingerprint": "416c4217c7bf0ad8fec52cc6d6e981b2bf16cd11e14e5de16b623fef9fb72616",
+  "domain": "coding",
+  "controlled_input_sha256": "adbed3fc8e8113e0ce9e25365441d76167e0de4b5122d565143ff88293d356de",
+  "layer": 10,
+  "expert_id": 56,
+  "diagnostics": {
+    "elapsed_seconds": 5.881600277003599,
+    "hooks_before": 0,
+    "hooks_after": 0,
+    "mask": {
+      "layer": 10,
+      "layer_ordinal": 10,
+      "layer_name": "model.layers.10.mlp",
+      "expert_id": 56,
+      "intervention": "zero_selected_gate_weight_without_rerouting",
+      "router_calls": 100,
+      "zeroed_routes": 6104,
+      "zeroed_gate_mass": 472.1051025390625,
+      "hooks_remaining": 0
+    }
+  }
+}

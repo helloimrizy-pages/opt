@@ -1,0 +1,28 @@
+{
+  "inference_fingerprint": "13f53ddfef0d2155626642ce68acdce3a2e4abd1a1d5a9d19fed52e4597c3bb3",
+  "source": "reused_validated_source",
+  "source_path": "/workspace/opt/results/expert_domain_causal_validation/masking/layer_10_expert_56/math.npz",
+  "source_file_sha256": "e8586360e9e34f36b864d8a457a12ad9b55249bc26dd0bcc1fdfe2a92335be8f",
+  "source_metadata_sha256": "f1958cf77e3060be8da7f65c881f5a163f540948a3230145cd6e0303e94b9042",
+  "source_masking_fingerprint": "416c4217c7bf0ad8fec52cc6d6e981b2bf16cd11e14e5de16b623fef9fb72616",
+  "domain": "math",
+  "controlled_input_sha256": "9de4496b2d67b4f479be5f787acfa70df175fa425b703b06c395a6d245198b9b",
+  "layer": 10,
+  "expert_id": 56,
+  "diagnostics": {
+    "elapsed_seconds": 6.440719014994102,
+    "hooks_before": 0,
+    "hooks_after": 0,
+    "mask": {
+      "layer": 10,
+      "layer_ordinal": 10,
+      "layer_name": "model.layers.10.mlp",
+      "expert_id": 56,
+      "intervention": "zero_selected_gate_weight_without_rerouting",
+      "router_calls": 100,
+      "zeroed_routes": 1691,
+      "zeroed_gate_mass": 62.507080078125,
+      "hooks_remaining": 0
+    }
+  }
+}

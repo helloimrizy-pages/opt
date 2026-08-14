@@ -1,0 +1,23 @@
+{
+  "inference_fingerprint": "082aad66cabb047abd889beba99a2ab6201b3f98e26cd4254883bee25a217884",
+  "pilot_panel_fingerprint": "404927664048259fb623a7b3181e811c8f18c68d5e32825b943b056257220af7",
+  "intervention_id": "control_math_L8_E11_L8_E54",
+  "pair_id": "math_L8_E11",
+  "role": "control",
+  "target_domain": "math",
+  "layer": 8,
+  "expert_id": 54,
+  "bit_width": 4,
+  "group_size": 128,
+  "original_expert_fingerprint": "ac59baef207c400a603ebb12af9430f275dd8d0b7658bad62def095b051bf672",
+  "quantized_expert_fingerprint": "e83f429f100ae9df4f22c439b8e0b5ba9b33634f5ada326455524155fcc8b974",
+  "quantization_distortion": 0.014220725736186273,
+  "domain": "math",
+  "controlled_input_sha256": "9de4496b2d67b4f479be5f787acfa70df175fa425b703b06c395a6d245198b9b",
+  "diagnostics": {
+    "elapsed_seconds": 6.157553622499108,
+    "hooks_before": 0,
+    "hooks_after": 0,
+    "mask": null
+  }
+}

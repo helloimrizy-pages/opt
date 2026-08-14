@@ -1,0 +1,13 @@
+{
+  "inference_fingerprint": "082aad66cabb047abd889beba99a2ab6201b3f98e26cd4254883bee25a217884",
+  "pilot_panel_fingerprint": "404927664048259fb623a7b3181e811c8f18c68d5e32825b943b056257220af7",
+  "controlled_input_sha256": "89ca862ab65b93eac04de9465462729bc3aaa7659dde292a04786e0ba5db2861",
+  "kind": "fresh_bf16_baseline",
+  "domain": "reasoning",
+  "diagnostics": {
+    "elapsed_seconds": 6.107064973562956,
+    "hooks_before": 0,
+    "hooks_after": 0,
+    "mask": null
+  }
+}

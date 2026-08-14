@@ -1,0 +1,23 @@
+{
+  "inference_fingerprint": "082aad66cabb047abd889beba99a2ab6201b3f98e26cd4254883bee25a217884",
+  "pilot_panel_fingerprint": "404927664048259fb623a7b3181e811c8f18c68d5e32825b943b056257220af7",
+  "intervention_id": "control_math_L12_E63_L12_E43",
+  "pair_id": "math_L12_E63",
+  "role": "control",
+  "target_domain": "math",
+  "layer": 12,
+  "expert_id": 43,
+  "bit_width": 4,
+  "group_size": 128,
+  "original_expert_fingerprint": "1fde0de4bfc53f13d00433cf727bbdd4b7f5b50895287043060c1102435488da",
+  "quantized_expert_fingerprint": "0941e881f031535d6be6b4868fe44a3357b0ca4f3c1f18793f6846593ae383fb",
+  "quantization_distortion": 0.01400081345161828,
+  "domain": "general",
+  "controlled_input_sha256": "29dd1dce6496e2d049324bd9153c991e38cfbd353313c4f7a1d5438132790f19",
+  "diagnostics": {
+    "elapsed_seconds": 7.678969332948327,
+    "hooks_before": 0,
+    "hooks_after": 0,
+    "mask": null
+  }
+}
