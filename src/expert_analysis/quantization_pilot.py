@@ -1496,28 +1496,169 @@ def write_quantization_summary(
             ]
         )
 
+        contrast_lookup = {
+            row["intervention_id"]: row
+            for row in analysis["intervention_contrasts"]
+            if int(row["bit_width"]) == int(bit_width)
+        }
+        paired_lookup = {
+            row["pair_id"]: row
+            for row in analysis["specialist_vs_control"]
+            if int(row["bit_width"]) == int(bit_width)
+        }
+        lines.extend(
+            [
+                "Per-pair target effects and specificity contrasts:",
+                "",
+                (
+                    "| Target | Specialist | Target ΔNLL (95% CI) | Specialist "
+                    "contrast (95% CI) | Control | Target ΔNLL (95% CI) | "
+                    "Control contrast (95% CI) | Specialist-control (95% CI) |"
+                ),
+                "|---|---|---:|---:|---|---:|---:|---:|",
+            ]
+        )
+        for pair in prereg["pairs"]:
+            specialist_id = f"specialist_{pair['pair_id']}"
+            control = pair["matched_control"]
+            control_id = (
+                f"control_{pair['pair_id']}_L{control['layer']}_E"
+                f"{control['expert_id']}"
+            )
+            specialist_row = contrast_lookup[specialist_id]
+            control_row = contrast_lookup[control_id]
+            paired_row = paired_lookup[pair["pair_id"]]
+            lines.append(
+                f"| {pair['target_domain'].title()} | L{pair['specialist']['layer']}/E"
+                f"{pair['specialist']['expert_id']} | "
+                f"{_format_interval(specialist_row['target_delta_nll'], specialist_row['target_delta_nll_ci_low'], specialist_row['target_delta_nll_ci_high'], 8)} | "
+                f"{_format_interval(specialist_row['target_minus_mean_other_contrast'], specialist_row['contrast_ci_low'], specialist_row['contrast_ci_high'], 8)} | "
+                f"L{control['layer']}/E{control['expert_id']} | "
+                f"{_format_interval(control_row['target_delta_nll'], control_row['target_delta_nll_ci_low'], control_row['target_delta_nll_ci_high'], 8)} | "
+                f"{_format_interval(control_row['target_minus_mean_other_contrast'], control_row['contrast_ci_low'], control_row['contrast_ci_high'], 8)} | "
+                f"{_format_interval(paired_row['specialist_minus_control_difference'], paired_row['difference_ci_low'], paired_row['difference_ci_high'], 8)} |"
+            )
+        lines.append("")
+
     lines.extend(
         [
             "## Correlations",
             "",
-            "| Bits | Predictor | Outcome | Spearman | Kendall tau | Sign agreement |",
+            (
+                "| Bits | Predictor | Outcome | Spearman (95% CI) | "
+                "Kendall tau (95% CI) | Sign agreement (95% CI) |"
+            ),
             "|---:|---|---|---:|---:|---:|",
         ]
     )
     for row in analysis["correlation_results"]:
         lines.append(
             f"| {row['bit_width']} | {row['predictor']} | {row['outcome']} | "
-            f"{_format_optional(row['spearman'])} | "
-            f"{_format_optional(row['kendall_tau'])} | "
-            f"{_format_optional(row['sign_agreement'])} |"
+            f"{_format_optional_interval(row['spearman'], row['spearman_ci_low'], row['spearman_ci_high'])} | "
+            f"{_format_optional_interval(row['kendall_tau'], row['kendall_tau_ci_low'], row['kendall_tau_ci_high'])} | "
+            f"{_format_optional_interval(row['sign_agreement'], row['sign_agreement_ci_low'], row['sign_agreement_ci_high'])} |"
         )
     for row in analysis["risk_proxy_correlations"]:
         lines.append(
             f"| {row['bit_width']} | {row['predictor']} | {row['outcome']} | "
-            f"{_format_optional(row['spearman'])} | — | — |"
+            f"{_format_optional_interval(row['spearman'], row['spearman_ci_low'], row['spearman_ci_high'])} | — | — |"
         )
 
     decision = analysis["stage1_decision"]
+    selected_bits = decision.get("selected_bit_width") or analysis["evaluated_bits"][0]
+    specialist_rows = [
+        row
+        for row in analysis["intervention_contrasts"]
+        if int(row["bit_width"]) == int(selected_bits) and row["role"] == "specialist"
+    ]
+    paired_rows = [
+        row
+        for row in analysis["specialist_vs_control"]
+        if int(row["bit_width"]) == int(selected_bits)
+    ]
+    aggregate_rows = [
+        row
+        for row in analysis["aggregate_results"]
+        if int(row["bit_width"]) == int(selected_bits)
+    ]
+    negative_domains = [
+        row
+        for row in aggregate_rows
+        if row["scope"] == "domain" and row["mean_specialist_contrast"] <= 0
+    ]
+    nonpositive_specialists = [
+        row for row in specialist_rows if row["target_minus_mean_other_contrast"] <= 0
+    ]
+    nonpositive_pairs = [
+        row for row in paired_rows if row["specialist_minus_control_difference"] <= 0
+    ]
+    positive_specialist_ci_count = sum(
+        row["contrast_ci_low"] > 0 for row in specialist_rows
+    )
+    positive_pair_ci_count = sum(row["difference_ci_low"] > 0 for row in paired_rows)
+    overall_row = next(row for row in aggregate_rows if row["scope"] == "overall")
+    lines.extend(
+        [
+            "",
+            "## Retained Failures and Counterexamples",
+            "",
+            (
+                f"- {sum(row['target_minus_mean_other_contrast'] > 0 for row in specialist_rows)}/"
+                f"{len(specialist_rows)} specialist contrasts were positive; "
+                f"{positive_specialist_ci_count}/{len(specialist_rows)} had 95% intervals "
+                "strictly above zero."
+            ),
+            (
+                f"- {sum(row['specialist_minus_control_difference'] > 0 for row in paired_rows)}/"
+                f"{len(paired_rows)} specialist-control differences were positive; "
+                f"{positive_pair_ci_count}/{len(paired_rows)} had 95% intervals strictly "
+                "above zero."
+            ),
+        ]
+    )
+    if negative_domains:
+        lines.append(
+            "- Non-positive domain aggregate(s): "
+            + ", ".join(
+                f"{row['target_domain'].title()} {row['mean_specialist_contrast']:+.8f}"
+                for row in negative_domains
+            )
+            + "."
+        )
+    if nonpositive_specialists:
+        lines.append(
+            "- Non-positive specialist contrast(s): "
+            + ", ".join(
+                f"L{row['layer']}/E{row['expert_id']} ({row['target_domain'].title()}) "
+                f"{row['target_minus_mean_other_contrast']:+.8f}"
+                for row in nonpositive_specialists
+            )
+            + "."
+        )
+    if nonpositive_pairs:
+        lines.append(
+            "- Controls more target-specific than their specialist: "
+            + ", ".join(
+                f"{row['pair_id']} {row['specialist_minus_control_difference']:+.8f}"
+                for row in nonpositive_pairs
+            )
+            + "."
+        )
+    if overall_row["mean_difference_ci_low"] <= 0 <= overall_row["mean_difference_ci_high"]:
+        lines.append(
+            "- The overall specialist-control point difference is positive, but its "
+            "95% interval includes zero. Gate C preregistered positivity of the point "
+            "estimate; interval exclusion was preferred, not required."
+        )
+    lines.append(
+        "- The 3-bit fallback was "
+        + (
+            "triggered and evaluated."
+            if DEFAULT_FALLBACK_BITS in analysis["evaluated_bits"]
+            else "not triggered because 4-bit passed the measurability Gate D."
+        )
+    )
+
     lines.extend(
         [
             "",
@@ -1550,6 +1691,30 @@ def write_quantization_summary(
             "",
         ]
     )
+    audit_path = output_path.parent / "independent_audit.json"
+    if audit_path.is_file():
+        audit = read_json(audit_path)
+        lines.extend(
+            [
+                "## Independent Raw-Artifact Audit",
+                "",
+                (
+                    f"- Result: **{'PASS' if audit.get('passed') else 'FAIL'}**; "
+                    f"decision independently recomputed as `{audit.get('decision_recomputed')}`."
+                ),
+                f"- Checks performed: {audit.get('checks_performed', 0):,}.",
+                (
+                    "- Maximum absolute published-versus-recomputed numeric difference: "
+                    f"{audit.get('maximum_absolute_numeric_difference', math.nan):.3g}."
+                ),
+                (
+                    "- The audit rebuilt the final [bit, intervention, domain, example] "
+                    "array from all raw checkpoints, reconstructed masking contrasts from "
+                    "the balanced raw NPZ, and verified CSV/JSON and artifact hashes."
+                ),
+                "",
+            ]
+        )
     text = "\n".join(lines)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(text, encoding="utf-8")
@@ -1781,3 +1946,24 @@ def _format_optional(value: Any) -> str:
     if value is None or not math.isfinite(float(value)):
         return "—"
     return f"{float(value):+.4f}"
+
+
+def _format_interval(value: Any, low: Any, high: Any, digits: int) -> str:
+    return (
+        f"{float(value):+.{digits}f} "
+        f"[{float(low):+.{digits}f}, {float(high):+.{digits}f}]"
+    )
+
+
+def _format_optional_interval(value: Any, low: Any, high: Any) -> str:
+    if value is None:
+        return "—"
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return "—"
+    if not math.isfinite(number):
+        return "—"
+    if low is None or high is None:
+        return f"{number:+.4f}"
+    return f"{number:+.4f} [{float(low):+.4f}, {float(high):+.4f}]"

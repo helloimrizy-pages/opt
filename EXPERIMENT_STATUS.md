@@ -1,6 +1,6 @@
 # Expert-domain importance experiment: persistent handoff
 
-Last updated: 2026-08-13
+Last updated: 2026-08-14
 
 This file is the durable cross-session research handoff. It records the current
 experimental state and the conclusions supported by the available validated run
@@ -20,12 +20,13 @@ functional-contribution proxy, and selected-route masking loss sensitivity. No
 modified checkpoint has been saved, fine-tuned, or compressed. The newly
 implemented Stage-1 code applies only temporary, exactly restored expert QDQ.
 
-Current decision: balanced causal validation remains **STRONG GO** and complete.
-The mandatory Stage-1 reversible quantization-sensitivity pilot is now implemented
-and locally tested, but it has not been executed on the NVIDIA A40. Therefore no
-Stage-1 `GO` or `NO_GO` decision exists yet, and robust mixed-precision allocation
-remains out of scope pending the actual pilot. Prompt-only, controlled causal, and
-balanced causal validation remain complete and independently audited.
+Current decision: the mandatory Stage-1 reversible quantization-sensitivity pilot
+is **GO** and complete after production execution and independent raw-artifact audit
+on the NVIDIA A40. Four-bit QDQ passed all four preregistered gates; the 3-bit
+fallback was not triggered. This scientifically justifies a separately designed
+distributionally robust mixed-precision Stage 2, which remains pending and was not
+implemented in this run. Prompt-only, controlled causal, and balanced causal
+validation remain complete and independently audited.
 
 ## Code baseline
 
@@ -467,15 +468,15 @@ positive. The evidence supports designing the next distributionally robust
 mixed-precision quantization experiment, while retaining the one-checkpoint,
 fixed-corpus, selected-route-masking limitations. No quantization was performed.
 
-## Stage-1 quantization sensitivity pilot: implemented, pending A40 execution
+## Stage-1 quantization sensitivity pilot: complete and independently audited
 
-Implementation status: **READY FOR GPU EXECUTION; NO STAGE-1 DECISION YET**.
+Final status: **GO at 4-bit**.
 
 The pilot was implemented on 2026-08-13 as the mandatory mechanism-consistency gate
 between balanced causal masking and any future mixed-precision allocator. It does
 not implement robust allocation, optimization, Stage 2, pruning, fine-tuning, or a
-low-bit runtime kernel. The local machine was not used for the full checkpoint run
-because no appropriate CUDA environment was available.
+low-bit runtime kernel. Production inference and the independent raw-artifact audit
+completed on 2026-08-14 on the required NVIDIA A40.
 
 The panel was frozen at
 `results/expert_quantization_pilot/pilot_panel_preregistered.json` before any
@@ -523,7 +524,7 @@ and routing risk-proxy correlations, 1,000-replicate confidence intervals, and a
 four Stage-1 gates. The final decision file can contain `GO` or `NO_GO`; the internal
 `PENDING_FALLBACK` state is never emitted as the final production decision.
 
-Recommended A40 command:
+Exact production command used:
 
 ```bash
 PYTHONPATH=src python scripts/run_quantization_pilot.py \
@@ -544,36 +545,107 @@ PYTHONPATH=src python scripts/run_quantization_pilot.py \
   --resume
 ```
 
-The complete ignored controlled-causal and balanced-causal result directories must
-be copied to the A40 at the same paths before running. The tracked balanced
-selection files alone do not contain the controlled inputs, BF16 baselines, or raw
-per-example masking losses required by the integrity gates.
+The controlled directory was present with all frozen input hashes intact. The
+balanced directory initially contained only its three tracked selection files, so
+the exact documented balanced A40 command was rerun against the frozen panel to
+restore its missing BF16 baselines and raw per-example masking package. The restored
+run reproduced every recorded aggregate and correlation exactly, passed all
+baseline/routing/hook gates, and did not reselect or replace any expert.
 
-Expected final outputs are
+Completed final outputs are
 `quantization_pilot_results.csv`, `quantization_pilot_pairwise.csv`,
 `specialist_vs_control.csv`, `quantization_vs_masking.csv`,
 `quantization_distortion.csv`, `per_example_quantization_losses.npz`,
 `results.json`, `stage1_decision.json`, `SUMMARY.md`, and five PNG/PDF figure pairs,
 plus resumable checkpoints under `quantization/`.
 
-Local validation completed so far:
+Artifact directory: `results/expert_quantization_pilot/`.
 
-- synthetic tensor smoke validation passed;
-- pinned-checkpoint safetensors-header inspection passed for all 16 layers and all
-  64 experts/layer; two real BF16 expert slices were loaded without materializing
-  the model, one was QDQ-quantized, its neighbor stayed unchanged, and exact
-  restoration plus zero hook leakage were verified;
-- current-Transformers tiny OLMoE inspection confirmed two tensorized expert
-  matrices with expert axis 0 and input-feature grouping on the final axis;
-- full-checkpoint/A40 smoke validation is pending and will run automatically before
-  production inference;
-- the complete local suite passed **30/30 tests** on 2026-08-13, including all
-  pre-existing tests and the new QDQ, isolation, memory, selection, bootstrap,
-  fallback, resume, report, and figure tests.
+The production inference fingerprint is
+`082aad66cabb047abd889beba99a2ab6201b3f98e26cd4254883bee25a217884`.
+The controlled-input fingerprint remained
+`6555c24be1d20799239f5e38209083989790706aca5a96716da29ec1e5bcefbd`;
+the balanced raw masking NPZ hash is
+`4d9a3103cadc14eb03891dee50d666eeb172ddcfdf55616fbe024d9158593786`;
+and the final per-example quantization NPZ hash is
+`d0288414932272b5c496b106abf01a72b6ab28bf95493070a45ce2c146e18754`.
 
-Until the A40 run completes and its raw artifacts are audited, the scientific
-decision remains **PENDING GPU EXECUTION**. In particular, the balanced masking
-`STRONG GO` must not be reported as a quantization Stage-1 `GO`.
+All smoke and production integrity gates passed:
+
+- the complete suite passed **30/30 tests** before production and again after the
+  reporting-only audit update;
+- the pinned checkpoint resolved to
+  `6d84c48581ece794365f2b8e9cfb043c68ade9c5`, with 16 MoE layers, 64
+  experts/layer, top-8 routing, expert axis 0, and BF16 expert matrices;
+- real-checkpoint L13/E52 QDQ changed only the selected expert, produced finite
+  loss and relative weight distortion **0.013894860693**, leaked no hooks, and
+  restored all fingerprints exactly;
+- every intervention verified all 63 unrelated experts in its layer unchanged,
+  restored the selected expert exactly, and wrote all four domain checkpoints;
+- all four fresh BF16 baselines were bitwise equal to the restored balanced
+  baselines, so observed baseline reproduction noise was exactly **0.0 NLL**;
+- the completed array has shape **[1, 16, 4, 100]**, all values are finite, every
+  example has exactly 64 evaluated positions, and no 3-bit directory exists.
+
+PyTorch emitted its CUDA warning that `CUBLAS_WORKSPACE_CONFIG` was not set while
+deterministic algorithms were requested. This was retained as a caveat, not hidden:
+the frozen source/balanced baselines and routing tensors nevertheless reproduced
+bitwise, and the raw checkpoint/resume audit found no inconsistency.
+
+Primary 4-bit aggregate results:
+
+| Target domain | Mean specialist contrast | 95% CI | Mean control contrast | Specialist minus control | 95% CI |
+|---|---:|---:|---:|---:|---:|
+| General | +0.000603428 | [-0.000053796, 0.001217323] | -0.000073306 | +0.000676733 | [-0.000061414, 0.001444780] |
+| Math | -0.000385300 | [-0.001003041, 0.000202139] | -0.000409598 | +0.000024298 | [-0.000675318, 0.000667981] |
+| Coding | +0.001405140 | [0.000574155, 0.002375074] | +0.000773413 | +0.000631727 | [-0.000201355, 0.001546852] |
+| Reasoning | +0.000391567 | [-0.000205189, 0.000986266] | +0.000376246 | +0.000015322 | [-0.000645631, 0.000671734] |
+| All domains | +0.000503709 | [0.000208258, 0.000808887] | +0.000166689 | +0.000337020 | [-0.000049781, 0.000728557] |
+
+Mechanism-consistency and predictor results:
+
+| Comparison | Spearman | 95% CI | Kendall tau | 95% CI | Sign agreement |
+|---|---:|---:|---:|---:|---:|
+| Masking vs quantization specificity | 0.423529 | [0.049926, 0.617647] | 0.316667 | [0.016667, 0.483333] | 0.6875 [0.5000, 0.8125] |
+| Functional specialization vs quantization specificity | 0.432353 | [0.041176, 0.608824] | — | — | — |
+| Routing specialization vs quantization specificity | 0.338235 | [-0.035294, 0.556029] | — | — | — |
+| Target routing frequency vs quantization specificity | 0.270588 | [-0.135294, 0.520588] | — | — | — |
+| Fixed functional risk vs domain-level delta NLL | 0.092308 | [-0.092310, 0.250781] | — | — | — |
+| Fixed routing risk vs domain-level delta NLL | 0.041896 | [-0.134641, 0.217633] | — | — | — |
+
+Failures and limitations were retained. Six of eight specialist contrasts were
+positive, but only two had 95% intervals above zero. Both Math specialists were
+negative: L8/E11 contrast **-0.000508272** and L12/E63
+**-0.000262328**. Six of eight specialist-control differences were positive, but
+only General L13/E52 excluded zero. Math L12/E63 and Reasoning L11/E48 were less
+target-specific than their controls. Gate C passed its preregistered positive point
+criterion, but the overall paired interval includes zero. The fixed risk proxies
+were weak and their intervals include zero.
+
+Independent audit command:
+
+```bash
+python scripts/audit_quantization_pilot.py \
+  --source-dir results/expert_domain_causal_validation \
+  --balanced-results-dir results/expert_domain_balanced_causal_validation \
+  --pilot-results-dir results/expert_quantization_pilot \
+  --output results/expert_quantization_pilot/independent_audit.json
+```
+
+The standalone auditor imported none of the production analysis functions. It
+reconstructed all 16 expert contrasts, eight paired differences, five aggregates,
+all 1,000-replicate intervals, masking comparisons, and risk correlations from raw
+checkpoints. It also verified all CSV/JSON values, NPZ dimensions, finite values,
+input/panel/model/config hashes, restoration metadata, and artifact-manifest
+hashes. All **6,223** checks passed; the largest numeric discrepancy was
+**1.39e-17**, and the independent decision was `GO`.
+
+The preregistered gates were A=PASS, B=PASS (General, Coding, and Reasoning
+positive), C=PASS, and D=PASS (median absolute domain-level delta NLL
+**0.000215903** versus threshold **1e-7**). Because 4-bit passed Gate D, the
+preregistered 3-bit fallback was not triggered. Stage 1 is therefore **complete /
+GO**. A separately designed distributionally robust mixed-precision experiment is
+scientifically justified but remains **pending**; Stage 2 was not implemented.
 
 ## Fresh-session checklist
 
@@ -595,7 +667,9 @@ A new Codex session should:
    as expert deletion or a quantization simulation.
 9. Treat `results/expert_quantization_pilot/pilot_panel_preregistered.json` as
    frozen. Never replace experts using masking or quantization outcomes.
-10. Stage-1 pilot code is implemented, but its decision remains pending the A40
-    run and audit. Do not implement Stage 2 or robust mixed-precision allocation
-    unless the user explicitly authorizes that later stage.
-11. Update this handoff after every new validated run.
+10. Treat `results/expert_quantization_pilot/` as the completed, independently
+    audited Stage-1 `GO` run. Preserve its raw checkpoints, decision, summary, and
+    `independent_audit.json`.
+11. Robust mixed-precision Stage 2 is scientifically justified but remains pending.
+    Do not implement it unless the user explicitly authorizes that later stage.
+12. Update this handoff after every new validated run.
