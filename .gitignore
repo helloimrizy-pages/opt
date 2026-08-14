@@ -6,6 +6,12 @@ __pycache__/
 .ruff_cache/
 .venv/
 .hf_cache/
+# Stage-2A replay data can be multiple gigabytes. Keep small audited reports under
+# explicit review, but never stage native activation/gradient captures or resumable
+# expert-cost chunks by accident.
+results/quantization_cost_surrogate/capture/
+results/quantization_cost_surrogate/gradient_capture/
+results/quantization_cost_surrogate/chunks/
 # Ignore ad hoc/generated runs, but retain the two audited 100-example snapshots.
 # results/*
 # !results/expert_domain_balanced_causal_validation/

@@ -316,6 +316,109 @@ under `results/expert_quantization_pilot/`. Projected bytes include packed weigh
 bits and FP16 scales; they are not measured runtime-memory savings. This runner does
 not implement Stage 2 or a mixed-precision optimizer.
 
+## Stage 2A activation-aware quantization-cost surrogate
+
+Stage 2A is implemented as a separate validation gate before any mixed-precision
+allocation. It asks whether a fixed, cheap replay score predicts the 64 real 4-bit
+expert/domain DeltaNLL observations already measured in Stage 1. It does not train a
+regressor, tune a coefficient, search formulas, modify a checkpoint permanently, or
+implement an allocator.
+
+The primary score is gated output perturbation:
+
+```text
+AOD(l,e,d,b) = sum_t ||g(l,t,e) * (f_e(h; W_hat_b) - f_e(h; W))||_2^2
+               / (sum_t ||y_moe(l,t)||_2^2 + 1e-30)
+```
+
+Only measured tokens actually routed to the expert enter the numerator. A clean
+baseline forward captures exact BF16 expert inputs, selected expert IDs, actual gate
+coefficients, per-example MoE-output energy, token/example alignment, and small
+random replay-validation samples. It stores no attention state or unrelated full
+transformer activation. Offline structural reconstruction must match both an
+isolated contribution produced by the model's actual expert-container forward path
+and the untouched full-forward summed MoE output before Stage 2A can continue.
+
+The same pass also produces fixed UOD, REOD, and APD diagnostics. All pilot QDQ
+weights must reproduce the Stage-1 original and quantized expert fingerprints. The
+validation uses all 16 experts and all four domains, with 1,000 expert-grouped
+bootstrap replicates. If AOD misses any preregistered gate, and only then, the runner
+captures one mean-NLL MoE-output gradient per example and evaluates the predefined
+GQS fallback. GQS is primary in that branch; GQS2 is diagnostic only.
+
+On a local machine, validate all frozen artifacts and the planned configuration
+without loading the 7B checkpoint:
+
+```bash
+PYTHONPATH=src python scripts/validate_quantization_cost_surrogate.py \
+  --source-dir results/expert_domain_causal_validation \
+  --stage1-dir results/expert_quantization_pilot \
+  --output-dir results/quantization_cost_surrogate \
+  --preflight-only
+```
+
+Run the real pilot-surrogate validation on the NVIDIA A40:
+
+```bash
+PYTHONPATH=src python scripts/validate_quantization_cost_surrogate.py \
+  --source-dir results/expert_domain_causal_validation \
+  --stage1-dir results/expert_quantization_pilot \
+  --output-dir results/quantization_cost_surrogate \
+  --model allenai/OLMoE-1B-7B-0924 \
+  --model-revision 6d84c48581ece794365f2b8e9cfb043c68ade9c5 \
+  --device cuda \
+  --dtype bfloat16 \
+  --batch-size 1 \
+  --group-size 128 \
+  --primary-bits 4 \
+  --bootstrap-replicates 1000 \
+  --seed 42 \
+  --replay-chunk-size 512 \
+  --cache-dir .hf_cache \
+  --resume
+```
+
+The command automatically runs the standalone auditor. Its only final decisions are
+`AOD_GO`, `SURROGATE_GO_GRADIENT`, and `SURROGATE_NO_GO`. An audit failure blocks GO.
+If and only if the decision file contains an independently audited GO, build the
+full `[16, 64, 4, 4]` cost matrix for 3-, 4-, 8-, and reference 16-bit weights:
+
+```bash
+PYTHONPATH=src python scripts/build_quantization_cost_matrix.py \
+  --surrogate-dir results/quantization_cost_surrogate \
+  --stage1-dir results/expert_quantization_pilot \
+  --model allenai/OLMoE-1B-7B-0924 \
+  --model-revision 6d84c48581ece794365f2b8e9cfb043c68ade9c5 \
+  --device cuda \
+  --dtype bfloat16 \
+  --batch-size 1 \
+  --group-size 128 \
+  --bit-widths 3 4 8 16 \
+  --replay-chunk-size 512 \
+  --seed 42 \
+  --cache-dir .hf_cache \
+  --resume
+```
+
+The full-matrix runner checkpoints by domain, layer, and precision; records zero-route
+experts as `cost=0, unobserved=true`; preserves raw, non-renormalized costs; writes
+exact payload/FP16-scale storage accounting; checks the 16-bit zero reference; reports
+rather than repairs monotonicity exceptions; and reproduces the 16 pilot experts from
+the final 4-bit slice. It invokes the independent audit again. Captured activations,
+gradients, and resumable chunks are generated artifacts and must not be committed.
+
+The standalone audit can also be repeated explicitly:
+
+```bash
+PYTHONPATH=src python scripts/audit_quantization_cost_surrogate.py \
+  --stage1-dir results/expert_quantization_pilot \
+  --surrogate-dir results/quantization_cost_surrogate \
+  --output results/quantization_cost_surrogate/independent_audit.json
+```
+
+None of these commands implements or tunes the future distributionally robust
+mixed-precision optimizer.
+
 ## Outputs
 
 The analysis creates:

@@ -18,15 +18,19 @@ The diagnostic question is:
 The completed audited evidence measures routing utilization, selected gate mass, a
 functional-contribution proxy, and selected-route masking loss sensitivity. No
 modified checkpoint has been saved, fine-tuned, or compressed. The newly
-implemented Stage-1 code applies only temporary, exactly restored expert QDQ.
+implemented Stage-1 and Stage-2A code applies only temporary, exactly restored
+expert QDQ.
 
 Current decision: the mandatory Stage-1 reversible quantization-sensitivity pilot
 is **GO** and complete after production execution and independent raw-artifact audit
 on the NVIDIA A40. Four-bit QDQ passed all four preregistered gates; the 3-bit
-fallback was not triggered. This scientifically justifies a separately designed
-distributionally robust mixed-precision Stage 2, which remains pending and was not
-implemented in this run. Prompt-only, controlled causal, and balanced causal
-validation remain complete and independently audited.
+fallback was not triggered. Stage 2A activation-aware surrogate code is now
+implemented and locally tested, but its real 64-observation AOD validation has not
+yet run on the A40. There is therefore no Stage-2A surrogate GO/NO-GO decision and
+no full cost matrix yet. Distributionally robust mixed-precision optimization is
+blocked pending that validation and was not implemented. Prompt-only, controlled
+causal, balanced causal, and Stage-1 validation remain complete and independently
+audited.
 
 ## Code baseline
 
@@ -50,7 +54,11 @@ The balanced-panel implementation adds deterministic baseline-only
 preregistration, strict integrity gates, intervention-level resume support, paired
 control/aggregate bootstraps, figures, and reporting. The new Stage-1 pilot adds
 temporary expert-only fake quantization/QDQ with exact restoration; it does not
-save modified model weights or implement a mixed-precision allocator.
+save modified model weights or implement a mixed-precision allocator. The new
+Stage-2A implementation adds exact routed-activation replay, fixed activation- and
+gradient-aware cost formulas, expert-grouped validation, independent auditing, and
+a conditional full cost-matrix builder. It still does not contain an allocator,
+MILP, compression policy, fine-tuning, or packed inference kernel.
 
 The code is split across collection, analysis, plotting, model discovery,
 instrumentation, datasets, statistics, reporting, and tests. See `README.md` for
@@ -647,6 +655,125 @@ preregistered 3-bit fallback was not triggered. Stage 1 is therefore **complete 
 GO**. A separately designed distributionally robust mixed-precision experiment is
 scientifically justified but remains **pending**; Stage 2 was not implemented.
 
+## Stage 2A quantization-cost surrogate: implementation complete, A40 validation pending
+
+Status: **implementation complete / real validation pending**. No surrogate
+GO/NO-GO decision has been made, and the full cost matrix has not been generated.
+
+The Stage-2A implementation was added on 2026-08-14 to test a cost function before
+allowing it to drive a future robust optimizer. The primary fixed score is
+
+```text
+AOD(l,e,d,b) = sum_t ||g(l,t,e) * (f_e(h; W_hat_b) - f_e(h; W))||_2^2
+               / (sum_t ||y_moe(l,t)||_2^2 + 1e-30).
+```
+
+The numerator contains only frozen measured tokens actually routed to the expert
+and therefore incorporates route frequency, actual selected gate strength, domain,
+real expert inputs, and the bit-specific Stage-1 QDQ perturbation directly. UOD,
+REOD, and APD are fixed secondary diagnostics. The failed Stage-1 functional/routing
+weight-risk formulas are preserved without redefinition as negative controls.
+
+Implementation files:
+
+- `src/expert_analysis/expert_replay.py` — exact native-BF16 routed-activation
+  capture, selected IDs/gates, LayerEnergy, example/token alignment, resumable
+  domain/layer artifacts, and sampled actual-container-versus-structural replay
+  validation against the untouched full-forward MoE output;
+- `src/expert_analysis/activation_quantization_cost.py` — AOD, REOD, APD, UOD,
+  selected-route filtering, and exact Stage-1 pilot QDQ fingerprint checks;
+- `src/expert_analysis/gradient_quantization_cost.py` — the pre-registered GQS
+  fallback with one frozen-model backward per example and GQS2 diagnostic;
+- `src/expert_analysis/surrogate_validation.py` — all-64-observation loading,
+  1,000-replicate expert-grouped bootstrap, specificity/domain/ranking analyses,
+  strict gates, tables, reports, and figures;
+- `src/expert_analysis/cost_matrix.py` — conditional `[16,64,4,4]` matrix,
+  domain/layer/precision checkpoints, route coverage, exact projected storage,
+  16-bit zero reference, monotonicity diagnostics, and pilot-slice reproduction;
+- `scripts/validate_quantization_cost_surrogate.py`,
+  `scripts/build_quantization_cost_matrix.py`, and the standalone
+  `scripts/audit_quantization_cost_surrogate.py`;
+- four new synthetic test modules plus current-Transformers OLMoE replay coverage.
+
+Before implementation, the frozen Stage-1 decision was revalidated as `GO`; all 69
+Stage-1 NPZ files were inspected for shape, dtype, finiteness, and token geometry;
+all 16 expert metadata files still reported exact restoration; and the authoritative
+per-example loss NPZ reproduced its recorded SHA-256
+`d0288414932272b5c496b106abf01a72b6ab28bf95493070a45ce2c146e18754`.
+The four controlled inputs remain `[100,68]` with exactly 6,400 measured positions
+per domain and match their frozen hashes. The dependency-light Stage-2A preflight
+passed and selected replay-validation layers 6, 7, 9, and 11 deterministically from
+seed 42. Its capture fingerprint is
+`672316b5b7ea8be1d7bf328aca2c9bd7f367238eccdbde549d791fa10c9f8fe2`.
+
+Local validation ran on Apple Silicon/MPS with PyTorch 2.12.1 and no CUDA. The full
+repository suite passed **57/57 tests**. Tests cover exact QDQ reuse, live/current-HF
+OLMoE replay, tensorized indexing, route filtering, gate multiplication, all four
+activation formulas, LayerEnergy, zero-route flags, deterministic values, grouped
+bootstrap, specificity, top-domain accuracy, strict gate logic, gradient retention,
+GQS/GQS2, no weight mutation, matrix shape/16-bit behavior, exact storage, resume
+fingerprints, pilot extraction, monotonicity reporting, and all prior regressions.
+A synthetic end-to-end result package also passed the standalone Stage-2A auditor
+with 1,060 independent checks. These local results validate code paths only; they are
+not evidence about real AOD predictive performance.
+
+Exact pending A40 validation command:
+
+```bash
+PYTHONPATH=src python scripts/validate_quantization_cost_surrogate.py \
+  --source-dir results/expert_domain_causal_validation \
+  --stage1-dir results/expert_quantization_pilot \
+  --output-dir results/quantization_cost_surrogate \
+  --model allenai/OLMoE-1B-7B-0924 \
+  --model-revision 6d84c48581ece794365f2b8e9cfb043c68ade9c5 \
+  --device cuda \
+  --dtype bfloat16 \
+  --batch-size 1 \
+  --group-size 128 \
+  --primary-bits 4 \
+  --bootstrap-replicates 1000 \
+  --seed 42 \
+  --replay-chunk-size 512 \
+  --cache-dir .hf_cache \
+  --resume
+```
+
+The command stops if real expert replay or any pilot QDQ fingerprint fails. It uses
+all 64 Stage-1 observations and invokes the independent auditor automatically. AOD
+must pass all five frozen gates: overall Spearman `>0.25`, improvement over
+WeightRiskFunctional `>=0.15`, overall grouped-bootstrap CI lower bound `>0`,
+specificity Spearman `>0.30`, top-domain accuracy `>0.40`, and positive correlations
+in at least three domains. (The first sentence's two requirements jointly form Gate
+A.) Only an AOD failure activates GQS; GQS2 cannot replace it.
+
+If and only if `surrogate_decision.json` is independently audited as `AOD_GO` or
+`SURROGATE_GO_GRADIENT`, the exact conditional full-matrix command is:
+
+```bash
+PYTHONPATH=src python scripts/build_quantization_cost_matrix.py \
+  --surrogate-dir results/quantization_cost_surrogate \
+  --stage1-dir results/expert_quantization_pilot \
+  --model allenai/OLMoE-1B-7B-0924 \
+  --model-revision 6d84c48581ece794365f2b8e9cfb043c68ade9c5 \
+  --device cuda \
+  --dtype bfloat16 \
+  --batch-size 1 \
+  --group-size 128 \
+  --bit-widths 3 4 8 16 \
+  --replay-chunk-size 512 \
+  --seed 42 \
+  --cache-dir .hf_cache \
+  --resume
+```
+
+If AOD and GQS both fail, the required decision is `SURROGATE_NO_GO`, the matrix
+builder remains blocked, and robust mixed precision remains scientifically
+unsupported. If a surrogate passes and the audited matrix is completed, robust
+mixed precision becomes the next separately designed stage; it is not completed or
+implemented here. Real-checkpoint results remain limited to one model revision and
+the reused calibration/validation inputs, and their bootstrap intervals will not
+measure checkpoint, prompt, or dataset-choice uncertainty.
+
 ## Fresh-session checklist
 
 A new Codex session should:
@@ -670,6 +797,9 @@ A new Codex session should:
 10. Treat `results/expert_quantization_pilot/` as the completed, independently
     audited Stage-1 `GO` run. Preserve its raw checkpoints, decision, summary, and
     `independent_audit.json`.
-11. Robust mixed-precision Stage 2 is scientifically justified but remains pending.
-    Do not implement it unless the user explicitly authorizes that later stage.
-12. Update this handoff after every new validated run.
+11. Treat Stage-2A as implementation-complete but validation-pending. Do not claim
+    AOD/GQS performance or create a surrogate decision without the real A40 run and
+    standalone audit.
+12. Robust mixed-precision optimization remains blocked pending an audited Stage-2A
+    GO and cost matrix. It was not implemented in this stage.
+13. Update this handoff after every new validated run.

@@ -620,3 +620,26 @@ def _flatten_tensors(value: Any) -> list[torch.Tensor]:
             result.extend(_flatten_tensors(item))
         return result
     return []
+
+
+# Public replay helpers.  The collection hook and the Stage-2 activation replay
+# must use one mathematical implementation; these narrow wrappers keep that
+# contract explicit without exposing the hook internals themselves.
+def extract_routing(
+    output: Any, router: nn.Module, spec: MoeLayerSpec
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, bool]:
+    return _extract_routing(output, router, spec)
+
+
+def run_expert(spec: MoeLayerSpec, expert_id: int, hidden: torch.Tensor) -> torch.Tensor:
+    return _run_expert(spec, expert_id, hidden)
+
+
+def find_hidden_tensor(
+    args: tuple[Any, ...], kwargs: dict[str, Any], top_k: int
+) -> torch.Tensor:
+    return _find_hidden_tensor(args, kwargs, top_k)
+
+
+def tensor_output(output: Any) -> torch.Tensor:
+    return _tensor_output(output)
