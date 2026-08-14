@@ -1,0 +1,402 @@
+{
+  "passed": true,
+  "num_examples": 4,
+  "token_counts": [
+    16,
+    23,
+    30,
+    30
+  ],
+  "layer_diagnostics": [
+    {
+      "router_probability_sum_mean": 1.0,
+      "router_probability_sum_min": 0.9999998807907104,
+      "router_probability_sum_max": 1.0000001192092896,
+      "selected_weight_sum_mean": 0.3857816457748413,
+      "selected_weight_reference": "full_softmax",
+      "selected_weight_max_error": 0.00046040117740631104,
+      "router_token_rows": 120,
+      "valid_router_token_rows": 99,
+      "router_output_weights_available": true,
+      "expert_output_shape": [
+        26,
+        2048
+      ],
+      "nonzero_contributions": 792,
+      "layer": 0,
+      "layer_name": "model.layers.0.mlp",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up"
+    },
+    {
+      "router_probability_sum_mean": 1.0,
+      "router_probability_sum_min": 0.9999998807907104,
+      "router_probability_sum_max": 1.0000001192092896,
+      "selected_weight_sum_mean": 0.31958499550819397,
+      "selected_weight_reference": "full_softmax",
+      "selected_weight_max_error": 0.000423625111579895,
+      "router_token_rows": 120,
+      "valid_router_token_rows": 99,
+      "router_output_weights_available": true,
+      "expert_output_shape": [
+        16,
+        2048
+      ],
+      "nonzero_contributions": 792,
+      "layer": 1,
+      "layer_name": "model.layers.1.mlp",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up"
+    },
+    {
+      "router_probability_sum_mean": 1.0,
+      "router_probability_sum_min": 0.9999998807907104,
+      "router_probability_sum_max": 1.0000001192092896,
+      "selected_weight_sum_mean": 0.3618472218513489,
+      "selected_weight_reference": "full_softmax",
+      "selected_weight_max_error": 0.0014920234680175781,
+      "router_token_rows": 120,
+      "valid_router_token_rows": 99,
+      "router_output_weights_available": true,
+      "expert_output_shape": [
+        19,
+        2048
+      ],
+      "nonzero_contributions": 792,
+      "layer": 2,
+      "layer_name": "model.layers.2.mlp",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up"
+    },
+    {
+      "router_probability_sum_mean": 1.0,
+      "router_probability_sum_min": 0.9999998211860657,
+      "router_probability_sum_max": 1.0000001192092896,
+      "selected_weight_sum_mean": 0.3673730790615082,
+      "selected_weight_reference": "full_softmax",
+      "selected_weight_max_error": 0.0017650723457336426,
+      "router_token_rows": 120,
+      "valid_router_token_rows": 99,
+      "router_output_weights_available": true,
+      "expert_output_shape": [
+        14,
+        2048
+      ],
+      "nonzero_contributions": 792,
+      "layer": 3,
+      "layer_name": "model.layers.3.mlp",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up"
+    },
+    {
+      "router_probability_sum_mean": 1.0,
+      "router_probability_sum_min": 0.9999998807907104,
+      "router_probability_sum_max": 1.0000001192092896,
+      "selected_weight_sum_mean": 0.36126092076301575,
+      "selected_weight_reference": "full_softmax",
+      "selected_weight_max_error": 0.001611173152923584,
+      "router_token_rows": 120,
+      "valid_router_token_rows": 99,
+      "router_output_weights_available": true,
+      "expert_output_shape": [
+        27,
+        2048
+      ],
+      "nonzero_contributions": 792,
+      "layer": 4,
+      "layer_name": "model.layers.4.mlp",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up"
+    },
+    {
+      "router_probability_sum_mean": 1.0,
+      "router_probability_sum_min": 0.9999998211860657,
+      "router_probability_sum_max": 1.0000001192092896,
+      "selected_weight_sum_mean": 0.3584798276424408,
+      "selected_weight_reference": "full_softmax",
+      "selected_weight_max_error": 0.00046481192111968994,
+      "router_token_rows": 120,
+      "valid_router_token_rows": 99,
+      "router_output_weights_available": true,
+      "expert_output_shape": [
+        1,
+        2048
+      ],
+      "nonzero_contributions": 792,
+      "layer": 5,
+      "layer_name": "model.layers.5.mlp",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up"
+    },
+    {
+      "router_probability_sum_mean": 1.0,
+      "router_probability_sum_min": 0.9999998211860657,
+      "router_probability_sum_max": 1.000000238418579,
+      "selected_weight_sum_mean": 0.3697657585144043,
+      "selected_weight_reference": "full_softmax",
+      "selected_weight_max_error": 0.0004590749740600586,
+      "router_token_rows": 120,
+      "valid_router_token_rows": 99,
+      "router_output_weights_available": true,
+      "expert_output_shape": [
+        9,
+        2048
+      ],
+      "nonzero_contributions": 792,
+      "layer": 6,
+      "layer_name": "model.layers.6.mlp",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up"
+    },
+    {
+      "router_probability_sum_mean": 1.0,
+      "router_probability_sum_min": 0.9999998807907104,
+      "router_probability_sum_max": 1.0000001192092896,
+      "selected_weight_sum_mean": 0.3842119872570038,
+      "selected_weight_reference": "full_softmax",
+      "selected_weight_max_error": 0.0002425462007522583,
+      "router_token_rows": 120,
+      "valid_router_token_rows": 99,
+      "router_output_weights_available": true,
+      "expert_output_shape": [
+        17,
+        2048
+      ],
+      "nonzero_contributions": 792,
+      "layer": 7,
+      "layer_name": "model.layers.7.mlp",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up"
+    },
+    {
+      "router_probability_sum_mean": 1.0,
+      "router_probability_sum_min": 0.9999998807907104,
+      "router_probability_sum_max": 1.0000001192092896,
+      "selected_weight_sum_mean": 0.4229711592197418,
+      "selected_weight_reference": "full_softmax",
+      "selected_weight_max_error": 0.0006496310234069824,
+      "router_token_rows": 120,
+      "valid_router_token_rows": 99,
+      "router_output_weights_available": true,
+      "expert_output_shape": [
+        15,
+        2048
+      ],
+      "nonzero_contributions": 792,
+      "layer": 8,
+      "layer_name": "model.layers.8.mlp",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up"
+    },
+    {
+      "router_probability_sum_mean": 1.0,
+      "router_probability_sum_min": 0.9999998807907104,
+      "router_probability_sum_max": 1.0000001192092896,
+      "selected_weight_sum_mean": 0.4624812602996826,
+      "selected_weight_reference": "full_softmax",
+      "selected_weight_max_error": 0.0009522140026092529,
+      "router_token_rows": 120,
+      "valid_router_token_rows": 99,
+      "router_output_weights_available": true,
+      "expert_output_shape": [
+        9,
+        2048
+      ],
+      "nonzero_contributions": 792,
+      "layer": 9,
+      "layer_name": "model.layers.9.mlp",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up"
+    },
+    {
+      "router_probability_sum_mean": 1.0,
+      "router_probability_sum_min": 0.9999998807907104,
+      "router_probability_sum_max": 1.0000001192092896,
+      "selected_weight_sum_mean": 0.4920826852321625,
+      "selected_weight_reference": "full_softmax",
+      "selected_weight_max_error": 0.0019007325172424316,
+      "router_token_rows": 120,
+      "valid_router_token_rows": 99,
+      "router_output_weights_available": true,
+      "expert_output_shape": [
+        8,
+        2048
+      ],
+      "nonzero_contributions": 792,
+      "layer": 10,
+      "layer_name": "model.layers.10.mlp",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up"
+    },
+    {
+      "router_probability_sum_mean": 1.0,
+      "router_probability_sum_min": 0.9999997615814209,
+      "router_probability_sum_max": 1.0000001192092896,
+      "selected_weight_sum_mean": 0.507472813129425,
+      "selected_weight_reference": "full_softmax",
+      "selected_weight_max_error": 0.0018390417098999023,
+      "router_token_rows": 120,
+      "valid_router_token_rows": 99,
+      "router_output_weights_available": true,
+      "expert_output_shape": [
+        15,
+        2048
+      ],
+      "nonzero_contributions": 792,
+      "layer": 11,
+      "layer_name": "model.layers.11.mlp",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up"
+    },
+    {
+      "router_probability_sum_mean": 1.0,
+      "router_probability_sum_min": 0.9999998807907104,
+      "router_probability_sum_max": 1.0000001192092896,
+      "selected_weight_sum_mean": 0.5436543226242065,
+      "selected_weight_reference": "full_softmax",
+      "selected_weight_max_error": 0.001522839069366455,
+      "router_token_rows": 120,
+      "valid_router_token_rows": 99,
+      "router_output_weights_available": true,
+      "expert_output_shape": [
+        8,
+        2048
+      ],
+      "nonzero_contributions": 792,
+      "layer": 12,
+      "layer_name": "model.layers.12.mlp",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up"
+    },
+    {
+      "router_probability_sum_mean": 1.0,
+      "router_probability_sum_min": 0.9999997019767761,
+      "router_probability_sum_max": 1.0000001192092896,
+      "selected_weight_sum_mean": 0.5432902574539185,
+      "selected_weight_reference": "full_softmax",
+      "selected_weight_max_error": 0.0018559098243713379,
+      "router_token_rows": 120,
+      "valid_router_token_rows": 99,
+      "router_output_weights_available": true,
+      "expert_output_shape": [
+        17,
+        2048
+      ],
+      "nonzero_contributions": 792,
+      "layer": 13,
+      "layer_name": "model.layers.13.mlp",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up"
+    },
+    {
+      "router_probability_sum_mean": 1.0,
+      "router_probability_sum_min": 0.9999998211860657,
+      "router_probability_sum_max": 1.0000001192092896,
+      "selected_weight_sum_mean": 0.5094388723373413,
+      "selected_weight_reference": "full_softmax",
+      "selected_weight_max_error": 0.0008043050765991211,
+      "router_token_rows": 120,
+      "valid_router_token_rows": 99,
+      "router_output_weights_available": true,
+      "expert_output_shape": [
+        14,
+        2048
+      ],
+      "nonzero_contributions": 792,
+      "layer": 14,
+      "layer_name": "model.layers.14.mlp",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up"
+    },
+    {
+      "router_probability_sum_mean": 1.0,
+      "router_probability_sum_min": 0.9999998807907104,
+      "router_probability_sum_max": 1.0000001192092896,
+      "selected_weight_sum_mean": 0.521142840385437,
+      "selected_weight_reference": "full_softmax",
+      "selected_weight_max_error": 0.0008879601955413818,
+      "router_token_rows": 120,
+      "valid_router_token_rows": 99,
+      "router_output_weights_available": true,
+      "expert_output_shape": [
+        13,
+        2048
+      ],
+      "nonzero_contributions": 792,
+      "layer": 15,
+      "layer_name": "model.layers.15.mlp",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up"
+    }
+  ],
+  "diagnostic_layer": 0,
+  "diagnostic_layer_name": "model.layers.0.mlp",
+  "top_experts_by_contribution": [
+    {
+      "expert_id": 6,
+      "normalized_contribution": 0.23017954528875226,
+      "routing_frequency": 0.11237373737373738,
+      "gate_mass": 0.045551955097853536
+    },
+    {
+      "expert_id": 57,
+      "normalized_contribution": 0.06691842470479827,
+      "routing_frequency": 0.016414141414141416,
+      "gate_mass": 0.01052270754419192
+    },
+    {
+      "expert_id": 41,
+      "normalized_contribution": 0.045655657118942546,
+      "routing_frequency": 0.022727272727272728,
+      "gate_mass": 0.010368578361742424
+    },
+    {
+      "expert_id": 21,
+      "normalized_contribution": 0.03139667614644897,
+      "routing_frequency": 0.04040404040404041,
+      "gate_mass": 0.013941909327651516
+    },
+    {
+      "expert_id": 38,
+      "normalized_contribution": 0.026675044262941,
+      "routing_frequency": 0.013888888888888888,
+      "gate_mass": 0.006880326704545455
+    },
+    {
+      "expert_id": 40,
+      "normalized_contribution": 0.02577648086657151,
+      "routing_frequency": 0.021464646464646464,
+      "gate_mass": 0.008210769807449494
+    },
+    {
+      "expert_id": 54,
+      "normalized_contribution": 0.022077452099726988,
+      "routing_frequency": 0.022727272727272728,
+      "gate_mass": 0.010904947916666666
+    },
+    {
+      "expert_id": 14,
+      "normalized_contribution": 0.021161329639022664,
+      "routing_frequency": 0.015151515151515152,
+      "gate_mass": 0.009996202256944444
+    }
+  ],
+  "hooks_before": 0,
+  "hooks_after": 0
+}

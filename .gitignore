@@ -7,16 +7,16 @@ __pycache__/
 .venv/
 .hf_cache/
 # Ignore ad hoc/generated runs, but retain the two audited 100-example snapshots.
-results/*
-!results/expert_domain_balanced_causal_validation/
-results/expert_domain_balanced_causal_validation/*
-!results/expert_domain_balanced_causal_validation/selected_experts_preregistered.json
-!results/expert_domain_balanced_causal_validation/candidate_experts.csv
-!results/expert_domain_balanced_causal_validation/matched_controls.csv
-!results/expert_quantization_pilot/
-results/expert_quantization_pilot/*
-!results/expert_quantization_pilot/pilot_panel_preregistered.json
-!results/expert_domain_importance_prompts_only/
-!results/expert_domain_importance_prompts_only/**
-!results/expert_domain_importance_with_answers/
-!results/expert_domain_importance_with_answers/**
+# results/*
+# !results/expert_domain_balanced_causal_validation/
+# results/expert_domain_balanced_causal_validation/*
+# !results/expert_domain_balanced_causal_validation/selected_experts_preregistered.json
+# !results/expert_domain_balanced_causal_validation/candidate_experts.csv
+# !results/expert_domain_balanced_causal_validation/matched_controls.csv
+# !results/expert_quantization_pilot/
+# results/expert_quantization_pilot/*
+# !results/expert_quantization_pilot/pilot_panel_preregistered.json
+# !results/expert_domain_importance_prompts_only/
+# !results/expert_domain_importance_prompts_only/**
+# !results/expert_domain_importance_with_answers/
+# !results/expert_domain_importance_with_answers/**

@@ -1,0 +1,197 @@
+{
+  "model_class": "OlmoeForCausalLM",
+  "config_model_type": "olmoe",
+  "num_moe_layers": 16,
+  "num_experts": 64,
+  "top_k": [
+    8
+  ],
+  "layers": [
+    {
+      "ordinal": 0,
+      "model_layer_index": 0,
+      "block_name": "model.layers.0.mlp",
+      "router_name": "model.layers.0.mlp.gate",
+      "experts_name": "model.layers.0.mlp.experts",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up",
+      "capture_point": "experts_pre"
+    },
+    {
+      "ordinal": 1,
+      "model_layer_index": 1,
+      "block_name": "model.layers.1.mlp",
+      "router_name": "model.layers.1.mlp.gate",
+      "experts_name": "model.layers.1.mlp.experts",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up",
+      "capture_point": "experts_pre"
+    },
+    {
+      "ordinal": 2,
+      "model_layer_index": 2,
+      "block_name": "model.layers.2.mlp",
+      "router_name": "model.layers.2.mlp.gate",
+      "experts_name": "model.layers.2.mlp.experts",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up",
+      "capture_point": "experts_pre"
+    },
+    {
+      "ordinal": 3,
+      "model_layer_index": 3,
+      "block_name": "model.layers.3.mlp",
+      "router_name": "model.layers.3.mlp.gate",
+      "experts_name": "model.layers.3.mlp.experts",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up",
+      "capture_point": "experts_pre"
+    },
+    {
+      "ordinal": 4,
+      "model_layer_index": 4,
+      "block_name": "model.layers.4.mlp",
+      "router_name": "model.layers.4.mlp.gate",
+      "experts_name": "model.layers.4.mlp.experts",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up",
+      "capture_point": "experts_pre"
+    },
+    {
+      "ordinal": 5,
+      "model_layer_index": 5,
+      "block_name": "model.layers.5.mlp",
+      "router_name": "model.layers.5.mlp.gate",
+      "experts_name": "model.layers.5.mlp.experts",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up",
+      "capture_point": "experts_pre"
+    },
+    {
+      "ordinal": 6,
+      "model_layer_index": 6,
+      "block_name": "model.layers.6.mlp",
+      "router_name": "model.layers.6.mlp.gate",
+      "experts_name": "model.layers.6.mlp.experts",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up",
+      "capture_point": "experts_pre"
+    },
+    {
+      "ordinal": 7,
+      "model_layer_index": 7,
+      "block_name": "model.layers.7.mlp",
+      "router_name": "model.layers.7.mlp.gate",
+      "experts_name": "model.layers.7.mlp.experts",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up",
+      "capture_point": "experts_pre"
+    },
+    {
+      "ordinal": 8,
+      "model_layer_index": 8,
+      "block_name": "model.layers.8.mlp",
+      "router_name": "model.layers.8.mlp.gate",
+      "experts_name": "model.layers.8.mlp.experts",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up",
+      "capture_point": "experts_pre"
+    },
+    {
+      "ordinal": 9,
+      "model_layer_index": 9,
+      "block_name": "model.layers.9.mlp",
+      "router_name": "model.layers.9.mlp.gate",
+      "experts_name": "model.layers.9.mlp.experts",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up",
+      "capture_point": "experts_pre"
+    },
+    {
+      "ordinal": 10,
+      "model_layer_index": 10,
+      "block_name": "model.layers.10.mlp",
+      "router_name": "model.layers.10.mlp.gate",
+      "experts_name": "model.layers.10.mlp.experts",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up",
+      "capture_point": "experts_pre"
+    },
+    {
+      "ordinal": 11,
+      "model_layer_index": 11,
+      "block_name": "model.layers.11.mlp",
+      "router_name": "model.layers.11.mlp.gate",
+      "experts_name": "model.layers.11.mlp.experts",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up",
+      "capture_point": "experts_pre"
+    },
+    {
+      "ordinal": 12,
+      "model_layer_index": 12,
+      "block_name": "model.layers.12.mlp",
+      "router_name": "model.layers.12.mlp.gate",
+      "experts_name": "model.layers.12.mlp.experts",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up",
+      "capture_point": "experts_pre"
+    },
+    {
+      "ordinal": 13,
+      "model_layer_index": 13,
+      "block_name": "model.layers.13.mlp",
+      "router_name": "model.layers.13.mlp.gate",
+      "experts_name": "model.layers.13.mlp.experts",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up",
+      "capture_point": "experts_pre"
+    },
+    {
+      "ordinal": 14,
+      "model_layer_index": 14,
+      "block_name": "model.layers.14.mlp",
+      "router_name": "model.layers.14.mlp.gate",
+      "experts_name": "model.layers.14.mlp.experts",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up",
+      "capture_point": "experts_pre"
+    },
+    {
+      "ordinal": 15,
+      "model_layer_index": 15,
+      "block_name": "model.layers.15.mlp",
+      "router_name": "model.layers.15.mlp.gate",
+      "experts_name": "model.layers.15.mlp.experts",
+      "num_experts": 64,
+      "top_k": 8,
+      "contribution_backend": "tensorized_gate_up",
+      "capture_point": "experts_pre"
+    }
+  ],
+  "config": {
+    "hidden_size": 2048,
+    "intermediate_size": 1024,
+    "num_hidden_layers": 16,
+    "num_experts": 64,
+    "num_experts_per_tok": 8,
+    "norm_topk_prob": false,
+    "vocab_size": 50304,
+    "max_position_embeddings": 4096
+  }
+}
