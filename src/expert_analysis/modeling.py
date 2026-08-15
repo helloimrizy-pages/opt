@@ -57,6 +57,7 @@ def load_model_and_tokenizer(
     revision: str | None = None,
     cache_dir: str | None = None,
     local_files_only: bool = False,
+    attn_implementation: str | None = None,
 ) -> ModelBundle:
     try:
         import transformers
@@ -85,6 +86,8 @@ def load_model_and_tokenizer(
         model_kwargs["torch_dtype"] = runtime.dtype
     # `low_cpu_mem_usage` avoids holding two copies of a ~7B-parameter checkpoint.
     model_kwargs["low_cpu_mem_usage"] = True
+    if attn_implementation is not None:
+        model_kwargs["attn_implementation"] = attn_implementation
     if runtime.device.type != "cpu":
         # A single-device map streams checkpoint shards onto CUDA/MPS from a meta
         # initialization, avoiding a second full CPU copy during model.to(device).

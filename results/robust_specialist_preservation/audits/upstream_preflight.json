@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "balanced_causal_validation": {
+    "decision": "STRONG GO",
+    "spearman_by_predictor": {
+      "functional_specialization_margin": 0.7530434782608695,
+      "routing_specialization_margin": 0.7113043478260868,
+      "target_routing_frequency": 0.41739130434782606
+    }
+  },
+  "stage1_quantization_pilot": {
+    "decision": "GO",
+    "selected_bit_width": 4
+  },
+  "stage2a_surrogate": {
+    "decision": "SURROGATE_NO_GO",
+    "values": {
+      "aod_overall_spearman": 0.12248168498168496,
+      "gqs_overall_spearman": 0.09752747252747253,
+      "aod_specificity_spearman": 0.4058823529411764,
+      "gqs_specificity_spearman": 0.4676470588235294
+    },
+    "frozen": true
+  },
+  "forbidden_by_preregistration": [
+    "running build_quantization_cost_matrix.py",
+    "promoting APD or any surrogate post hoc",
+    "fitting new delta-NLL surrogates or regressors",
+    "using Stage-1 delta NLL or Stage-2A scores to select experts",
+    "modifying the Stage 2B objective after seeing development results"
+  ]
+}

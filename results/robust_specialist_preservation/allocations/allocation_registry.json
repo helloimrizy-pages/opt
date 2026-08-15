@@ -1,0 +1,1135 @@
+{
+  "schema": "stage2b_allocation_registry_v1",
+  "stage": "stage2b_robust_specialist_preservation",
+  "frozen": true,
+  "frozen_before_any_heldout_nll": true,
+  "regimes": {
+    "4to8": {
+      "base_bits": 4,
+      "protected_bits": 8,
+      "total_increment_bytes": 3221225472,
+      "budgets_bytes": {
+        "0.05": 161061273,
+        "0.1": 322122547,
+        "0.2": 644245094,
+        "0.3": 966367641
+      }
+    },
+    "3to8": {
+      "base_bits": 3,
+      "protected_bits": 8,
+      "total_increment_bytes": 4026531840,
+      "budgets_bytes": {
+        "0.05": 201326592,
+        "0.1": 402653184,
+        "0.2": 805306368,
+        "0.3": 1207959552
+      }
+    }
+  },
+  "protection_fractions": [
+    0.05,
+    0.1,
+    0.2,
+    0.3
+  ],
+  "random_seeds": [
+    1001,
+    1002,
+    1003,
+    1004,
+    1005
+  ],
+  "calibration_fingerprint": "7fc28a40a24f9c7684d9544f1d1524fd9329b6abfa717ce70248cf440c8632d4",
+  "score_hashes": {
+    "functional_importance_sha256": "65d890584d5f177ac71a69fb9ee8e55ecb148cc9b55134032fe0b743d0a4278c",
+    "functional_specialization_sha256": "e50d08647a6a463feaf673508878526755897c66d447be7e62ab2f6a7faaf355",
+    "routing_specialization_sha256": "6b3779b23d316479896ce470241b2ad65edc9b2c5949d5e3f7554a91fa1071de",
+    "single_domain_importance_sha256": "f0fac5f83274038be7a64cbb973d20ad1447ea055183ff27adab2497c538ec83",
+    "global_importance_sha256": "31ad95339eb26ce25a600847356088baa64cff2211e653d1bb7c019e6d08a568"
+  },
+  "entries": [
+    {
+      "file": "robust_functional_4to8_budget5.json",
+      "method": "robust_functional",
+      "method_label": "Robust-Functional",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "92168362eee10a2032fee2c46a29ccaf3c2231c637e937072730d189af3a8824",
+      "file_sha256": "4ab6df28c1c40f930c44527b5836e6f16c92b391a3c785b5521b2506947db9fb"
+    },
+    {
+      "file": "robust_routing_4to8_budget5.json",
+      "method": "robust_routing",
+      "method_label": "Robust-Routing",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "629cc8644cdbbb932eb9ed87e5416d9960cd969140d3288cc58b9d8a11ffe3fb",
+      "file_sha256": "d042e1e0143bbe2bb264d4948f57a9f6ad2ee7744a5f95ed91d5aec5ee9a607d"
+    },
+    {
+      "file": "average_specialization_4to8_budget5.json",
+      "method": "average_specialization",
+      "method_label": "Average-Specialization",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "c8c9b3d93f50fbdd4ca4dffd0f7a1c6fba8c5be19ced54ddfe2a651215b85608",
+      "file_sha256": "390e2a77bf5cf6031b55007a6405686dd0e2a7d331857ec4dc592f96ae1ca066"
+    },
+    {
+      "file": "global_importance_4to8_budget5.json",
+      "method": "global_importance",
+      "method_label": "Global-Importance",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "6bd7b771d17c2c2d8ad71559b17e85dbe20ede09b9baab67dd67f76e3d393067",
+      "file_sha256": "d9f84af9015327fbabca05ffa466afb4597ca78a05fff08fa05ad425abf38648"
+    },
+    {
+      "file": "general_only_4to8_budget5.json",
+      "method": "general_only",
+      "method_label": "General-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "bed2746322cd0068e70e965ea29c8fd825367db1ef73e0daf38312bbae56dd66",
+      "file_sha256": "361e123d93852f84652979055f14532587bb06e5f52c1a9588cb1b160f1a27c1"
+    },
+    {
+      "file": "math_only_4to8_budget5.json",
+      "method": "math_only",
+      "method_label": "Math-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "41c0ed56ad3985912fdd43e518b2bff63dbb6052087fc9ea4131005f8637314a",
+      "file_sha256": "42e2a99f16f7ef0aeef13cda746071b8cb8b3a578879703187c874843bb07455"
+    },
+    {
+      "file": "coding_only_4to8_budget5.json",
+      "method": "coding_only",
+      "method_label": "Coding-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "f6624964702dfbebdbace1be8e4255a80303ae644b50edd1dbe76744353257df",
+      "file_sha256": "3ca6902b730e07f8a2a75e1790771730bcc916ad40dfc3de570f74c4ee095253"
+    },
+    {
+      "file": "reasoning_only_4to8_budget5.json",
+      "method": "reasoning_only",
+      "method_label": "Reasoning-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "ca1f8501bdb623aa72a4799eaff3d6cb4825c2a74b7dd4c0091249187d7f99b9",
+      "file_sha256": "1435958c10df0131ccbe5871f3132325e954881786eca5aaab377c527292eedd"
+    },
+    {
+      "file": "random_seed1001_4to8_budget5.json",
+      "method": "random_seed1001",
+      "method_label": "Random (seed 1001)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "4d0bf512393f6fc2faae29e6f0f4d4b6ab96435d40d895dffcc8be5522fcb0b6",
+      "file_sha256": "86641f2d616236d9b6fce9a1a2f571e8eaa8082c3f2ad7fc2a13050d80be3d41"
+    },
+    {
+      "file": "random_seed1002_4to8_budget5.json",
+      "method": "random_seed1002",
+      "method_label": "Random (seed 1002)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "55dd148036a6ad6e0f6d364c6ae5ffa31b593b14b550d253970f56002021bf66",
+      "file_sha256": "4aef41fa9e92aa488f2fd5be49d2a750a109a0309d833bc34439d0e305c459b7"
+    },
+    {
+      "file": "random_seed1003_4to8_budget5.json",
+      "method": "random_seed1003",
+      "method_label": "Random (seed 1003)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "c58cc6ec3aa0d64b0a2e0a846ca43ff6563960b49d8523bf856ac625076cee19",
+      "file_sha256": "63a8ec4113f101f246552bfcf776479bd20521df412401a1a59d547d989d9dd0"
+    },
+    {
+      "file": "random_seed1004_4to8_budget5.json",
+      "method": "random_seed1004",
+      "method_label": "Random (seed 1004)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "2498a8757e27b072692c86231902e04a6f9e5c69d8c248e9f4dbc35f65600b4a",
+      "file_sha256": "5802652c1daa726180d649e26549140e690a434020224a0b021481b9e6a8c854"
+    },
+    {
+      "file": "random_seed1005_4to8_budget5.json",
+      "method": "random_seed1005",
+      "method_label": "Random (seed 1005)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "0eda8d4b2c552750a63dd8c51bbd6d819a7112f21135a96927f7c6025be35b9d",
+      "file_sha256": "4751aa6d38f7772e39daeaabd8039a080a2e3cf1f2684eb2d2a6bd2e0f9d957b"
+    },
+    {
+      "file": "robust_functional_4to8_budget10.json",
+      "method": "robust_functional",
+      "method_label": "Robust-Functional",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "0bb18e7ec848c912e3cb0c335218e117cd1bc497c3b8c51d0aba6d467cc22342",
+      "file_sha256": "62bc7b9ad743f0bf722a1457d2cd060d88b023ac95af4037610ed74f35054858"
+    },
+    {
+      "file": "robust_routing_4to8_budget10.json",
+      "method": "robust_routing",
+      "method_label": "Robust-Routing",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "971b41f0d32b91412ae19f5f38dd4db4e1355b20f15e5122adefc974ff59a820",
+      "file_sha256": "13fc95a0de4a9c470d025f3bde7210964c7f0b016a861b8238fac991c6053d4b"
+    },
+    {
+      "file": "average_specialization_4to8_budget10.json",
+      "method": "average_specialization",
+      "method_label": "Average-Specialization",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "58f9e1a8d629c7d1a81543d7401e59050265f08ce69baa9326f594e1a77e69d3",
+      "file_sha256": "a6d98dee5822af3a606fde97491816a477dd35c94b537cda0b549b208dacf75c"
+    },
+    {
+      "file": "global_importance_4to8_budget10.json",
+      "method": "global_importance",
+      "method_label": "Global-Importance",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "6f1108a61118ad65cf64d0a09d8a529b57c8fe5c1a6c679097fdf67581404496",
+      "file_sha256": "52282cd7ef341c1abea6a2c005f16bae6ed70661300d7358d306d28d3ac7a54e"
+    },
+    {
+      "file": "general_only_4to8_budget10.json",
+      "method": "general_only",
+      "method_label": "General-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "5b652905390b286bd32e58368aa44b81ea3eb623520290202ab332f8ccb4892a",
+      "file_sha256": "686a31abc19b6ff031eb8614aea35b6d232ea9011edf3882dbaaa6a494c31608"
+    },
+    {
+      "file": "math_only_4to8_budget10.json",
+      "method": "math_only",
+      "method_label": "Math-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "29f257192b524d3cfd3daff5b643c5c469fd32b7303dead52a7c52ef7096664d",
+      "file_sha256": "b8aabee0842f7a4e7d760cadc5204eed95e36639a73b756087558081fec74743"
+    },
+    {
+      "file": "coding_only_4to8_budget10.json",
+      "method": "coding_only",
+      "method_label": "Coding-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "1e5c04c715903af7e5da011ddf8a3565b769e48d67432d27492b36fc49bbf6af",
+      "file_sha256": "7a32abeddb81b08f9e40aed91e0a9820dd9fd9e8fd9c1aa7637619bc0de9fd65"
+    },
+    {
+      "file": "reasoning_only_4to8_budget10.json",
+      "method": "reasoning_only",
+      "method_label": "Reasoning-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "62360b907c04a7a351564be7c0aa072f7a3b0598c4ab7c8bd35201e71e12029d",
+      "file_sha256": "9a59ca8255680ad546e626a2c84509bd2d7ee299d5ea8da1e96135b35a972f17"
+    },
+    {
+      "file": "random_seed1001_4to8_budget10.json",
+      "method": "random_seed1001",
+      "method_label": "Random (seed 1001)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "637c99058f7ef809666998bd6fef1087be0fc7bb0ffac0c5184622b6406914da",
+      "file_sha256": "02bf591b82385172dfdf5fbbf4c4016a85505c05868bb4f28e6dfd47b0e37db9"
+    },
+    {
+      "file": "random_seed1002_4to8_budget10.json",
+      "method": "random_seed1002",
+      "method_label": "Random (seed 1002)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "942f5f1405154460b14d5d5efba12b007d01aa1647181ebc5a83e9080bf5786c",
+      "file_sha256": "f58475fdda2204b94ce7e5fc3c4961af2a539079020ff49af5fb24ac2590259b"
+    },
+    {
+      "file": "random_seed1003_4to8_budget10.json",
+      "method": "random_seed1003",
+      "method_label": "Random (seed 1003)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "e59c02c347799c190afb834180242070d7e0245e1ed37d971e288632f64acc78",
+      "file_sha256": "18c35e1b904a9895309aacf7c1e80a75c3f6ca445cbbc7a8341817461e80aad6"
+    },
+    {
+      "file": "random_seed1004_4to8_budget10.json",
+      "method": "random_seed1004",
+      "method_label": "Random (seed 1004)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "8ef5d57726c3ed8383e336953d8c4a9dd38212fecdea815d0ad13959332eefbd",
+      "file_sha256": "034360c9c44668be7b9cace521c6fee668462224fd2a83cc7411f74bfea0ef99"
+    },
+    {
+      "file": "random_seed1005_4to8_budget10.json",
+      "method": "random_seed1005",
+      "method_label": "Random (seed 1005)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "86ebdd726f7857a11ac7562bfe88d6b0d4d4736607adacfcf6040c8ee4604772",
+      "file_sha256": "6103af9a3524ca3f5c7b0a773ed78529efe968947ae15419ea2f087dbba678d4"
+    },
+    {
+      "file": "robust_functional_4to8_budget20.json",
+      "method": "robust_functional",
+      "method_label": "Robust-Functional",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "dafa0bdfaed86cb6afa02b89289fafe6724767c4e1ec7faf76eead509282567e",
+      "file_sha256": "ebda24a735a16d31acd459f548ad88196749de3c51f67b8fb18b3af01bd1dca8"
+    },
+    {
+      "file": "robust_routing_4to8_budget20.json",
+      "method": "robust_routing",
+      "method_label": "Robust-Routing",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "532d845afe317f2ecb52b5bed767b21bdb0436bbdafa5a4433569792838aa3f6",
+      "file_sha256": "aeb0f2515ad88da7fc90f0060db1b2f7a28f1a88f5aa177d5eebd63377b9ef3d"
+    },
+    {
+      "file": "average_specialization_4to8_budget20.json",
+      "method": "average_specialization",
+      "method_label": "Average-Specialization",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "7545c7f9655c151bf1e13a3549e4dbafe111eb80db3348c64e6bcd34bbe008c8",
+      "file_sha256": "36c5658745234ef526dce8ce0de2deaf8cbe5b76eca24a899255d7a4d9526d10"
+    },
+    {
+      "file": "global_importance_4to8_budget20.json",
+      "method": "global_importance",
+      "method_label": "Global-Importance",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "03b1ffe7adb044e52af5fa63a40a237cd59e2d9e52130771a9ce60de6bd2745d",
+      "file_sha256": "8589bc00530b1b7d6748d6c62545fb2be9ceb6468d0fe53baa106916c2a9ea92"
+    },
+    {
+      "file": "general_only_4to8_budget20.json",
+      "method": "general_only",
+      "method_label": "General-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "7416ac1e46672e41baf01c044b15e4adbe6bde93c59d59f78f760f6812b1fa7f",
+      "file_sha256": "cf5bd97c828eca1270337bcf717b80efe81272dbf7f9df51ae825d2af358dc02"
+    },
+    {
+      "file": "math_only_4to8_budget20.json",
+      "method": "math_only",
+      "method_label": "Math-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "eb58656c997cb66d4646082a96f575ebc68c9f2b06b13c7f405a95853de36b09",
+      "file_sha256": "315ba3624d4d1f7a05490b759def1b553b2e4ba6eb5bd58296a7c48eedb5e9a0"
+    },
+    {
+      "file": "coding_only_4to8_budget20.json",
+      "method": "coding_only",
+      "method_label": "Coding-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "1a166db8043059944347d71a2ac31a964ec2d0cf3bd9cf0a6278231935b58bd3",
+      "file_sha256": "298ecedf40154d214ed41e520c3d7b9c3c8a244693e8679419f3854c11de8066"
+    },
+    {
+      "file": "reasoning_only_4to8_budget20.json",
+      "method": "reasoning_only",
+      "method_label": "Reasoning-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "6bbfd00be350150d1eb704732b3f367b347577757ccede7ce5e709d3575c76ad",
+      "file_sha256": "6782834ba85c94587b67b59d8033c4fa43092b85f429e4eac9ab1cacb6764a06"
+    },
+    {
+      "file": "random_seed1001_4to8_budget20.json",
+      "method": "random_seed1001",
+      "method_label": "Random (seed 1001)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "5592664b80d4c29078584027fbc1432874303c3f9680378966dabcc166500207",
+      "file_sha256": "a6333c10d0400d2a7cd11033a97edad66b5273adecd889ac363726982c16aca8"
+    },
+    {
+      "file": "random_seed1002_4to8_budget20.json",
+      "method": "random_seed1002",
+      "method_label": "Random (seed 1002)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "123101abfcddc5007c385f1e561c60de055dfd467130836fbef3df48c1562183",
+      "file_sha256": "6112e252eb216176d5bfca07a2d1ff94f8c21116fd4edaae6756c273e5daa4b7"
+    },
+    {
+      "file": "random_seed1003_4to8_budget20.json",
+      "method": "random_seed1003",
+      "method_label": "Random (seed 1003)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "f8cfb0ce8191a6aea94b4494a222d9b1c8adc2ff5a2d22a2fb62ae5c735d3742",
+      "file_sha256": "f31940c76941673b89eb9b7c86f8fb7a86bce305a188fb069675432ba6fd9b13"
+    },
+    {
+      "file": "random_seed1004_4to8_budget20.json",
+      "method": "random_seed1004",
+      "method_label": "Random (seed 1004)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "279b1616b7bdb3d74b3efc0ca82deaec859fadc64f13579487ee49fb1753a717",
+      "file_sha256": "7349f04ddd71bd5f749fa09e989d3b8e693442a16f7096e906cfbce4e6e4ac9d"
+    },
+    {
+      "file": "random_seed1005_4to8_budget20.json",
+      "method": "random_seed1005",
+      "method_label": "Random (seed 1005)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "c2d45b346cc479f15abc52bac4e951508bc911a6d6cf1a93cc87587b6d2dd79b",
+      "file_sha256": "b092a8551ebf66b0b6b4964f0daf7f09a5d3e57d85a0c911807f36eb8ad73ac1"
+    },
+    {
+      "file": "robust_functional_4to8_budget30.json",
+      "method": "robust_functional",
+      "method_label": "Robust-Functional",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "738174589ea93d6636856764650d98f2ee80d52813aadb77b402fadbbdb41ba3",
+      "file_sha256": "56894db713ecc61d6c7ca5e336d5317e35e5d7dc61382e5814ba5526f61904d2"
+    },
+    {
+      "file": "robust_routing_4to8_budget30.json",
+      "method": "robust_routing",
+      "method_label": "Robust-Routing",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "c4f8f23e6607273b6c7d38e8caf5d9847bab0774047711d6ccc719f6f3531c88",
+      "file_sha256": "ef542399cb046fe37a2bbf380d002fc6f229f9d485afe92ba5c667f875367bb4"
+    },
+    {
+      "file": "average_specialization_4to8_budget30.json",
+      "method": "average_specialization",
+      "method_label": "Average-Specialization",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "e22fd07ec65646b0b8af6f42370fac627655392a89e71c34d769cb07893d8c10",
+      "file_sha256": "514f84a196a5b62841c9e0de2053fef9557ddd54fd2f32ccf5d373f76b5945fe"
+    },
+    {
+      "file": "global_importance_4to8_budget30.json",
+      "method": "global_importance",
+      "method_label": "Global-Importance",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "6805fd2ed7c9acdc70cbaee252c5fcf1caafafa32a5eecb69cff06b0d4aceb58",
+      "file_sha256": "6c1dd163261719c18dabaac1f33c037938be77224e68d625ab0959d960c24090"
+    },
+    {
+      "file": "general_only_4to8_budget30.json",
+      "method": "general_only",
+      "method_label": "General-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "fd01bc3a22c63130128bbb3e80dcd2c5995e07612a7a3c9506ee8bd15825b539",
+      "file_sha256": "afd8d5c55810d09bdd02fd4083a762abd1a61a449354c7322f739a189ccf23a2"
+    },
+    {
+      "file": "math_only_4to8_budget30.json",
+      "method": "math_only",
+      "method_label": "Math-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "102d94a3581dcd11ca286d8efc3876e66a6d2e9f23302a66754be88cfe8c4bc6",
+      "file_sha256": "9907350a1f7349f3d5db76e1043c1160ae88e5ede9d69f416ce2d7bfd801648a"
+    },
+    {
+      "file": "coding_only_4to8_budget30.json",
+      "method": "coding_only",
+      "method_label": "Coding-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "f1d5b677d897a53ee1d2fbbfe19e1dc11af74cbf85fd37b1b146bc5265036a80",
+      "file_sha256": "ba4a579595dca06598f616b7d772fc734e3f40a6d8757732b0b5f91924aa7f1c"
+    },
+    {
+      "file": "reasoning_only_4to8_budget30.json",
+      "method": "reasoning_only",
+      "method_label": "Reasoning-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "4to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "ee06eb368d554af22d49edcf81ddca794e2c4f397df18022930eb1eecef415ad",
+      "file_sha256": "28a888dd0a69a0715484f6ec647c56feaf2879f5a8b1a44a0e4c2b18e2151525"
+    },
+    {
+      "file": "random_seed1001_4to8_budget30.json",
+      "method": "random_seed1001",
+      "method_label": "Random (seed 1001)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "cf6c3f6244e96b5f2046affe4fff4ecb3e5a6d6adcc7234069632cc2fcae0827",
+      "file_sha256": "30bd171e4b862adead0a6bddc659c219b66f894762ca3437c2ba2452f93a61bc"
+    },
+    {
+      "file": "random_seed1002_4to8_budget30.json",
+      "method": "random_seed1002",
+      "method_label": "Random (seed 1002)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "b02a49a4327a6892026f7b2bbecae184bd6c6916c090c910f972dac28a0c3423",
+      "file_sha256": "05c1dc8919f9e80a9603a379f85bc98a8ad7dcef4835a340df3e85f2c46617a6"
+    },
+    {
+      "file": "random_seed1003_4to8_budget30.json",
+      "method": "random_seed1003",
+      "method_label": "Random (seed 1003)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "18ff1c079203d4883d39ae9be19e951353dc524e48e4b1adb4a23ce8dfb5c4f5",
+      "file_sha256": "917db8e22fc18eb0955a774cb0812ba9f1b5c849bce170120ab39ed43922e913"
+    },
+    {
+      "file": "random_seed1004_4to8_budget30.json",
+      "method": "random_seed1004",
+      "method_label": "Random (seed 1004)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "f3be5bd549cad49d264bcbebadef1bff86ec57b496305e2b459b09781ff13d53",
+      "file_sha256": "534619e383fb98dc8fe1f5635d689e81751836a674b51406d2b9c52cf1399f26"
+    },
+    {
+      "file": "random_seed1005_4to8_budget30.json",
+      "method": "random_seed1005",
+      "method_label": "Random (seed 1005)",
+      "method_kind": "random",
+      "regime": "4to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "69526afa0b61a2c8f80949972cf0cd41bdb622e6d1a1ce0f10a5d7f4ee57afb9",
+      "file_sha256": "aa13d0d63d223428e4827306a79a56e964048d3857316b8761060bcc674b9c3c"
+    },
+    {
+      "file": "robust_functional_3to8_budget5.json",
+      "method": "robust_functional",
+      "method_label": "Robust-Functional",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "923683772402007816be33dbe5fa3c53a0cba4ba935e0234695b2f94697491d6",
+      "file_sha256": "f6363dcac32def846886a8ffa150b97169603b591f92d70997e38ae65f409139"
+    },
+    {
+      "file": "robust_routing_3to8_budget5.json",
+      "method": "robust_routing",
+      "method_label": "Robust-Routing",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "5aeabb9cfda923fa5f77a77ebddfd599495197d17dee9fd8745bf6618e0fd888",
+      "file_sha256": "1ab5fb58ef5e2f0ddd6e881f21e111c03bc23499db444624cbf27315496a0751"
+    },
+    {
+      "file": "average_specialization_3to8_budget5.json",
+      "method": "average_specialization",
+      "method_label": "Average-Specialization",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "a13b9ed0d5b295ed9ef56a357fa90038c224b69ce16f48ecda9fa1ea07e00130",
+      "file_sha256": "26b93fa9354aa237f1832211528ce3d341d3ce858e2ec5efaaf6f6df43b74411"
+    },
+    {
+      "file": "global_importance_3to8_budget5.json",
+      "method": "global_importance",
+      "method_label": "Global-Importance",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "857011ff23ef7c742fab18ee9686d90b74429f9b1b4baac4c90821032eacb617",
+      "file_sha256": "8fba5031c9969d2f87d813f0761ac7269e6d42fbaab48d42d6a1808e4e806c96"
+    },
+    {
+      "file": "general_only_3to8_budget5.json",
+      "method": "general_only",
+      "method_label": "General-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "42ed8f1e152df60a975171276d185bc25dd2069f374ae0270ccaec3b3a1dd107",
+      "file_sha256": "4762cde88a11803f7cd136a5509de212e58e83fab428e975e6a0069f6ddd860d"
+    },
+    {
+      "file": "math_only_3to8_budget5.json",
+      "method": "math_only",
+      "method_label": "Math-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "46f1717e312c9ce50dd1f347f9b8ea5d9773f62575992ac2ff809ed18605155c",
+      "file_sha256": "00863a4a852e704001793b69b66f47d847699e137ac96f13d63a140197cc8026"
+    },
+    {
+      "file": "coding_only_3to8_budget5.json",
+      "method": "coding_only",
+      "method_label": "Coding-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "b995305c8e010e3d23e7cd7b03bd50c05537fadcf3d1010b84ed11bbaf0dd5fd",
+      "file_sha256": "cce49388399b49312a6cc410bd7f5cd0ca72c3c8c4a4f91fe875d0e3e053815c"
+    },
+    {
+      "file": "reasoning_only_3to8_budget5.json",
+      "method": "reasoning_only",
+      "method_label": "Reasoning-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "5ecf3156acc2824bd7d7ee88fb9bd96ac10217cfcfa2d68bc04082a4ae35a526",
+      "file_sha256": "58723b19ea9a8edd062cd0ff66422ccd45aa9bf0a9edac96ef42f35ddd4b48ef"
+    },
+    {
+      "file": "random_seed1001_3to8_budget5.json",
+      "method": "random_seed1001",
+      "method_label": "Random (seed 1001)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "b93df080eef9d6a3be4a05059f37c883874c131ca4410193cd99e08bbe57a562",
+      "file_sha256": "adb0bd332434191f59683908ff5c619355d93071d6a8e3314dd6ad09157aa716"
+    },
+    {
+      "file": "random_seed1002_3to8_budget5.json",
+      "method": "random_seed1002",
+      "method_label": "Random (seed 1002)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "30aa7f688062dea88fbad68b6c15f3c38275469fb2b8ceda19235633f2bd914f",
+      "file_sha256": "44743c8137580ec151398eb3fc762809a7d98d7538d71e1a1b0cb7f355ea9e4f"
+    },
+    {
+      "file": "random_seed1003_3to8_budget5.json",
+      "method": "random_seed1003",
+      "method_label": "Random (seed 1003)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "da03b605da2b865337cf1fc475baac20b5677684122f474a168cfe99e72ff749",
+      "file_sha256": "9f3230576ab933aea0c4625ffde9040beb3401ca6db5fa87f87a3ba861782b48"
+    },
+    {
+      "file": "random_seed1004_3to8_budget5.json",
+      "method": "random_seed1004",
+      "method_label": "Random (seed 1004)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "40d0893fc38d1123d85ca1cd1016d648ede37ac7490c9f76d0d98f75029e76a8",
+      "file_sha256": "041f1503ca404fd19934c5a79431598319310e8f1176f1f2f396f86dc8ce3086"
+    },
+    {
+      "file": "random_seed1005_3to8_budget5.json",
+      "method": "random_seed1005",
+      "method_label": "Random (seed 1005)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.05,
+      "allocation_sha256": "0dde686bf11ccdc5b75e35bbb5f7d9ab23c53a56a739a3991e81c408ac41116d",
+      "file_sha256": "0d923f983e0b1f64295faeaa9b6323e4e8f62df32f73eba20e0f7e47c7e44f96"
+    },
+    {
+      "file": "robust_functional_3to8_budget10.json",
+      "method": "robust_functional",
+      "method_label": "Robust-Functional",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "d8d2670e5e07226317578bfe2a1ce8507d42ec4c1255e2ff55f0f3ea54ce67be",
+      "file_sha256": "25929e11c3e3386d9c04ca19efecb0861207506b960596ed675b2268205646be"
+    },
+    {
+      "file": "robust_routing_3to8_budget10.json",
+      "method": "robust_routing",
+      "method_label": "Robust-Routing",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "3394884ebcc17530e498931eaa8b2be0bfe417faf3efb6a4ea8b762799ca0569",
+      "file_sha256": "d547f9c855af807b5bdd840d02198ec4203da0e6733206eeeddac04d39e86ea6"
+    },
+    {
+      "file": "average_specialization_3to8_budget10.json",
+      "method": "average_specialization",
+      "method_label": "Average-Specialization",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "b02b7258058e3555da0b730970db849c90b733e2bb22ade1cae794bdb4c38f1d",
+      "file_sha256": "3c245d661076d7f2908100d9c5b04caaa270b90aeb788739193f5f034eae6ae4"
+    },
+    {
+      "file": "global_importance_3to8_budget10.json",
+      "method": "global_importance",
+      "method_label": "Global-Importance",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "f6b4230c9b43bd2a6e93dbe5493198601d16b68743bbc46b51bbf926de06c7bf",
+      "file_sha256": "d1df92c1de95fb55d9f0524dd972b896dbfdd78386032adae02d271774c4188c"
+    },
+    {
+      "file": "general_only_3to8_budget10.json",
+      "method": "general_only",
+      "method_label": "General-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "de0f29582ee45123875ae6054fabf7bfcdcfce3d061b3e532f1ff88b2d561699",
+      "file_sha256": "57aebd308536098b518bf5624cc73489273e26bf669afa2cdcd8e50c7c6e96a4"
+    },
+    {
+      "file": "math_only_3to8_budget10.json",
+      "method": "math_only",
+      "method_label": "Math-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "4719faa2cc6c374e5b31d3a5d575ceebd026a40c9beeb0e728366e80976a98be",
+      "file_sha256": "63ee108c01cc9031a086a02e7d2c58b5c7a314b685ecb05cc3c1a53fe9f4d1c2"
+    },
+    {
+      "file": "coding_only_3to8_budget10.json",
+      "method": "coding_only",
+      "method_label": "Coding-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "2eddf07b7a1d5750028a3bc4e79845b8c3a81db07e1c50bf4b967f9ea8181ded",
+      "file_sha256": "74d5950029811eeb95a049af513637908d18b0f5c41144bc7778003fb011b777"
+    },
+    {
+      "file": "reasoning_only_3to8_budget10.json",
+      "method": "reasoning_only",
+      "method_label": "Reasoning-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "c8d394445cc666d3da99a6a12eb578c330c267662336443700269bd9a7ee6f07",
+      "file_sha256": "e56cdec4db22fa643bea36a63c942b54925c24120a994c5533398557695cc188"
+    },
+    {
+      "file": "random_seed1001_3to8_budget10.json",
+      "method": "random_seed1001",
+      "method_label": "Random (seed 1001)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "553ac0e2715d8de3bcbcfc9c92d8d39f694e1d47f3ebd7d9d81841ca74543623",
+      "file_sha256": "d8baa195c4720536593bd396987a7e767a8f1cf19486a691c673942e510ed295"
+    },
+    {
+      "file": "random_seed1002_3to8_budget10.json",
+      "method": "random_seed1002",
+      "method_label": "Random (seed 1002)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "4b93b7c1a23f52781a2c1aeb9d15ecf2a488114d7e810e878d940b420c51ced4",
+      "file_sha256": "606977a8b0c9648db076a58d42952bd545f656c8c78691f48240e8f8b7e4bca5"
+    },
+    {
+      "file": "random_seed1003_3to8_budget10.json",
+      "method": "random_seed1003",
+      "method_label": "Random (seed 1003)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "8570149dda699c19a7a1f98f79aa0cea8f21f16910b6595777d3f6b2435c7c44",
+      "file_sha256": "30cdbc60bf6834b478580175d6b2e52024df9d56c596073ff6eedb1004ed2773"
+    },
+    {
+      "file": "random_seed1004_3to8_budget10.json",
+      "method": "random_seed1004",
+      "method_label": "Random (seed 1004)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "3183c88ccbed6d4039161fba2017ebadad8d859ae1002ae80966fcc9a55ba359",
+      "file_sha256": "e400bd2b354c767e65bf7e1764a07afdddab291f88ddd4948adc5cd0cc17bc4e"
+    },
+    {
+      "file": "random_seed1005_3to8_budget10.json",
+      "method": "random_seed1005",
+      "method_label": "Random (seed 1005)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.1,
+      "allocation_sha256": "ce95b8da06558a1ba3ee1dd787a0b228c660af7b99f79af337b392973a55e42d",
+      "file_sha256": "9729d378eb17ad361b09714efab3af9f1c75750ec3615cc961475258a0b07305"
+    },
+    {
+      "file": "robust_functional_3to8_budget20.json",
+      "method": "robust_functional",
+      "method_label": "Robust-Functional",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "855e5b643d2566c1c8debe59ffc4918c6771757971fc29f2e7bc902455bdf857",
+      "file_sha256": "0322292ba61ba6b163803f5d37f91a8cb9f780d228ee1b2fff09f01e14bfd4ea"
+    },
+    {
+      "file": "robust_routing_3to8_budget20.json",
+      "method": "robust_routing",
+      "method_label": "Robust-Routing",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "d7974657d5b44b13145d53856111621f94d56dc4ed9daaa3f495ca214978b760",
+      "file_sha256": "70f8d2f97a65595623ce73e11ecfa574867a90b308b680d615e4fcc42b3923bf"
+    },
+    {
+      "file": "average_specialization_3to8_budget20.json",
+      "method": "average_specialization",
+      "method_label": "Average-Specialization",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "9d74485611855930ccf150deba725e2239f46c28051bb2179a9e5e67e1621dec",
+      "file_sha256": "0cb91a5fbb84ba7162b03fefcf0d0cbde46eb3be07d7d670f25c18fc7226c423"
+    },
+    {
+      "file": "global_importance_3to8_budget20.json",
+      "method": "global_importance",
+      "method_label": "Global-Importance",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "5acce5a727036e8b25b7a610159f7711023f65dd7b4b1be50351293474f84655",
+      "file_sha256": "6cd65c82fb0aafea4acfaaa18a51fabf1a74153ccd6bc8d68203964c5db40fea"
+    },
+    {
+      "file": "general_only_3to8_budget20.json",
+      "method": "general_only",
+      "method_label": "General-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "f93cd222ed3045d5fd23090eb20c07c72ee7a16d10eae7cb63dc0eb2f9fb7181",
+      "file_sha256": "bb28efcb4ae3709cc15194d10670935556a45d39d428fc6c021034149d539152"
+    },
+    {
+      "file": "math_only_3to8_budget20.json",
+      "method": "math_only",
+      "method_label": "Math-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "b4ac0185241ab9783c6f1c5dd4e2f2a4b7d01fb8ca57728724b2a528ac6814bb",
+      "file_sha256": "e07ce8218c4af3207386d9478f91acf160e6e101095171437810b288f7064955"
+    },
+    {
+      "file": "coding_only_3to8_budget20.json",
+      "method": "coding_only",
+      "method_label": "Coding-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "41c37eb3161f291f864224e08fcb277ea3f2524c105b49c9b91494961bdc2561",
+      "file_sha256": "856010c5a36eabcf5a4e2ac4f3ea2004f749cda7ab9d5d6b99b6952be124ef60"
+    },
+    {
+      "file": "reasoning_only_3to8_budget20.json",
+      "method": "reasoning_only",
+      "method_label": "Reasoning-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "30fdb89705db0755f3c17b674b401e11c192c790df4eec73eb871967725e872a",
+      "file_sha256": "8b01635adf4ff3ee950ccec6d8dd1f921dba6fb1d03fee3bd84ffd53de27e25d"
+    },
+    {
+      "file": "random_seed1001_3to8_budget20.json",
+      "method": "random_seed1001",
+      "method_label": "Random (seed 1001)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "93d174375445978fb7ab86b7ba16db3cd832f06d277d3990ceafb5386a5ab181",
+      "file_sha256": "461100534a34e1ac36bc38d221ccc51241290ade23430094ed6d6d261e728458"
+    },
+    {
+      "file": "random_seed1002_3to8_budget20.json",
+      "method": "random_seed1002",
+      "method_label": "Random (seed 1002)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "a92a9c196d2ad21a6860a26080b9b30d37dc984993e2c5488f8f8ee1dd970e68",
+      "file_sha256": "b7d6d4f99e6090e8e63ce266988484f476f280291845de13dc798e150d1258b4"
+    },
+    {
+      "file": "random_seed1003_3to8_budget20.json",
+      "method": "random_seed1003",
+      "method_label": "Random (seed 1003)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "949adb6f4d5aea1f32d32a6c8b05d7ae71d4f4945b15d21dddcb2cd52b28e799",
+      "file_sha256": "e73e26840d190719d9b215464dae9c20e7a383e10c8d5f8db345fc2cc341a40d"
+    },
+    {
+      "file": "random_seed1004_3to8_budget20.json",
+      "method": "random_seed1004",
+      "method_label": "Random (seed 1004)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "451be979d5d815affe06c5622a77943c470e5ae30ba967184dd919b09b54348f",
+      "file_sha256": "07b69aa5d81dcdb96b567c0e1e807ca863b24d5d662c77683d81a11be21aa6d5"
+    },
+    {
+      "file": "random_seed1005_3to8_budget20.json",
+      "method": "random_seed1005",
+      "method_label": "Random (seed 1005)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.2,
+      "allocation_sha256": "1b45c85d3552c4cb65ca56f9aec0f9dc54ac5e687122411b86cbd9a670baadc2",
+      "file_sha256": "9ce928955651dddcb3eaa5930f7d03cbf998285ab8b7d40b38b959882581a20f"
+    },
+    {
+      "file": "robust_functional_3to8_budget30.json",
+      "method": "robust_functional",
+      "method_label": "Robust-Functional",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "edfc53a397aaf23ad8493a1c7cc808c030bd1921e0920a13e16c37569192b825",
+      "file_sha256": "b25981d1bb492f97a910c261b870cd82ba0bda6ff35390d698a478da33edf686"
+    },
+    {
+      "file": "robust_routing_3to8_budget30.json",
+      "method": "robust_routing",
+      "method_label": "Robust-Routing",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "a1814e4755b31b0b0831ffcf70376129f1ddf193b948b6542b596c3a222b7838",
+      "file_sha256": "20f61e478f3a7ca06a1539078cb736564e235c6f0b04fd24dc69de32ef0aca5b"
+    },
+    {
+      "file": "average_specialization_3to8_budget30.json",
+      "method": "average_specialization",
+      "method_label": "Average-Specialization",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "e85b0b8c9cbe8651c6e89be24441e77f6bd6ec42b378ca5653c94ac03e12e8a1",
+      "file_sha256": "efb792b9c78b9180959ba162831b7291088390bdb292b3c5f839724b6d180916"
+    },
+    {
+      "file": "global_importance_3to8_budget30.json",
+      "method": "global_importance",
+      "method_label": "Global-Importance",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "8a4272fc8b3210372d6119952522b3cb2576cdab077a3bc115b6268a6516fffd",
+      "file_sha256": "8ce0c32616423430b3c7cea6b78cd963db6b560498e462af008169b0a69a7764"
+    },
+    {
+      "file": "general_only_3to8_budget30.json",
+      "method": "general_only",
+      "method_label": "General-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "71ea63439d60505a8ff276aa7f3c84f6abe00c4cc26dacaa670013a734e44061",
+      "file_sha256": "09b0b407dd59cc8481e45db550617cd8f78ab5ca435946b921e2a348eb2b046a"
+    },
+    {
+      "file": "math_only_3to8_budget30.json",
+      "method": "math_only",
+      "method_label": "Math-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "ad4565b2f251a6cfdbfd0a2bbe7eee66cd76f03d11a1be844d890c5edcec69ef",
+      "file_sha256": "cd229e962b305980173a7ec6b883b0663e6a3819aee4ced216b9b4ca21f21b05"
+    },
+    {
+      "file": "coding_only_3to8_budget30.json",
+      "method": "coding_only",
+      "method_label": "Coding-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "9484970e2a2202fc28af21b8d0ba3eb5d7b6b08f9fbaef8cab5613c6b8ec1a8e",
+      "file_sha256": "db86da39b4b8a5ad7e04793b8529a8f9fc13e6eb9935e3423633db3aaf154753"
+    },
+    {
+      "file": "reasoning_only_3to8_budget30.json",
+      "method": "reasoning_only",
+      "method_label": "Reasoning-Only",
+      "method_kind": "deterministic_milp",
+      "regime": "3to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "f7dd2ef00c21672a70a2bb3cfbcc63e952bbb1f1627d5cce7f58a3329c53b941",
+      "file_sha256": "fda1a6fd8ab705b1738d05fb729b00bb88dc620381a284e8eb18d2bbacb856cc"
+    },
+    {
+      "file": "random_seed1001_3to8_budget30.json",
+      "method": "random_seed1001",
+      "method_label": "Random (seed 1001)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "5dbc56fa5eedf613c8216e4f93f9fc69b424624e08157411c56c1d1de34105b3",
+      "file_sha256": "9a50b2e23031323c702afcff80bd02f028c61ffc0fc230de3a1c4dcc99232f5b"
+    },
+    {
+      "file": "random_seed1002_3to8_budget30.json",
+      "method": "random_seed1002",
+      "method_label": "Random (seed 1002)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "2bcde7f88d1a769c2b04041cc72c024a6c1b94046fd303a466ccd04d4546f60a",
+      "file_sha256": "ef0e352aace0a84eef7eb13c461207721058a66c4173ce717aa1c33eb788c2e8"
+    },
+    {
+      "file": "random_seed1003_3to8_budget30.json",
+      "method": "random_seed1003",
+      "method_label": "Random (seed 1003)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "020e33127f59fc56d02b0f64684c865d8179072a6462455b33588f3910f07536",
+      "file_sha256": "a0ac58182ffe26accfa5fa7cf2b1199d636d4a5ac8d722d6330a0b26d52a06d9"
+    },
+    {
+      "file": "random_seed1004_3to8_budget30.json",
+      "method": "random_seed1004",
+      "method_label": "Random (seed 1004)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "2f4f3473f49dff8ed3fd64096e6cf6639117e3ac8e18ed4e27e3a8bf35d0e73d",
+      "file_sha256": "1aef787722b3183d9094fe417f1490acdb970f8a249c00e77a7f1311d11ec662"
+    },
+    {
+      "file": "random_seed1005_3to8_budget30.json",
+      "method": "random_seed1005",
+      "method_label": "Random (seed 1005)",
+      "method_kind": "random",
+      "regime": "3to8",
+      "budget_fraction": 0.3,
+      "allocation_sha256": "8e2a2093fedbfbf9eec7297776aa44b58e766a069679f24461c094d60082ff31",
+      "file_sha256": "63488c3c386ba7fdd4b4d35752615353263f397ed05ed28afa430258c903485e"
+    },
+    {
+      "file": "bf16_reference.json",
+      "method": "bf16_reference",
+      "method_label": "BF16 baseline",
+      "method_kind": "uniform_reference",
+      "regime": null,
+      "budget_fraction": null,
+      "allocation_sha256": "ad07402b6930d6bca1bb670a68de47be384a2fc47ab362e40f7f5f0d7f13a468",
+      "file_sha256": "436cc207fd3120ac081298b9468fa875e692ea1a609a05f092ffd51573cd118b"
+    },
+    {
+      "file": "uniform_8bit_reference.json",
+      "method": "uniform_8bit_reference",
+      "method_label": "Uniform 8-bit",
+      "method_kind": "uniform_reference",
+      "regime": null,
+      "budget_fraction": null,
+      "allocation_sha256": "a3af82a37acf128a6d85d8aaf46362879662304fc174c9488c521ec1c28af455",
+      "file_sha256": "2d440ad5acfbbae2260d88907174c70f25bee48f7b2bde45f18a3fd6e6d56a6b"
+    },
+    {
+      "file": "uniform_4bit_reference.json",
+      "method": "uniform_4bit_reference",
+      "method_label": "Uniform 4-bit",
+      "method_kind": "uniform_reference",
+      "regime": null,
+      "budget_fraction": null,
+      "allocation_sha256": "620864bc70593aedd1c275af3d1f6f86b32aa0bfa42302e779ee8ce407ca1bf2",
+      "file_sha256": "45d04c52250c62c72a031eae70c0b9c7a65f0b09c262e5c8f9556ff4aa162e35"
+    },
+    {
+      "file": "uniform_3bit_reference.json",
+      "method": "uniform_3bit_reference",
+      "method_label": "Uniform 3-bit",
+      "method_kind": "uniform_reference",
+      "regime": null,
+      "budget_fraction": null,
+      "allocation_sha256": "7bd673768e43e8ac2e854ee45c1ed7209df04d7f3066ea23d477a55f35d1924f",
+      "file_sha256": "b7adfc8106cbf8c658f83714d56aa1eafce68e2077e0d01e49fdc571a0db2df7"
+    }
+  ],
+  "registry_sha256": "b0221262f0e51700cc16fa5e6a681f63ab6507a9d768714f853f3dfc3f87aa34",
+  "created_at_utc": "2026-08-15T04:44:25.161402+00:00"
+}

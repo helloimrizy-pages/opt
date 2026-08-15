@@ -1,0 +1,1956 @@
+{
+  "schema": "stage2b_allocation_v1",
+  "stage": "stage2b_robust_specialist_preservation",
+  "method": "random_seed1002",
+  "method_label": "Random (seed 1002)",
+  "method_kind": "random",
+  "matched_budget_competitor": true,
+  "regime": "3to8",
+  "base_bits": 3,
+  "protected_bits": 8,
+  "group_size": 128,
+  "budget_fraction": 0.2,
+  "budget_bytes": 805306368,
+  "total_increment_bytes": 4026531840,
+  "used_protection_bytes": 802160640,
+  "budget_utilization": 0.99609375,
+  "expert_bits": [
+    [
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    [
+      3,
+      8,
+      3,
+      3,
+      8,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      3,
+      8,
+      8,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      8,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      8,
+      8,
+      3,
+      3,
+      3,
+      8,
+      8,
+      8,
+      3
+    ],
+    [
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      8,
+      8,
+      3,
+      3,
+      8,
+      8,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      8,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      8,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      3,
+      3,
+      3
+    ],
+    [
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      8,
+      8,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    [
+      8,
+      3,
+      3,
+      8,
+      3,
+      3,
+      8,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      8,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      8
+    ],
+    [
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    [
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3
+    ],
+    [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      3,
+      8,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      8,
+      8,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      8,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    [
+      3,
+      3,
+      3,
+      8,
+      3,
+      8,
+      8,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      8,
+      3,
+      8,
+      8,
+      3,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      8,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      8,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3
+    ],
+    [
+      8,
+      3,
+      3,
+      8,
+      8,
+      8,
+      8,
+      8,
+      3,
+      3,
+      8,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    [
+      3,
+      3,
+      8,
+      8,
+      8,
+      3,
+      3,
+      8,
+      3,
+      8,
+      3,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      8,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      8,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8
+    ],
+    [
+      3,
+      3,
+      3,
+      8,
+      8,
+      8,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      8,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3
+    ],
+    [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      8,
+      3
+    ]
+  ],
+  "protected_experts": [
+    {
+      "layer": 0,
+      "expert": 1
+    },
+    {
+      "layer": 0,
+      "expert": 13
+    },
+    {
+      "layer": 0,
+      "expert": 14
+    },
+    {
+      "layer": 0,
+      "expert": 19
+    },
+    {
+      "layer": 0,
+      "expert": 20
+    },
+    {
+      "layer": 0,
+      "expert": 31
+    },
+    {
+      "layer": 0,
+      "expert": 32
+    },
+    {
+      "layer": 0,
+      "expert": 36
+    },
+    {
+      "layer": 0,
+      "expert": 41
+    },
+    {
+      "layer": 0,
+      "expert": 47
+    },
+    {
+      "layer": 0,
+      "expert": 52
+    },
+    {
+      "layer": 0,
+      "expert": 55
+    },
+    {
+      "layer": 1,
+      "expert": 1
+    },
+    {
+      "layer": 1,
+      "expert": 4
+    },
+    {
+      "layer": 1,
+      "expert": 6
+    },
+    {
+      "layer": 1,
+      "expert": 14
+    },
+    {
+      "layer": 1,
+      "expert": 25
+    },
+    {
+      "layer": 1,
+      "expert": 27
+    },
+    {
+      "layer": 1,
+      "expert": 31
+    },
+    {
+      "layer": 1,
+      "expert": 37
+    },
+    {
+      "layer": 1,
+      "expert": 38
+    },
+    {
+      "layer": 1,
+      "expert": 40
+    },
+    {
+      "layer": 1,
+      "expert": 41
+    },
+    {
+      "layer": 1,
+      "expert": 42
+    },
+    {
+      "layer": 1,
+      "expert": 46
+    },
+    {
+      "layer": 1,
+      "expert": 48
+    },
+    {
+      "layer": 1,
+      "expert": 49
+    },
+    {
+      "layer": 1,
+      "expert": 53
+    },
+    {
+      "layer": 1,
+      "expert": 55
+    },
+    {
+      "layer": 1,
+      "expert": 56
+    },
+    {
+      "layer": 1,
+      "expert": 60
+    },
+    {
+      "layer": 1,
+      "expert": 61
+    },
+    {
+      "layer": 1,
+      "expert": 62
+    },
+    {
+      "layer": 2,
+      "expert": 1
+    },
+    {
+      "layer": 2,
+      "expert": 8
+    },
+    {
+      "layer": 2,
+      "expert": 12
+    },
+    {
+      "layer": 2,
+      "expert": 14
+    },
+    {
+      "layer": 2,
+      "expert": 15
+    },
+    {
+      "layer": 2,
+      "expert": 18
+    },
+    {
+      "layer": 2,
+      "expert": 19
+    },
+    {
+      "layer": 2,
+      "expert": 20
+    },
+    {
+      "layer": 2,
+      "expert": 24
+    },
+    {
+      "layer": 2,
+      "expert": 27
+    },
+    {
+      "layer": 2,
+      "expert": 28
+    },
+    {
+      "layer": 2,
+      "expert": 48
+    },
+    {
+      "layer": 2,
+      "expert": 49
+    },
+    {
+      "layer": 2,
+      "expert": 50
+    },
+    {
+      "layer": 2,
+      "expert": 52
+    },
+    {
+      "layer": 2,
+      "expert": 59
+    },
+    {
+      "layer": 2,
+      "expert": 60
+    },
+    {
+      "layer": 3,
+      "expert": 1
+    },
+    {
+      "layer": 3,
+      "expert": 7
+    },
+    {
+      "layer": 3,
+      "expert": 9
+    },
+    {
+      "layer": 3,
+      "expert": 10
+    },
+    {
+      "layer": 3,
+      "expert": 12
+    },
+    {
+      "layer": 3,
+      "expert": 18
+    },
+    {
+      "layer": 3,
+      "expert": 24
+    },
+    {
+      "layer": 3,
+      "expert": 35
+    },
+    {
+      "layer": 3,
+      "expert": 39
+    },
+    {
+      "layer": 3,
+      "expert": 45
+    },
+    {
+      "layer": 3,
+      "expert": 50
+    },
+    {
+      "layer": 3,
+      "expert": 52
+    },
+    {
+      "layer": 4,
+      "expert": 8
+    },
+    {
+      "layer": 4,
+      "expert": 13
+    },
+    {
+      "layer": 4,
+      "expert": 20
+    },
+    {
+      "layer": 4,
+      "expert": 30
+    },
+    {
+      "layer": 4,
+      "expert": 31
+    },
+    {
+      "layer": 4,
+      "expert": 37
+    },
+    {
+      "layer": 4,
+      "expert": 45
+    },
+    {
+      "layer": 4,
+      "expert": 48
+    },
+    {
+      "layer": 4,
+      "expert": 56
+    },
+    {
+      "layer": 5,
+      "expert": 0
+    },
+    {
+      "layer": 5,
+      "expert": 3
+    },
+    {
+      "layer": 5,
+      "expert": 6
+    },
+    {
+      "layer": 5,
+      "expert": 7
+    },
+    {
+      "layer": 5,
+      "expert": 11
+    },
+    {
+      "layer": 5,
+      "expert": 18
+    },
+    {
+      "layer": 5,
+      "expert": 28
+    },
+    {
+      "layer": 5,
+      "expert": 29
+    },
+    {
+      "layer": 5,
+      "expert": 34
+    },
+    {
+      "layer": 5,
+      "expert": 38
+    },
+    {
+      "layer": 5,
+      "expert": 40
+    },
+    {
+      "layer": 5,
+      "expert": 43
+    },
+    {
+      "layer": 5,
+      "expert": 49
+    },
+    {
+      "layer": 5,
+      "expert": 50
+    },
+    {
+      "layer": 5,
+      "expert": 51
+    },
+    {
+      "layer": 5,
+      "expert": 58
+    },
+    {
+      "layer": 5,
+      "expert": 63
+    },
+    {
+      "layer": 6,
+      "expert": 3
+    },
+    {
+      "layer": 6,
+      "expert": 8
+    },
+    {
+      "layer": 6,
+      "expert": 12
+    },
+    {
+      "layer": 6,
+      "expert": 18
+    },
+    {
+      "layer": 6,
+      "expert": 20
+    },
+    {
+      "layer": 6,
+      "expert": 27
+    },
+    {
+      "layer": 6,
+      "expert": 29
+    },
+    {
+      "layer": 6,
+      "expert": 33
+    },
+    {
+      "layer": 6,
+      "expert": 36
+    },
+    {
+      "layer": 6,
+      "expert": 46
+    },
+    {
+      "layer": 6,
+      "expert": 53
+    },
+    {
+      "layer": 6,
+      "expert": 55
+    },
+    {
+      "layer": 7,
+      "expert": 4
+    },
+    {
+      "layer": 7,
+      "expert": 9
+    },
+    {
+      "layer": 7,
+      "expert": 47
+    },
+    {
+      "layer": 7,
+      "expert": 57
+    },
+    {
+      "layer": 7,
+      "expert": 58
+    },
+    {
+      "layer": 7,
+      "expert": 62
+    },
+    {
+      "layer": 8,
+      "expert": 10
+    },
+    {
+      "layer": 8,
+      "expert": 11
+    },
+    {
+      "layer": 8,
+      "expert": 13
+    },
+    {
+      "layer": 8,
+      "expert": 16
+    },
+    {
+      "layer": 8,
+      "expert": 27
+    },
+    {
+      "layer": 8,
+      "expert": 28
+    },
+    {
+      "layer": 8,
+      "expert": 29
+    },
+    {
+      "layer": 8,
+      "expert": 30
+    },
+    {
+      "layer": 8,
+      "expert": 35
+    },
+    {
+      "layer": 8,
+      "expert": 38
+    },
+    {
+      "layer": 8,
+      "expert": 39
+    },
+    {
+      "layer": 8,
+      "expert": 46
+    },
+    {
+      "layer": 8,
+      "expert": 47
+    },
+    {
+      "layer": 8,
+      "expert": 48
+    },
+    {
+      "layer": 9,
+      "expert": 3
+    },
+    {
+      "layer": 9,
+      "expert": 5
+    },
+    {
+      "layer": 9,
+      "expert": 6
+    },
+    {
+      "layer": 9,
+      "expert": 7
+    },
+    {
+      "layer": 9,
+      "expert": 17
+    },
+    {
+      "layer": 9,
+      "expert": 24
+    },
+    {
+      "layer": 9,
+      "expert": 27
+    },
+    {
+      "layer": 9,
+      "expert": 44
+    },
+    {
+      "layer": 9,
+      "expert": 49
+    },
+    {
+      "layer": 9,
+      "expert": 57
+    },
+    {
+      "layer": 10,
+      "expert": 11
+    },
+    {
+      "layer": 10,
+      "expert": 15
+    },
+    {
+      "layer": 10,
+      "expert": 17
+    },
+    {
+      "layer": 10,
+      "expert": 19
+    },
+    {
+      "layer": 10,
+      "expert": 20
+    },
+    {
+      "layer": 10,
+      "expert": 22
+    },
+    {
+      "layer": 10,
+      "expert": 26
+    },
+    {
+      "layer": 10,
+      "expert": 30
+    },
+    {
+      "layer": 10,
+      "expert": 36
+    },
+    {
+      "layer": 10,
+      "expert": 45
+    },
+    {
+      "layer": 10,
+      "expert": 49
+    },
+    {
+      "layer": 10,
+      "expert": 53
+    },
+    {
+      "layer": 10,
+      "expert": 56
+    },
+    {
+      "layer": 10,
+      "expert": 57
+    },
+    {
+      "layer": 11,
+      "expert": 16
+    },
+    {
+      "layer": 11,
+      "expert": 18
+    },
+    {
+      "layer": 11,
+      "expert": 38
+    },
+    {
+      "layer": 11,
+      "expert": 42
+    },
+    {
+      "layer": 11,
+      "expert": 49
+    },
+    {
+      "layer": 11,
+      "expert": 50
+    },
+    {
+      "layer": 11,
+      "expert": 51
+    },
+    {
+      "layer": 11,
+      "expert": 53
+    },
+    {
+      "layer": 11,
+      "expert": 60
+    },
+    {
+      "layer": 12,
+      "expert": 0
+    },
+    {
+      "layer": 12,
+      "expert": 3
+    },
+    {
+      "layer": 12,
+      "expert": 4
+    },
+    {
+      "layer": 12,
+      "expert": 5
+    },
+    {
+      "layer": 12,
+      "expert": 6
+    },
+    {
+      "layer": 12,
+      "expert": 7
+    },
+    {
+      "layer": 12,
+      "expert": 10
+    },
+    {
+      "layer": 12,
+      "expert": 13
+    },
+    {
+      "layer": 12,
+      "expert": 24
+    },
+    {
+      "layer": 12,
+      "expert": 28
+    },
+    {
+      "layer": 12,
+      "expert": 45
+    },
+    {
+      "layer": 12,
+      "expert": 52
+    },
+    {
+      "layer": 12,
+      "expert": 53
+    },
+    {
+      "layer": 12,
+      "expert": 55
+    },
+    {
+      "layer": 13,
+      "expert": 2
+    },
+    {
+      "layer": 13,
+      "expert": 3
+    },
+    {
+      "layer": 13,
+      "expert": 4
+    },
+    {
+      "layer": 13,
+      "expert": 7
+    },
+    {
+      "layer": 13,
+      "expert": 9
+    },
+    {
+      "layer": 13,
+      "expert": 11
+    },
+    {
+      "layer": 13,
+      "expert": 15
+    },
+    {
+      "layer": 13,
+      "expert": 17
+    },
+    {
+      "layer": 13,
+      "expert": 24
+    },
+    {
+      "layer": 13,
+      "expert": 27
+    },
+    {
+      "layer": 13,
+      "expert": 29
+    },
+    {
+      "layer": 13,
+      "expert": 36
+    },
+    {
+      "layer": 13,
+      "expert": 37
+    },
+    {
+      "layer": 13,
+      "expert": 38
+    },
+    {
+      "layer": 13,
+      "expert": 42
+    },
+    {
+      "layer": 13,
+      "expert": 54
+    },
+    {
+      "layer": 13,
+      "expert": 63
+    },
+    {
+      "layer": 14,
+      "expert": 3
+    },
+    {
+      "layer": 14,
+      "expert": 4
+    },
+    {
+      "layer": 14,
+      "expert": 5
+    },
+    {
+      "layer": 14,
+      "expert": 8
+    },
+    {
+      "layer": 14,
+      "expert": 14
+    },
+    {
+      "layer": 14,
+      "expert": 25
+    },
+    {
+      "layer": 14,
+      "expert": 26
+    },
+    {
+      "layer": 14,
+      "expert": 34
+    },
+    {
+      "layer": 14,
+      "expert": 39
+    },
+    {
+      "layer": 14,
+      "expert": 40
+    },
+    {
+      "layer": 14,
+      "expert": 41
+    },
+    {
+      "layer": 14,
+      "expert": 44
+    },
+    {
+      "layer": 14,
+      "expert": 59
+    },
+    {
+      "layer": 15,
+      "expert": 7
+    },
+    {
+      "layer": 15,
+      "expert": 8
+    },
+    {
+      "layer": 15,
+      "expert": 14
+    },
+    {
+      "layer": 15,
+      "expert": 28
+    },
+    {
+      "layer": 15,
+      "expert": 36
+    },
+    {
+      "layer": 15,
+      "expert": 42
+    },
+    {
+      "layer": 15,
+      "expert": 62
+    }
+  ],
+  "protected_expert_count": 204,
+  "protected_experts_per_layer": [
+    12,
+    21,
+    17,
+    12,
+    9,
+    17,
+    12,
+    6,
+    14,
+    10,
+    14,
+    9,
+    14,
+    17,
+    13,
+    7
+  ],
+  "total_projected_expert_bytes": 3318743040,
+  "bf16_reference_expert_bytes": 12884901888,
+  "effective_bits_per_weight": 4.12109375,
+  "functional_specialist_coverage": {
+    "general": 0.1840066888166512,
+    "math": 0.25666414014730043,
+    "coding": 0.21935728323073594,
+    "reasoning": 0.1460757264486451
+  },
+  "functional_specialist_coverage_min": 0.1460757264486451,
+  "functional_specialist_coverage_mean": 0.20152595966083317,
+  "routing_specialist_coverage": {
+    "general": 0.17421825143586459,
+    "math": 0.24655066350294405,
+    "coding": 0.183841327866423,
+    "reasoning": 0.14885575589459085
+  },
+  "routing_specialist_coverage_min": 0.14885575589459085,
+  "calibration_fingerprint": "7fc28a40a24f9c7684d9544f1d1524fd9329b6abfa717ce70248cf440c8632d4",
+  "calibration_hashes": {
+    "general": "04ad1c506cd4b1777905d451a81f0b320681aadcab71f8c3388da372e7408f18",
+    "math": "5b80c16024a2c4179eee29bce0b963d69b6b56e2e2e22285a427449866b5b885",
+    "coding": "d65e4162b27bd70f640185424f78d279e144d2a543173f179ebaa587ffd07190",
+    "reasoning": "7e6aa5a03276735100a31ce1b05b7b7cd67204c4af5de73a41b3402c5d813b90"
+  },
+  "score_hashes": {
+    "functional_importance_sha256": "65d890584d5f177ac71a69fb9ee8e55ecb148cc9b55134032fe0b743d0a4278c",
+    "functional_specialization_sha256": "e50d08647a6a463feaf673508878526755897c66d447be7e62ab2f6a7faaf355",
+    "routing_specialization_sha256": "6b3779b23d316479896ce470241b2ad65edc9b2c5949d5e3f7554a91fa1071de",
+    "single_domain_importance_sha256": "f0fac5f83274038be7a64cbb973d20ad1447ea055183ff27adab2497c538ec83",
+    "global_importance_sha256": "31ad95339eb26ce25a600847356088baa64cff2211e653d1bb7c019e6d08a568"
+  },
+  "solver_metadata": {
+    "solver": "seeded_random_permutation_fill",
+    "score_independent": true,
+    "seed": 1002,
+    "budget_bytes": 805306368,
+    "used_protection_bytes": 802160640,
+    "budget_utilization": 0.99609375,
+    "memory_constraint_residual_bytes": 3145728,
+    "protected_expert_count": 204
+  },
+  "allocation_sha256": "a92a9c196d2ad21a6860a26080b9b30d37dc984993e2c5488f8f8ee1dd970e68",
+  "created_at_utc": "2026-08-15T04:44:21.822253+00:00"
+}

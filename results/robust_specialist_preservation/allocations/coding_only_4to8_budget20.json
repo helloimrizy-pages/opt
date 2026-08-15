@@ -1,0 +1,1966 @@
+{
+  "schema": "stage2b_allocation_v1",
+  "stage": "stage2b_robust_specialist_preservation",
+  "method": "coding_only",
+  "method_label": "Coding-Only",
+  "method_kind": "deterministic_milp",
+  "matched_budget_competitor": true,
+  "regime": "4to8",
+  "base_bits": 4,
+  "protected_bits": 8,
+  "group_size": 128,
+  "budget_fraction": 0.2,
+  "budget_bytes": 644245094,
+  "total_increment_bytes": 3221225472,
+  "used_protection_bytes": 641728512,
+  "budget_utilization": 0.9960937506184564,
+  "expert_bits": [
+    [
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      8,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4
+    ],
+    [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4
+    ],
+    [
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      8,
+      8,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      8,
+      8,
+      4
+    ],
+    [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      8,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      8,
+      8,
+      4,
+      4,
+      4,
+      8,
+      8,
+      8,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      8
+    ],
+    [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      8,
+      4
+    ],
+    [
+      8,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    [
+      4,
+      8,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      8,
+      4
+    ],
+    [
+      8,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    [
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    [
+      4,
+      4,
+      4,
+      4,
+      8,
+      8,
+      8,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      8,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4
+    ],
+    [
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      8,
+      8,
+      4
+    ],
+    [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8
+    ],
+    [
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      8,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4
+    ],
+    [
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      8,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      8,
+      4
+    ],
+    [
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      8,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    [
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      8,
+      4,
+      8,
+      4,
+      4,
+      4
+    ]
+  ],
+  "protected_experts": [
+    {
+      "layer": 0,
+      "expert": 0
+    },
+    {
+      "layer": 0,
+      "expert": 6
+    },
+    {
+      "layer": 0,
+      "expert": 21
+    },
+    {
+      "layer": 0,
+      "expert": 25
+    },
+    {
+      "layer": 0,
+      "expert": 27
+    },
+    {
+      "layer": 0,
+      "expert": 29
+    },
+    {
+      "layer": 0,
+      "expert": 33
+    },
+    {
+      "layer": 0,
+      "expert": 36
+    },
+    {
+      "layer": 0,
+      "expert": 38
+    },
+    {
+      "layer": 0,
+      "expert": 40
+    },
+    {
+      "layer": 0,
+      "expert": 41
+    },
+    {
+      "layer": 0,
+      "expert": 49
+    },
+    {
+      "layer": 0,
+      "expert": 52
+    },
+    {
+      "layer": 0,
+      "expert": 54
+    },
+    {
+      "layer": 0,
+      "expert": 59
+    },
+    {
+      "layer": 0,
+      "expert": 61
+    },
+    {
+      "layer": 1,
+      "expert": 9
+    },
+    {
+      "layer": 1,
+      "expert": 11
+    },
+    {
+      "layer": 1,
+      "expert": 15
+    },
+    {
+      "layer": 1,
+      "expert": 18
+    },
+    {
+      "layer": 1,
+      "expert": 21
+    },
+    {
+      "layer": 1,
+      "expert": 25
+    },
+    {
+      "layer": 1,
+      "expert": 27
+    },
+    {
+      "layer": 1,
+      "expert": 30
+    },
+    {
+      "layer": 1,
+      "expert": 44
+    },
+    {
+      "layer": 1,
+      "expert": 47
+    },
+    {
+      "layer": 1,
+      "expert": 48
+    },
+    {
+      "layer": 1,
+      "expert": 61
+    },
+    {
+      "layer": 2,
+      "expert": 5
+    },
+    {
+      "layer": 2,
+      "expert": 15
+    },
+    {
+      "layer": 2,
+      "expert": 16
+    },
+    {
+      "layer": 2,
+      "expert": 24
+    },
+    {
+      "layer": 2,
+      "expert": 30
+    },
+    {
+      "layer": 2,
+      "expert": 32
+    },
+    {
+      "layer": 2,
+      "expert": 34
+    },
+    {
+      "layer": 2,
+      "expert": 35
+    },
+    {
+      "layer": 2,
+      "expert": 40
+    },
+    {
+      "layer": 2,
+      "expert": 45
+    },
+    {
+      "layer": 2,
+      "expert": 60
+    },
+    {
+      "layer": 2,
+      "expert": 61
+    },
+    {
+      "layer": 2,
+      "expert": 62
+    },
+    {
+      "layer": 3,
+      "expert": 9
+    },
+    {
+      "layer": 3,
+      "expert": 15
+    },
+    {
+      "layer": 3,
+      "expert": 19
+    },
+    {
+      "layer": 3,
+      "expert": 29
+    },
+    {
+      "layer": 3,
+      "expert": 30
+    },
+    {
+      "layer": 3,
+      "expert": 31
+    },
+    {
+      "layer": 3,
+      "expert": 35
+    },
+    {
+      "layer": 3,
+      "expert": 37
+    },
+    {
+      "layer": 3,
+      "expert": 38
+    },
+    {
+      "layer": 3,
+      "expert": 42
+    },
+    {
+      "layer": 3,
+      "expert": 43
+    },
+    {
+      "layer": 3,
+      "expert": 44
+    },
+    {
+      "layer": 3,
+      "expert": 45
+    },
+    {
+      "layer": 3,
+      "expert": 49
+    },
+    {
+      "layer": 3,
+      "expert": 52
+    },
+    {
+      "layer": 3,
+      "expert": 59
+    },
+    {
+      "layer": 3,
+      "expert": 62
+    },
+    {
+      "layer": 3,
+      "expert": 63
+    },
+    {
+      "layer": 4,
+      "expert": 6
+    },
+    {
+      "layer": 4,
+      "expert": 14
+    },
+    {
+      "layer": 4,
+      "expert": 17
+    },
+    {
+      "layer": 4,
+      "expert": 19
+    },
+    {
+      "layer": 4,
+      "expert": 21
+    },
+    {
+      "layer": 4,
+      "expert": 25
+    },
+    {
+      "layer": 4,
+      "expert": 34
+    },
+    {
+      "layer": 4,
+      "expert": 43
+    },
+    {
+      "layer": 4,
+      "expert": 52
+    },
+    {
+      "layer": 4,
+      "expert": 55
+    },
+    {
+      "layer": 4,
+      "expert": 61
+    },
+    {
+      "layer": 4,
+      "expert": 62
+    },
+    {
+      "layer": 5,
+      "expert": 0
+    },
+    {
+      "layer": 5,
+      "expert": 2
+    },
+    {
+      "layer": 5,
+      "expert": 6
+    },
+    {
+      "layer": 5,
+      "expert": 8
+    },
+    {
+      "layer": 5,
+      "expert": 10
+    },
+    {
+      "layer": 5,
+      "expert": 14
+    },
+    {
+      "layer": 5,
+      "expert": 17
+    },
+    {
+      "layer": 5,
+      "expert": 21
+    },
+    {
+      "layer": 5,
+      "expert": 31
+    },
+    {
+      "layer": 5,
+      "expert": 35
+    },
+    {
+      "layer": 5,
+      "expert": 42
+    },
+    {
+      "layer": 5,
+      "expert": 53
+    },
+    {
+      "layer": 5,
+      "expert": 55
+    },
+    {
+      "layer": 5,
+      "expert": 57
+    },
+    {
+      "layer": 6,
+      "expert": 1
+    },
+    {
+      "layer": 6,
+      "expert": 2
+    },
+    {
+      "layer": 6,
+      "expert": 5
+    },
+    {
+      "layer": 6,
+      "expert": 9
+    },
+    {
+      "layer": 6,
+      "expert": 18
+    },
+    {
+      "layer": 6,
+      "expert": 20
+    },
+    {
+      "layer": 6,
+      "expert": 24
+    },
+    {
+      "layer": 6,
+      "expert": 36
+    },
+    {
+      "layer": 6,
+      "expert": 42
+    },
+    {
+      "layer": 6,
+      "expert": 52
+    },
+    {
+      "layer": 6,
+      "expert": 57
+    },
+    {
+      "layer": 6,
+      "expert": 61
+    },
+    {
+      "layer": 6,
+      "expert": 62
+    },
+    {
+      "layer": 7,
+      "expert": 0
+    },
+    {
+      "layer": 7,
+      "expert": 2
+    },
+    {
+      "layer": 7,
+      "expert": 4
+    },
+    {
+      "layer": 7,
+      "expert": 17
+    },
+    {
+      "layer": 7,
+      "expert": 21
+    },
+    {
+      "layer": 7,
+      "expert": 24
+    },
+    {
+      "layer": 7,
+      "expert": 26
+    },
+    {
+      "layer": 7,
+      "expert": 29
+    },
+    {
+      "layer": 7,
+      "expert": 32
+    },
+    {
+      "layer": 7,
+      "expert": 35
+    },
+    {
+      "layer": 7,
+      "expert": 46
+    },
+    {
+      "layer": 7,
+      "expert": 58
+    },
+    {
+      "layer": 8,
+      "expert": 3
+    },
+    {
+      "layer": 8,
+      "expert": 6
+    },
+    {
+      "layer": 8,
+      "expert": 14
+    },
+    {
+      "layer": 8,
+      "expert": 16
+    },
+    {
+      "layer": 8,
+      "expert": 18
+    },
+    {
+      "layer": 8,
+      "expert": 27
+    },
+    {
+      "layer": 8,
+      "expert": 30
+    },
+    {
+      "layer": 8,
+      "expert": 32
+    },
+    {
+      "layer": 8,
+      "expert": 37
+    },
+    {
+      "layer": 8,
+      "expert": 45
+    },
+    {
+      "layer": 8,
+      "expert": 51
+    },
+    {
+      "layer": 8,
+      "expert": 54
+    },
+    {
+      "layer": 9,
+      "expert": 4
+    },
+    {
+      "layer": 9,
+      "expert": 5
+    },
+    {
+      "layer": 9,
+      "expert": 6
+    },
+    {
+      "layer": 9,
+      "expert": 7
+    },
+    {
+      "layer": 9,
+      "expert": 20
+    },
+    {
+      "layer": 9,
+      "expert": 39
+    },
+    {
+      "layer": 9,
+      "expert": 46
+    },
+    {
+      "layer": 9,
+      "expert": 50
+    },
+    {
+      "layer": 9,
+      "expert": 51
+    },
+    {
+      "layer": 9,
+      "expert": 52
+    },
+    {
+      "layer": 9,
+      "expert": 61
+    },
+    {
+      "layer": 10,
+      "expert": 2
+    },
+    {
+      "layer": 10,
+      "expert": 5
+    },
+    {
+      "layer": 10,
+      "expert": 11
+    },
+    {
+      "layer": 10,
+      "expert": 13
+    },
+    {
+      "layer": 10,
+      "expert": 16
+    },
+    {
+      "layer": 10,
+      "expert": 19
+    },
+    {
+      "layer": 10,
+      "expert": 22
+    },
+    {
+      "layer": 10,
+      "expert": 30
+    },
+    {
+      "layer": 10,
+      "expert": 43
+    },
+    {
+      "layer": 10,
+      "expert": 44
+    },
+    {
+      "layer": 10,
+      "expert": 56
+    },
+    {
+      "layer": 10,
+      "expert": 59
+    },
+    {
+      "layer": 10,
+      "expert": 61
+    },
+    {
+      "layer": 10,
+      "expert": 62
+    },
+    {
+      "layer": 11,
+      "expert": 7
+    },
+    {
+      "layer": 11,
+      "expert": 13
+    },
+    {
+      "layer": 11,
+      "expert": 20
+    },
+    {
+      "layer": 11,
+      "expert": 23
+    },
+    {
+      "layer": 11,
+      "expert": 27
+    },
+    {
+      "layer": 11,
+      "expert": 33
+    },
+    {
+      "layer": 11,
+      "expert": 43
+    },
+    {
+      "layer": 11,
+      "expert": 44
+    },
+    {
+      "layer": 11,
+      "expert": 47
+    },
+    {
+      "layer": 11,
+      "expert": 51
+    },
+    {
+      "layer": 11,
+      "expert": 57
+    },
+    {
+      "layer": 11,
+      "expert": 63
+    },
+    {
+      "layer": 12,
+      "expert": 2
+    },
+    {
+      "layer": 12,
+      "expert": 6
+    },
+    {
+      "layer": 12,
+      "expert": 8
+    },
+    {
+      "layer": 12,
+      "expert": 30
+    },
+    {
+      "layer": 12,
+      "expert": 31
+    },
+    {
+      "layer": 12,
+      "expert": 32
+    },
+    {
+      "layer": 12,
+      "expert": 38
+    },
+    {
+      "layer": 12,
+      "expert": 43
+    },
+    {
+      "layer": 12,
+      "expert": 45
+    },
+    {
+      "layer": 12,
+      "expert": 51
+    },
+    {
+      "layer": 12,
+      "expert": 55
+    },
+    {
+      "layer": 12,
+      "expert": 59
+    },
+    {
+      "layer": 13,
+      "expert": 2
+    },
+    {
+      "layer": 13,
+      "expert": 5
+    },
+    {
+      "layer": 13,
+      "expert": 6
+    },
+    {
+      "layer": 13,
+      "expert": 11
+    },
+    {
+      "layer": 13,
+      "expert": 25
+    },
+    {
+      "layer": 13,
+      "expert": 27
+    },
+    {
+      "layer": 13,
+      "expert": 32
+    },
+    {
+      "layer": 13,
+      "expert": 54
+    },
+    {
+      "layer": 13,
+      "expert": 55
+    },
+    {
+      "layer": 13,
+      "expert": 61
+    },
+    {
+      "layer": 13,
+      "expert": 62
+    },
+    {
+      "layer": 14,
+      "expert": 1
+    },
+    {
+      "layer": 14,
+      "expert": 6
+    },
+    {
+      "layer": 14,
+      "expert": 7
+    },
+    {
+      "layer": 14,
+      "expert": 11
+    },
+    {
+      "layer": 14,
+      "expert": 13
+    },
+    {
+      "layer": 14,
+      "expert": 24
+    },
+    {
+      "layer": 14,
+      "expert": 28
+    },
+    {
+      "layer": 14,
+      "expert": 36
+    },
+    {
+      "layer": 14,
+      "expert": 39
+    },
+    {
+      "layer": 14,
+      "expert": 42
+    },
+    {
+      "layer": 14,
+      "expert": 52
+    },
+    {
+      "layer": 14,
+      "expert": 58
+    },
+    {
+      "layer": 15,
+      "expert": 1
+    },
+    {
+      "layer": 15,
+      "expert": 3
+    },
+    {
+      "layer": 15,
+      "expert": 8
+    },
+    {
+      "layer": 15,
+      "expert": 17
+    },
+    {
+      "layer": 15,
+      "expert": 29
+    },
+    {
+      "layer": 15,
+      "expert": 30
+    },
+    {
+      "layer": 15,
+      "expert": 36
+    },
+    {
+      "layer": 15,
+      "expert": 44
+    },
+    {
+      "layer": 15,
+      "expert": 58
+    },
+    {
+      "layer": 15,
+      "expert": 60
+    }
+  ],
+  "protected_expert_count": 204,
+  "protected_experts_per_layer": [
+    16,
+    12,
+    13,
+    18,
+    12,
+    14,
+    13,
+    12,
+    12,
+    11,
+    14,
+    12,
+    12,
+    11,
+    12,
+    10
+  ],
+  "total_projected_expert_bytes": 3963617280,
+  "bf16_reference_expert_bytes": 12884901888,
+  "effective_bits_per_weight": 4.921875,
+  "functional_specialist_coverage": {
+    "general": 0.014328007051402362,
+    "math": 0.24068520624024536,
+    "coding": 0.9885541719914118,
+    "reasoning": 0.1637520866860201
+  },
+  "functional_specialist_coverage_min": 0.014328007051402362,
+  "functional_specialist_coverage_mean": 0.3518298679922699,
+  "routing_specialist_coverage": {
+    "general": 0.003084450116996384,
+    "math": 0.14082959838298623,
+    "coding": 0.960776564738428,
+    "reasoning": 0.08460471567267688
+  },
+  "routing_specialist_coverage_min": 0.003084450116996384,
+  "calibration_fingerprint": "7fc28a40a24f9c7684d9544f1d1524fd9329b6abfa717ce70248cf440c8632d4",
+  "calibration_hashes": {
+    "general": "04ad1c506cd4b1777905d451a81f0b320681aadcab71f8c3388da372e7408f18",
+    "math": "5b80c16024a2c4179eee29bce0b963d69b6b56e2e2e22285a427449866b5b885",
+    "coding": "d65e4162b27bd70f640185424f78d279e144d2a543173f179ebaa587ffd07190",
+    "reasoning": "7e6aa5a03276735100a31ce1b05b7b7cd67204c4af5de73a41b3402c5d813b90"
+  },
+  "score_hashes": {
+    "functional_importance_sha256": "65d890584d5f177ac71a69fb9ee8e55ecb148cc9b55134032fe0b743d0a4278c",
+    "functional_specialization_sha256": "e50d08647a6a463feaf673508878526755897c66d447be7e62ab2f6a7faaf355",
+    "routing_specialization_sha256": "6b3779b23d316479896ce470241b2ad65edc9b2c5949d5e3f7554a91fa1071de",
+    "single_domain_importance_sha256": "f0fac5f83274038be7a64cbb973d20ad1447ea055183ff27adab2497c538ec83",
+    "global_importance_sha256": "31ad95339eb26ce25a600847356088baa64cff2211e653d1bb7c019e6d08a568"
+  },
+  "solver_metadata": {
+    "solver": "scipy.optimize.milp",
+    "backend": "HiGHS",
+    "scipy_version": "1.18.0",
+    "problem": "single_domain_coding",
+    "objective_sense": "maximize",
+    "solver_status": 0,
+    "solver_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "solver_success": true,
+    "mip_node_count": 1,
+    "mip_dual_bound": -0.7616882198682308,
+    "mip_gap": 0.0,
+    "runtime_seconds": 0.2040546250063926,
+    "budget_bytes": 644245094,
+    "used_protection_bytes": 641728512,
+    "budget_utilization": 0.9960937506184564,
+    "memory_constraint_residual_bytes": 2516582,
+    "protected_expert_count": 204,
+    "objective_value": 0.7616882198682309
+  },
+  "allocation_sha256": "1a166db8043059944347d71a2ac31a964ec2d0cf3bd9cf0a6278231935b58bd3",
+  "created_at_utc": "2026-08-15T04:44:08.660378+00:00"
+}

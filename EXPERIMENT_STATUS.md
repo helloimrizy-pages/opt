@@ -27,10 +27,18 @@ on the NVIDIA A40. Four-bit QDQ passed all four preregistered gates; the 3-bit
 fallback was not triggered. Stage 2A activation-aware surrogate validation is now
 also complete and independently audited on the A40, with a final decision of
 **SURROGATE_NO_GO**: both AOD and the preregistered GQS fallback failed Gates A and
-B. The full cost matrix was therefore not authorized or generated, and
-distributionally robust mixed-precision optimization remains blocked and
-unimplemented. Prompt-only, controlled causal, balanced causal, Stage-1, and
-Stage-2A validation are complete and independently audited.
+B. The full cost matrix was therefore not authorized or generated, and any
+optimizer that predicts per-expert quantization delta NLL remains blocked.
+Prompt-only, controlled causal, balanced causal, Stage-1, and Stage-2A validation
+are complete and independently audited.
+
+Stage 2B (robust specialist preservation) is now implemented and locally frozen.
+It deliberately does not predict quantization damage: it protects
+domain-specialized expert capacity directly and maximizes the specialist coverage
+of the worst-protected domain under a fixed incremental-memory budget. All
+calibration scores, MILP allocations, and held-out splits are frozen and
+independently audited; **Stage 2B development evaluation is pending** on the CUDA
+machine. See the Stage 2B section below.
 
 ## Code baseline
 
@@ -778,6 +786,94 @@ mixed-precision optimizer. The result remains limited to one model revision, 16
 pilot experts, four reused controlled domains, and 100 examples/domain; grouped
 bootstrap intervals do not cover checkpoint, prompt, or dataset-choice uncertainty.
 
+## Stage 2B robust specialist preservation: allocations frozen, development pending
+
+Artifact directory: `results/robust_specialist_preservation/`.
+
+Stage 2B tests one fixed idea: when exact per-expert quantization damage is not
+predictably estimable (the frozen Stage-2A result), protect domain-specialized
+expert capacity directly and maximize the specialist coverage of the
+worst-protected domain. The optimization objective uses only the frozen
+domain-conditioned functional-contribution arrays; no AOD, GQS, APD,
+reconstruction error, fitted surrogate, or any delta-NLL prediction enters any
+objective, and the Stage-2A `SURROGATE_NO_GO` decision is preserved unchanged.
+
+Implementation (2026-08-15, local Apple-Silicon machine, no model inference):
+
+- Calibration: 25 examples/domain (seed `20260815`) drawn deterministically from
+  the frozen controlled 100/domain arrays; single-domain baselines use their
+  full 100 examples so every method receives exactly 100 calibration examples.
+  Calibration fingerprint
+  `7fc28a40a24f9c7684d9544f1d1524fd9329b6abfa717ce70248cf440c8632d4`.
+- Scores: layer-normalized, layer-equalized functional importance `F[l,e,d]`;
+  specialization margin `S_raw = F[l,e,d] - max_{d'!=d} F[l,e,d']`, positive
+  part normalized per domain; an identical routing-based score for the
+  preregistered Robust-Routing ablation.
+- Memory accounting reuses the exact Stage-1 `projected_expert_storage`:
+  per expert `M(3)=2,457,600`, `M(4)=3,244,032`, `M(8)=6,389,760` bytes
+  (packed payload plus FP16 group scales, group size 128). Regimes `4to8` and
+  `3to8` with 8-bit protection; budgets 5/10/20/30% of the exact total
+  increment; every method at a regime/budget shares the identical byte budget.
+- Allocations: `scipy.optimize.milp` (HiGHS, SciPy 1.18.0, `mip_rel_gap=0`)
+  solved Robust-Functional (max-min coverage), Robust-Routing,
+  Average-Specialization, Global-Importance, and four single-domain baselines;
+  five deterministic score-independent random allocations (seeds 1001-1005);
+  uniform BF16/8/4/3-bit reference records. 108 allocation files frozen under
+  `allocations/` with per-file SHA-256 and registry hash
+  `b0221262f0e51700cc16fa5e6a681f63ab6507a9d768714f853f3dfc3f87aa34`.
+- Score-space sanity (20% budget, 4to8): Robust-Functional equalizes coverage
+  (min 0.5826); Average-Specialization mean 0.6013 but min 0.4316;
+  Global-Importance min 0.0957 (General); single-domain methods cover only
+  their own domain; randoms sit near 0.15-0.27. No allocation exceeds the
+  max-min optimum, confirming MILP optimality.
+- Held-out splits: development seed 43 (50/domain) and final seed 44
+  (100/domain), identical 68-token neutral-prefix geometry with 64 measured
+  positions. The seed-42 prior selection was reconstructed and verified against
+  the frozen input hashes bit for bit before exclusion. General excluded the
+  entire previously inspected candidate pool; Math/Coding/Reasoning datasets
+  are too small for full-pool exclusion, so they exclude the 100 previously
+  evaluated examples (limitation recorded in `splits/split_manifest.json`).
+  All development/final/prior overlaps verified empty at content-token level.
+- Independent audit: `scripts/audit_specialist_preservation.py` (imports no
+  production analysis code) passed 1,676/1,676 checks with maximum numeric
+  difference 0.0. Full test suite: 118/118 passing.
+
+Preregistered evaluation plan (frozen before any held-out NLL):
+
+- Development: 20% budget only, both regimes, all methods plus randoms, on the
+  seed-43 split; gates A (beats random mean), B (beats Global-Importance and
+  Average-Specialization on worst-domain relative delta NLL), C (mean
+  degradation within 10% of Average-Specialization, absolute floor 1e-4), and
+  D (positive recovery vs the all-base model in >= 3 of 4 domains). At least
+  one passing regime writes `FULL_EVALUATION_GO`; otherwise
+  `ROBUST_PRESERVATION_NO_GO` stops the experiment with the negative result
+  preserved and the final split uninspected.
+- Final (only if GO): all budgets/regimes/methods from the frozen registry,
+  1,000-replicate paired bootstrap, single-domain transfer matrix, and the
+  frozen STRONG SUCCESS / SUCCESS WITH QUALIFICATIONS / NEGATIVE RESULT rule.
+- The 3-bit regime is newly preregistered here as an intentionally aggressive
+  compression setting; the untriggered Stage-1 3-bit fallback (a
+  mechanism-gate rule) does not prohibit it.
+- Strict CUDA determinism is required: `CUBLAS_WORKSPACE_CONFIG=:4096:8`
+  before launch, TF32 disabled, eager attention, deterministic algorithms, and
+  a mandatory bitwise repeated-BF16-baseline gate that stops the run on any
+  mismatch.
+
+Rules now in force: never regenerate or edit `allocations/` (transfer the
+frozen artifacts to the CUDA machine; do not re-solve there); never evaluate
+the final split before `FULL_EVALUATION_GO`; never modify the objective,
+budgets, or gates after seeing development results; Robust-Routing stays an
+ablation even if it wins. QDQ simulation permits no runtime speedup, latency,
+or measured-memory claims; only exact projected storage is reported.
+
+Remote CUDA commands (in order):
+
+```bash
+PYTHONPATH=src python scripts/run_stage2b_specialist_preservation.py --stage development --device cuda --cache-dir .hf_cache
+# then, only if stage2b_decision.json says FULL_EVALUATION_GO:
+PYTHONPATH=src python scripts/run_stage2b_specialist_preservation.py --stage final --device cuda --cache-dir .hf_cache
+```
+
 ## Fresh-session checklist
 
 A new Codex session should:
@@ -804,6 +900,11 @@ A new Codex session should:
 11. Treat Stage-2A as complete and independently audited with final decision
     `SURROGATE_NO_GO`. Preserve its small result package and raw capture artifacts;
     do not reinterpret the failed AOD/GQS gates.
-12. The full cost matrix was not authorized or generated. Robust mixed-precision
-    optimization remains scientifically blocked and was not implemented.
-13. Update this handoff after every new validated run.
+12. The full cost matrix was not authorized or generated. Any optimizer that
+    predicts per-expert quantization delta NLL remains scientifically blocked.
+13. Treat `results/robust_specialist_preservation/allocations/` and
+    `results/robust_specialist_preservation/splits/` as frozen Stage 2B
+    artifacts. Never regenerate, re-solve, or edit them; transfer them to the
+    CUDA machine as-is. The final seed-44 split must stay unevaluated until
+    `stage2b_decision.json` records `FULL_EVALUATION_GO`.
+14. Update this handoff after every new validated run.
