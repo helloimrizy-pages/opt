@@ -38,7 +38,15 @@ quantization damage: it protects domain-specialized expert capacity directly und
 a fixed incremental-memory budget. Neither the 4-to-8-bit nor 3-to-8-bit regime
 passed every frozen development gate, so the final decision is
 **ROBUST_PRESERVATION_NO_GO**. The seed-44 final split remains uninspected and must
-not be evaluated. See the Stage 2B section below.
+not be evaluated under the Stage 2B preregistration. See the Stage 2B section below.
+
+Stage 2C (fragility-weighted robust specialist preservation) is a new follow-up
+optimization hypothesis conceived after the Stage 2B negative result. Its status
+is **implemented and preregistered in code / pending CUDA development**. The
+frozen Stage 2B result is preserved unchanged; seed 43 is treated as contaminated
+and is never used by Stage 2C; a new seed-45 development split has been built and
+audited locally; and the seed-44 final split remains untouched until the new
+seed-45 development gate passes. See the Stage 2C section below.
 
 ## Code baseline
 
@@ -902,6 +910,111 @@ must remain unevaluated, and the allocation objective, budgets, gates, and faile
 interventions must remain unchanged. QDQ simulation permits no runtime speedup,
 latency, or measured-memory claims; only exact projected storage is reported.
 
+## Stage 2C fragility-weighted robust specialist preservation: implemented / pending CUDA development
+
+Artifact directory: `results/fragility_robust_preservation/`.
+
+Current status: **implemented, locally audited, pending CUDA development**. No
+calibration fragility, allocation, or held-out NLL has been produced yet; nothing
+in this stage modifies the frozen Stage 2A or Stage 2B negative results.
+
+Stage 2C tests one fixed correction to Stage 2B: equalizing specialist coverage
+is suboptimal when domains differ in baseline quantization vulnerability, so the
+optimizer should balance predicted residual domain vulnerability instead. The
+PRIMARY method (Fragility-Robust) minimizes the largest
+`ResidualRisk_d = q_norm[d] * (1 - Coverage_d(x))` across the four domains under
+the exact Stage 2B incremental-memory budgets, where `q_norm` is
+calibration-measured domain fragility:
+`q_raw[d,b] = (NLL_base_cal[d,b] - NLL_BF16_cal[d]) / NLL_BF16_cal[d]`, clipped
+at zero (never absolute value) and normalized to mean one across domains. A
+regime whose four clipped fragilities are all zero is invalid and is not
+evaluated. The method uses no expert-level delta-NLL, no AOD/GQS/APD, no fitted
+coefficients, no tuned exponents or lambdas, and no Stage 2B development
+outcomes. If Stage 2C fails its gates, the negative result is preserved and
+optimization development on this branch stops.
+
+Temporal separation (preregistered): Stage 2C was conceived after the Stage 2B
+development results were observed, so the seed-43 split is contaminated and is
+never used. A completely new seed-45 development split (50 examples/domain, 64
+measured positions, identical 68-token neutral-prefix geometry, pinned dataset
+revisions) was built and frozen locally on 2026-08-15. Exclusions per domain:
+the reconstructed seed-42 prior usage (bit-for-bit verified; entire inspected
+candidate pool for General, the 100 previously evaluated examples for
+Math/Coding/Reasoning, limitation recorded), all 50 seed-43 texts, and all 100
+seed-44 texts. All overlap checks are empty at the content-token level. Split
+input hashes: general `45b5d6e4f139dac0`..., math `c564af3b87fcf034`...,
+coding `81eef2be91d5aa9f`..., reasoning `4425a57aec5614b2`... (full values in
+`splits/split_manifest.json`). The untouched Stage 2B seed-44 final split is
+reused for final confirmation only after a GO; its hashes were re-verified
+without any model evaluation.
+
+Implementation (2026-08-15, local Apple-Silicon machine, no model inference):
+
+- `src/expert_analysis/stage2c_preflight.py` — verifies STRONG GO / GO /
+  SURROGATE_NO_GO / ROBUST_PRESERVATION_NO_GO with the frozen Stage 2B gate
+  values and registry hash, and verifies seed-44 isolation by hash only.
+- `src/expert_analysis/fragility.py` — the fixed fragility formula, clipping,
+  mean-one normalization, frozen-record integrity hashing, hash-verified reuse
+  of the frozen Stage 2B specialization artifacts, and 25/domain calibration
+  subset slicing verified against the frozen Stage 2B row hashes.
+- `src/expert_analysis/fragility_optimization.py` — the Fragility-Robust MILP
+  (`scipy.optimize.milp`/HiGHS, minimize z with
+  `q_norm[d]*(1-Coverage_d(x)) <= z` and the exact byte budget), allocation
+  records, a registry that freezes all eight regime/budget allocations before
+  any development NLL and reuses every Stage 2B comparator by hash, plus an
+  optimality sanity check against all reused comparators.
+- `src/expert_analysis/fragility_evaluation.py` — seed-45 split construction
+  and loading, preregistration freezing/immutability checks, run fingerprints,
+  and phase record selection. Model evaluation reuses the audited Stage 2B
+  mixed-precision manager, bitwise restoration, and loss checkpoints unchanged.
+- `src/expert_analysis/fragility_statistics.py` — the five preregistered
+  development gates (A: beats frozen Robust-Functional; B: beats the random
+  mean; C: beats both Global-Importance and Average-Specialization; D: positive
+  recovery in >= 3 of 4 domains; E: mean degradation at most 10% relatively
+  worse than the better of Global-Importance/Average-Specialization with an
+  epsilon only for denominator safety), the FINAL_CONFIRMATION_GO /
+  FRAGILITY_ROBUST_NO_GO rule, the frozen final requirements 1-5 with the
+  qualified-success rule, and the descriptive protection-shift and
+  fragility-transfer analyses.
+- `src/expert_analysis/fragility_reporting.py` — analysis driver, tables,
+  decision files, pre-evaluation diagnostics (optimization-space only), the six
+  preregistered figures, and summaries.
+- Scripts: `build_stage2c_development_split.py` (done locally),
+  `build_calibration_fragility.py`, `solve_fragility_robust_allocations.py`,
+  `run_fragility_robust_development.py`, `run_fragility_robust_final.py`, and
+  the standalone `audit_fragility_robust_preservation.py` (imports no
+  production analysis code).
+- Tests: 56 new tests; the full suite passes **174/174** locally.
+- Independent audit of the current local state: **61/61** checks passed with
+  maximum numeric difference 0.0 (frozen prior state, reused score hashes,
+  seed-45 split disjointness, seed-44 isolation). Fragility, allocations, and
+  development results are correctly reported as not yet present.
+
+Pending CUDA work, in the preregistered order (fragility → freeze method →
+freeze allocations → seed-45 development → GO/NO-GO → seed-44 only if GO):
+
+1. `PYTHONPATH=src python scripts/build_calibration_fragility.py --device cuda
+   --cache-dir .hf_cache` — evaluates clean BF16, uniform 4-bit, and uniform
+   3-bit expert-only QDQ on the frozen 25/domain calibration subset (the same
+   frozen Stage 2B multi-domain calibration data; no new calibration examples),
+   each state twice with a bitwise reproduction requirement, then freezes
+   `calibration/calibration_fragility.json`.
+2. `PYTHONPATH=src python scripts/solve_fragility_robust_allocations.py` —
+   solves and freezes all eight Fragility-Robust allocations, the Stage 2C
+   registry with reused Stage 2B comparator hashes, the preregistration file
+   plus `preregistration_sha256.txt`, and the pre-evaluation diagnostics.
+3. `python scripts/audit_fragility_robust_preservation.py` — pre-evaluation
+   audit gate.
+4. `PYTHONPATH=src python scripts/run_fragility_robust_development.py --device
+   cuda --cache-dir .hf_cache` — seed-45, 20% budget only, both regimes, all
+   frozen comparators; writes `stage2c_decision.json`.
+5. `python scripts/audit_fragility_robust_preservation.py` — development audit.
+6. Only on FINAL_CONFIRMATION_GO: `PYTHONPATH=src python
+   scripts/run_fragility_robust_final.py --device cuda --cache-dir .hf_cache`
+   for the authorized regime(s) at all four budgets on seed 44, followed by the
+   final audit. On FRAGILITY_ROBUST_NO_GO: stop, preserve the negative result,
+   and leave seed 44 untouched permanently under this preregistration.
+
 ## Fresh-session checklist
 
 A new Codex session should:
@@ -933,5 +1046,11 @@ A new Codex session should:
 13. Treat Stage 2B development as complete and independently audited with final
     decision `ROBUST_PRESERVATION_NO_GO`. Preserve its frozen allocations, splits,
     development checkpoints, and negative result without modification. The final
-    seed-44 split must remain unevaluated permanently under this preregistration.
-14. Update this handoff after every new validated run.
+    seed-44 split may be evaluated only by an authorized Stage 2C final
+    confirmation after a preregistered seed-45 `FINAL_CONFIRMATION_GO`.
+14. Treat `results/fragility_robust_preservation/` as the Stage 2C workspace.
+    The seed-45 split, method code, gates, and audit are frozen; seed 43 is
+    contaminated for Stage 2C and must never be used; fragility values and
+    allocations must be produced only by the documented CUDA commands, in the
+    preregistered order, and never edited afterward.
+15. Update this handoff after every new validated run.
