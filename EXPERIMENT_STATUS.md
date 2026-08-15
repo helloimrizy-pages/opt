@@ -17,9 +17,9 @@ The diagnostic question is:
 
 The completed audited evidence measures routing utilization, selected gate mass, a
 functional-contribution proxy, and selected-route masking loss sensitivity. No
-modified checkpoint has been saved, fine-tuned, or compressed. The newly
-implemented Stage-1 and Stage-2A code applies only temporary, exactly restored
-expert QDQ.
+modified checkpoint has been saved, fine-tuned, or compressed. The Stage-1,
+Stage-2A, and Stage-2B interventions apply only temporary, exactly restored expert
+QDQ.
 
 Current decision: the mandatory Stage-1 reversible quantization-sensitivity pilot
 is **GO** and complete after production execution and independent raw-artifact audit
@@ -32,13 +32,13 @@ optimizer that predicts per-expert quantization delta NLL remains blocked.
 Prompt-only, controlled causal, balanced causal, Stage-1, and Stage-2A validation
 are complete and independently audited.
 
-Stage 2B (robust specialist preservation) is now implemented and locally frozen.
-It deliberately does not predict quantization damage: it protects
-domain-specialized expert capacity directly and maximizes the specialist coverage
-of the worst-protected domain under a fixed incremental-memory budget. All
-calibration scores, MILP allocations, and held-out splits are frozen and
-independently audited; **Stage 2B development evaluation is pending** on the CUDA
-machine. See the Stage 2B section below.
+Stage 2B (robust specialist preservation) development evaluation is also complete
+and independently audited on the A40. It deliberately does not predict
+quantization damage: it protects domain-specialized expert capacity directly under
+a fixed incremental-memory budget. Neither the 4-to-8-bit nor 3-to-8-bit regime
+passed every frozen development gate, so the final decision is
+**ROBUST_PRESERVATION_NO_GO**. The seed-44 final split remains uninspected and must
+not be evaluated. See the Stage 2B section below.
 
 ## Code baseline
 
@@ -61,6 +61,7 @@ The implemented and committed workflow consists of:
 - `4b51cf7` — Complete and audit the Stage-1 quantization pilot
 - `f04ea8d` — Add validated causal and quantization result artifacts
 - `eb160bb` — Implement the Stage-2A quantization-cost surrogate
+- `daeedb3` — Add the frozen Stage-2B specialist-preservation workflow
 
 The balanced-panel implementation adds deterministic baseline-only
 preregistration, strict integrity gates, intervention-level resume support, paired
@@ -786,9 +787,13 @@ mixed-precision optimizer. The result remains limited to one model revision, 16
 pilot experts, four reused controlled domains, and 100 examples/domain; grouped
 bootstrap intervals do not cover checkpoint, prompt, or dataset-choice uncertainty.
 
-## Stage 2B robust specialist preservation: allocations frozen, development pending
+## Stage 2B robust specialist preservation: development complete and audited / NO-GO
 
 Artifact directory: `results/robust_specialist_preservation/`.
+
+Final status: **ROBUST_PRESERVATION_NO_GO**. No regime passed every frozen
+development gate, so the final seed-44 split was not evaluated and no final-stage
+claim is authorized.
 
 Stage 2B tests one fixed idea: when exact per-expert quantization damage is not
 predictably estimable (the frozen Stage-2A result), protect domain-specialized
@@ -834,11 +839,12 @@ Implementation (2026-08-15, local Apple-Silicon machine, no model inference):
   are too small for full-pool exclusion, so they exclude the 100 previously
   evaluated examples (limitation recorded in `splits/split_manifest.json`).
   All development/final/prior overlaps verified empty at content-token level.
-- Independent audit: `scripts/audit_specialist_preservation.py` (imports no
-  production analysis code) passed 1,676/1,676 checks with maximum numeric
-  difference 0.0. Full test suite: 118/118 passing.
+- Pre-inference independent audit:
+  `scripts/audit_specialist_preservation.py` (imports no production analysis
+  code) passed 1,676/1,676 calibration, allocation, MILP, and split checks with
+  maximum numeric difference 0.0. Full test suite: 118/118 passing.
 
-Preregistered evaluation plan (frozen before any held-out NLL):
+Preregistered evaluation rule (frozen before any held-out NLL):
 
 - Development: 20% budget only, both regimes, all methods plus randoms, on the
   seed-43 split; gates A (beats random mean), B (beats Global-Importance and
@@ -859,20 +865,42 @@ Preregistered evaluation plan (frozen before any held-out NLL):
   a mandatory bitwise repeated-BF16-baseline gate that stops the run on any
   mismatch.
 
-Rules now in force: never regenerate or edit `allocations/` (transfer the
-frozen artifacts to the CUDA machine; do not re-solve there); never evaluate
-the final split before `FULL_EVALUATION_GO`; never modify the objective,
-budgets, or gates after seeing development results; Robust-Routing stays an
-ablation even if it wins. QDQ simulation permits no runtime speedup, latency,
-or measured-memory claims; only exact projected storage is reported.
-
-Remote CUDA commands (in order):
+Exact A40 development command used:
 
 ```bash
 PYTHONPATH=src python scripts/run_stage2b_specialist_preservation.py --stage development --device cuda --cache-dir .hf_cache
-# then, only if stage2b_decision.json says FULL_EVALUATION_GO:
-PYTHONPATH=src python scripts/run_stage2b_specialist_preservation.py --stage final --device cuda --cache-dir .hf_cache
 ```
+
+The run used the pinned OLMoE revision on NVIDIA A40, CUDA BF16, batch size 1,
+seed 42, strict deterministic algorithms, eager attention,
+`CUBLAS_WORKSPACE_CONFIG=:4096:8`, and TF32 disabled. The run fingerprint is
+`dd954304806fd7f5eb7ebbd124b11f432cf85a1bbd283cd9e17262436e82456d`.
+It evaluated the frozen 20% budget allocations on the seed-43 development split
+with 50 examples/domain and 64 measured positions/example.
+
+Development gate outcomes:
+
+| Regime | Robust worst-domain relative delta NLL | Random mean | Global-Importance | Average-Specialization | Gate A | Gate B | Gate C | Gate D |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| 4to8 | +0.031427 | +0.026288 | +0.011853 | +0.028731 | FAIL | FAIL | PASS | PASS |
+| 3to8 | +0.053559 | +0.064823 | +0.056027 | +0.050999 | PASS | FAIL | PASS | PASS |
+
+At 4to8, Robust-Functional was worse than the random mean and both non-robust
+preservation baselines on worst-domain relative delta NLL. At 3to8 it beat the
+random mean and Global-Importance, but not Average-Specialization, so Gate B still
+failed. Both regimes stayed within the frozen mean-degradation tolerance and
+recovered positively from the all-base model in all four domains. The
+Robust-Routing ablation was retained as an ablation and was not allowed to replace
+the preregistered primary method.
+
+The final independent audit recomputed the development tables, bootstrap results,
+all four gates, and the stopping decision without importing production analysis
+functions. It passed **2,340/2,340** checks with maximum numeric difference **0.0**;
+development results are audited and final results are explicitly absent. The
+negative result therefore stops Stage 2B as preregistered. The final seed-44 split
+must remain unevaluated, and the allocation objective, budgets, gates, and failed
+interventions must remain unchanged. QDQ simulation permits no runtime speedup,
+latency, or measured-memory claims; only exact projected storage is reported.
 
 ## Fresh-session checklist
 
@@ -902,9 +930,8 @@ A new Codex session should:
     do not reinterpret the failed AOD/GQS gates.
 12. The full cost matrix was not authorized or generated. Any optimizer that
     predicts per-expert quantization delta NLL remains scientifically blocked.
-13. Treat `results/robust_specialist_preservation/allocations/` and
-    `results/robust_specialist_preservation/splits/` as frozen Stage 2B
-    artifacts. Never regenerate, re-solve, or edit them; transfer them to the
-    CUDA machine as-is. The final seed-44 split must stay unevaluated until
-    `stage2b_decision.json` records `FULL_EVALUATION_GO`.
+13. Treat Stage 2B development as complete and independently audited with final
+    decision `ROBUST_PRESERVATION_NO_GO`. Preserve its frozen allocations, splits,
+    development checkpoints, and negative result without modification. The final
+    seed-44 split must remain unevaluated permanently under this preregistration.
 14. Update this handoff after every new validated run.

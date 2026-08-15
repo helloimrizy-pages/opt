@@ -1,0 +1,152 @@
+{
+  "stage": "stage2b_robust_specialist_preservation",
+  "phase": "development",
+  "decision": "ROBUST_PRESERVATION_NO_GO",
+  "development_decision": {
+    "decision": "ROBUST_PRESERVATION_NO_GO",
+    "passing_regimes": [],
+    "regimes_evaluated": [
+      "4to8",
+      "3to8"
+    ],
+    "rule": "FULL_EVALUATION_GO if at least one precision regime passes all four development gates; the gate is a compute-saving rule, not the final hypothesis test, and never modifies the method"
+  },
+  "development_gates": {
+    "4to8": {
+      "gate_a": {
+        "name": "better_than_random",
+        "robust_worst_relative_delta": 0.03142668908053787,
+        "random_mean_worst_relative_delta": 0.02628811983731494,
+        "passed": false
+      },
+      "gate_b": {
+        "name": "better_than_non_robust_preservation",
+        "robust_worst_relative_delta": 0.03142668908053787,
+        "global_importance_worst_relative_delta": 0.011853175308517386,
+        "average_specialization_worst_relative_delta": 0.028731470291185692,
+        "passed": false
+      },
+      "gate_c": {
+        "name": "no_catastrophic_mean_tradeoff",
+        "robust_mean_relative_delta": 0.011808372956931733,
+        "average_specialization_mean_relative_delta": 0.011392167252747639,
+        "relative_tolerance": 0.1,
+        "absolute_tolerance_floor": 0.0001,
+        "tolerance_used": 0.0011392167252747638,
+        "absolute_floor_applied": false,
+        "passed": true
+      },
+      "gate_d": {
+        "name": "broad_recovery",
+        "recovery_by_domain": {
+          "general": 0.019821643829345703,
+          "math": 0.017154917716979856,
+          "coding": 0.0026640629768370783,
+          "reasoning": 0.02040210723876945
+        },
+        "positive_recovery_domains": [
+          "general",
+          "math",
+          "coding",
+          "reasoning"
+        ],
+        "required_positive_domains": 3,
+        "passed": true
+      },
+      "all_passed": false,
+      "random_baseline_statistics": {
+        "count": 5,
+        "mean_worst_relative_delta": 0.02628811983731494,
+        "std_worst_relative_delta": 0.006475218204039934,
+        "best_random_worst_relative_delta": 0.015459394273343294,
+        "worst_random_worst_relative_delta": 0.03225758841065047,
+        "mean_mean_relative_delta": 0.01464265409527669,
+        "individual_worst_relative_delta": {
+          "random_seed1001": 0.015459394273343294,
+          "random_seed1002": 0.030031453001935552,
+          "random_seed1003": 0.026543786697614324,
+          "random_seed1004": 0.03225758841065047,
+          "random_seed1005": 0.02714837680303106
+        },
+        "individual_mean_relative_delta": {
+          "random_seed1001": 0.013381554601370119,
+          "random_seed1002": 0.016847861243318538,
+          "random_seed1003": 0.015790076766312902,
+          "random_seed1004": 0.01623173661742564,
+          "random_seed1005": 0.010962041247956262
+        }
+      }
+    },
+    "3to8": {
+      "gate_a": {
+        "name": "better_than_random",
+        "robust_worst_relative_delta": 0.053558570028599976,
+        "random_mean_worst_relative_delta": 0.06482291956189752,
+        "passed": true
+      },
+      "gate_b": {
+        "name": "better_than_non_robust_preservation",
+        "robust_worst_relative_delta": 0.053558570028599976,
+        "global_importance_worst_relative_delta": 0.056027295784834195,
+        "average_specialization_worst_relative_delta": 0.050998658548519225,
+        "passed": false
+      },
+      "gate_c": {
+        "name": "no_catastrophic_mean_tradeoff",
+        "robust_mean_relative_delta": 0.04155055779170164,
+        "average_specialization_mean_relative_delta": 0.040094022011888344,
+        "relative_tolerance": 0.1,
+        "absolute_tolerance_floor": 0.0001,
+        "tolerance_used": 0.004009402201188834,
+        "absolute_floor_applied": false,
+        "passed": true
+      },
+      "gate_d": {
+        "name": "broad_recovery",
+        "recovery_by_domain": {
+          "general": 0.06931034088134735,
+          "math": 0.04643256664276141,
+          "coding": 0.07805479049682629,
+          "reasoning": 0.040398135185241824
+        },
+        "positive_recovery_domains": [
+          "general",
+          "math",
+          "coding",
+          "reasoning"
+        ],
+        "required_positive_domains": 3,
+        "passed": true
+      },
+      "all_passed": false,
+      "random_baseline_statistics": {
+        "count": 5,
+        "mean_worst_relative_delta": 0.06482291956189752,
+        "std_worst_relative_delta": 0.0017399838417566564,
+        "best_random_worst_relative_delta": 0.06278094455259309,
+        "worst_random_worst_relative_delta": 0.06719182004957237,
+        "mean_mean_relative_delta": 0.05614184405901525,
+        "individual_worst_relative_delta": {
+          "random_seed1001": 0.06533631551385387,
+          "random_seed1002": 0.06719182004957237,
+          "random_seed1003": 0.06532800966747106,
+          "random_seed1004": 0.06278094455259309,
+          "random_seed1005": 0.06347750802599723
+        },
+        "individual_mean_relative_delta": {
+          "random_seed1001": 0.05944552833649912,
+          "random_seed1002": 0.057544838902359764,
+          "random_seed1003": 0.0570316876830271,
+          "random_seed1004": 0.057793109975010526,
+          "random_seed1005": 0.04889405539817969
+        }
+      }
+    }
+  },
+  "run_fingerprint": "dd954304806fd7f5eb7ebbd124b11f432cf85a1bbd283cd9e17262436e82456d",
+  "registry_sha256": "b0221262f0e51700cc16fa5e6a681f63ab6507a9d768714f853f3dfc3f87aa34",
+  "bootstrap_replicates": 1000,
+  "bootstrap_seed": 20260815,
+  "method_never_modified_by_gate": true,
+  "created_at_utc": "2026-08-15T05:33:24.467440+00:00"
+}

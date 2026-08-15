@@ -2,7 +2,7 @@
   "auditor": "standalone_stage2b_audit_v1",
   "production_analysis_functions_imported": false,
   "passed": true,
-  "checks_passed": 1676,
+  "checks_passed": 2340,
   "checks_failed": 0,
   "max_numeric_difference": 0.0,
   "sections": {
@@ -21,10 +21,14 @@
     "heldout_splits": {
       "passed": 55,
       "failed": 0
+    },
+    "development_results": {
+      "passed": 664,
+      "failed": 0
     }
   },
-  "development_results_audited": false,
+  "development_results_audited": true,
   "final_results_audited": false,
   "failures": [],
-  "created_at_utc": "2026-08-15T04:50:34.796904+00:00"
+  "created_at_utc": "2026-08-15T05:33:39.381981+00:00"
 }

@@ -1,0 +1,5980 @@
+[
+  {
+    "allocation": "bf16_reference",
+    "resumed": false,
+    "application": {
+      "applied": false
+    },
+    "restoration": {
+      "restored": false
+    }
+  },
+  {
+    "allocation": "uniform_8bit_reference",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.332973126322031,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "8": 1024
+      },
+      "mean_relative_distortion_by_bits": {
+        "8": 4.600983004999197e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 12,
+            "bits": 8
+          },
+          {
+            "layer": 0,
+            "expert": 40,
+            "bits": 8
+          },
+          {
+            "layer": 1,
+            "expert": 14,
+            "bits": 8
+          },
+          {
+            "layer": 1,
+            "expert": 10,
+            "bits": 8
+          },
+          {
+            "layer": 2,
+            "expert": 53,
+            "bits": 8
+          },
+          {
+            "layer": 2,
+            "expert": 31,
+            "bits": 8
+          },
+          {
+            "layer": 3,
+            "expert": 0,
+            "bits": 8
+          },
+          {
+            "layer": 3,
+            "expert": 63,
+            "bits": 8
+          },
+          {
+            "layer": 4,
+            "expert": 38,
+            "bits": 8
+          },
+          {
+            "layer": 4,
+            "expert": 18,
+            "bits": 8
+          },
+          {
+            "layer": 5,
+            "expert": 27,
+            "bits": 8
+          },
+          {
+            "layer": 5,
+            "expert": 3,
+            "bits": 8
+          },
+          {
+            "layer": 6,
+            "expert": 8,
+            "bits": 8
+          },
+          {
+            "layer": 6,
+            "expert": 60,
+            "bits": 8
+          },
+          {
+            "layer": 7,
+            "expert": 56,
+            "bits": 8
+          },
+          {
+            "layer": 7,
+            "expert": 22,
+            "bits": 8
+          },
+          {
+            "layer": 8,
+            "expert": 2,
+            "bits": 8
+          },
+          {
+            "layer": 8,
+            "expert": 63,
+            "bits": 8
+          },
+          {
+            "layer": 9,
+            "expert": 54,
+            "bits": 8
+          },
+          {
+            "layer": 9,
+            "expert": 53,
+            "bits": 8
+          },
+          {
+            "layer": 10,
+            "expert": 25,
+            "bits": 8
+          },
+          {
+            "layer": 10,
+            "expert": 17,
+            "bits": 8
+          },
+          {
+            "layer": 11,
+            "expert": 46,
+            "bits": 8
+          },
+          {
+            "layer": 11,
+            "expert": 28,
+            "bits": 8
+          },
+          {
+            "layer": 12,
+            "expert": 29,
+            "bits": 8
+          },
+          {
+            "layer": 12,
+            "expert": 3,
+            "bits": 8
+          },
+          {
+            "layer": 13,
+            "expert": 38,
+            "bits": 8
+          },
+          {
+            "layer": 13,
+            "expert": 54,
+            "bits": 8
+          },
+          {
+            "layer": 14,
+            "expert": 56,
+            "bits": 8
+          },
+          {
+            "layer": 14,
+            "expert": 22,
+            "bits": 8
+          },
+          {
+            "layer": 15,
+            "expert": 38,
+            "bits": 8
+          },
+          {
+            "layer": 15,
+            "expert": 19,
+            "bits": 8
+          }
+        ],
+        "seed": 2746188451
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 16.776845773682
+    }
+  },
+  {
+    "allocation": "uniform_4bit_reference",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.699749751016498,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "4": 1024
+      },
+      "mean_relative_distortion_by_bits": {
+        "4": 0.014316404751651524
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 15,
+            "bits": 4
+          },
+          {
+            "layer": 0,
+            "expert": 10,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 63,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 58,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 6,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 20,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 38,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 6,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 29,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 33,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 31,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 45,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 27,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 57,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 25,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 52,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 46,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 34,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 21,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 41,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 23,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 57,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 31,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 63,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 8,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 29,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 58,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 4,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 46,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 0,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 59,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 12,
+            "bits": 4
+          }
+        ],
+        "seed": 1644717244
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 19.579396737739444
+    }
+  },
+  {
+    "allocation": "uniform_3bit_reference",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.795674860477448,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "3": 1024
+      },
+      "mean_relative_distortion_by_bits": {
+        "3": 0.07777597421327316
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 20,
+            "bits": 3
+          },
+          {
+            "layer": 0,
+            "expert": 56,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 38,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 37,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 39,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 17,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 23,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 11,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 43,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 55,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 52,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 8,
+            "bits": 3
+          },
+          {
+            "layer": 6,
+            "expert": 60,
+            "bits": 3
+          },
+          {
+            "layer": 6,
+            "expert": 26,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 17,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 10,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 46,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 35,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 16,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 11,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 36,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 49,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 31,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 50,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 39,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 25,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 38,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 17,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 56,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 22,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 34,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 35,
+            "bits": 3
+          }
+        ],
+        "seed": 2077651830
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 19.655737660825253
+    }
+  },
+  {
+    "allocation": "average_specialization_3to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.403385091573,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "3": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "3": 0.07784602354072764,
+        "8": 4.590255784146088e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 49,
+            "bits": 3
+          },
+          {
+            "layer": 0,
+            "expert": 41,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 49,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 48,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 14,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 59,
+            "bits": 8
+          },
+          {
+            "layer": 3,
+            "expert": 40,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 54,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 23,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 37,
+            "bits": 8
+          },
+          {
+            "layer": 5,
+            "expert": 56,
+            "bits": 8
+          },
+          {
+            "layer": 5,
+            "expert": 2,
+            "bits": 8
+          },
+          {
+            "layer": 6,
+            "expert": 9,
+            "bits": 3
+          },
+          {
+            "layer": 6,
+            "expert": 63,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 15,
+            "bits": 8
+          },
+          {
+            "layer": 7,
+            "expert": 58,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 29,
+            "bits": 8
+          },
+          {
+            "layer": 8,
+            "expert": 50,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 25,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 19,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 35,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 58,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 37,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 49,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 45,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 1,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 27,
+            "bits": 8
+          },
+          {
+            "layer": 13,
+            "expert": 15,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 54,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 13,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 27,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 19,
+            "bits": 3
+          }
+        ],
+        "seed": 2641643606
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 19.28937722928822
+    }
+  },
+  {
+    "allocation": "coding_only_3to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.308106588199735,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "3": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "3": 0.07758757504159072,
+        "8": 4.646876556649324e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 33,
+            "bits": 8
+          },
+          {
+            "layer": 0,
+            "expert": 19,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 0,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 16,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 34,
+            "bits": 8
+          },
+          {
+            "layer": 2,
+            "expert": 13,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 30,
+            "bits": 8
+          },
+          {
+            "layer": 3,
+            "expert": 19,
+            "bits": 8
+          },
+          {
+            "layer": 4,
+            "expert": 34,
+            "bits": 8
+          },
+          {
+            "layer": 4,
+            "expert": 61,
+            "bits": 8
+          },
+          {
+            "layer": 5,
+            "expert": 10,
+            "bits": 8
+          },
+          {
+            "layer": 5,
+            "expert": 11,
+            "bits": 3
+          },
+          {
+            "layer": 6,
+            "expert": 10,
+            "bits": 3
+          },
+          {
+            "layer": 6,
+            "expert": 21,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 12,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 34,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 30,
+            "bits": 8
+          },
+          {
+            "layer": 8,
+            "expert": 0,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 48,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 32,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 39,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 4,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 16,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 60,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 34,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 58,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 10,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 60,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 63,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 19,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 57,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 26,
+            "bits": 3
+          }
+        ],
+        "seed": 1103330995
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 19.04274033755064
+    }
+  },
+  {
+    "allocation": "general_only_3to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.633032217621803,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "3": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "3": 0.07745604315180551,
+        "8": 4.689756903613135e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 51,
+            "bits": 8
+          },
+          {
+            "layer": 0,
+            "expert": 41,
+            "bits": 8
+          },
+          {
+            "layer": 1,
+            "expert": 55,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 60,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 28,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 32,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 11,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 13,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 6,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 44,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 39,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 25,
+            "bits": 3
+          },
+          {
+            "layer": 6,
+            "expert": 2,
+            "bits": 8
+          },
+          {
+            "layer": 6,
+            "expert": 39,
+            "bits": 8
+          },
+          {
+            "layer": 7,
+            "expert": 34,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 41,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 20,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 12,
+            "bits": 8
+          },
+          {
+            "layer": 9,
+            "expert": 30,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 7,
+            "bits": 8
+          },
+          {
+            "layer": 10,
+            "expert": 36,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 22,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 30,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 42,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 51,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 16,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 62,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 39,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 56,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 6,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 44,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 48,
+            "bits": 8
+          }
+        ],
+        "seed": 4181512738
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 16.42458651214838
+    }
+  },
+  {
+    "allocation": "global_importance_3to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.282525341957808,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "3": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "3": 0.07745632040679813,
+        "8": 4.689241766968759e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 31,
+            "bits": 3
+          },
+          {
+            "layer": 0,
+            "expert": 2,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 37,
+            "bits": 8
+          },
+          {
+            "layer": 1,
+            "expert": 31,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 28,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 43,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 60,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 21,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 44,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 17,
+            "bits": 8
+          },
+          {
+            "layer": 5,
+            "expert": 13,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 26,
+            "bits": 3
+          },
+          {
+            "layer": 6,
+            "expert": 48,
+            "bits": 8
+          },
+          {
+            "layer": 6,
+            "expert": 35,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 2,
+            "bits": 8
+          },
+          {
+            "layer": 7,
+            "expert": 14,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 62,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 13,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 52,
+            "bits": 8
+          },
+          {
+            "layer": 9,
+            "expert": 39,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 9,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 19,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 41,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 38,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 45,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 24,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 2,
+            "bits": 8
+          },
+          {
+            "layer": 13,
+            "expert": 62,
+            "bits": 8
+          },
+          {
+            "layer": 14,
+            "expert": 27,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 14,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 30,
+            "bits": 8
+          },
+          {
+            "layer": 15,
+            "expert": 7,
+            "bits": 8
+          }
+        ],
+        "seed": 1523377575
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 16.000878097489476
+    }
+  },
+  {
+    "allocation": "math_only_3to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.643449259921908,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "3": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "3": 0.07752445136184136,
+        "8": 4.674722943961559e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 37,
+            "bits": 3
+          },
+          {
+            "layer": 0,
+            "expert": 4,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 41,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 44,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 40,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 48,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 17,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 2,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 49,
+            "bits": 8
+          },
+          {
+            "layer": 4,
+            "expert": 40,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 19,
+            "bits": 8
+          },
+          {
+            "layer": 5,
+            "expert": 38,
+            "bits": 3
+          },
+          {
+            "layer": 6,
+            "expert": 24,
+            "bits": 3
+          },
+          {
+            "layer": 6,
+            "expert": 32,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 51,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 38,
+            "bits": 8
+          },
+          {
+            "layer": 8,
+            "expert": 17,
+            "bits": 8
+          },
+          {
+            "layer": 8,
+            "expert": 1,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 20,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 52,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 44,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 26,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 9,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 61,
+            "bits": 8
+          },
+          {
+            "layer": 12,
+            "expert": 25,
+            "bits": 8
+          },
+          {
+            "layer": 12,
+            "expert": 51,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 56,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 43,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 14,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 50,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 60,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 31,
+            "bits": 3
+          }
+        ],
+        "seed": 3031171461
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 21.51205782778561
+    }
+  },
+  {
+    "allocation": "reasoning_only_3to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.290303179994226,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "3": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "3": 0.0774762792297012,
+        "8": 4.6840077359422205e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 19,
+            "bits": 3
+          },
+          {
+            "layer": 0,
+            "expert": 15,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 8,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 51,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 58,
+            "bits": 8
+          },
+          {
+            "layer": 2,
+            "expert": 18,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 15,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 54,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 55,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 40,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 0,
+            "bits": 8
+          },
+          {
+            "layer": 5,
+            "expert": 27,
+            "bits": 3
+          },
+          {
+            "layer": 6,
+            "expert": 16,
+            "bits": 8
+          },
+          {
+            "layer": 6,
+            "expert": 10,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 40,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 12,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 39,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 16,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 59,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 18,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 28,
+            "bits": 8
+          },
+          {
+            "layer": 10,
+            "expert": 61,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 60,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 59,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 11,
+            "bits": 8
+          },
+          {
+            "layer": 12,
+            "expert": 43,
+            "bits": 8
+          },
+          {
+            "layer": 13,
+            "expert": 48,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 41,
+            "bits": 8
+          },
+          {
+            "layer": 14,
+            "expert": 28,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 17,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 32,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 11,
+            "bits": 3
+          }
+        ],
+        "seed": 821934231
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 17.14882278814912
+    }
+  },
+  {
+    "allocation": "robust_functional_3to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 15.813325624912977,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "3": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "3": 0.07780814716944412,
+        "8": 4.5979001951779675e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 24,
+            "bits": 3
+          },
+          {
+            "layer": 0,
+            "expert": 39,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 34,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 25,
+            "bits": 8
+          },
+          {
+            "layer": 2,
+            "expert": 4,
+            "bits": 8
+          },
+          {
+            "layer": 2,
+            "expert": 60,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 9,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 15,
+            "bits": 8
+          },
+          {
+            "layer": 4,
+            "expert": 56,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 50,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 25,
+            "bits": 8
+          },
+          {
+            "layer": 5,
+            "expert": 28,
+            "bits": 8
+          },
+          {
+            "layer": 6,
+            "expert": 61,
+            "bits": 8
+          },
+          {
+            "layer": 6,
+            "expert": 53,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 60,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 15,
+            "bits": 8
+          },
+          {
+            "layer": 8,
+            "expert": 61,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 30,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 45,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 1,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 32,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 46,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 33,
+            "bits": 8
+          },
+          {
+            "layer": 11,
+            "expert": 50,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 33,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 24,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 0,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 28,
+            "bits": 8
+          },
+          {
+            "layer": 14,
+            "expert": 10,
+            "bits": 8
+          },
+          {
+            "layer": 14,
+            "expert": 55,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 58,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 43,
+            "bits": 3
+          }
+        ],
+        "seed": 2237553508
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 18.68622030131519
+    }
+  },
+  {
+    "allocation": "robust_routing_3to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 15.58209479227662,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "3": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "3": 0.07792142965766465,
+        "8": 4.571137975224711e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 9,
+            "bits": 8
+          },
+          {
+            "layer": 0,
+            "expert": 4,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 34,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 49,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 56,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 8,
+            "bits": 8
+          },
+          {
+            "layer": 3,
+            "expert": 47,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 19,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 50,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 35,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 35,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 50,
+            "bits": 3
+          },
+          {
+            "layer": 6,
+            "expert": 15,
+            "bits": 8
+          },
+          {
+            "layer": 6,
+            "expert": 20,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 12,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 20,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 44,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 56,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 8,
+            "bits": 8
+          },
+          {
+            "layer": 9,
+            "expert": 20,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 60,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 9,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 63,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 14,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 47,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 3,
+            "bits": 8
+          },
+          {
+            "layer": 13,
+            "expert": 36,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 31,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 20,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 9,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 39,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 41,
+            "bits": 8
+          }
+        ],
+        "seed": 3617015383
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 15.978666361421347
+    }
+  },
+  {
+    "allocation": "random_seed1001_3to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 15.96875467710197,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "3": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "3": 0.0778387811737889,
+        "8": 4.584652401730201e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 0,
+            "bits": 3
+          },
+          {
+            "layer": 0,
+            "expert": 57,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 35,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 8,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 16,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 17,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 53,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 50,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 44,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 30,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 13,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 8,
+            "bits": 3
+          },
+          {
+            "layer": 6,
+            "expert": 2,
+            "bits": 3
+          },
+          {
+            "layer": 6,
+            "expert": 15,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 4,
+            "bits": 8
+          },
+          {
+            "layer": 7,
+            "expert": 53,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 1,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 3,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 8,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 28,
+            "bits": 8
+          },
+          {
+            "layer": 10,
+            "expert": 27,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 49,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 4,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 47,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 36,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 1,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 32,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 29,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 47,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 24,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 27,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 37,
+            "bits": 3
+          }
+        ],
+        "seed": 2479977527
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 18.694782568141818
+    }
+  },
+  {
+    "allocation": "random_seed1002_3to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 15.760860132053494,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "3": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "3": 0.07773327770308262,
+        "8": 4.6101628659964687e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 13,
+            "bits": 8
+          },
+          {
+            "layer": 0,
+            "expert": 12,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 59,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 14,
+            "bits": 8
+          },
+          {
+            "layer": 2,
+            "expert": 23,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 19,
+            "bits": 8
+          },
+          {
+            "layer": 3,
+            "expert": 27,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 51,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 21,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 59,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 61,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 24,
+            "bits": 3
+          },
+          {
+            "layer": 6,
+            "expert": 55,
+            "bits": 8
+          },
+          {
+            "layer": 6,
+            "expert": 20,
+            "bits": 8
+          },
+          {
+            "layer": 7,
+            "expert": 0,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 42,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 1,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 43,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 50,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 1,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 41,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 56,
+            "bits": 8
+          },
+          {
+            "layer": 11,
+            "expert": 57,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 50,
+            "bits": 8
+          },
+          {
+            "layer": 12,
+            "expert": 57,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 19,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 62,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 33,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 34,
+            "bits": 8
+          },
+          {
+            "layer": 14,
+            "expert": 53,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 39,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 61,
+            "bits": 3
+          }
+        ],
+        "seed": 2838141977
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 16.22156250476837
+    }
+  },
+  {
+    "allocation": "random_seed1003_3to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 15.310744196176529,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "3": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "3": 0.07775561812572775,
+        "8": 4.607681334940995e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 11,
+            "bits": 3
+          },
+          {
+            "layer": 0,
+            "expert": 3,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 40,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 16,
+            "bits": 8
+          },
+          {
+            "layer": 2,
+            "expert": 33,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 62,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 59,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 48,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 21,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 5,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 56,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 54,
+            "bits": 3
+          },
+          {
+            "layer": 6,
+            "expert": 16,
+            "bits": 3
+          },
+          {
+            "layer": 6,
+            "expert": 51,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 59,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 25,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 54,
+            "bits": 8
+          },
+          {
+            "layer": 8,
+            "expert": 47,
+            "bits": 8
+          },
+          {
+            "layer": 9,
+            "expert": 40,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 56,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 27,
+            "bits": 8
+          },
+          {
+            "layer": 10,
+            "expert": 58,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 44,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 24,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 43,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 25,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 38,
+            "bits": 8
+          },
+          {
+            "layer": 13,
+            "expert": 10,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 46,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 59,
+            "bits": 8
+          },
+          {
+            "layer": 15,
+            "expert": 56,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 30,
+            "bits": 8
+          }
+        ],
+        "seed": 2493176687
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 18.519891379401088
+    }
+  },
+  {
+    "allocation": "random_seed1004_3to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.406643940135837,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "3": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "3": 0.07780042135853647,
+        "8": 4.595765414421303e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 7,
+            "bits": 3
+          },
+          {
+            "layer": 0,
+            "expert": 24,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 37,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 15,
+            "bits": 8
+          },
+          {
+            "layer": 2,
+            "expert": 60,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 57,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 4,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 0,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 56,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 9,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 14,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 23,
+            "bits": 3
+          },
+          {
+            "layer": 6,
+            "expert": 5,
+            "bits": 8
+          },
+          {
+            "layer": 6,
+            "expert": 34,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 49,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 1,
+            "bits": 8
+          },
+          {
+            "layer": 8,
+            "expert": 59,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 55,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 62,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 26,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 32,
+            "bits": 8
+          },
+          {
+            "layer": 10,
+            "expert": 22,
+            "bits": 8
+          },
+          {
+            "layer": 11,
+            "expert": 35,
+            "bits": 8
+          },
+          {
+            "layer": 11,
+            "expert": 40,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 60,
+            "bits": 8
+          },
+          {
+            "layer": 12,
+            "expert": 29,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 13,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 16,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 52,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 1,
+            "bits": 8
+          },
+          {
+            "layer": 15,
+            "expert": 17,
+            "bits": 8
+          },
+          {
+            "layer": 15,
+            "expert": 37,
+            "bits": 8
+          }
+        ],
+        "seed": 1159457145
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 17.90529826655984
+    }
+  },
+  {
+    "allocation": "random_seed1005_3to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.52873431891203,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "3": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "3": 0.07782845428572058,
+        "8": 4.58609227259869e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 23,
+            "bits": 3
+          },
+          {
+            "layer": 0,
+            "expert": 24,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 27,
+            "bits": 3
+          },
+          {
+            "layer": 1,
+            "expert": 26,
+            "bits": 8
+          },
+          {
+            "layer": 2,
+            "expert": 13,
+            "bits": 3
+          },
+          {
+            "layer": 2,
+            "expert": 51,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 21,
+            "bits": 3
+          },
+          {
+            "layer": 3,
+            "expert": 15,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 35,
+            "bits": 3
+          },
+          {
+            "layer": 4,
+            "expert": 18,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 15,
+            "bits": 3
+          },
+          {
+            "layer": 5,
+            "expert": 28,
+            "bits": 3
+          },
+          {
+            "layer": 6,
+            "expert": 44,
+            "bits": 8
+          },
+          {
+            "layer": 6,
+            "expert": 9,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 21,
+            "bits": 3
+          },
+          {
+            "layer": 7,
+            "expert": 42,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 32,
+            "bits": 3
+          },
+          {
+            "layer": 8,
+            "expert": 29,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 45,
+            "bits": 3
+          },
+          {
+            "layer": 9,
+            "expert": 18,
+            "bits": 3
+          },
+          {
+            "layer": 10,
+            "expert": 13,
+            "bits": 8
+          },
+          {
+            "layer": 10,
+            "expert": 7,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 10,
+            "bits": 3
+          },
+          {
+            "layer": 11,
+            "expert": 26,
+            "bits": 8
+          },
+          {
+            "layer": 12,
+            "expert": 41,
+            "bits": 3
+          },
+          {
+            "layer": 12,
+            "expert": 17,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 33,
+            "bits": 3
+          },
+          {
+            "layer": 13,
+            "expert": 55,
+            "bits": 3
+          },
+          {
+            "layer": 14,
+            "expert": 33,
+            "bits": 8
+          },
+          {
+            "layer": 14,
+            "expert": 31,
+            "bits": 3
+          },
+          {
+            "layer": 15,
+            "expert": 23,
+            "bits": 8
+          },
+          {
+            "layer": 15,
+            "expert": 9,
+            "bits": 8
+          }
+        ],
+        "seed": 457558109
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 15.64204404503107
+    }
+  },
+  {
+    "allocation": "average_specialization_4to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.859976071864367,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "4": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "4": 0.014330212824660427,
+        "8": 4.590255784146088e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 39,
+            "bits": 4
+          },
+          {
+            "layer": 0,
+            "expert": 40,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 55,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 53,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 37,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 27,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 47,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 57,
+            "bits": 8
+          },
+          {
+            "layer": 4,
+            "expert": 3,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 53,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 57,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 61,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 57,
+            "bits": 8
+          },
+          {
+            "layer": 6,
+            "expert": 47,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 5,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 30,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 52,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 24,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 7,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 54,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 58,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 51,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 62,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 30,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 30,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 17,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 41,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 2,
+            "bits": 8
+          },
+          {
+            "layer": 14,
+            "expert": 60,
+            "bits": 8
+          },
+          {
+            "layer": 14,
+            "expert": 53,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 19,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 12,
+            "bits": 4
+          }
+        ],
+        "seed": 1967507449
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 17.60065325535834
+    }
+  },
+  {
+    "allocation": "coding_only_4to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.4916230738163,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "4": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "4": 0.014277801504010503,
+        "8": 4.646876556649324e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 43,
+            "bits": 4
+          },
+          {
+            "layer": 0,
+            "expert": 38,
+            "bits": 8
+          },
+          {
+            "layer": 1,
+            "expert": 36,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 50,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 49,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 57,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 38,
+            "bits": 8
+          },
+          {
+            "layer": 3,
+            "expert": 60,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 21,
+            "bits": 8
+          },
+          {
+            "layer": 4,
+            "expert": 41,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 48,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 27,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 34,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 7,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 18,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 35,
+            "bits": 8
+          },
+          {
+            "layer": 8,
+            "expert": 30,
+            "bits": 8
+          },
+          {
+            "layer": 8,
+            "expert": 6,
+            "bits": 8
+          },
+          {
+            "layer": 9,
+            "expert": 58,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 3,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 28,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 57,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 39,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 31,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 19,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 41,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 21,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 0,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 32,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 56,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 55,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 40,
+            "bits": 4
+          }
+        ],
+        "seed": 437677496
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 16.980367017909884
+    }
+  },
+  {
+    "allocation": "general_only_4to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.338247630745173,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "4": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "4": 0.014251724455940609,
+        "8": 4.689756903613135e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 7,
+            "bits": 4
+          },
+          {
+            "layer": 0,
+            "expert": 25,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 24,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 11,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 63,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 42,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 54,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 55,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 57,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 36,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 20,
+            "bits": 8
+          },
+          {
+            "layer": 5,
+            "expert": 54,
+            "bits": 8
+          },
+          {
+            "layer": 6,
+            "expert": 4,
+            "bits": 8
+          },
+          {
+            "layer": 6,
+            "expert": 11,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 16,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 25,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 15,
+            "bits": 8
+          },
+          {
+            "layer": 8,
+            "expert": 49,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 10,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 22,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 6,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 48,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 27,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 61,
+            "bits": 8
+          },
+          {
+            "layer": 12,
+            "expert": 22,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 52,
+            "bits": 8
+          },
+          {
+            "layer": 13,
+            "expert": 22,
+            "bits": 8
+          },
+          {
+            "layer": 13,
+            "expert": 63,
+            "bits": 8
+          },
+          {
+            "layer": 14,
+            "expert": 57,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 1,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 37,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 48,
+            "bits": 8
+          }
+        ],
+        "seed": 1947642910
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 16.384703163057566
+    }
+  },
+  {
+    "allocation": "global_importance_4to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 15.691154083237052,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "4": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "4": 0.014251412871574562,
+        "8": 4.689241766968759e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 4,
+            "bits": 4
+          },
+          {
+            "layer": 0,
+            "expert": 7,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 48,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 12,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 27,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 25,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 32,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 3,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 31,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 50,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 33,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 59,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 41,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 59,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 5,
+            "bits": 8
+          },
+          {
+            "layer": 7,
+            "expert": 33,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 37,
+            "bits": 8
+          },
+          {
+            "layer": 8,
+            "expert": 7,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 39,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 11,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 7,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 58,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 5,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 27,
+            "bits": 8
+          },
+          {
+            "layer": 12,
+            "expert": 22,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 46,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 55,
+            "bits": 8
+          },
+          {
+            "layer": 13,
+            "expert": 27,
+            "bits": 8
+          },
+          {
+            "layer": 14,
+            "expert": 25,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 43,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 47,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 10,
+            "bits": 4
+          }
+        ],
+        "seed": 61997031
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 17.351910796016455
+    }
+  },
+  {
+    "allocation": "math_only_4to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.381992576643825,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "4": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "4": 0.014265916109251054,
+        "8": 4.674722943961559e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 48,
+            "bits": 4
+          },
+          {
+            "layer": 0,
+            "expert": 38,
+            "bits": 8
+          },
+          {
+            "layer": 1,
+            "expert": 31,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 5,
+            "bits": 8
+          },
+          {
+            "layer": 2,
+            "expert": 22,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 27,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 59,
+            "bits": 8
+          },
+          {
+            "layer": 3,
+            "expert": 60,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 21,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 15,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 43,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 35,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 56,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 2,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 52,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 40,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 2,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 32,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 3,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 14,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 4,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 18,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 38,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 50,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 36,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 26,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 13,
+            "bits": 8
+          },
+          {
+            "layer": 13,
+            "expert": 45,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 45,
+            "bits": 8
+          },
+          {
+            "layer": 14,
+            "expert": 13,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 4,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 2,
+            "bits": 8
+          }
+        ],
+        "seed": 3948438892
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 16.091594271361828
+    }
+  },
+  {
+    "allocation": "reasoning_only_4to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.299918485805392,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "4": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "4": 0.014255342441559198,
+        "8": 4.6840077359422205e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 54,
+            "bits": 4
+          },
+          {
+            "layer": 0,
+            "expert": 50,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 56,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 54,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 42,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 1,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 4,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 29,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 13,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 12,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 25,
+            "bits": 8
+          },
+          {
+            "layer": 5,
+            "expert": 40,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 56,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 14,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 34,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 27,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 3,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 2,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 58,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 37,
+            "bits": 8
+          },
+          {
+            "layer": 10,
+            "expert": 1,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 49,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 7,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 6,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 31,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 3,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 14,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 51,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 18,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 21,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 3,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 44,
+            "bits": 4
+          }
+        ],
+        "seed": 1807732747
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 15.225384775549173
+    }
+  },
+  {
+    "allocation": "robust_functional_4to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.396674703806639,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "4": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "4": 0.01432302253912427,
+        "8": 4.5979001951779675e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 50,
+            "bits": 4
+          },
+          {
+            "layer": 0,
+            "expert": 45,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 40,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 9,
+            "bits": 8
+          },
+          {
+            "layer": 2,
+            "expert": 8,
+            "bits": 8
+          },
+          {
+            "layer": 2,
+            "expert": 14,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 5,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 7,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 42,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 62,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 33,
+            "bits": 8
+          },
+          {
+            "layer": 5,
+            "expert": 16,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 56,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 33,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 41,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 58,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 23,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 20,
+            "bits": 8
+          },
+          {
+            "layer": 9,
+            "expert": 10,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 43,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 19,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 47,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 8,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 55,
+            "bits": 8
+          },
+          {
+            "layer": 12,
+            "expert": 18,
+            "bits": 8
+          },
+          {
+            "layer": 12,
+            "expert": 61,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 38,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 43,
+            "bits": 8
+          },
+          {
+            "layer": 14,
+            "expert": 14,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 2,
+            "bits": 8
+          },
+          {
+            "layer": 15,
+            "expert": 48,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 16,
+            "bits": 4
+          }
+        ],
+        "seed": 3673820127
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 17.079595359042287
+    }
+  },
+  {
+    "allocation": "robust_routing_4to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.494825167581439,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "4": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "4": 0.01434566656022561,
+        "8": 4.571137975224711e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 63,
+            "bits": 8
+          },
+          {
+            "layer": 0,
+            "expert": 34,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 47,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 55,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 3,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 42,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 28,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 41,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 58,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 1,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 45,
+            "bits": 8
+          },
+          {
+            "layer": 5,
+            "expert": 40,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 2,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 14,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 36,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 53,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 10,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 38,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 22,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 43,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 62,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 60,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 29,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 0,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 57,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 33,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 4,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 51,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 35,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 63,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 52,
+            "bits": 8
+          },
+          {
+            "layer": 15,
+            "expert": 27,
+            "bits": 4
+          }
+        ],
+        "seed": 1395491930
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 16.751594930887222
+    }
+  },
+  {
+    "allocation": "random_seed1001_4to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.552790632471442,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "4": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "4": 0.014328772785863732,
+        "8": 4.584652401730201e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 33,
+            "bits": 4
+          },
+          {
+            "layer": 0,
+            "expert": 3,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 19,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 39,
+            "bits": 8
+          },
+          {
+            "layer": 2,
+            "expert": 34,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 13,
+            "bits": 8
+          },
+          {
+            "layer": 3,
+            "expert": 41,
+            "bits": 8
+          },
+          {
+            "layer": 3,
+            "expert": 62,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 61,
+            "bits": 8
+          },
+          {
+            "layer": 4,
+            "expert": 9,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 19,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 27,
+            "bits": 8
+          },
+          {
+            "layer": 6,
+            "expert": 28,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 5,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 41,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 51,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 31,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 27,
+            "bits": 8
+          },
+          {
+            "layer": 9,
+            "expert": 31,
+            "bits": 8
+          },
+          {
+            "layer": 9,
+            "expert": 23,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 60,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 11,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 54,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 1,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 23,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 34,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 35,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 5,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 3,
+            "bits": 8
+          },
+          {
+            "layer": 14,
+            "expert": 4,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 15,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 37,
+            "bits": 4
+          }
+        ],
+        "seed": 1435657803
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 16.57342500053346
+    }
+  },
+  {
+    "allocation": "random_seed1002_4to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.929750939831138,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "4": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "4": 0.014307992888790665,
+        "8": 4.6101628659964687e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 4,
+            "bits": 4
+          },
+          {
+            "layer": 0,
+            "expert": 48,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 46,
+            "bits": 8
+          },
+          {
+            "layer": 1,
+            "expert": 54,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 49,
+            "bits": 8
+          },
+          {
+            "layer": 2,
+            "expert": 14,
+            "bits": 8
+          },
+          {
+            "layer": 3,
+            "expert": 41,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 34,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 16,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 41,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 16,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 9,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 24,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 12,
+            "bits": 8
+          },
+          {
+            "layer": 7,
+            "expert": 56,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 21,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 55,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 2,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 3,
+            "bits": 8
+          },
+          {
+            "layer": 9,
+            "expert": 33,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 58,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 63,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 28,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 34,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 27,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 47,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 23,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 25,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 31,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 40,
+            "bits": 8
+          },
+          {
+            "layer": 15,
+            "expert": 6,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 60,
+            "bits": 4
+          }
+        ],
+        "seed": 305201579
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 16.970551911741495
+    }
+  },
+  {
+    "allocation": "random_seed1003_4to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.394681312143803,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "4": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "4": 0.014312206861334349,
+        "8": 4.607681334940995e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 2,
+            "bits": 4
+          },
+          {
+            "layer": 0,
+            "expert": 9,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 28,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 15,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 29,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 38,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 45,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 4,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 9,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 5,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 26,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 18,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 9,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 17,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 54,
+            "bits": 8
+          },
+          {
+            "layer": 7,
+            "expert": 35,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 19,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 32,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 4,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 13,
+            "bits": 8
+          },
+          {
+            "layer": 10,
+            "expert": 0,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 45,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 36,
+            "bits": 8
+          },
+          {
+            "layer": 11,
+            "expert": 37,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 48,
+            "bits": 8
+          },
+          {
+            "layer": 12,
+            "expert": 43,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 23,
+            "bits": 8
+          },
+          {
+            "layer": 13,
+            "expert": 50,
+            "bits": 8
+          },
+          {
+            "layer": 14,
+            "expert": 2,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 30,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 55,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 16,
+            "bits": 4
+          }
+        ],
+        "seed": 4174360782
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 16.224172754213214
+    }
+  },
+  {
+    "allocation": "random_seed1004_4to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.59392799064517,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "4": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "4": 0.014321639566509578,
+        "8": 4.595765414421303e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 63,
+            "bits": 8
+          },
+          {
+            "layer": 0,
+            "expert": 12,
+            "bits": 8
+          },
+          {
+            "layer": 1,
+            "expert": 61,
+            "bits": 8
+          },
+          {
+            "layer": 1,
+            "expert": 15,
+            "bits": 8
+          },
+          {
+            "layer": 2,
+            "expert": 41,
+            "bits": 8
+          },
+          {
+            "layer": 2,
+            "expert": 39,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 39,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 1,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 59,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 41,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 34,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 12,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 53,
+            "bits": 8
+          },
+          {
+            "layer": 6,
+            "expert": 8,
+            "bits": 8
+          },
+          {
+            "layer": 7,
+            "expert": 34,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 4,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 15,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 63,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 7,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 34,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 38,
+            "bits": 8
+          },
+          {
+            "layer": 10,
+            "expert": 37,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 35,
+            "bits": 8
+          },
+          {
+            "layer": 11,
+            "expert": 61,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 29,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 63,
+            "bits": 8
+          },
+          {
+            "layer": 13,
+            "expert": 6,
+            "bits": 4
+          },
+          {
+            "layer": 13,
+            "expert": 16,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 12,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 20,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 45,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 63,
+            "bits": 4
+          }
+        ],
+        "seed": 664475158
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 15.438056891784072
+    }
+  },
+  {
+    "allocation": "random_seed1005_4to8_budget20",
+    "resumed": false,
+    "application": {
+      "applied": true,
+      "elapsed_seconds": 14.505113968625665,
+      "quantized_experts": 1024,
+      "quantized_experts_per_layer": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64
+      ],
+      "bits_histogram": {
+        "4": 820,
+        "8": 204
+      },
+      "mean_relative_distortion_by_bits": {
+        "4": 0.014326892002481975,
+        "8": 4.58609227259869e-05
+      },
+      "assignment_verification": {
+        "verified_exact_qdq": true,
+        "sampled_experts": [
+          {
+            "layer": 0,
+            "expert": 58,
+            "bits": 4
+          },
+          {
+            "layer": 0,
+            "expert": 29,
+            "bits": 8
+          },
+          {
+            "layer": 1,
+            "expert": 35,
+            "bits": 4
+          },
+          {
+            "layer": 1,
+            "expert": 27,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 31,
+            "bits": 4
+          },
+          {
+            "layer": 2,
+            "expert": 28,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 21,
+            "bits": 4
+          },
+          {
+            "layer": 3,
+            "expert": 35,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 51,
+            "bits": 4
+          },
+          {
+            "layer": 4,
+            "expert": 43,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 7,
+            "bits": 4
+          },
+          {
+            "layer": 5,
+            "expert": 3,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 4,
+            "bits": 4
+          },
+          {
+            "layer": 6,
+            "expert": 31,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 42,
+            "bits": 4
+          },
+          {
+            "layer": 7,
+            "expert": 45,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 54,
+            "bits": 4
+          },
+          {
+            "layer": 8,
+            "expert": 32,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 14,
+            "bits": 4
+          },
+          {
+            "layer": 9,
+            "expert": 55,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 48,
+            "bits": 4
+          },
+          {
+            "layer": 10,
+            "expert": 17,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 13,
+            "bits": 4
+          },
+          {
+            "layer": 11,
+            "expert": 31,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 63,
+            "bits": 4
+          },
+          {
+            "layer": 12,
+            "expert": 2,
+            "bits": 8
+          },
+          {
+            "layer": 13,
+            "expert": 27,
+            "bits": 8
+          },
+          {
+            "layer": 13,
+            "expert": 63,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 7,
+            "bits": 4
+          },
+          {
+            "layer": 14,
+            "expert": 30,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 34,
+            "bits": 4
+          },
+          {
+            "layer": 15,
+            "expert": 14,
+            "bits": 8
+          }
+        ],
+        "seed": 3268696884
+      }
+    },
+    "restoration": {
+      "restored": true,
+      "restoration_verified_bitwise": true,
+      "elapsed_seconds": 16.209651600569487
+    }
+  }
+]
