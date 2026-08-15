@@ -1,0 +1,145 @@
+surrogate,internal_name,intervention_id,layer,expert_id,target_domain,per_expert_spearman,predicted_top_domain,actual_top_domain,top_domain_correct,predicted_rank_general,predicted_rank_math,predicted_rank_coding,predicted_rank_reasoning,actual_rank_general,actual_rank_math,actual_rank_coding,actual_rank_reasoning
+WeightRiskFunctional,weight_risk_functional,specialist_general_L13_E52,13,52,general,0.39999999999999997,general,general,True,1,3,4,2,1,2,3,4
+WeightRiskFunctional,weight_risk_functional,control_general_L13_E52_L13_E36,13,36,general,-0.7999999999999999,general,coding,False,1,2,4,3,3,4,1,2
+WeightRiskFunctional,weight_risk_functional,specialist_general_L12_E40,12,40,general,0.39999999999999997,general,math,False,1,3,4,2,2,1,4,3
+WeightRiskFunctional,weight_risk_functional,control_general_L12_E40_L12_E2,12,2,general,-0.39999999999999997,math,coding,False,3,1,2,4,3,4,1,2
+WeightRiskFunctional,weight_risk_functional,specialist_math_L8_E11,8,11,math,-0.7999999999999999,math,general,False,3,1,4,2,1,4,2,3
+WeightRiskFunctional,weight_risk_functional,control_math_L8_E11_L8_E54,8,54,math,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+WeightRiskFunctional,weight_risk_functional,specialist_math_L12_E63,12,63,math,-0.39999999999999997,math,general,False,2,1,4,3,1,4,2,3
+WeightRiskFunctional,weight_risk_functional,control_math_L12_E63_L12_E43,12,43,math,-0.7999999999999999,coding,general,False,4,3,1,2,1,3,4,2
+WeightRiskFunctional,weight_risk_functional,specialist_coding_L13_E2,13,2,coding,1.0,coding,coding,True,4,3,1,2,4,3,1,2
+WeightRiskFunctional,weight_risk_functional,control_coding_L13_E2_L13_E61,13,61,coding,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+WeightRiskFunctional,weight_risk_functional,specialist_coding_L11_E27,11,27,coding,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+WeightRiskFunctional,weight_risk_functional,control_coding_L11_E27_L11_E7,11,7,coding,0.7999999999999999,coding,coding,True,4,3,1,2,3,4,1,2
+WeightRiskFunctional,weight_risk_functional,specialist_reasoning_L13_E20,13,20,reasoning,0.7999999999999999,reasoning,reasoning,True,2,3,4,1,2,4,3,1
+WeightRiskFunctional,weight_risk_functional,control_reasoning_L13_E20_L13_E63,13,63,reasoning,-0.39999999999999997,math,general,False,3,1,4,2,1,4,3,2
+WeightRiskFunctional,weight_risk_functional,specialist_reasoning_L11_E48,11,48,reasoning,0.7999999999999999,reasoning,reasoning,True,2,3,4,1,2,4,3,1
+WeightRiskFunctional,weight_risk_functional,control_reasoning_L11_E48_L11_E47,11,47,reasoning,-1.0,coding,general,False,4,2,1,3,1,3,4,2
+WeightRiskRouting,weight_risk_routing,specialist_general_L13_E52,13,52,general,0.39999999999999997,general,general,True,1,3,4,2,1,2,3,4
+WeightRiskRouting,weight_risk_routing,control_general_L13_E52_L13_E36,13,36,general,-0.7999999999999999,general,coding,False,1,2,4,3,3,4,1,2
+WeightRiskRouting,weight_risk_routing,specialist_general_L12_E40,12,40,general,0.39999999999999997,general,math,False,1,3,4,2,2,1,4,3
+WeightRiskRouting,weight_risk_routing,control_general_L12_E40_L12_E2,12,2,general,-0.39999999999999997,math,coding,False,3,1,2,4,3,4,1,2
+WeightRiskRouting,weight_risk_routing,specialist_math_L8_E11,8,11,math,-1.0,math,general,False,4,1,3,2,1,4,2,3
+WeightRiskRouting,weight_risk_routing,control_math_L8_E11_L8_E54,8,54,math,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+WeightRiskRouting,weight_risk_routing,specialist_math_L12_E63,12,63,math,-0.39999999999999997,math,general,False,2,1,4,3,1,4,2,3
+WeightRiskRouting,weight_risk_routing,control_math_L12_E63_L12_E43,12,43,math,-0.7999999999999999,coding,general,False,4,3,1,2,1,3,4,2
+WeightRiskRouting,weight_risk_routing,specialist_coding_L13_E2,13,2,coding,1.0,coding,coding,True,4,3,1,2,4,3,1,2
+WeightRiskRouting,weight_risk_routing,control_coding_L13_E2_L13_E61,13,61,coding,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+WeightRiskRouting,weight_risk_routing,specialist_coding_L11_E27,11,27,coding,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+WeightRiskRouting,weight_risk_routing,control_coding_L11_E27_L11_E7,11,7,coding,0.7999999999999999,coding,coding,True,4,3,1,2,3,4,1,2
+WeightRiskRouting,weight_risk_routing,specialist_reasoning_L13_E20,13,20,reasoning,0.19999999999999998,reasoning,reasoning,True,4,2,3,1,2,4,3,1
+WeightRiskRouting,weight_risk_routing,control_reasoning_L13_E20_L13_E63,13,63,reasoning,-0.39999999999999997,math,general,False,3,1,4,2,1,4,3,2
+WeightRiskRouting,weight_risk_routing,specialist_reasoning_L11_E48,11,48,reasoning,0.7999999999999999,reasoning,reasoning,True,2,3,4,1,2,4,3,1
+WeightRiskRouting,weight_risk_routing,control_reasoning_L11_E48_L11_E47,11,47,reasoning,-1.0,coding,general,False,4,2,1,3,1,3,4,2
+Functional specialization alone,functional_importance,specialist_general_L13_E52,13,52,general,0.39999999999999997,general,general,True,1,3,4,2,1,2,3,4
+Functional specialization alone,functional_importance,control_general_L13_E52_L13_E36,13,36,general,-0.7999999999999999,general,coding,False,1,2,4,3,3,4,1,2
+Functional specialization alone,functional_importance,specialist_general_L12_E40,12,40,general,0.39999999999999997,general,math,False,1,3,4,2,2,1,4,3
+Functional specialization alone,functional_importance,control_general_L12_E40_L12_E2,12,2,general,-0.39999999999999997,math,coding,False,3,1,2,4,3,4,1,2
+Functional specialization alone,functional_importance,specialist_math_L8_E11,8,11,math,-0.7999999999999999,math,general,False,3,1,4,2,1,4,2,3
+Functional specialization alone,functional_importance,control_math_L8_E11_L8_E54,8,54,math,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+Functional specialization alone,functional_importance,specialist_math_L12_E63,12,63,math,-0.39999999999999997,math,general,False,2,1,4,3,1,4,2,3
+Functional specialization alone,functional_importance,control_math_L12_E63_L12_E43,12,43,math,-0.7999999999999999,coding,general,False,4,3,1,2,1,3,4,2
+Functional specialization alone,functional_importance,specialist_coding_L13_E2,13,2,coding,1.0,coding,coding,True,4,3,1,2,4,3,1,2
+Functional specialization alone,functional_importance,control_coding_L13_E2_L13_E61,13,61,coding,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+Functional specialization alone,functional_importance,specialist_coding_L11_E27,11,27,coding,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+Functional specialization alone,functional_importance,control_coding_L11_E27_L11_E7,11,7,coding,0.7999999999999999,coding,coding,True,4,3,1,2,3,4,1,2
+Functional specialization alone,functional_importance,specialist_reasoning_L13_E20,13,20,reasoning,0.7999999999999999,reasoning,reasoning,True,2,3,4,1,2,4,3,1
+Functional specialization alone,functional_importance,control_reasoning_L13_E20_L13_E63,13,63,reasoning,-0.39999999999999997,math,general,False,3,1,4,2,1,4,3,2
+Functional specialization alone,functional_importance,specialist_reasoning_L11_E48,11,48,reasoning,0.7999999999999999,reasoning,reasoning,True,2,3,4,1,2,4,3,1
+Functional specialization alone,functional_importance,control_reasoning_L11_E48_L11_E47,11,47,reasoning,-1.0,coding,general,False,4,2,1,3,1,3,4,2
+Routing specialization alone,routing_importance,specialist_general_L13_E52,13,52,general,0.39999999999999997,general,general,True,1,3,4,2,1,2,3,4
+Routing specialization alone,routing_importance,control_general_L13_E52_L13_E36,13,36,general,-0.7999999999999999,general,coding,False,1,2,4,3,3,4,1,2
+Routing specialization alone,routing_importance,specialist_general_L12_E40,12,40,general,0.39999999999999997,general,math,False,1,3,4,2,2,1,4,3
+Routing specialization alone,routing_importance,control_general_L12_E40_L12_E2,12,2,general,-0.39999999999999997,math,coding,False,3,1,2,4,3,4,1,2
+Routing specialization alone,routing_importance,specialist_math_L8_E11,8,11,math,-1.0,math,general,False,4,1,3,2,1,4,2,3
+Routing specialization alone,routing_importance,control_math_L8_E11_L8_E54,8,54,math,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+Routing specialization alone,routing_importance,specialist_math_L12_E63,12,63,math,-0.39999999999999997,math,general,False,2,1,4,3,1,4,2,3
+Routing specialization alone,routing_importance,control_math_L12_E63_L12_E43,12,43,math,-0.7999999999999999,coding,general,False,4,3,1,2,1,3,4,2
+Routing specialization alone,routing_importance,specialist_coding_L13_E2,13,2,coding,1.0,coding,coding,True,4,3,1,2,4,3,1,2
+Routing specialization alone,routing_importance,control_coding_L13_E2_L13_E61,13,61,coding,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+Routing specialization alone,routing_importance,specialist_coding_L11_E27,11,27,coding,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+Routing specialization alone,routing_importance,control_coding_L11_E27_L11_E7,11,7,coding,0.7999999999999999,coding,coding,True,4,3,1,2,3,4,1,2
+Routing specialization alone,routing_importance,specialist_reasoning_L13_E20,13,20,reasoning,0.19999999999999998,reasoning,reasoning,True,4,2,3,1,2,4,3,1
+Routing specialization alone,routing_importance,control_reasoning_L13_E20_L13_E63,13,63,reasoning,-0.39999999999999997,math,general,False,3,1,4,2,1,4,3,2
+Routing specialization alone,routing_importance,specialist_reasoning_L11_E48,11,48,reasoning,0.7999999999999999,reasoning,reasoning,True,2,3,4,1,2,4,3,1
+Routing specialization alone,routing_importance,control_reasoning_L11_E48_L11_E47,11,47,reasoning,-1.0,coding,general,False,4,2,1,3,1,3,4,2
+UOD,uod,specialist_general_L13_E52,13,52,general,0.39999999999999997,general,general,True,1,3,4,2,1,2,3,4
+UOD,uod,control_general_L13_E52_L13_E36,13,36,general,-0.7999999999999999,general,coding,False,1,2,4,3,3,4,1,2
+UOD,uod,specialist_general_L12_E40,12,40,general,0.39999999999999997,general,math,False,1,3,4,2,2,1,4,3
+UOD,uod,control_general_L12_E40_L12_E2,12,2,general,-0.7999999999999999,general,coding,False,1,2,4,3,3,4,1,2
+UOD,uod,specialist_math_L8_E11,8,11,math,-0.39999999999999997,math,general,False,2,1,4,3,1,4,2,3
+UOD,uod,control_math_L8_E11_L8_E54,8,54,math,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+UOD,uod,specialist_math_L12_E63,12,63,math,-0.7999999999999999,math,general,False,3,1,4,2,1,4,2,3
+UOD,uod,control_math_L12_E63_L12_E43,12,43,math,-0.39999999999999997,coding,general,False,3,4,1,2,1,3,4,2
+UOD,uod,specialist_coding_L13_E2,13,2,coding,0.39999999999999997,coding,coding,True,2,4,1,3,4,3,1,2
+UOD,uod,control_coding_L13_E2_L13_E61,13,61,coding,-0.7999999999999999,math,coding,False,2,1,4,3,2,4,1,3
+UOD,uod,specialist_coding_L11_E27,11,27,coding,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+UOD,uod,control_coding_L11_E27_L11_E7,11,7,coding,0.7999999999999999,coding,coding,True,4,3,1,2,3,4,1,2
+UOD,uod,specialist_reasoning_L13_E20,13,20,reasoning,0.7999999999999999,general,reasoning,False,1,4,3,2,2,4,3,1
+UOD,uod,control_reasoning_L13_E20_L13_E63,13,63,reasoning,0.6000000000000001,reasoning,general,False,2,3,4,1,1,4,3,2
+UOD,uod,specialist_reasoning_L11_E48,11,48,reasoning,0.6000000000000001,general,reasoning,False,1,3,4,2,2,4,3,1
+UOD,uod,control_reasoning_L11_E48_L11_E47,11,47,reasoning,-0.19999999999999998,coding,general,False,2,4,1,3,1,3,4,2
+REOD,reod,specialist_general_L13_E52,13,52,general,-0.39999999999999997,coding,general,False,4,2,1,3,1,2,3,4
+REOD,reod,control_general_L13_E52_L13_E36,13,36,general,-0.7999999999999999,math,coding,False,3,1,4,2,3,4,1,2
+REOD,reod,specialist_general_L12_E40,12,40,general,-0.39999999999999997,coding,math,False,4,2,1,3,2,1,4,3
+REOD,reod,control_general_L12_E40_L12_E2,12,2,general,0.7999999999999999,coding,coding,True,4,3,1,2,3,4,1,2
+REOD,reod,specialist_math_L8_E11,8,11,math,0.39999999999999997,coding,general,False,3,4,1,2,1,4,2,3
+REOD,reod,control_math_L8_E11_L8_E54,8,54,math,-0.7999999999999999,reasoning,coding,False,3,2,4,1,2,4,1,3
+REOD,reod,specialist_math_L12_E63,12,63,math,0.39999999999999997,coding,general,False,3,4,1,2,1,4,2,3
+REOD,reod,control_math_L12_E63_L12_E43,12,43,math,-0.39999999999999997,math,general,False,4,1,3,2,1,3,4,2
+REOD,reod,specialist_coding_L13_E2,13,2,coding,-0.19999999999999998,reasoning,coding,False,3,2,4,1,4,3,1,2
+REOD,reod,control_coding_L13_E2_L13_E61,13,61,coding,0.7999999999999999,coding,coding,True,3,4,1,2,2,4,1,3
+REOD,reod,specialist_coding_L11_E27,11,27,coding,-0.39999999999999997,general,coding,False,1,2,4,3,2,4,1,3
+REOD,reod,control_coding_L11_E27_L11_E7,11,7,coding,-0.6000000000000001,general,coding,False,1,2,3,4,3,4,1,2
+REOD,reod,specialist_reasoning_L13_E20,13,20,reasoning,-0.6000000000000001,coding,reasoning,False,4,2,1,3,2,4,3,1
+REOD,reod,control_reasoning_L13_E20_L13_E63,13,63,reasoning,0.0,coding,general,False,2,3,1,4,1,4,3,2
+REOD,reod,specialist_reasoning_L11_E48,11,48,reasoning,-0.6000000000000001,coding,reasoning,False,4,2,1,3,2,4,3,1
+REOD,reod,control_reasoning_L11_E48_L11_E47,11,47,reasoning,0.19999999999999998,math,general,False,3,1,4,2,1,3,4,2
+APD,apd,specialist_general_L13_E52,13,52,general,0.39999999999999997,general,general,True,1,3,4,2,1,2,3,4
+APD,apd,control_general_L13_E52_L13_E36,13,36,general,-0.39999999999999997,general,coding,False,1,3,4,2,3,4,1,2
+APD,apd,specialist_general_L12_E40,12,40,general,0.39999999999999997,general,math,False,1,3,4,2,2,1,4,3
+APD,apd,control_general_L12_E40_L12_E2,12,2,general,-1.0,math,coding,False,2,1,4,3,3,4,1,2
+APD,apd,specialist_math_L8_E11,8,11,math,-0.7999999999999999,math,general,False,3,1,4,2,1,4,2,3
+APD,apd,control_math_L8_E11_L8_E54,8,54,math,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+APD,apd,specialist_math_L12_E63,12,63,math,-0.39999999999999997,math,general,False,2,1,4,3,1,4,2,3
+APD,apd,control_math_L12_E63_L12_E43,12,43,math,-0.7999999999999999,coding,general,False,4,3,1,2,1,3,4,2
+APD,apd,specialist_coding_L13_E2,13,2,coding,0.7999999999999999,coding,coding,True,3,4,1,2,4,3,1,2
+APD,apd,control_coding_L13_E2_L13_E61,13,61,coding,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+APD,apd,specialist_coding_L11_E27,11,27,coding,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+APD,apd,control_coding_L11_E27_L11_E7,11,7,coding,0.7999999999999999,coding,coding,True,4,3,1,2,3,4,1,2
+APD,apd,specialist_reasoning_L13_E20,13,20,reasoning,1.0,reasoning,reasoning,True,2,4,3,1,2,4,3,1
+APD,apd,control_reasoning_L13_E20_L13_E63,13,63,reasoning,0.0,reasoning,general,False,3,2,4,1,1,4,3,2
+APD,apd,specialist_reasoning_L11_E48,11,48,reasoning,0.7999999999999999,reasoning,reasoning,True,2,3,4,1,2,4,3,1
+APD,apd,control_reasoning_L11_E48_L11_E47,11,47,reasoning,-1.0,coding,general,False,4,2,1,3,1,3,4,2
+AOD,aod,specialist_general_L13_E52,13,52,general,0.39999999999999997,general,general,True,1,3,4,2,1,2,3,4
+AOD,aod,control_general_L13_E52_L13_E36,13,36,general,-0.7999999999999999,general,coding,False,1,2,4,3,3,4,1,2
+AOD,aod,specialist_general_L12_E40,12,40,general,0.39999999999999997,general,math,False,1,3,4,2,2,1,4,3
+AOD,aod,control_general_L12_E40_L12_E2,12,2,general,-0.7999999999999999,math,coding,False,2,1,3,4,3,4,1,2
+AOD,aod,specialist_math_L8_E11,8,11,math,-0.7999999999999999,math,general,False,3,1,4,2,1,4,2,3
+AOD,aod,control_math_L8_E11_L8_E54,8,54,math,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+AOD,aod,specialist_math_L12_E63,12,63,math,-0.39999999999999997,math,general,False,2,1,4,3,1,4,2,3
+AOD,aod,control_math_L12_E63_L12_E43,12,43,math,-0.7999999999999999,coding,general,False,4,3,1,2,1,3,4,2
+AOD,aod,specialist_coding_L13_E2,13,2,coding,1.0,coding,coding,True,4,3,1,2,4,3,1,2
+AOD,aod,control_coding_L13_E2_L13_E61,13,61,coding,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+AOD,aod,specialist_coding_L11_E27,11,27,coding,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+AOD,aod,control_coding_L11_E27_L11_E7,11,7,coding,0.7999999999999999,coding,coding,True,4,3,1,2,3,4,1,2
+AOD,aod,specialist_reasoning_L13_E20,13,20,reasoning,0.7999999999999999,reasoning,reasoning,True,2,3,4,1,2,4,3,1
+AOD,aod,control_reasoning_L13_E20_L13_E63,13,63,reasoning,0.0,reasoning,general,False,3,2,4,1,1,4,3,2
+AOD,aod,specialist_reasoning_L11_E48,11,48,reasoning,0.7999999999999999,reasoning,reasoning,True,2,3,4,1,2,4,3,1
+AOD,aod,control_reasoning_L11_E48_L11_E47,11,47,reasoning,-1.0,coding,general,False,4,2,1,3,1,3,4,2
+GQS,gqs,specialist_general_L13_E52,13,52,general,0.39999999999999997,general,general,True,1,3,4,2,1,2,3,4
+GQS,gqs,control_general_L13_E52_L13_E36,13,36,general,-0.39999999999999997,general,coding,False,1,3,4,2,3,4,1,2
+GQS,gqs,specialist_general_L12_E40,12,40,general,0.39999999999999997,general,math,False,1,3,4,2,2,1,4,3
+GQS,gqs,control_general_L12_E40_L12_E2,12,2,general,-0.7999999999999999,math,coding,False,2,1,3,4,3,4,1,2
+GQS,gqs,specialist_math_L8_E11,8,11,math,-0.7999999999999999,math,general,False,3,1,4,2,1,4,2,3
+GQS,gqs,control_math_L8_E11_L8_E54,8,54,math,0.39999999999999997,coding,coding,True,3,2,1,4,2,4,1,3
+GQS,gqs,specialist_math_L12_E63,12,63,math,-0.39999999999999997,math,general,False,2,1,4,3,1,4,2,3
+GQS,gqs,control_math_L12_E63_L12_E43,12,43,math,-0.7999999999999999,coding,general,False,4,3,1,2,1,3,4,2
+GQS,gqs,specialist_coding_L13_E2,13,2,coding,0.39999999999999997,coding,coding,True,2,4,1,3,4,3,1,2
+GQS,gqs,control_coding_L13_E2_L13_E61,13,61,coding,0.19999999999999998,coding,coding,True,4,2,1,3,2,4,1,3
+GQS,gqs,specialist_coding_L11_E27,11,27,coding,0.7999999999999999,coding,coding,True,3,4,1,2,2,4,1,3
+GQS,gqs,control_coding_L11_E27_L11_E7,11,7,coding,0.39999999999999997,coding,coding,True,2,3,1,4,3,4,1,2
+GQS,gqs,specialist_reasoning_L13_E20,13,20,reasoning,0.7999999999999999,reasoning,reasoning,True,3,4,2,1,2,4,3,1
+GQS,gqs,control_reasoning_L13_E20_L13_E63,13,63,reasoning,0.7999999999999999,general,general,True,1,3,4,2,1,4,3,2
+GQS,gqs,specialist_reasoning_L11_E48,11,48,reasoning,0.7999999999999999,reasoning,reasoning,True,2,3,4,1,2,4,3,1
+GQS,gqs,control_reasoning_L11_E48_L11_E47,11,47,reasoning,-1.0,coding,general,False,4,2,1,3,1,3,4,2

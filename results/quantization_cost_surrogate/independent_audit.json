@@ -1,0 +1,673 @@
+{
+  "schema_version": 1,
+  "audit_method": "standalone_raw_surrogate_recomputation_without_production_analysis_imports",
+  "passed": true,
+  "decision_recomputed": "SURROGATE_NO_GO",
+  "checks_performed": 1528,
+  "maximum_absolute_numeric_difference": 0.0,
+  "errors": [],
+  "stage1": {
+    "decision": "GO",
+    "raw_npz_sha256": "d0288414932272b5c496b106abf01a72b6ab28bf95493070a45ce2c146e18754",
+    "observations": 64,
+    "counterexamples_excluded": false
+  },
+  "pilot_recomputation": {
+    "surrogate_values_reconstructed": 576,
+    "aod_formula_recomputed_from_raw_sums": true,
+    "gqs_formula_recomputed_from_signed_per_example_sums": true,
+    "grouped_bootstrap_recomputed": true,
+    "gate_decision_recomputed": true
+  },
+  "independent_metrics": {
+    "weight_risk_functional": {
+      "overall": {
+        "spearman": 0.0923076923076923,
+        "spearman_ci_low": -0.24310564189129272,
+        "spearman_ci_high": 0.3929312719969608,
+        "kendall_tau": 0.0615079365079365,
+        "kendall_tau_ci_low": -0.17879930183510703,
+        "kendall_tau_ci_high": 0.2686368209255533
+      },
+      "specificity": {
+        "spearman": 0.4147058823529412,
+        "spearman_ci_low": -0.13129348771472057,
+        "spearman_ci_high": 0.7758841821481955,
+        "kendall_tau": 0.3,
+        "kendall_tau_ci_low": -0.07968189428366418,
+        "kendall_tau_ci_high": 0.6106194690265486,
+        "sign_agreement": 0.625,
+        "sign_agreement_ci_low": 0.375,
+        "sign_agreement_ci_high": 0.875
+      },
+      "top_domain_accuracy": 0.5,
+      "top_domain_accuracy_ci_low": 0.25,
+      "top_domain_accuracy_ci_high": 0.75,
+      "per_expert_spearman": [
+        0.39999999999999997,
+        -0.7999999999999999,
+        0.39999999999999997,
+        -0.39999999999999997,
+        -0.7999999999999999,
+        0.19999999999999998,
+        -0.39999999999999997,
+        -0.7999999999999999,
+        1.0,
+        0.19999999999999998,
+        0.19999999999999998,
+        0.7999999999999999,
+        0.7999999999999999,
+        -0.39999999999999997,
+        0.7999999999999999,
+        -1.0
+      ],
+      "mean_per_expert_spearman": 0.012499999999999997,
+      "median_per_expert_spearman": 0.19999999999999998,
+      "finite_per_expert_count": 16,
+      "domain_correlations": [
+        {
+          "domain": "general",
+          "spearman": 0.28823529411764703,
+          "spearman_ci_low": -0.3343529385712388,
+          "spearman_ci_high": 0.7370218542330758
+        },
+        {
+          "domain": "math",
+          "spearman": -0.6529411764705881,
+          "spearman_ci_low": -0.9078751857355126,
+          "spearman_ci_high": -0.21686431825958544
+        },
+        {
+          "domain": "coding",
+          "spearman": 0.35000000000000003,
+          "spearman_ci_low": -0.23136362410314507,
+          "spearman_ci_high": 0.8063195729997169
+        },
+        {
+          "domain": "reasoning",
+          "spearman": 0.6264705882352941,
+          "spearman_ci_low": 0.06924636415484423,
+          "spearman_ci_high": 0.9518197978201928
+        }
+      ],
+      "positive_domain_count": 3
+    },
+    "weight_risk_routing": {
+      "overall": {
+        "spearman": 0.04189560439560439,
+        "spearman_ci_low": -0.2927310814340945,
+        "spearman_ci_high": 0.3416675305641838,
+        "kendall_tau": 0.0248015873015873,
+        "kendall_tau_ci_low": -0.22525252525252526,
+        "kendall_tau_ci_high": 0.22930657380254155
+      },
+      "specificity": {
+        "spearman": 0.3411764705882353,
+        "spearman_ci_low": -0.20494641522528295,
+        "spearman_ci_high": 0.7233428837953091,
+        "kendall_tau": 0.21666666666666667,
+        "kendall_tau_ci_low": -0.1711711711711712,
+        "kendall_tau_ci_high": 0.5575748964845334,
+        "sign_agreement": 0.625,
+        "sign_agreement_ci_low": 0.375,
+        "sign_agreement_ci_high": 0.875
+      },
+      "top_domain_accuracy": 0.5,
+      "top_domain_accuracy_ci_low": 0.25,
+      "top_domain_accuracy_ci_high": 0.75,
+      "per_expert_spearman": [
+        0.39999999999999997,
+        -0.7999999999999999,
+        0.39999999999999997,
+        -0.39999999999999997,
+        -1.0,
+        0.19999999999999998,
+        -0.39999999999999997,
+        -0.7999999999999999,
+        1.0,
+        0.19999999999999998,
+        0.19999999999999998,
+        0.7999999999999999,
+        0.19999999999999998,
+        -0.39999999999999997,
+        0.7999999999999999,
+        -1.0
+      ],
+      "mean_per_expert_spearman": -0.037500000000000006,
+      "median_per_expert_spearman": 0.19999999999999998,
+      "finite_per_expert_count": 16,
+      "domain_correlations": [
+        {
+          "domain": "general",
+          "spearman": 0.2088235294117647,
+          "spearman_ci_low": -0.4127603463180074,
+          "spearman_ci_high": 0.706874108558975
+        },
+        {
+          "domain": "math",
+          "spearman": -0.6382352941176471,
+          "spearman_ci_low": -0.9182063146434403,
+          "spearman_ci_high": -0.20517850489674275
+        },
+        {
+          "domain": "coding",
+          "spearman": 0.3970588235294118,
+          "spearman_ci_low": -0.2507753218639627,
+          "spearman_ci_high": 0.8620946223316914
+        },
+        {
+          "domain": "reasoning",
+          "spearman": 0.5735294117647058,
+          "spearman_ci_low": 0.007154164596787564,
+          "spearman_ci_high": 0.9225810135902347
+        }
+      ],
+      "positive_domain_count": 3
+    },
+    "functional_importance": {
+      "overall": {
+        "spearman": 0.09432234432234432,
+        "spearman_ci_low": -0.24800750526953347,
+        "spearman_ci_high": 0.39950380998717355,
+        "kendall_tau": 0.06349206349206349,
+        "kendall_tau_ci_low": -0.18497124863088715,
+        "kendall_tau_ci_high": 0.27457671883001417
+      },
+      "specificity": {
+        "spearman": 0.4147058823529412,
+        "spearman_ci_low": -0.13129348771472057,
+        "spearman_ci_high": 0.7758841821481955,
+        "kendall_tau": 0.3,
+        "kendall_tau_ci_low": -0.07968189428366418,
+        "kendall_tau_ci_high": 0.6106194690265486,
+        "sign_agreement": 0.625,
+        "sign_agreement_ci_low": 0.375,
+        "sign_agreement_ci_high": 0.875
+      },
+      "top_domain_accuracy": 0.5,
+      "top_domain_accuracy_ci_low": 0.25,
+      "top_domain_accuracy_ci_high": 0.75,
+      "per_expert_spearman": [
+        0.39999999999999997,
+        -0.7999999999999999,
+        0.39999999999999997,
+        -0.39999999999999997,
+        -0.7999999999999999,
+        0.19999999999999998,
+        -0.39999999999999997,
+        -0.7999999999999999,
+        1.0,
+        0.19999999999999998,
+        0.19999999999999998,
+        0.7999999999999999,
+        0.7999999999999999,
+        -0.39999999999999997,
+        0.7999999999999999,
+        -1.0
+      ],
+      "mean_per_expert_spearman": 0.012499999999999997,
+      "median_per_expert_spearman": 0.19999999999999998,
+      "finite_per_expert_count": 16,
+      "domain_correlations": [
+        {
+          "domain": "general",
+          "spearman": 0.2588235294117647,
+          "spearman_ci_low": -0.37232710068332264,
+          "spearman_ci_high": 0.7245460030165911
+        },
+        {
+          "domain": "math",
+          "spearman": -0.6558823529411765,
+          "spearman_ci_low": -0.9156626506024096,
+          "spearman_ci_high": -0.22768945416004244
+        },
+        {
+          "domain": "coding",
+          "spearman": 0.35000000000000003,
+          "spearman_ci_low": -0.23136362410314507,
+          "spearman_ci_high": 0.8063195729997169
+        },
+        {
+          "domain": "reasoning",
+          "spearman": 0.6294117647058822,
+          "spearman_ci_low": 0.06924636415484423,
+          "spearman_ci_high": 0.9614595494587135
+        }
+      ],
+      "positive_domain_count": 3
+    },
+    "routing_importance": {
+      "overall": {
+        "spearman": 0.045032566767679846,
+        "spearman_ci_low": -0.2909821795596217,
+        "spearman_ci_high": 0.34650416933932005,
+        "kendall_tau": 0.025303895593813536,
+        "kendall_tau_ci_low": -0.2243687376785968,
+        "kendall_tau_ci_high": 0.2320577871677527
+      },
+      "specificity": {
+        "spearman": 0.3411764705882353,
+        "spearman_ci_low": -0.20494641522528295,
+        "spearman_ci_high": 0.7233428837953091,
+        "kendall_tau": 0.21666666666666667,
+        "kendall_tau_ci_low": -0.1711711711711712,
+        "kendall_tau_ci_high": 0.5575748964845334,
+        "sign_agreement": 0.625,
+        "sign_agreement_ci_low": 0.375,
+        "sign_agreement_ci_high": 0.875
+      },
+      "top_domain_accuracy": 0.5,
+      "top_domain_accuracy_ci_low": 0.25,
+      "top_domain_accuracy_ci_high": 0.75,
+      "per_expert_spearman": [
+        0.39999999999999997,
+        -0.7999999999999999,
+        0.39999999999999997,
+        -0.39999999999999997,
+        -1.0,
+        0.19999999999999998,
+        -0.39999999999999997,
+        -0.7999999999999999,
+        1.0,
+        0.19999999999999998,
+        0.19999999999999998,
+        0.7999999999999999,
+        0.19999999999999998,
+        -0.39999999999999997,
+        0.7999999999999999,
+        -1.0
+      ],
+      "mean_per_expert_spearman": -0.037500000000000006,
+      "median_per_expert_spearman": 0.19999999999999998,
+      "finite_per_expert_count": 16,
+      "domain_correlations": [
+        {
+          "domain": "general",
+          "spearman": 0.2352941176470588,
+          "spearman_ci_low": -0.3991555006578771,
+          "spearman_ci_high": 0.707854710073578
+        },
+        {
+          "domain": "math",
+          "spearman": -0.6529411764705881,
+          "spearman_ci_low": -0.9248288381161547,
+          "spearman_ci_high": -0.21582692410048987
+        },
+        {
+          "domain": "coding",
+          "spearman": 0.42531284509205053,
+          "spearman_ci_low": -0.18772688307273278,
+          "spearman_ci_high": 0.8595224399409556
+        },
+        {
+          "domain": "reasoning",
+          "spearman": 0.5647058823529412,
+          "spearman_ci_low": -0.012309585775124655,
+          "spearman_ci_high": 0.9105749532878593
+        }
+      ],
+      "positive_domain_count": 3
+    },
+    "uod": {
+      "overall": {
+        "spearman": 0.01529304029304029,
+        "spearman_ci_low": -0.2179710439956617,
+        "spearman_ci_high": 0.25899262141474033,
+        "kendall_tau": 0.005952380952380953,
+        "kendall_tau_ci_low": -0.16267676767676767,
+        "kendall_tau_ci_high": 0.17342110622352558
+      },
+      "specificity": {
+        "spearman": 0.26176470588235295,
+        "spearman_ci_low": -0.3180621941301525,
+        "spearman_ci_high": 0.6871718531040771,
+        "kendall_tau": 0.18333333333333335,
+        "kendall_tau_ci_low": -0.2501136363636363,
+        "kendall_tau_ci_high": 0.5514099258781824,
+        "sign_agreement": 0.5625,
+        "sign_agreement_ci_low": 0.3125,
+        "sign_agreement_ci_high": 0.8125
+      },
+      "top_domain_accuracy": 0.3125,
+      "top_domain_accuracy_ci_low": 0.125,
+      "top_domain_accuracy_ci_high": 0.5625,
+      "per_expert_spearman": [
+        0.39999999999999997,
+        -0.7999999999999999,
+        0.39999999999999997,
+        -0.7999999999999999,
+        -0.39999999999999997,
+        0.19999999999999998,
+        -0.7999999999999999,
+        -0.39999999999999997,
+        0.39999999999999997,
+        -0.7999999999999999,
+        0.19999999999999998,
+        0.7999999999999999,
+        0.7999999999999999,
+        0.6000000000000001,
+        0.6000000000000001,
+        -0.19999999999999998
+      ],
+      "mean_per_expert_spearman": 0.012500000000000011,
+      "median_per_expert_spearman": 0.19999999999999998,
+      "finite_per_expert_count": 16,
+      "domain_correlations": [
+        {
+          "domain": "general",
+          "spearman": 0.008823529411764706,
+          "spearman_ci_low": -0.5708754415638677,
+          "spearman_ci_high": 0.6489685960591132
+        },
+        {
+          "domain": "math",
+          "spearman": 0.2735294117647059,
+          "spearman_ci_low": -0.23319734313361878,
+          "spearman_ci_high": 0.7082206876617423
+        },
+        {
+          "domain": "coding",
+          "spearman": -0.09411764705882353,
+          "spearman_ci_low": -0.6066483151866688,
+          "spearman_ci_high": 0.4260089686098655
+        },
+        {
+          "domain": "reasoning",
+          "spearman": 0.19411764705882353,
+          "spearman_ci_low": -0.35544776119402993,
+          "spearman_ci_high": 0.623374356172416
+        }
+      ],
+      "positive_domain_count": 3
+    },
+    "reod": {
+      "overall": {
+        "spearman": -0.21108058608058608,
+        "spearman_ci_low": -0.43429360287664287,
+        "spearman_ci_high": 0.03395671323793888,
+        "kendall_tau": -0.14087301587301587,
+        "kendall_tau_ci_low": -0.281577260947598,
+        "kendall_tau_ci_high": 0.01717433481152993
+      },
+      "specificity": {
+        "spearman": -0.3058823529411765,
+        "spearman_ci_low": -0.6957992685025818,
+        "spearman_ci_high": 0.2955891476353174,
+        "kendall_tau": -0.19999999999999998,
+        "kendall_tau_ci_low": -0.5456574675324676,
+        "kendall_tau_ci_high": 0.22236842105263144,
+        "sign_agreement": 0.3125,
+        "sign_agreement_ci_low": 0.125,
+        "sign_agreement_ci_high": 0.5625
+      },
+      "top_domain_accuracy": 0.125,
+      "top_domain_accuracy_ci_low": 0.0,
+      "top_domain_accuracy_ci_high": 0.3125,
+      "per_expert_spearman": [
+        -0.39999999999999997,
+        -0.7999999999999999,
+        -0.39999999999999997,
+        0.7999999999999999,
+        0.39999999999999997,
+        -0.7999999999999999,
+        0.39999999999999997,
+        -0.39999999999999997,
+        -0.19999999999999998,
+        0.7999999999999999,
+        -0.39999999999999997,
+        -0.6000000000000001,
+        -0.6000000000000001,
+        0.0,
+        -0.6000000000000001,
+        0.19999999999999998
+      ],
+      "mean_per_expert_spearman": -0.16250000000000003,
+      "median_per_expert_spearman": -0.39999999999999997,
+      "finite_per_expert_count": 16,
+      "domain_correlations": [
+        {
+          "domain": "general",
+          "spearman": -0.411764705882353,
+          "spearman_ci_low": -0.8363156044364254,
+          "spearman_ci_high": 0.21311109482339244
+        },
+        {
+          "domain": "math",
+          "spearman": -0.19999999999999998,
+          "spearman_ci_low": -0.5485946690365867,
+          "spearman_ci_high": 0.25462127982840277
+        },
+        {
+          "domain": "coding",
+          "spearman": -0.21176470588235297,
+          "spearman_ci_low": -0.7668507919162576,
+          "spearman_ci_high": 0.42522935779816495
+        },
+        {
+          "domain": "reasoning",
+          "spearman": -0.18235294117647058,
+          "spearman_ci_low": -0.6332051939938868,
+          "spearman_ci_high": 0.31843787840481164
+        }
+      ],
+      "positive_domain_count": 0
+    },
+    "apd": {
+      "overall": {
+        "spearman": 0.13278388278388276,
+        "spearman_ci_low": -0.18194338821625639,
+        "spearman_ci_high": 0.4088775558900463,
+        "kendall_tau": 0.0853174603174603,
+        "kendall_tau_ci_low": -0.1385863373009139,
+        "kendall_tau_ci_high": 0.27924200214946027
+      },
+      "specificity": {
+        "spearman": 0.5441176470588236,
+        "spearman_ci_low": 0.06573213090435442,
+        "spearman_ci_high": 0.8000000000000002,
+        "kendall_tau": 0.38333333333333336,
+        "kendall_tau_ci_low": 0.036118262268704765,
+        "kendall_tau_ci_high": 0.6283185840707964,
+        "sign_agreement": 0.625,
+        "sign_agreement_ci_low": 0.375,
+        "sign_agreement_ci_high": 0.875
+      },
+      "top_domain_accuracy": 0.5,
+      "top_domain_accuracy_ci_low": 0.25,
+      "top_domain_accuracy_ci_high": 0.75,
+      "per_expert_spearman": [
+        0.39999999999999997,
+        -0.39999999999999997,
+        0.39999999999999997,
+        -1.0,
+        -0.7999999999999999,
+        0.19999999999999998,
+        -0.39999999999999997,
+        -0.7999999999999999,
+        0.7999999999999999,
+        0.19999999999999998,
+        0.19999999999999998,
+        0.7999999999999999,
+        1.0,
+        0.0,
+        0.7999999999999999,
+        -1.0
+      ],
+      "mean_per_expert_spearman": 0.025,
+      "median_per_expert_spearman": 0.19999999999999998,
+      "finite_per_expert_count": 16,
+      "domain_correlations": [
+        {
+          "domain": "general",
+          "spearman": 0.28529411764705886,
+          "spearman_ci_low": -0.35368784499011874,
+          "spearman_ci_high": 0.7961623632628129
+        },
+        {
+          "domain": "math",
+          "spearman": -0.4147058823529412,
+          "spearman_ci_low": -0.7811582321766308,
+          "spearman_ci_high": 0.11522864624631016
+        },
+        {
+          "domain": "coding",
+          "spearman": 0.27941176470588236,
+          "spearman_ci_low": -0.3355131207321869,
+          "spearman_ci_high": 0.7927257718342412
+        },
+        {
+          "domain": "reasoning",
+          "spearman": 0.6176470588235293,
+          "spearman_ci_low": 0.0824403919882555,
+          "spearman_ci_high": 0.9581527062413796
+        }
+      ],
+      "positive_domain_count": 3
+    },
+    "aod": {
+      "overall": {
+        "spearman": 0.12248168498168496,
+        "spearman_ci_low": -0.21670245092326573,
+        "spearman_ci_high": 0.4339695363484231,
+        "kendall_tau": 0.08432539682539682,
+        "kendall_tau_ci_low": -0.16806629249179286,
+        "kendall_tau_ci_high": 0.30382293762575446
+      },
+      "specificity": {
+        "spearman": 0.4058823529411764,
+        "spearman_ci_low": -0.20000000000000004,
+        "spearman_ci_high": 0.8168305281329233,
+        "kendall_tau": 0.31666666666666665,
+        "kendall_tau_ci_low": -0.11728442728442728,
+        "kendall_tau_ci_high": 0.6695692062225769,
+        "sign_agreement": 0.625,
+        "sign_agreement_ci_low": 0.375,
+        "sign_agreement_ci_high": 0.875
+      },
+      "top_domain_accuracy": 0.5,
+      "top_domain_accuracy_ci_low": 0.25,
+      "top_domain_accuracy_ci_high": 0.75,
+      "per_expert_spearman": [
+        0.39999999999999997,
+        -0.7999999999999999,
+        0.39999999999999997,
+        -0.7999999999999999,
+        -0.7999999999999999,
+        0.19999999999999998,
+        -0.39999999999999997,
+        -0.7999999999999999,
+        1.0,
+        0.19999999999999998,
+        0.19999999999999998,
+        0.7999999999999999,
+        0.7999999999999999,
+        0.0,
+        0.7999999999999999,
+        -1.0
+      ],
+      "mean_per_expert_spearman": 0.012499999999999997,
+      "median_per_expert_spearman": 0.19999999999999998,
+      "finite_per_expert_count": 16,
+      "domain_correlations": [
+        {
+          "domain": "general",
+          "spearman": 0.3029411764705882,
+          "spearman_ci_low": -0.34830893079042624,
+          "spearman_ci_high": 0.7684642576590729
+        },
+        {
+          "domain": "math",
+          "spearman": -0.5794117647058823,
+          "spearman_ci_low": -0.8560880753653023,
+          "spearman_ci_high": -0.10549586906317693
+        },
+        {
+          "domain": "coding",
+          "spearman": 0.35000000000000003,
+          "spearman_ci_low": -0.23136362410314507,
+          "spearman_ci_high": 0.8063195729997169
+        },
+        {
+          "domain": "reasoning",
+          "spearman": 0.6676470588235294,
+          "spearman_ci_low": 0.12491451367781155,
+          "spearman_ci_high": 0.9730185130648961
+        }
+      ],
+      "positive_domain_count": 3
+    },
+    "gqs": {
+      "overall": {
+        "spearman": 0.09752747252747253,
+        "spearman_ci_low": -0.2233172167461028,
+        "spearman_ci_high": 0.4002222970919903,
+        "kendall_tau": 0.06746031746031746,
+        "kendall_tau_ci_low": -0.15757575757575756,
+        "kendall_tau_ci_high": 0.2752207579166941
+      },
+      "specificity": {
+        "spearman": 0.4676470588235294,
+        "spearman_ci_low": -0.11861408847814897,
+        "spearman_ci_high": 0.815496693121693,
+        "kendall_tau": 0.31666666666666665,
+        "kendall_tau_ci_low": -0.12517688679245279,
+        "kendall_tau_ci_high": 0.6607893489254106,
+        "sign_agreement": 0.625,
+        "sign_agreement_ci_low": 0.375,
+        "sign_agreement_ci_high": 0.875
+      },
+      "top_domain_accuracy": 0.5625,
+      "top_domain_accuracy_ci_low": 0.3125,
+      "top_domain_accuracy_ci_high": 0.8125,
+      "per_expert_spearman": [
+        0.39999999999999997,
+        -0.39999999999999997,
+        0.39999999999999997,
+        -0.7999999999999999,
+        -0.7999999999999999,
+        0.39999999999999997,
+        -0.39999999999999997,
+        -0.7999999999999999,
+        0.39999999999999997,
+        0.19999999999999998,
+        0.7999999999999999,
+        0.39999999999999997,
+        0.7999999999999999,
+        0.7999999999999999,
+        0.7999999999999999,
+        -1.0
+      ],
+      "mean_per_expert_spearman": 0.075,
+      "median_per_expert_spearman": 0.39999999999999997,
+      "finite_per_expert_count": 16,
+      "domain_correlations": [
+        {
+          "domain": "general",
+          "spearman": 0.25,
+          "spearman_ci_low": -0.31957737393509356,
+          "spearman_ci_high": 0.7151424287856072
+        },
+        {
+          "domain": "math",
+          "spearman": -0.6205882352941177,
+          "spearman_ci_low": -0.8782459944340872,
+          "spearman_ci_high": -0.16576226430385232
+        },
+        {
+          "domain": "coding",
+          "spearman": 0.2823529411764706,
+          "spearman_ci_low": -0.36463590069159285,
+          "spearman_ci_high": 0.8535344718448283
+        },
+        {
+          "domain": "reasoning",
+          "spearman": 0.5617647058823529,
+          "spearman_ci_low": -0.02541106128550075,
+          "spearman_ci_high": 0.9100449775112445
+        }
+      ],
+      "positive_domain_count": 3
+    }
+  },
+  "full_matrix_audit": null
+}

@@ -1,0 +1,145 @@
+surrogate,internal_name,intervention_id,target_domain,layer,expert_id,predicted_contrast,actual_contrast,sign_agreement
+WeightRiskFunctional,weight_risk_functional,specialist_general_L13_E52,general,13,52,0.0010499619205269696,0.001061713695526123,True
+WeightRiskFunctional,weight_risk_functional,control_general_L13_E52_L13_E36,general,13,36,0.0001721544914426825,-0.00021303852399190269,False
+WeightRiskFunctional,weight_risk_functional,specialist_general_L12_E40,general,12,40,0.00104069192838123,0.00014514168103535967,True
+WeightRiskFunctional,weight_risk_functional,control_general_L12_E40_L12_E2,general,12,2,-0.0002919713552459276,6.642699241638178e-05,False
+WeightRiskFunctional,weight_risk_functional,specialist_math_L8_E11,math,8,11,0.0013657277941817177,-0.0005082722504933675,False
+WeightRiskFunctional,weight_risk_functional,control_math_L8_E11_L8_E54,math,8,54,-0.0002284584036169483,-0.0008630160490671794,True
+WeightRiskFunctional,weight_risk_functional,specialist_math_L12_E63,math,12,63,0.0009103331973099895,-0.0002623279889424642,False
+WeightRiskFunctional,weight_risk_functional,control_math_L12_E63_L12_E43,math,12,43,-0.00037147092158689853,4.38201427459717e-05,False
+WeightRiskFunctional,weight_risk_functional,specialist_coding_L13_E2,coding,13,2,0.0028179295398787023,0.0006485398610432942,True
+WeightRiskFunctional,weight_risk_functional,control_coding_L13_E2_L13_E61,coding,13,61,0.0004937690281358136,0.0006277819474538168,True
+WeightRiskFunctional,weight_risk_functional,specialist_coding_L11_E27,coding,11,27,0.0025989944085973472,0.0021617396672566733,True
+WeightRiskFunctional,weight_risk_functional,control_coding_L11_E27_L11_E7,coding,11,7,0.0006245948639917507,0.0009190436204274496,True
+WeightRiskFunctional,weight_risk_functional,specialist_reasoning_L13_E20,reasoning,13,20,0.0013899801912969007,0.00041110952695210776,True
+WeightRiskFunctional,weight_risk_functional,control_reasoning_L13_E20_L13_E63,reasoning,13,63,0.0002363891028630598,0.00031263033548990885,True
+WeightRiskFunctional,weight_risk_functional,specialist_reasoning_L11_E48,reasoning,11,48,0.0014615141765805958,0.0003720247745513916,True
+WeightRiskFunctional,weight_risk_functional,control_reasoning_L11_E48_L11_E47,reasoning,11,47,-0.000670558945924788,0.00043986082077026364,False
+WeightRiskRouting,weight_risk_routing,specialist_general_L13_E52,general,13,52,0.0006154989072627798,0.001061713695526123,True
+WeightRiskRouting,weight_risk_routing,control_general_L13_E52_L13_E36,general,13,36,0.00016576207222125644,-0.00021303852399190269,False
+WeightRiskRouting,weight_risk_routing,specialist_general_L12_E40,general,12,40,0.0006718007983835297,0.00014514168103535967,True
+WeightRiskRouting,weight_risk_routing,control_general_L12_E40_L12_E2,general,12,2,-0.0003691239326044162,6.642699241638178e-05,False
+WeightRiskRouting,weight_risk_routing,specialist_math_L8_E11,math,8,11,0.0008501347386043303,-0.0005082722504933675,False
+WeightRiskRouting,weight_risk_routing,control_math_L8_E11_L8_E54,math,8,54,0.00015470594209093282,-0.0008630160490671794,False
+WeightRiskRouting,weight_risk_routing,specialist_math_L12_E63,math,12,63,0.0007803299320463108,-0.0002623279889424642,False
+WeightRiskRouting,weight_risk_routing,control_math_L12_E63_L12_E43,math,12,43,6.380579046961587e-06,4.38201427459717e-05,True
+WeightRiskRouting,weight_risk_routing,specialist_coding_L13_E2,coding,13,2,0.0014598489622469567,0.0006485398610432942,True
+WeightRiskRouting,weight_risk_routing,control_coding_L13_E2_L13_E61,coding,13,61,0.0006379600079106391,0.0006277819474538168,True
+WeightRiskRouting,weight_risk_routing,specialist_coding_L11_E27,coding,11,27,0.0015303913439385691,0.0021617396672566733,True
+WeightRiskRouting,weight_risk_routing,control_coding_L11_E27_L11_E7,coding,11,7,0.0007064806462709597,0.0009190436204274496,True
+WeightRiskRouting,weight_risk_routing,specialist_reasoning_L13_E20,reasoning,13,20,0.0010369372397491235,0.00041110952695210776,True
+WeightRiskRouting,weight_risk_routing,control_reasoning_L13_E20_L13_E63,reasoning,13,63,0.00013637240216925547,0.00031263033548990885,True
+WeightRiskRouting,weight_risk_routing,specialist_reasoning_L11_E48,reasoning,11,48,0.001155328567952976,0.0003720247745513916,True
+WeightRiskRouting,weight_risk_routing,control_reasoning_L11_E48_L11_E47,reasoning,11,47,-0.0002939108866634832,0.00043986082077026364,False
+Functional specialization alone,functional_importance,specialist_general_L13_E52,general,13,52,0.07556476770231894,0.001061713695526123,True
+Functional specialization alone,functional_importance,control_general_L13_E52_L13_E36,general,13,36,0.01140662219716258,-0.00021303852399190269,False
+Functional specialization alone,functional_importance,specialist_general_L12_E40,general,12,40,0.07463150070465752,0.00014514168103535967,True
+Functional specialization alone,functional_importance,control_general_L12_E40_L12_E2,general,12,2,-0.020696401081332194,6.642699241638178e-05,False
+Functional specialization alone,functional_importance,specialist_math_L8_E11,math,8,11,0.09776960780414887,-0.0005082722504933675,False
+Functional specialization alone,functional_importance,control_math_L8_E11_L8_E54,math,8,54,-0.016065171908604473,-0.0008630160490671794,True
+Functional specialization alone,functional_importance,specialist_math_L12_E63,math,12,63,0.06496050177547166,-0.0002623279889424642,False
+Functional specialization alone,functional_importance,control_math_L12_E63_L12_E43,math,12,43,-0.026532095643625762,4.38201427459717e-05,False
+Functional specialization alone,functional_importance,specialist_coding_L13_E2,coding,13,2,0.19813103616698632,0.0006485398610432942,True
+Functional specialization alone,functional_importance,control_coding_L13_E2_L13_E61,coding,13,61,0.03565049947969407,0.0006277819474538168,True
+Functional specialization alone,functional_importance,specialist_coding_L11_E27,coding,11,27,0.1843645728222129,0.0021617396672566733,True
+Functional specialization alone,functional_importance,control_coding_L11_E27_L11_E7,coding,11,7,0.04409530859845097,0.0009190436204274496,True
+Functional specialization alone,functional_importance,specialist_reasoning_L13_E20,reasoning,13,20,0.09981941400388121,0.00041110952695210776,True
+Functional specialization alone,functional_importance,control_reasoning_L13_E20_L13_E63,reasoning,13,63,0.016848822453898155,0.00031263033548990885,True
+Functional specialization alone,functional_importance,specialist_reasoning_L11_E48,reasoning,11,48,0.10356530727296319,0.0003720247745513916,True
+Functional specialization alone,functional_importance,control_reasoning_L11_E48_L11_E47,reasoning,11,47,-0.044946822603732554,0.00043986082077026364,False
+Routing specialization alone,routing_importance,specialist_general_L13_E52,general,13,52,0.04429687499999999,0.001061713695526123,True
+Routing specialization alone,routing_importance,control_general_L13_E52_L13_E36,general,13,36,0.010983072916666663,-0.00021303852399190269,False
+Routing specialization alone,routing_importance,specialist_general_L12_E40,general,12,40,0.048177083333333336,0.00014514168103535967,True
+Routing specialization alone,routing_importance,control_general_L12_E40_L12_E2,general,12,2,-0.02616536458333333,6.642699241638178e-05,False
+Routing specialization alone,routing_importance,specialist_math_L8_E11,math,8,11,0.06085937499999999,-0.0005082722504933675,False
+Routing specialization alone,routing_importance,control_math_L8_E11_L8_E54,math,8,54,0.01087890625,-0.0008630160490671794,False
+Routing specialization alone,routing_importance,specialist_math_L12_E63,math,12,63,0.05568359375,-0.0002623279889424642,False
+Routing specialization alone,routing_importance,control_math_L12_E63_L12_E43,math,12,43,0.0004557291666666685,4.38201427459717e-05,True
+Routing specialization alone,routing_importance,specialist_coding_L13_E2,coding,13,2,0.10264322916666667,0.0006485398610432942,True
+Routing specialization alone,routing_importance,control_coding_L13_E2_L13_E61,coding,13,61,0.046061197916666664,0.0006277819474538168,True
+Routing specialization alone,routing_importance,specialist_coding_L11_E27,coding,11,27,0.10856119791666667,0.0021617396672566733,True
+Routing specialization alone,routing_importance,control_coding_L11_E27_L11_E7,coding,11,7,0.04987630208333334,0.0009190436204274496,True
+Routing specialization alone,routing_importance,specialist_reasoning_L13_E20,reasoning,13,20,0.07446614583333333,0.00041110952695210776,True
+Routing specialization alone,routing_importance,control_reasoning_L13_E20_L13_E63,reasoning,13,63,0.00972005208333334,0.00031263033548990885,True
+Routing specialization alone,routing_importance,specialist_reasoning_L11_E48,reasoning,11,48,0.08186848958333333,0.0003720247745513916,True
+Routing specialization alone,routing_importance,control_reasoning_L11_E48_L11_E47,reasoning,11,47,-0.01970052083333334,0.00043986082077026364,False
+UOD,uod,specialist_general_L13_E52,general,13,52,2.2200047461982324,0.001061713695526123,True
+UOD,uod,control_general_L13_E52_L13_E36,general,13,36,0.5755420201343533,-0.00021303852399190269,False
+UOD,uod,specialist_general_L12_E40,general,12,40,1.003622672670073,0.00014514168103535967,True
+UOD,uod,control_general_L12_E40_L12_E2,general,12,2,0.40103047223103916,6.642699241638178e-05,True
+UOD,uod,specialist_math_L8_E11,math,8,11,0.09175128499728152,-0.0005082722504933675,False
+UOD,uod,control_math_L8_E11_L8_E54,math,8,54,0.001546437674020129,-0.0008630160490671794,False
+UOD,uod,specialist_math_L12_E63,math,12,63,0.4851002511584306,-0.0002623279889424642,False
+UOD,uod,control_math_L12_E63_L12_E43,math,12,43,-0.23224410125542883,4.38201427459717e-05,False
+UOD,uod,specialist_coding_L13_E2,coding,13,2,1.1673733076183659,0.0006485398610432942,True
+UOD,uod,control_coding_L13_E2_L13_E61,coding,13,61,-0.09114422456800542,0.0006277819474538168,False
+UOD,uod,specialist_coding_L11_E27,coding,11,27,0.5355964188135957,0.0021617396672566733,True
+UOD,uod,control_coding_L11_E27_L11_E7,coding,11,7,0.19402631078712407,0.0009190436204274496,True
+UOD,uod,specialist_reasoning_L13_E20,reasoning,13,20,0.3425409635556229,0.00041110952695210776,True
+UOD,uod,control_reasoning_L13_E20_L13_E63,reasoning,13,63,0.8136675400097984,0.00031263033548990885,True
+UOD,uod,specialist_reasoning_L11_E48,reasoning,11,48,0.43832944937774587,0.0003720247745513916,True
+UOD,uod,control_reasoning_L11_E48_L11_E47,reasoning,11,47,-0.2400596326433313,0.00043986082077026364,False
+REOD,reod,specialist_general_L13_E52,general,13,52,-0.013743085583119367,0.001061713695526123,False
+REOD,reod,control_general_L13_E52_L13_E36,general,13,36,5.30783266294646e-05,-0.00021303852399190269,False
+REOD,reod,specialist_general_L12_E40,general,12,40,-0.007388850439652324,0.00014514168103535967,False
+REOD,reod,control_general_L12_E40_L12_E2,general,12,2,-0.004885484843263458,6.642699241638178e-05,False
+REOD,reod,specialist_math_L8_E11,math,8,11,-0.003134543419593877,-0.0005082722504933675,True
+REOD,reod,control_math_L8_E11_L8_E54,math,8,54,0.00017612634766650537,-0.0008630160490671794,False
+REOD,reod,specialist_math_L12_E63,math,12,63,-0.006104530444397276,-0.0002623279889424642,True
+REOD,reod,control_math_L12_E63_L12_E43,math,12,43,0.0030575668231137727,4.38201427459717e-05,True
+REOD,reod,specialist_coding_L13_E2,coding,13,2,-0.012621802563660522,0.0006485398610432942,False
+REOD,reod,control_coding_L13_E2_L13_E61,coding,13,61,0.009393966285412399,0.0006277819474538168,True
+REOD,reod,specialist_coding_L11_E27,coding,11,27,-0.007173385870913394,0.0021617396672566733,False
+REOD,reod,control_coding_L11_E27_L11_E7,coding,11,7,-0.0012541494589093545,0.0009190436204274496,False
+REOD,reod,specialist_reasoning_L13_E20,reasoning,13,20,-0.0037114470420905286,0.00041110952695210776,False
+REOD,reod,control_reasoning_L13_E20_L13_E63,reasoning,13,63,-0.0027691672632556424,0.00031263033548990885,False
+REOD,reod,specialist_reasoning_L11_E48,reasoning,11,48,-0.007326452809818015,0.0003720247745513916,False
+REOD,reod,control_reasoning_L11_E48_L11_E47,reasoning,11,47,0.002123708791617194,0.00043986082077026364,True
+APD,apd,specialist_general_L13_E52,general,13,52,0.01621332300581543,0.001061713695526123,True
+APD,apd,control_general_L13_E52_L13_E36,general,13,36,0.002117334770350846,-0.00021303852399190269,False
+APD,apd,specialist_general_L12_E40,general,12,40,0.008925571720213417,0.00014514168103535967,True
+APD,apd,control_general_L12_E40_L12_E2,general,12,2,-0.0008693322271199448,6.642699241638178e-05,False
+APD,apd,specialist_math_L8_E11,math,8,11,0.0008101803470052579,-0.0005082722504933675,False
+APD,apd,control_math_L8_E11_L8_E54,math,8,54,-0.0002410454464171238,-0.0008630160490671794,True
+APD,apd,specialist_math_L12_E63,math,12,63,0.0062347133113657425,-0.0002623279889424642,False
+APD,apd,control_math_L12_E63_L12_E43,math,12,43,-0.0034398623241948295,4.38201427459717e-05,False
+APD,apd,specialist_coding_L13_E2,coding,13,2,0.03752814041132816,0.0006485398610432942,True
+APD,apd,control_coding_L13_E2_L13_E61,coding,13,61,0.004478242311137496,0.0006277819474538168,True
+APD,apd,specialist_coding_L11_E27,coding,11,27,0.012046386725045443,0.0021617396672566733,True
+APD,apd,control_coding_L11_E27_L11_E7,coding,11,7,0.002130234192049533,0.0009190436204274496,True
+APD,apd,specialist_reasoning_L13_E20,reasoning,13,20,0.0160905756810135,0.00041110952695210776,True
+APD,apd,control_reasoning_L13_E20_L13_E63,reasoning,13,63,0.003044770092876048,0.00031263033548990885,True
+APD,apd,specialist_reasoning_L11_E48,reasoning,11,48,0.004509955106549369,0.0003720247745513916,True
+APD,apd,control_reasoning_L11_E48_L11_E47,reasoning,11,47,-0.0032235263614129057,0.00043986082077026364,False
+AOD,aod,specialist_general_L13_E52,general,13,52,0.0024755224651696007,0.001061713695526123,True
+AOD,aod,control_general_L13_E52_L13_E36,general,13,36,0.00024658276704619313,-0.00021303852399190269,False
+AOD,aod,specialist_general_L12_E40,general,12,40,0.0022802206540820185,0.00014514168103535967,True
+AOD,aod,control_general_L12_E40_L12_E2,general,12,2,-0.0003024681340139374,6.642699241638178e-05,False
+AOD,aod,specialist_math_L8_E11,math,8,11,0.003140227943273033,-0.0005082722504933675,False
+AOD,aod,control_math_L8_E11_L8_E54,math,8,54,-0.0008935090388510282,-0.0008630160490671794,True
+AOD,aod,specialist_math_L12_E63,math,12,63,0.0016670312226549806,-0.0002623279889424642,False
+AOD,aod,control_math_L12_E63_L12_E43,math,12,43,-0.0012455171173146868,4.38201427459717e-05,False
+AOD,aod,specialist_coding_L13_E2,coding,13,2,0.0069839179689958454,0.0006485398610432942,True
+AOD,aod,control_coding_L13_E2_L13_E61,coding,13,61,0.0008387503777195037,0.0006277819474538168,True
+AOD,aod,specialist_coding_L11_E27,coding,11,27,0.005618488241456634,0.0021617396672566733,True
+AOD,aod,control_coding_L11_E27_L11_E7,coding,11,7,0.0009611495129772858,0.0009190436204274496,True
+AOD,aod,specialist_reasoning_L13_E20,reasoning,13,20,0.0029025389629737026,0.00041110952695210776,True
+AOD,aod,control_reasoning_L13_E20_L13_E63,reasoning,13,63,0.0005565061284642699,0.00031263033548990885,True
+AOD,aod,specialist_reasoning_L11_E48,reasoning,11,48,0.002464212526772914,0.0003720247745513916,True
+AOD,aod,control_reasoning_L11_E48_L11_E47,reasoning,11,47,-0.0014774925986983925,0.00043986082077026364,False
+GQS,gqs,specialist_general_L13_E52,general,13,52,0.0016935618561896794,0.001061713695526123,True
+GQS,gqs,control_general_L13_E52_L13_E36,general,13,36,0.0005476093230860693,-0.00021303852399190269,False
+GQS,gqs,specialist_general_L12_E40,general,12,40,0.0017752878011170834,0.00014514168103535967,True
+GQS,gqs,control_general_L12_E40_L12_E2,general,12,2,-0.00022735002586453021,6.642699241638178e-05,False
+GQS,gqs,specialist_math_L8_E11,math,8,11,0.0016824369438310349,-0.0005082722504933675,False
+GQS,gqs,control_math_L8_E11_L8_E54,math,8,54,-0.00027047401132884784,-0.0008630160490671794,True
+GQS,gqs,specialist_math_L12_E63,math,12,63,0.0010403801774056482,-0.0002623279889424642,False
+GQS,gqs,control_math_L12_E63_L12_E43,math,12,43,-0.000873763091261846,4.38201427459717e-05,False
+GQS,gqs,specialist_coding_L13_E2,coding,13,2,0.002596834810232158,0.0006485398610432942,True
+GQS,gqs,control_coding_L13_E2_L13_E61,coding,13,61,0.0011856773589273288,0.0006277819474538168,True
+GQS,gqs,specialist_coding_L11_E27,coding,11,27,0.0028793897580776545,0.0021617396672566733,True
+GQS,gqs,control_coding_L11_E27_L11_E7,coding,11,7,0.0009992128186798242,0.0009190436204274496,True
+GQS,gqs,specialist_reasoning_L13_E20,reasoning,13,20,0.0014571498819781102,0.00041110952695210776,True
+GQS,gqs,control_reasoning_L13_E20_L13_E63,reasoning,13,63,0.00021859621111151406,0.00031263033548990885,True
+GQS,gqs,specialist_reasoning_L11_E48,reasoning,11,48,0.0016237082522571906,0.0003720247745513916,True
+GQS,gqs,control_reasoning_L11_E48_L11_E47,reasoning,11,47,-0.0008693188437149509,0.00043986082077026364,False

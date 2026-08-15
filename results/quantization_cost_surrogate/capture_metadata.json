@@ -1,0 +1,1327 @@
+{
+  "passed": true,
+  "run_fingerprint": "8c17ff9db9a4f4fa36e3c343a3b9f78356e7a86deb095b949894873ebb895758",
+  "capture_fingerprint": "672316b5b7ea8be1d7bf328aca2c9bd7f367238eccdbde549d791fa10c9f8fe2",
+  "capture_basis": {
+    "script_version": "stage2a_surrogate_validation_v1",
+    "model": "allenai/OLMoE-1B-7B-0924",
+    "model_revision": "6d84c48581ece794365f2b8e9cfb043c68ade9c5",
+    "source_collection_fingerprint": "052956d26bac03d54e637c5812b84ae8a37fd7b5f9b51f8558082af2e38cb362",
+    "source_input_fingerprint": "6555c24be1d20799239f5e38209083989790706aca5a96716da29ec1e5bcefbd",
+    "stage1_panel_fingerprint": "404927664048259fb623a7b3181e811c8f18c68d5e32825b943b056257220af7",
+    "controlled_input_file_sha256": {
+      "general": "29dd1dce6496e2d049324bd9153c991e38cfbd353313c4f7a1d5438132790f19",
+      "math": "9de4496b2d67b4f479be5f787acfa70df175fa425b703b06c395a6d245198b9b",
+      "coding": "adbed3fc8e8113e0ce9e25365441d76167e0de4b5122d565143ff88293d356de",
+      "reasoning": "89ca862ab65b93eac04de9465462729bc3aaa7659dde292a04786e0ba5db2861"
+    },
+    "domains": [
+      "general",
+      "math",
+      "coding",
+      "reasoning"
+    ],
+    "examples_per_domain": 100,
+    "measured_positions_per_example": 64,
+    "batch_size": 1,
+    "dtype": "bfloat16",
+    "seed": 42,
+    "validation_layers": [
+      6,
+      7,
+      9,
+      11
+    ],
+    "validation_samples_per_layer": 3,
+    "hidden_storage": "exact_native_dtype_bits"
+  },
+  "runtime": {
+    "description": "NVIDIA A40",
+    "device": "cuda",
+    "dtype": "bfloat16"
+  },
+  "architecture": {
+    "model_class": "OlmoeForCausalLM",
+    "config_model_type": "olmoe",
+    "num_moe_layers": 16,
+    "num_experts": 64,
+    "top_k": [
+      8
+    ],
+    "layers": [
+      {
+        "ordinal": 0,
+        "model_layer_index": 0,
+        "block_name": "model.layers.0.mlp",
+        "router_name": "model.layers.0.mlp.gate",
+        "experts_name": "model.layers.0.mlp.experts",
+        "num_experts": 64,
+        "top_k": 8,
+        "contribution_backend": "tensorized_gate_up",
+        "capture_point": "experts_pre"
+      },
+      {
+        "ordinal": 1,
+        "model_layer_index": 1,
+        "block_name": "model.layers.1.mlp",
+        "router_name": "model.layers.1.mlp.gate",
+        "experts_name": "model.layers.1.mlp.experts",
+        "num_experts": 64,
+        "top_k": 8,
+        "contribution_backend": "tensorized_gate_up",
+        "capture_point": "experts_pre"
+      },
+      {
+        "ordinal": 2,
+        "model_layer_index": 2,
+        "block_name": "model.layers.2.mlp",
+        "router_name": "model.layers.2.mlp.gate",
+        "experts_name": "model.layers.2.mlp.experts",
+        "num_experts": 64,
+        "top_k": 8,
+        "contribution_backend": "tensorized_gate_up",
+        "capture_point": "experts_pre"
+      },
+      {
+        "ordinal": 3,
+        "model_layer_index": 3,
+        "block_name": "model.layers.3.mlp",
+        "router_name": "model.layers.3.mlp.gate",
+        "experts_name": "model.layers.3.mlp.experts",
+        "num_experts": 64,
+        "top_k": 8,
+        "contribution_backend": "tensorized_gate_up",
+        "capture_point": "experts_pre"
+      },
+      {
+        "ordinal": 4,
+        "model_layer_index": 4,
+        "block_name": "model.layers.4.mlp",
+        "router_name": "model.layers.4.mlp.gate",
+        "experts_name": "model.layers.4.mlp.experts",
+        "num_experts": 64,
+        "top_k": 8,
+        "contribution_backend": "tensorized_gate_up",
+        "capture_point": "experts_pre"
+      },
+      {
+        "ordinal": 5,
+        "model_layer_index": 5,
+        "block_name": "model.layers.5.mlp",
+        "router_name": "model.layers.5.mlp.gate",
+        "experts_name": "model.layers.5.mlp.experts",
+        "num_experts": 64,
+        "top_k": 8,
+        "contribution_backend": "tensorized_gate_up",
+        "capture_point": "experts_pre"
+      },
+      {
+        "ordinal": 6,
+        "model_layer_index": 6,
+        "block_name": "model.layers.6.mlp",
+        "router_name": "model.layers.6.mlp.gate",
+        "experts_name": "model.layers.6.mlp.experts",
+        "num_experts": 64,
+        "top_k": 8,
+        "contribution_backend": "tensorized_gate_up",
+        "capture_point": "experts_pre"
+      },
+      {
+        "ordinal": 7,
+        "model_layer_index": 7,
+        "block_name": "model.layers.7.mlp",
+        "router_name": "model.layers.7.mlp.gate",
+        "experts_name": "model.layers.7.mlp.experts",
+        "num_experts": 64,
+        "top_k": 8,
+        "contribution_backend": "tensorized_gate_up",
+        "capture_point": "experts_pre"
+      },
+      {
+        "ordinal": 8,
+        "model_layer_index": 8,
+        "block_name": "model.layers.8.mlp",
+        "router_name": "model.layers.8.mlp.gate",
+        "experts_name": "model.layers.8.mlp.experts",
+        "num_experts": 64,
+        "top_k": 8,
+        "contribution_backend": "tensorized_gate_up",
+        "capture_point": "experts_pre"
+      },
+      {
+        "ordinal": 9,
+        "model_layer_index": 9,
+        "block_name": "model.layers.9.mlp",
+        "router_name": "model.layers.9.mlp.gate",
+        "experts_name": "model.layers.9.mlp.experts",
+        "num_experts": 64,
+        "top_k": 8,
+        "contribution_backend": "tensorized_gate_up",
+        "capture_point": "experts_pre"
+      },
+      {
+        "ordinal": 10,
+        "model_layer_index": 10,
+        "block_name": "model.layers.10.mlp",
+        "router_name": "model.layers.10.mlp.gate",
+        "experts_name": "model.layers.10.mlp.experts",
+        "num_experts": 64,
+        "top_k": 8,
+        "contribution_backend": "tensorized_gate_up",
+        "capture_point": "experts_pre"
+      },
+      {
+        "ordinal": 11,
+        "model_layer_index": 11,
+        "block_name": "model.layers.11.mlp",
+        "router_name": "model.layers.11.mlp.gate",
+        "experts_name": "model.layers.11.mlp.experts",
+        "num_experts": 64,
+        "top_k": 8,
+        "contribution_backend": "tensorized_gate_up",
+        "capture_point": "experts_pre"
+      },
+      {
+        "ordinal": 12,
+        "model_layer_index": 12,
+        "block_name": "model.layers.12.mlp",
+        "router_name": "model.layers.12.mlp.gate",
+        "experts_name": "model.layers.12.mlp.experts",
+        "num_experts": 64,
+        "top_k": 8,
+        "contribution_backend": "tensorized_gate_up",
+        "capture_point": "experts_pre"
+      },
+      {
+        "ordinal": 13,
+        "model_layer_index": 13,
+        "block_name": "model.layers.13.mlp",
+        "router_name": "model.layers.13.mlp.gate",
+        "experts_name": "model.layers.13.mlp.experts",
+        "num_experts": 64,
+        "top_k": 8,
+        "contribution_backend": "tensorized_gate_up",
+        "capture_point": "experts_pre"
+      },
+      {
+        "ordinal": 14,
+        "model_layer_index": 14,
+        "block_name": "model.layers.14.mlp",
+        "router_name": "model.layers.14.mlp.gate",
+        "experts_name": "model.layers.14.mlp.experts",
+        "num_experts": 64,
+        "top_k": 8,
+        "contribution_backend": "tensorized_gate_up",
+        "capture_point": "experts_pre"
+      },
+      {
+        "ordinal": 15,
+        "model_layer_index": 15,
+        "block_name": "model.layers.15.mlp",
+        "router_name": "model.layers.15.mlp.gate",
+        "experts_name": "model.layers.15.mlp.experts",
+        "num_experts": 64,
+        "top_k": 8,
+        "contribution_backend": "tensorized_gate_up",
+        "capture_point": "experts_pre"
+      }
+    ],
+    "config": {
+      "hidden_size": 2048,
+      "intermediate_size": 1024,
+      "num_hidden_layers": 16,
+      "num_experts": 64,
+      "num_experts_per_tok": 8,
+      "norm_topk_prob": false,
+      "vocab_size": 50304,
+      "max_position_embeddings": 4096
+    }
+  },
+  "expert_weight_layout": {
+    "passed": true,
+    "tensorized_expert_axis": 0,
+    "expert_slice_shapes": [
+      [
+        2048,
+        1024
+      ],
+      [
+        2048,
+        2048
+      ]
+    ],
+    "layers": {
+      "0": {
+        "layer": 0,
+        "layer_ordinal": 0,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      },
+      "1": {
+        "layer": 1,
+        "layer_ordinal": 1,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      },
+      "2": {
+        "layer": 2,
+        "layer_ordinal": 2,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      },
+      "3": {
+        "layer": 3,
+        "layer_ordinal": 3,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      },
+      "4": {
+        "layer": 4,
+        "layer_ordinal": 4,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      },
+      "5": {
+        "layer": 5,
+        "layer_ordinal": 5,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      },
+      "6": {
+        "layer": 6,
+        "layer_ordinal": 6,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      },
+      "7": {
+        "layer": 7,
+        "layer_ordinal": 7,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      },
+      "8": {
+        "layer": 8,
+        "layer_ordinal": 8,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      },
+      "9": {
+        "layer": 9,
+        "layer_ordinal": 9,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      },
+      "10": {
+        "layer": 10,
+        "layer_ordinal": 10,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      },
+      "11": {
+        "layer": 11,
+        "layer_ordinal": 11,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      },
+      "12": {
+        "layer": 12,
+        "layer_ordinal": 12,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      },
+      "13": {
+        "layer": 13,
+        "layer_ordinal": 13,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      },
+      "14": {
+        "layer": 14,
+        "layer_ordinal": 14,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      },
+      "15": {
+        "layer": 15,
+        "layer_ordinal": 15,
+        "expert_container_class": "OlmoeExperts",
+        "contribution_backend": "tensorized_gate_up",
+        "num_experts": 64,
+        "tensor_count_per_expert": 2,
+        "tensors": [
+          {
+            "structural_name": "down_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              1024
+            ],
+            "dtype": "bfloat16"
+          },
+          {
+            "structural_name": "gate_up_proj",
+            "expert_axis": 0,
+            "expert_slice_shape": [
+              2048,
+              2048
+            ],
+            "dtype": "bfloat16"
+          }
+        ],
+        "grouping_axis_within_expert_slice": -1,
+        "grouping_axis_semantics": "input_feature_dimension"
+      }
+    }
+  },
+  "controlled_source_audit": {
+    "passed": true,
+    "scope": "baseline_collection_and_controlled_inputs_only",
+    "selection_outcome_files_read": false,
+    "model": "allenai/OLMoE-1B-7B-0924",
+    "resolved_model_revision": "6d84c48581ece794365f2b8e9cfb043c68ade9c5",
+    "collection_fingerprint": "052956d26bac03d54e637c5812b84ae8a37fd7b5f9b51f8558082af2e38cb362",
+    "dataset_revisions": {
+      "general": "b08601e04326c79dfdd32d625aee71d232d685c3",
+      "math": "740312add88f781978c0658806c59bc2815b9866",
+      "coding": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "reasoning": "210d026faf9955653af8916fad021475a3f00453"
+    },
+    "domains": [
+      "general",
+      "math",
+      "coding",
+      "reasoning"
+    ],
+    "examples_per_domain": 100,
+    "measured_positions_per_example": 64,
+    "measured_positions_per_domain": 6400,
+    "top_k": 8,
+    "neutral_prefix": "Input:\n",
+    "neutral_prefix_token_ids": [
+      8982,
+      27,
+      187
+    ],
+    "same_measurement_mask_across_domains": true,
+    "domain_checks": {
+      "general": {
+        "statistics_shape": [
+          100,
+          16,
+          64
+        ],
+        "all_arrays_finite_and_nonnegative": true,
+        "exact_top_k_assignments_per_example_layer": true,
+        "top_k": 8,
+        "total_measured_positions": 6400,
+        "input_ids_sha256": "04ad1c506cd4b1777905d451a81f0b320681aadcab71f8c3388da372e7408f18",
+        "measurement_mask_sha256": "268a4617deb08005e0ce5ea3c41a37a1b1a008afbd67edbb3d0762da3b773c3f",
+        "neutral_prefix_exact": true
+      },
+      "math": {
+        "statistics_shape": [
+          100,
+          16,
+          64
+        ],
+        "all_arrays_finite_and_nonnegative": true,
+        "exact_top_k_assignments_per_example_layer": true,
+        "top_k": 8,
+        "total_measured_positions": 6400,
+        "input_ids_sha256": "5b80c16024a2c4179eee29bce0b963d69b6b56e2e2e22285a427449866b5b885",
+        "measurement_mask_sha256": "268a4617deb08005e0ce5ea3c41a37a1b1a008afbd67edbb3d0762da3b773c3f",
+        "neutral_prefix_exact": true
+      },
+      "coding": {
+        "statistics_shape": [
+          100,
+          16,
+          64
+        ],
+        "all_arrays_finite_and_nonnegative": true,
+        "exact_top_k_assignments_per_example_layer": true,
+        "top_k": 8,
+        "total_measured_positions": 6400,
+        "input_ids_sha256": "d65e4162b27bd70f640185424f78d279e144d2a543173f179ebaa587ffd07190",
+        "measurement_mask_sha256": "268a4617deb08005e0ce5ea3c41a37a1b1a008afbd67edbb3d0762da3b773c3f",
+        "neutral_prefix_exact": true
+      },
+      "reasoning": {
+        "statistics_shape": [
+          100,
+          16,
+          64
+        ],
+        "all_arrays_finite_and_nonnegative": true,
+        "exact_top_k_assignments_per_example_layer": true,
+        "top_k": 8,
+        "total_measured_positions": 6400,
+        "input_ids_sha256": "7e6aa5a03276735100a31ce1b05b7b7cd67204c4af5de73a41b3402c5d813b90",
+        "measurement_mask_sha256": "268a4617deb08005e0ce5ea3c41a37a1b1a008afbd67edbb3d0762da3b773c3f",
+        "neutral_prefix_exact": true
+      }
+    },
+    "input_files_sha256": {
+      "architecture.json": "8f8ad76d308972c8f69326816a9a1eb178d642382d103e3cc9ff3ed3b1958a04",
+      "collection_config.json": "caac5b985b516f349dbfd06ae52734bae967962e559a46db36078c6f137b7133",
+      "collection_manifest.json": "6025cc05dcc76ea2ce2c0b84a27c89638657ee06c573f79b8df4bf42109a8a5a",
+      "controlled_corpus.json": "ea85c211aab3d28ed1cf634dcb01f1fcb31b726bffb11840f6ea8988e57dd28b",
+      "controlled_inputs/coding.npz": "adbed3fc8e8113e0ce9e25365441d76167e0de4b5122d565143ff88293d356de",
+      "controlled_inputs/general.npz": "29dd1dce6496e2d049324bd9153c991e38cfbd353313c4f7a1d5438132790f19",
+      "controlled_inputs/math.npz": "9de4496b2d67b4f479be5f787acfa70df175fa425b703b06c395a6d245198b9b",
+      "controlled_inputs/reasoning.npz": "89ca862ab65b93eac04de9465462729bc3aaa7659dde292a04786e0ba5db2861",
+      "domains/coding.metadata.json": "279af13ffd637e489cfc7e245c97b222020a4aba8544d877cfdfaab7fcac63da",
+      "domains/coding.npz": "4968da3b33867b7d594c6cf5ded64e718dab514f5072974896993e45898044ec",
+      "domains/general.metadata.json": "c37224bc05a4d6635348e1a78c5877619d26689637c0fa53de4a63771e669d88",
+      "domains/general.npz": "ef5daa133c1bfc5b751b95b076b10faf4f62d2b28619b84664de3c1aa0c2274f",
+      "domains/math.metadata.json": "08ab99d3d1235e99d8315523625d73ac709940caccc459c4da248f7aa332217e",
+      "domains/math.npz": "8e5a3266b49f0dde0af30bde4d0fb4518ed307523420d766422cf38ca9784d94",
+      "domains/reasoning.metadata.json": "3992c5b39cb0d3264c982df36ba35c862b11437c15d850ed8ff80db4b2ba9165",
+      "domains/reasoning.npz": "823b5fd713f48d1219c75bb302acf6cf72d4f3c465c29849eeb9c4bcea670d94"
+    },
+    "selection_input_fingerprint": "6555c24be1d20799239f5e38209083989790706aca5a96716da29ec1e5bcefbd"
+  },
+  "capture_manifest": {
+    "schema_version": 1,
+    "capture_fingerprint": "672316b5b7ea8be1d7bf328aca2c9bd7f367238eccdbde549d791fa10c9f8fe2",
+    "domains": [
+      "general",
+      "math",
+      "coding",
+      "reasoning"
+    ],
+    "layers": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "capture_files": [
+      {
+        "domain": "coding",
+        "layer": 0,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/coding/layer_00.npz",
+        "npz_sha256": "41e61e13e31be19bb8179ab5f7b509d5fdb1cb4654906f79d1607bd1ffd075e3",
+        "resumed": false
+      },
+      {
+        "domain": "coding",
+        "layer": 1,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/coding/layer_01.npz",
+        "npz_sha256": "71405c259f696d630e8d49dd96d2e895050f3c71126dd2c35bb5d2f44704a0ee",
+        "resumed": false
+      },
+      {
+        "domain": "coding",
+        "layer": 2,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/coding/layer_02.npz",
+        "npz_sha256": "7174ea5ed3b156a54f8c08ee8bdfecaff0a8242efda40ecf13ccdd4cfec4af01",
+        "resumed": false
+      },
+      {
+        "domain": "coding",
+        "layer": 3,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/coding/layer_03.npz",
+        "npz_sha256": "a3356dfc6a4519d331c576ff6fbc6bfff0807f7cf6b43dbc3dd6d88146f4164b",
+        "resumed": false
+      },
+      {
+        "domain": "coding",
+        "layer": 4,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/coding/layer_04.npz",
+        "npz_sha256": "ffe26e371d0c43c712c1d0aa6e489d327bb8e23a3f8084db365a621962ffe02a",
+        "resumed": false
+      },
+      {
+        "domain": "coding",
+        "layer": 5,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/coding/layer_05.npz",
+        "npz_sha256": "e43605b35ab593a7e35640e53cf5dc78f65a85ef7371ff2a6174961aebbc67c6",
+        "resumed": false
+      },
+      {
+        "domain": "coding",
+        "layer": 6,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/coding/layer_06.npz",
+        "npz_sha256": "e7aa9f4b246995f932254fc647e3b2fc9d40f71deb08b10e6347c8c8d5aa1098",
+        "resumed": false
+      },
+      {
+        "domain": "coding",
+        "layer": 7,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/coding/layer_07.npz",
+        "npz_sha256": "33cbb86f77eab9e365746e8a095c2e49a5de71f7817c0b4e904af5fe59f2b057",
+        "resumed": false
+      },
+      {
+        "domain": "coding",
+        "layer": 8,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/coding/layer_08.npz",
+        "npz_sha256": "faa6964c4fbd079f36b11a73e1920c7ecd7ef661af909f7f2bd512499518437e",
+        "resumed": false
+      },
+      {
+        "domain": "coding",
+        "layer": 9,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/coding/layer_09.npz",
+        "npz_sha256": "8fdeb298d7e0d9e5a92af6b8b3279a8a4e8b17811a9d7233335ae3482b0296a2",
+        "resumed": false
+      },
+      {
+        "domain": "coding",
+        "layer": 10,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/coding/layer_10.npz",
+        "npz_sha256": "e61c1a0ff751ba193c75e378ac41341b932d27cbb20cad578b6f0c1a52c92a2f",
+        "resumed": false
+      },
+      {
+        "domain": "coding",
+        "layer": 11,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/coding/layer_11.npz",
+        "npz_sha256": "05dd522c346fb81a13f4b08b7f0d3e2c47703ca15a7ea7d7217154d4d1110a79",
+        "resumed": false
+      },
+      {
+        "domain": "coding",
+        "layer": 12,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/coding/layer_12.npz",
+        "npz_sha256": "2d4d5e0c98e4b305f25b28e0c1f6513737161df8a6479cb62c328c15e51af5d5",
+        "resumed": false
+      },
+      {
+        "domain": "coding",
+        "layer": 13,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/coding/layer_13.npz",
+        "npz_sha256": "81ccf76b9a9dc68c9e582e09af06edfd21fa2f31c9dd1de793c8abbc42cf67f5",
+        "resumed": false
+      },
+      {
+        "domain": "coding",
+        "layer": 14,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/coding/layer_14.npz",
+        "npz_sha256": "a1a889a83abddd5a36dfb81805cfff06be79a44c1cfbee094ec8642959ec7163",
+        "resumed": false
+      },
+      {
+        "domain": "coding",
+        "layer": 15,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/coding/layer_15.npz",
+        "npz_sha256": "1223405564ffd6f0d75feb9eedc2dbf85ace7b46f8f844a9030f64821eb18fde",
+        "resumed": false
+      },
+      {
+        "domain": "general",
+        "layer": 0,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/general/layer_00.npz",
+        "npz_sha256": "df96ec09f00fb33b8b3ed4cfe2d6b8e098421ed879a50e7e4c4f78b9306d4d46",
+        "resumed": false
+      },
+      {
+        "domain": "general",
+        "layer": 1,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/general/layer_01.npz",
+        "npz_sha256": "2b35c69da8c1bd5f71b6c3279b958121aec01ed1787bf66e980a85da62e62549",
+        "resumed": false
+      },
+      {
+        "domain": "general",
+        "layer": 2,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/general/layer_02.npz",
+        "npz_sha256": "5fe5e10719e5dd2ebb77c73af0b10557b0a7ea9d749a7f0cc101f1426ba576eb",
+        "resumed": false
+      },
+      {
+        "domain": "general",
+        "layer": 3,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/general/layer_03.npz",
+        "npz_sha256": "42ccb4bb085610cdfd46decee47289bd338d12ec35f359c6dc073cada4aae65a",
+        "resumed": false
+      },
+      {
+        "domain": "general",
+        "layer": 4,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/general/layer_04.npz",
+        "npz_sha256": "827395658e673a941782db78ba507c3cf140a62b7b2c4906c07d02c5ced1be6e",
+        "resumed": false
+      },
+      {
+        "domain": "general",
+        "layer": 5,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/general/layer_05.npz",
+        "npz_sha256": "91cfe42f36ba1156fbfbbc5a5ccbb3c3685411dd3db918ec5a486cdefcef8226",
+        "resumed": false
+      },
+      {
+        "domain": "general",
+        "layer": 6,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/general/layer_06.npz",
+        "npz_sha256": "a848fb61022970766b74a46dbeaf291802d0404a726e876303c4c2c46ea086c2",
+        "resumed": false
+      },
+      {
+        "domain": "general",
+        "layer": 7,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/general/layer_07.npz",
+        "npz_sha256": "398f72f0d4b879a133e4c59803da488ea031f3c81bb51010f6a6d63854399c05",
+        "resumed": false
+      },
+      {
+        "domain": "general",
+        "layer": 8,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/general/layer_08.npz",
+        "npz_sha256": "4d5f6156fc2dd90057271d5dcb20b93d15a13c6aff41600a05a480d994bc918c",
+        "resumed": false
+      },
+      {
+        "domain": "general",
+        "layer": 9,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/general/layer_09.npz",
+        "npz_sha256": "ad47e10b78eac1de399437089eb89182a35b177ecad0bd4a7477e7916f0c59d1",
+        "resumed": false
+      },
+      {
+        "domain": "general",
+        "layer": 10,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/general/layer_10.npz",
+        "npz_sha256": "92b8af8af25087ca7fc5441d3422199ef78a5111b6f54fcb19163e93376c8019",
+        "resumed": false
+      },
+      {
+        "domain": "general",
+        "layer": 11,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/general/layer_11.npz",
+        "npz_sha256": "500872843c53b5d7774d56d53ba5f4d284c03cb2f7cd6a12c12be3cf124bec22",
+        "resumed": false
+      },
+      {
+        "domain": "general",
+        "layer": 12,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/general/layer_12.npz",
+        "npz_sha256": "eed90e201df2019ecea2ef615d962287cbd40ecea9b34f93f972831cb80ca6d3",
+        "resumed": false
+      },
+      {
+        "domain": "general",
+        "layer": 13,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/general/layer_13.npz",
+        "npz_sha256": "dd4e8606e16e547d7851f4ef6f007c0c7d6b7b7dab1c896c4fca503d24198053",
+        "resumed": false
+      },
+      {
+        "domain": "general",
+        "layer": 14,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/general/layer_14.npz",
+        "npz_sha256": "8ffb69f96b58c9901fe3729ffeec8c6c117e101f939879279ee300724a8abfa6",
+        "resumed": false
+      },
+      {
+        "domain": "general",
+        "layer": 15,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/general/layer_15.npz",
+        "npz_sha256": "e45265e6c0810d4baf885ac0f58c097e16f51ccc6b1649d1384a5f57e6f61f5e",
+        "resumed": false
+      },
+      {
+        "domain": "math",
+        "layer": 0,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/math/layer_00.npz",
+        "npz_sha256": "b372b48ec49111b750002797a70752bf5d9cd0a2dc3a19ec11ed54b4e7817bf1",
+        "resumed": false
+      },
+      {
+        "domain": "math",
+        "layer": 1,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/math/layer_01.npz",
+        "npz_sha256": "08d4d218c7656d6129d60950b8819c066e186cda767882df353974461c6cc19d",
+        "resumed": false
+      },
+      {
+        "domain": "math",
+        "layer": 2,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/math/layer_02.npz",
+        "npz_sha256": "0c978f24918d4baf37fee8ea01dc635e995971c0bfde6510a9bfd6d01fb954e3",
+        "resumed": false
+      },
+      {
+        "domain": "math",
+        "layer": 3,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/math/layer_03.npz",
+        "npz_sha256": "6d1e998882a7b8ebd65ad0aae8645a31365c057165ab0e313a8479054dc9f639",
+        "resumed": false
+      },
+      {
+        "domain": "math",
+        "layer": 4,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/math/layer_04.npz",
+        "npz_sha256": "988874beb2754958b34494421c0b469c951618d9345a1fba3abe05d49140b724",
+        "resumed": false
+      },
+      {
+        "domain": "math",
+        "layer": 5,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/math/layer_05.npz",
+        "npz_sha256": "f1c3d04fd451ed89c78d81fe3d144ea7b1129ed893b32a74cf99943ae9f13e1a",
+        "resumed": false
+      },
+      {
+        "domain": "math",
+        "layer": 6,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/math/layer_06.npz",
+        "npz_sha256": "567672ec6261ca7ce6e8cd8e167d1292162fd20b4515aa49845b2a4d1279e2bd",
+        "resumed": false
+      },
+      {
+        "domain": "math",
+        "layer": 7,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/math/layer_07.npz",
+        "npz_sha256": "e47c6bf595143dc6cac679c666cd8228c0e5a9aca7bf09fb173f2cc18ccb0a7a",
+        "resumed": false
+      },
+      {
+        "domain": "math",
+        "layer": 8,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/math/layer_08.npz",
+        "npz_sha256": "8996da0dbd1af579cfb84b34a4293369acb1c8e78c21233d784f4c822faf4a3b",
+        "resumed": false
+      },
+      {
+        "domain": "math",
+        "layer": 9,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/math/layer_09.npz",
+        "npz_sha256": "b05edbd43a23c2f78aeda372c2dfc9c36409a9991f5541241e3db4984fce0c70",
+        "resumed": false
+      },
+      {
+        "domain": "math",
+        "layer": 10,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/math/layer_10.npz",
+        "npz_sha256": "a36fac0ef0a1ad228ad54c37ee6eca3a5b724f6b2fc91968d6b824024e53b02a",
+        "resumed": false
+      },
+      {
+        "domain": "math",
+        "layer": 11,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/math/layer_11.npz",
+        "npz_sha256": "3d8260837e143f6ade780a69ec670881c7c2de028e3d406551b1c162484760f3",
+        "resumed": false
+      },
+      {
+        "domain": "math",
+        "layer": 12,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/math/layer_12.npz",
+        "npz_sha256": "11ee68cb070a583673b7289194030e50719b52d3fdce5d62a2f5530bdc8815b2",
+        "resumed": false
+      },
+      {
+        "domain": "math",
+        "layer": 13,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/math/layer_13.npz",
+        "npz_sha256": "16da34fb39493f765ae7b018cf147cf7c66a759c461117f621586596c239a7dc",
+        "resumed": false
+      },
+      {
+        "domain": "math",
+        "layer": 14,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/math/layer_14.npz",
+        "npz_sha256": "383a15dabf069e60ad216dcea64fef94cfec70d42fb6cafdeabebdd198ef0c6f",
+        "resumed": false
+      },
+      {
+        "domain": "math",
+        "layer": 15,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/math/layer_15.npz",
+        "npz_sha256": "95f9d3419e89dc8dc6aa2be992a7e79eb4bcd00c299523454d9e7ff7fc1ca7cf",
+        "resumed": false
+      },
+      {
+        "domain": "reasoning",
+        "layer": 0,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/reasoning/layer_00.npz",
+        "npz_sha256": "4dc62ffe8783362987a6b2fd2de57282b93099ac985bf7ccf74d1b71fd37e2f0",
+        "resumed": false
+      },
+      {
+        "domain": "reasoning",
+        "layer": 1,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/reasoning/layer_01.npz",
+        "npz_sha256": "5f935213b4009aa39cb2d01170aafd9e6b3bee5d3b4989e946d443c0d9115cbb",
+        "resumed": false
+      },
+      {
+        "domain": "reasoning",
+        "layer": 2,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/reasoning/layer_02.npz",
+        "npz_sha256": "fba01940eeda2f6d577d523ea734cadff98935a2b22ee41a900ae96d6e12adb0",
+        "resumed": false
+      },
+      {
+        "domain": "reasoning",
+        "layer": 3,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/reasoning/layer_03.npz",
+        "npz_sha256": "2a797fc164d3b81382c1bc9b07d3c97ce6fe6057a58210e4c466a80a3a4d82a9",
+        "resumed": false
+      },
+      {
+        "domain": "reasoning",
+        "layer": 4,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/reasoning/layer_04.npz",
+        "npz_sha256": "2018420a1bd36688832794e44c96730bf928cc3dde0495c25159257dda0ae335",
+        "resumed": false
+      },
+      {
+        "domain": "reasoning",
+        "layer": 5,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/reasoning/layer_05.npz",
+        "npz_sha256": "3ab871014f5858225ab4d1221dc70b4fcef6b3bc823a15f46c25541b22023db6",
+        "resumed": false
+      },
+      {
+        "domain": "reasoning",
+        "layer": 6,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/reasoning/layer_06.npz",
+        "npz_sha256": "71c5cbfd184a7575eb4c26155f7c6c650e55fa5c30abf393a773eaa3768984b7",
+        "resumed": false
+      },
+      {
+        "domain": "reasoning",
+        "layer": 7,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/reasoning/layer_07.npz",
+        "npz_sha256": "e749518d0c063bdae94fd45da641704f4085408ea7786bb12af86fb4082c571b",
+        "resumed": false
+      },
+      {
+        "domain": "reasoning",
+        "layer": 8,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/reasoning/layer_08.npz",
+        "npz_sha256": "a7dd340e92c03e92bc651e02f28484fe023334f9938cd229e54cd8de705fd1d1",
+        "resumed": false
+      },
+      {
+        "domain": "reasoning",
+        "layer": 9,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/reasoning/layer_09.npz",
+        "npz_sha256": "af6132491734758576d695c851a3586f92d6bf55d2bdf665202890d920d15795",
+        "resumed": false
+      },
+      {
+        "domain": "reasoning",
+        "layer": 10,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/reasoning/layer_10.npz",
+        "npz_sha256": "b0a74d4c46f281dbea56fc5143994e3a50bdead8f32ab975da0d1ccb14261c4f",
+        "resumed": false
+      },
+      {
+        "domain": "reasoning",
+        "layer": 11,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/reasoning/layer_11.npz",
+        "npz_sha256": "426207034bdfbd735e4cefa93a88ce1bc996274d32115d9d97151ff9567b467e",
+        "resumed": false
+      },
+      {
+        "domain": "reasoning",
+        "layer": 12,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/reasoning/layer_12.npz",
+        "npz_sha256": "2dc94fd2d2eab352b57fdb5c7023f13d9c0be747343cf16f813ec52a285f9205",
+        "resumed": false
+      },
+      {
+        "domain": "reasoning",
+        "layer": 13,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/reasoning/layer_13.npz",
+        "npz_sha256": "e6b24f20f3b66759f21253ca989b2386c5683cdd07588908863155f7aae1f0c1",
+        "resumed": false
+      },
+      {
+        "domain": "reasoning",
+        "layer": 14,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/reasoning/layer_14.npz",
+        "npz_sha256": "7c8ae6c30b0ea5a08696cf4f923b5a8ae0ff7b43cbda53098c44e69d3921ce16",
+        "resumed": false
+      },
+      {
+        "domain": "reasoning",
+        "layer": 15,
+        "path": "/workspace/opt/results/quantization_cost_surrogate/capture/reasoning/layer_15.npz",
+        "npz_sha256": "c651256409f6968847ef03ce449085a50f14824ac662b24d82df2d94faf8b4dd",
+        "resumed": false
+      }
+    ],
+    "all_capture_files_valid": true,
+    "hidden_dtype_preserved_exactly": true,
+    "selected_gate_storage_dtype": "float32",
+    "unnecessary_attention_states_stored": false,
+    "full_transformer_activations_stored": false
+  }
+}

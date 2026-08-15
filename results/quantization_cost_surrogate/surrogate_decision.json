@@ -1,0 +1,98 @@
+{
+  "decision": "SURROGATE_NO_GO",
+  "provisional_metric_decision": "SURROGATE_NO_GO",
+  "selected_surrogate": null,
+  "aod_gates": {
+    "gate_a": {
+      "passed": false,
+      "overall_spearman": 0.12248168498168496,
+      "required_overall_spearman_strictly_greater_than": 0.25,
+      "weight_risk_functional_spearman": 0.0923076923076923,
+      "improvement_over_weight_risk_functional": 0.030173992673992664,
+      "required_improvement_at_least": 0.15,
+      "improvement_bootstrap_ci_low": -0.008350068545005635,
+      "improvement_bootstrap_ci_high": 0.0702722037822469
+    },
+    "gate_b": {
+      "passed": false,
+      "overall_spearman_ci_low": -0.21670245092326573,
+      "required_ci_lower_bound_strictly_greater_than": 0.0
+    },
+    "gate_c": {
+      "passed": true,
+      "specificity_spearman": 0.4058823529411764,
+      "specificity_spearman_ci_low": -0.20000000000000004,
+      "specificity_spearman_ci_high": 0.8168305281329233,
+      "required_strictly_greater_than": 0.3,
+      "ci_excludes_zero_preferred_not_required": false
+    },
+    "gate_d": {
+      "passed": true,
+      "top_domain_accuracy": 0.5,
+      "required_strictly_greater_than": 0.4,
+      "random_chance": 0.25
+    },
+    "gate_e": {
+      "passed": true,
+      "positive_domain_count": 3,
+      "required_positive_domains": 3,
+      "domain_spearman": {
+        "general": 0.3029411764705882,
+        "math": -0.5794117647058823,
+        "coding": 0.35000000000000003,
+        "reasoning": 0.6676470588235294
+      }
+    },
+    "all_required_gates_passed": false
+  },
+  "aod_passed": false,
+  "gradient_fallback_triggered": true,
+  "gqs_gates": {
+    "gate_a": {
+      "passed": false,
+      "overall_spearman": 0.09752747252747253,
+      "required_overall_spearman_strictly_greater_than": 0.25,
+      "weight_risk_functional_spearman": 0.0923076923076923,
+      "improvement_over_weight_risk_functional": 0.005219780219780229,
+      "required_improvement_at_least": 0.15,
+      "improvement_bootstrap_ci_low": -0.06982740254968497,
+      "improvement_bootstrap_ci_high": 0.09927929453980792
+    },
+    "gate_b": {
+      "passed": false,
+      "overall_spearman_ci_low": -0.2233172167461028,
+      "required_ci_lower_bound_strictly_greater_than": 0.0
+    },
+    "gate_c": {
+      "passed": true,
+      "specificity_spearman": 0.4676470588235294,
+      "specificity_spearman_ci_low": -0.11861408847814897,
+      "specificity_spearman_ci_high": 0.815496693121693,
+      "required_strictly_greater_than": 0.3,
+      "ci_excludes_zero_preferred_not_required": false
+    },
+    "gate_d": {
+      "passed": true,
+      "top_domain_accuracy": 0.5625,
+      "required_strictly_greater_than": 0.4,
+      "random_chance": 0.25
+    },
+    "gate_e": {
+      "passed": true,
+      "positive_domain_count": 3,
+      "required_positive_domains": 3,
+      "domain_spearman": {
+        "general": 0.25,
+        "math": -0.6205882352941177,
+        "coding": 0.2823529411764706,
+        "reasoning": 0.5617647058823529
+      }
+    },
+    "all_required_gates_passed": false
+  },
+  "gqs_passed": false,
+  "independent_audit_passed": true,
+  "full_cost_matrix_authorized": false,
+  "mixed_precision_optimizer_implemented": false,
+  "rationale": "Neither AOD nor the predefined GQS fallback passed every gate."
+}

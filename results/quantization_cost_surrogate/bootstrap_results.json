@@ -1,0 +1,565 @@
+{
+  "aod": {
+    "weight_risk_functional": {
+      "overall_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.24310564189129272,
+        "ci_high": 0.3929312719969608
+      },
+      "overall_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.17879930183510703,
+        "ci_high": 0.2686368209255533
+      },
+      "specificity_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.13129348771472057,
+        "ci_high": 0.7758841821481955
+      },
+      "specificity_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.07968189428366418,
+        "ci_high": 0.6106194690265486
+      },
+      "sign_agreement": {
+        "finite_replicates": 1000,
+        "ci_low": 0.375,
+        "ci_high": 0.875
+      },
+      "top_domain_accuracy": {
+        "finite_replicates": 1000,
+        "ci_low": 0.25,
+        "ci_high": 0.75
+      }
+    },
+    "weight_risk_routing": {
+      "overall_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.2927310814340945,
+        "ci_high": 0.3416675305641838
+      },
+      "overall_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.22525252525252526,
+        "ci_high": 0.22930657380254155
+      },
+      "specificity_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.20494641522528295,
+        "ci_high": 0.7233428837953091
+      },
+      "specificity_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.1711711711711712,
+        "ci_high": 0.5575748964845334
+      },
+      "sign_agreement": {
+        "finite_replicates": 1000,
+        "ci_low": 0.375,
+        "ci_high": 0.875
+      },
+      "top_domain_accuracy": {
+        "finite_replicates": 1000,
+        "ci_low": 0.25,
+        "ci_high": 0.75
+      }
+    },
+    "functional_importance": {
+      "overall_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.24800750526953347,
+        "ci_high": 0.39950380998717355
+      },
+      "overall_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.18497124863088715,
+        "ci_high": 0.27457671883001417
+      },
+      "specificity_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.13129348771472057,
+        "ci_high": 0.7758841821481955
+      },
+      "specificity_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.07968189428366418,
+        "ci_high": 0.6106194690265486
+      },
+      "sign_agreement": {
+        "finite_replicates": 1000,
+        "ci_low": 0.375,
+        "ci_high": 0.875
+      },
+      "top_domain_accuracy": {
+        "finite_replicates": 1000,
+        "ci_low": 0.25,
+        "ci_high": 0.75
+      }
+    },
+    "routing_importance": {
+      "overall_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.2909821795596217,
+        "ci_high": 0.34650416933932005
+      },
+      "overall_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.2243687376785968,
+        "ci_high": 0.2320577871677527
+      },
+      "specificity_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.20494641522528295,
+        "ci_high": 0.7233428837953091
+      },
+      "specificity_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.1711711711711712,
+        "ci_high": 0.5575748964845334
+      },
+      "sign_agreement": {
+        "finite_replicates": 1000,
+        "ci_low": 0.375,
+        "ci_high": 0.875
+      },
+      "top_domain_accuracy": {
+        "finite_replicates": 1000,
+        "ci_low": 0.25,
+        "ci_high": 0.75
+      }
+    },
+    "uod": {
+      "overall_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.2179710439956617,
+        "ci_high": 0.25899262141474033
+      },
+      "overall_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.16267676767676767,
+        "ci_high": 0.17342110622352558
+      },
+      "specificity_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.3180621941301525,
+        "ci_high": 0.6871718531040771
+      },
+      "specificity_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.2501136363636363,
+        "ci_high": 0.5514099258781824
+      },
+      "sign_agreement": {
+        "finite_replicates": 1000,
+        "ci_low": 0.3125,
+        "ci_high": 0.8125
+      },
+      "top_domain_accuracy": {
+        "finite_replicates": 1000,
+        "ci_low": 0.125,
+        "ci_high": 0.5625
+      }
+    },
+    "reod": {
+      "overall_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.43429360287664287,
+        "ci_high": 0.03395671323793888
+      },
+      "overall_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.281577260947598,
+        "ci_high": 0.01717433481152993
+      },
+      "specificity_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.6957992685025818,
+        "ci_high": 0.2955891476353174
+      },
+      "specificity_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.5456574675324676,
+        "ci_high": 0.22236842105263144
+      },
+      "sign_agreement": {
+        "finite_replicates": 1000,
+        "ci_low": 0.125,
+        "ci_high": 0.5625
+      },
+      "top_domain_accuracy": {
+        "finite_replicates": 1000,
+        "ci_low": 0.0,
+        "ci_high": 0.3125
+      }
+    },
+    "apd": {
+      "overall_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.18194338821625639,
+        "ci_high": 0.4088775558900463
+      },
+      "overall_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.1385863373009139,
+        "ci_high": 0.27924200214946027
+      },
+      "specificity_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": 0.06573213090435442,
+        "ci_high": 0.8000000000000002
+      },
+      "specificity_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": 0.036118262268704765,
+        "ci_high": 0.6283185840707964
+      },
+      "sign_agreement": {
+        "finite_replicates": 1000,
+        "ci_low": 0.375,
+        "ci_high": 0.875
+      },
+      "top_domain_accuracy": {
+        "finite_replicates": 1000,
+        "ci_low": 0.25,
+        "ci_high": 0.75
+      }
+    },
+    "aod": {
+      "overall_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.21670245092326573,
+        "ci_high": 0.4339695363484231
+      },
+      "overall_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.16806629249179286,
+        "ci_high": 0.30382293762575446
+      },
+      "specificity_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.20000000000000004,
+        "ci_high": 0.8168305281329233
+      },
+      "specificity_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.11728442728442728,
+        "ci_high": 0.6695692062225769
+      },
+      "sign_agreement": {
+        "finite_replicates": 1000,
+        "ci_low": 0.375,
+        "ci_high": 0.875
+      },
+      "top_domain_accuracy": {
+        "finite_replicates": 1000,
+        "ci_low": 0.25,
+        "ci_high": 0.75
+      }
+    }
+  },
+  "aod_weight_proxy_improvement": {
+    "point_estimate": 0.030173992673992664,
+    "ci_low": -0.008350068545005635,
+    "ci_high": 0.0702722037822469
+  },
+  "gqs": {
+    "weight_risk_functional": {
+      "overall_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.24310564189129272,
+        "ci_high": 0.3929312719969608
+      },
+      "overall_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.17879930183510703,
+        "ci_high": 0.2686368209255533
+      },
+      "specificity_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.13129348771472057,
+        "ci_high": 0.7758841821481955
+      },
+      "specificity_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.07968189428366418,
+        "ci_high": 0.6106194690265486
+      },
+      "sign_agreement": {
+        "finite_replicates": 1000,
+        "ci_low": 0.375,
+        "ci_high": 0.875
+      },
+      "top_domain_accuracy": {
+        "finite_replicates": 1000,
+        "ci_low": 0.25,
+        "ci_high": 0.75
+      }
+    },
+    "weight_risk_routing": {
+      "overall_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.2927310814340945,
+        "ci_high": 0.3416675305641838
+      },
+      "overall_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.22525252525252526,
+        "ci_high": 0.22930657380254155
+      },
+      "specificity_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.20494641522528295,
+        "ci_high": 0.7233428837953091
+      },
+      "specificity_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.1711711711711712,
+        "ci_high": 0.5575748964845334
+      },
+      "sign_agreement": {
+        "finite_replicates": 1000,
+        "ci_low": 0.375,
+        "ci_high": 0.875
+      },
+      "top_domain_accuracy": {
+        "finite_replicates": 1000,
+        "ci_low": 0.25,
+        "ci_high": 0.75
+      }
+    },
+    "functional_importance": {
+      "overall_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.24800750526953347,
+        "ci_high": 0.39950380998717355
+      },
+      "overall_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.18497124863088715,
+        "ci_high": 0.27457671883001417
+      },
+      "specificity_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.13129348771472057,
+        "ci_high": 0.7758841821481955
+      },
+      "specificity_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.07968189428366418,
+        "ci_high": 0.6106194690265486
+      },
+      "sign_agreement": {
+        "finite_replicates": 1000,
+        "ci_low": 0.375,
+        "ci_high": 0.875
+      },
+      "top_domain_accuracy": {
+        "finite_replicates": 1000,
+        "ci_low": 0.25,
+        "ci_high": 0.75
+      }
+    },
+    "routing_importance": {
+      "overall_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.2909821795596217,
+        "ci_high": 0.34650416933932005
+      },
+      "overall_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.2243687376785968,
+        "ci_high": 0.2320577871677527
+      },
+      "specificity_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.20494641522528295,
+        "ci_high": 0.7233428837953091
+      },
+      "specificity_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.1711711711711712,
+        "ci_high": 0.5575748964845334
+      },
+      "sign_agreement": {
+        "finite_replicates": 1000,
+        "ci_low": 0.375,
+        "ci_high": 0.875
+      },
+      "top_domain_accuracy": {
+        "finite_replicates": 1000,
+        "ci_low": 0.25,
+        "ci_high": 0.75
+      }
+    },
+    "uod": {
+      "overall_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.2179710439956617,
+        "ci_high": 0.25899262141474033
+      },
+      "overall_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.16267676767676767,
+        "ci_high": 0.17342110622352558
+      },
+      "specificity_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.3180621941301525,
+        "ci_high": 0.6871718531040771
+      },
+      "specificity_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.2501136363636363,
+        "ci_high": 0.5514099258781824
+      },
+      "sign_agreement": {
+        "finite_replicates": 1000,
+        "ci_low": 0.3125,
+        "ci_high": 0.8125
+      },
+      "top_domain_accuracy": {
+        "finite_replicates": 1000,
+        "ci_low": 0.125,
+        "ci_high": 0.5625
+      }
+    },
+    "reod": {
+      "overall_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.43429360287664287,
+        "ci_high": 0.03395671323793888
+      },
+      "overall_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.281577260947598,
+        "ci_high": 0.01717433481152993
+      },
+      "specificity_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.6957992685025818,
+        "ci_high": 0.2955891476353174
+      },
+      "specificity_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.5456574675324676,
+        "ci_high": 0.22236842105263144
+      },
+      "sign_agreement": {
+        "finite_replicates": 1000,
+        "ci_low": 0.125,
+        "ci_high": 0.5625
+      },
+      "top_domain_accuracy": {
+        "finite_replicates": 1000,
+        "ci_low": 0.0,
+        "ci_high": 0.3125
+      }
+    },
+    "apd": {
+      "overall_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.18194338821625639,
+        "ci_high": 0.4088775558900463
+      },
+      "overall_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.1385863373009139,
+        "ci_high": 0.27924200214946027
+      },
+      "specificity_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": 0.06573213090435442,
+        "ci_high": 0.8000000000000002
+      },
+      "specificity_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": 0.036118262268704765,
+        "ci_high": 0.6283185840707964
+      },
+      "sign_agreement": {
+        "finite_replicates": 1000,
+        "ci_low": 0.375,
+        "ci_high": 0.875
+      },
+      "top_domain_accuracy": {
+        "finite_replicates": 1000,
+        "ci_low": 0.25,
+        "ci_high": 0.75
+      }
+    },
+    "aod": {
+      "overall_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.21670245092326573,
+        "ci_high": 0.4339695363484231
+      },
+      "overall_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.16806629249179286,
+        "ci_high": 0.30382293762575446
+      },
+      "specificity_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.20000000000000004,
+        "ci_high": 0.8168305281329233
+      },
+      "specificity_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.11728442728442728,
+        "ci_high": 0.6695692062225769
+      },
+      "sign_agreement": {
+        "finite_replicates": 1000,
+        "ci_low": 0.375,
+        "ci_high": 0.875
+      },
+      "top_domain_accuracy": {
+        "finite_replicates": 1000,
+        "ci_low": 0.25,
+        "ci_high": 0.75
+      }
+    },
+    "gqs": {
+      "overall_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.2233172167461028,
+        "ci_high": 0.4002222970919903
+      },
+      "overall_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.15757575757575756,
+        "ci_high": 0.2752207579166941
+      },
+      "specificity_spearman": {
+        "finite_replicates": 1000,
+        "ci_low": -0.11861408847814897,
+        "ci_high": 0.815496693121693
+      },
+      "specificity_kendall": {
+        "finite_replicates": 1000,
+        "ci_low": -0.12517688679245279,
+        "ci_high": 0.6607893489254106
+      },
+      "sign_agreement": {
+        "finite_replicates": 1000,
+        "ci_low": 0.375,
+        "ci_high": 0.875
+      },
+      "top_domain_accuracy": {
+        "finite_replicates": 1000,
+        "ci_low": 0.3125,
+        "ci_high": 0.8125
+      }
+    }
+  },
+  "method": {
+    "replicates": 1000,
+    "seed": 42,
+    "unit": "expert",
+    "grouped_domains_per_expert": true,
+    "percentile_interval": [
+      0.025,
+      0.975
+    ]
+  }
+}

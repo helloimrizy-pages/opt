@@ -1,6 +1,6 @@
 # Expert-domain importance experiment: persistent handoff
 
-Last updated: 2026-08-14
+Last updated: 2026-08-15
 
 This file is the durable cross-session research handoff. It records the current
 experimental state and the conclusions supported by the available validated run
@@ -24,13 +24,13 @@ expert QDQ.
 Current decision: the mandatory Stage-1 reversible quantization-sensitivity pilot
 is **GO** and complete after production execution and independent raw-artifact audit
 on the NVIDIA A40. Four-bit QDQ passed all four preregistered gates; the 3-bit
-fallback was not triggered. Stage 2A activation-aware surrogate code is now
-implemented and locally tested, but its real 64-observation AOD validation has not
-yet run on the A40. There is therefore no Stage-2A surrogate GO/NO-GO decision and
-no full cost matrix yet. Distributionally robust mixed-precision optimization is
-blocked pending that validation and was not implemented. Prompt-only, controlled
-causal, balanced causal, and Stage-1 validation remain complete and independently
-audited.
+fallback was not triggered. Stage 2A activation-aware surrogate validation is now
+also complete and independently audited on the A40, with a final decision of
+**SURROGATE_NO_GO**: both AOD and the preregistered GQS fallback failed Gates A and
+B. The full cost matrix was therefore not authorized or generated, and
+distributionally robust mixed-precision optimization remains blocked and
+unimplemented. Prompt-only, controlled causal, balanced causal, Stage-1, and
+Stage-2A validation are complete and independently audited.
 
 ## Code baseline
 
@@ -49,6 +49,10 @@ The implemented and committed workflow consists of:
 - `40c83e4` — Report controlled corpus eligibility
 - `4065720` — Document controlled causal validation workflow
 - `35849b7` — Add balanced causal validation panel
+- `af4edb8` — Implement reversible OLMoE quantization sensitivity pilot
+- `4b51cf7` — Complete and audit the Stage-1 quantization pilot
+- `f04ea8d` — Add validated causal and quantization result artifacts
+- `eb160bb` — Implement the Stage-2A quantization-cost surrogate
 
 The balanced-panel implementation adds deterministic baseline-only
 preregistration, strict integrity gates, intervention-level resume support, paired
@@ -655,10 +659,13 @@ preregistered 3-bit fallback was not triggered. Stage 1 is therefore **complete 
 GO**. A separately designed distributionally robust mixed-precision experiment is
 scientifically justified but remains **pending**; Stage 2 was not implemented.
 
-## Stage 2A quantization-cost surrogate: implementation complete, A40 validation pending
+## Stage 2A quantization-cost surrogate: complete and independently audited
 
-Status: **implementation complete / real validation pending**. No surrogate
-GO/NO-GO decision has been made, and the full cost matrix has not been generated.
+Final status: **SURROGATE_NO_GO**. The full cost matrix was not authorized or
+generated, and robust mixed-precision optimization remains blocked and
+unimplemented.
+
+Artifact directory: `results/quantization_cost_surrogate/`.
 
 The Stage-2A implementation was added on 2026-08-14 to test a cost function before
 allowing it to drive a future robust optimizer. The primary fixed score is
@@ -706,18 +713,14 @@ passed and selected replay-validation layers 6, 7, 9, and 11 deterministically f
 seed 42. Its capture fingerprint is
 `672316b5b7ea8be1d7bf328aca2c9bd7f367238eccdbde549d791fa10c9f8fe2`.
 
-Local validation ran on Apple Silicon/MPS with PyTorch 2.12.1 and no CUDA. The full
-repository suite passed **57/57 tests**. Tests cover exact QDQ reuse, live/current-HF
-OLMoE replay, tensorized indexing, route filtering, gate multiplication, all four
-activation formulas, LayerEnergy, zero-route flags, deterministic values, grouped
-bootstrap, specificity, top-domain accuracy, strict gate logic, gradient retention,
-GQS/GQS2, no weight mutation, matrix shape/16-bit behavior, exact storage, resume
-fingerprints, pilot extraction, monotonicity reporting, and all prior regressions.
-A synthetic end-to-end result package also passed the standalone Stage-2A auditor
-with 1,060 independent checks. These local results validate code paths only; they are
-not evidence about real AOD predictive performance.
+The implementation was first validated locally on Apple Silicon/MPS with PyTorch
+2.12.1; the full repository suite passed **57/57 tests**, and a synthetic end-to-end
+package passed 1,060 standalone audit checks. Those checks validated code paths
+only. The real frozen 64-observation validation subsequently ran on the NVIDIA A40
+with CUDA BF16, batch size 1, 4-bit Stage-1 QDQ, group size 128, seed 42, and 1,000
+expert-grouped bootstrap replicates.
 
-Exact pending A40 validation command:
+Exact A40 validation command used:
 
 ```bash
 PYTHONPATH=src python scripts/validate_quantization_cost_surrogate.py \
@@ -738,41 +741,42 @@ PYTHONPATH=src python scripts/validate_quantization_cost_surrogate.py \
   --resume
 ```
 
-The command stops if real expert replay or any pilot QDQ fingerprint fails. It uses
-all 64 Stage-1 observations and invokes the independent auditor automatically. AOD
-must pass all five frozen gates: overall Spearman `>0.25`, improvement over
-WeightRiskFunctional `>=0.15`, overall grouped-bootstrap CI lower bound `>0`,
-specificity Spearman `>0.30`, top-domain accuracy `>0.40`, and positive correlations
-in at least three domains. (The first sentence's two requirements jointly form Gate
-A.) Only an AOD failure activates GQS; GQS2 cannot replace it.
+All integrity gates passed. The capture fingerprint remained
+`672316b5b7ea8be1d7bf328aca2c9bd7f367238eccdbde549d791fa10c9f8fe2`
+and the run fingerprint was
+`8c17ff9db9a4f4fa36e3c343a3b9f78356e7a86deb095b949894873ebb895758`.
+Replay validation passed 48 samples across layers 6, 7, 9, and 11, covering 42
+experts; maximum isolated-contribution and aggregate-MoE-output absolute errors
+were **0.000244140625** and **0.001788616180**, respectively. All 16 pilot experts
+exactly reproduced their Stage-1 original and quantized fingerprints, and every
+intervention retained exact restoration and unrelated-expert isolation metadata.
 
-If and only if `surrogate_decision.json` is independently audited as `AOD_GO` or
-`SURROGATE_GO_GRADIENT`, the exact conditional full-matrix command is:
+Primary AOD results:
 
-```bash
-PYTHONPATH=src python scripts/build_quantization_cost_matrix.py \
-  --surrogate-dir results/quantization_cost_surrogate \
-  --stage1-dir results/expert_quantization_pilot \
-  --model allenai/OLMoE-1B-7B-0924 \
-  --model-revision 6d84c48581ece794365f2b8e9cfb043c68ade9c5 \
-  --device cuda \
-  --dtype bfloat16 \
-  --batch-size 1 \
-  --group-size 128 \
-  --bit-widths 3 4 8 16 \
-  --replay-chunk-size 512 \
-  --seed 42 \
-  --cache-dir .hf_cache \
-  --resume
-```
+| Metric | Result | Preregistered requirement | Outcome |
+|---|---:|---:|---:|
+| Overall Spearman | +0.122482 [-0.216702, +0.433970] | > +0.25 and CI low > 0 | FAIL |
+| Improvement over WeightRiskFunctional | +0.030174 [-0.008350, +0.070272] | >= +0.15 | FAIL |
+| Specificity Spearman | +0.405882 [-0.200000, +0.816831] | > +0.30 | PASS |
+| Top-domain accuracy | 0.5000 [0.2500, 0.7500] | > 0.40 | PASS |
+| Positive domain correlations | 3/4 | >= 3/4 | PASS |
 
-If AOD and GQS both fail, the required decision is `SURROGATE_NO_GO`, the matrix
-builder remains blocked, and robust mixed precision remains scientifically
-unsupported. If a surrogate passes and the audited matrix is completed, robust
-mixed precision becomes the next separately designed stage; it is not completed or
-implemented here. Real-checkpoint results remain limited to one model revision and
-the reused calibration/validation inputs, and their bootstrap intervals will not
-measure checkpoint, prompt, or dataset-choice uncertainty.
+AOD therefore failed Gates A and B, activating the GQS fallback exactly as
+preregistered. GQS also failed Gates A and B: overall Spearman was **+0.097527**
+[-0.223317, +0.400222], improvement over WeightRiskFunctional was only
+**+0.005220** [-0.069827, +0.099279], specificity Spearman was **+0.467647**, and
+top-domain accuracy was **0.5625**. Both methods were negatively correlated with
+actual 4-bit delta NLL in Math (AOD **-0.579412**, GQS **-0.620588**), a retained
+domain-level counterexample.
+
+The standalone auditor independently recomputed the final
+`SURROGATE_NO_GO` decision from raw saved values. All **1,528** checks passed with
+no errors and maximum published-versus-recomputed numeric difference **0.0**.
+Because neither fixed primary surrogate passed every gate, the preregistered
+stopping rule blocks the full `[16,64,4,4]` cost matrix and any robust
+mixed-precision optimizer. The result remains limited to one model revision, 16
+pilot experts, four reused controlled domains, and 100 examples/domain; grouped
+bootstrap intervals do not cover checkpoint, prompt, or dataset-choice uncertainty.
 
 ## Fresh-session checklist
 
@@ -797,9 +801,9 @@ A new Codex session should:
 10. Treat `results/expert_quantization_pilot/` as the completed, independently
     audited Stage-1 `GO` run. Preserve its raw checkpoints, decision, summary, and
     `independent_audit.json`.
-11. Treat Stage-2A as implementation-complete but validation-pending. Do not claim
-    AOD/GQS performance or create a surrogate decision without the real A40 run and
-    standalone audit.
-12. Robust mixed-precision optimization remains blocked pending an audited Stage-2A
-    GO and cost matrix. It was not implemented in this stage.
+11. Treat Stage-2A as complete and independently audited with final decision
+    `SURROGATE_NO_GO`. Preserve its small result package and raw capture artifacts;
+    do not reinterpret the failed AOD/GQS gates.
+12. The full cost matrix was not authorized or generated. Robust mixed-precision
+    optimization remains scientifically blocked and was not implemented.
 13. Update this handoff after every new validated run.
