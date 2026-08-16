@@ -1029,15 +1029,36 @@ searched, and seed 44 stays untouched under this preregistration. The complete
 tables are in `results/fragility_robust_preservation/SUMMARY.md` and
 `development_seed45/development_results.json`.
 
-## Stage 3 measured expert-damage preservation: implemented / pending CUDA execution
+## Stage 3 measured expert-damage preservation: on hold pending Stage 3D Sweep A
 
 Artifact directory: `results/measured_damage_preservation/` (created by the
 runs below).
 
-Current status: **implemented, locally validated, pending CUDA execution**. No
-damage matrix, allocation, probe, or held-out NLL has been produced yet.
-Nothing in this stage modifies the frozen Stage 2A, 2B, or 2C negative
-results.
+Current status: **implemented, locally validated, and on hold**. No damage
+matrix, allocation, probe, or held-out NLL has been produced yet. Nothing in
+this stage modifies the frozen Stage 2A, 2B, or 2C negative results.
+
+Two things changed on 2026-08-16, after this stage was implemented and before
+any of it ran. Both are recorded in `prereg/stage3d.md`.
+
+**It is gated on Stage 3D Sweep A.** This stage assumes per-expert damage is
+heterogeneous enough to be worth measuring 1024 times. Stage 3D Sweep A tests
+that assumption directly, so it is a gate on this stage rather than a stage
+beside it. The go condition is Sweep A returning `HEADROOM` under the Step 5
+rule in `prereg/stage3d.md`. If Sweep A returns `FLAT`, the negative result is
+the paper and this stage does not run. This stage is **not** superseded; that
+word would imply the answer is already known.
+
+**Its step 1 cannot succeed as written.** Running
+`scripts/build_stage3_development_split.py` aborts: the coding domain cannot
+supply 50 disjoint seed-46 examples. `google-research-datasets/mbpp` full test
+has 500 rows, 332 of them long enough for the 68-token geometry, and 300 are
+already spent across the frozen controlled set and seeds 43, 44 and 45, leaving
+32. Free eligible examples per domain are general 1301, math 104, coding 32,
+reasoning 198, so a balanced fresh split now caps at 32 per domain. If this
+stage is ever authorized to run, it needs a smaller development split, a larger
+coding corpus, or a different evaluation set; seed 46 itself remains unused and
+available, because Stage 3D builds no data split.
 
 Authorization and scope: the user explicitly authorized this stage on
 2026-08-16. Stages 2A-2C established that per-expert quantization damage
@@ -1153,6 +1174,94 @@ seed 42:
    result, and leave seed 44 untouched permanently under this
    preregistration.
 
+## Stage 3D selection-headroom diagnostics: preregistered / pending CUDA execution
+
+Artifact directory: `results/stage3d_diagnostics/`. Preregistration:
+`prereg/stage3d.md`, frozen and committed before the first sweep.
+
+Current status: **preregistered, evaluation set and all 53 configurations
+frozen, code written and locally validated, pending CUDA execution**. No loss
+has been measured yet.
+
+Authorization and scope: the user authorized this stage on 2026-08-16 as
+diagnosis only. Stages 2A, 2B and 2C each predicted which experts to keep at
+8 bits under a 20% budget and none beat baseline. Two explanations remain: the
+predictors were bad and sensitivity is heterogeneous, or sensitivity is
+near-uniform so the objective is flat and no selection rule can win. Stage 3D
+separates them. It implements no allocator, runs no 1024-expert sweep, adds no
+domain, and changes no budget.
+
+- **Sweep A, 36 runs.** Twenty random protection sets (seeds 46-65) at the 20%
+  Stage 2C budget in the 4to8 regime, the same ten of those sets in 3to8, plus
+  most-routed, least-routed and no-protection in each regime. Both regimes
+  protect exactly 204 of 1024 experts. The random sets are selected once and
+  reused across regimes so the arms are paired; the build verifies set equality
+  by SHA-256. The 4to8 arm carries the decision; the 3to8 arm can escalate a
+  flat primary outcome to inconclusive but can never on its own authorize the
+  1024-expert sweep.
+- **Sweep B, 16 runs.** Each layer's 64 experts at 4 bits, everything else
+  BF16.
+- **Sweep C, 1 run.** Every expert at 4 bits with the 16 `mlp.gate.weight`
+  router tensors also at 4 bits. Step 0 confirmed the pipeline never quantized
+  routers, so per the specification only the quantized-router state is new and
+  it is labelled a diagnostic on baseline strength. Its BF16-router comparison
+  point is Sweep A's `a_4to8_no_protection` run, the identical expert
+  assignment, verified by bit-matrix hash rather than re-evaluated.
+
+Evaluation set: the frozen seed-43 and seed-45 development splits concatenated,
+100 examples per domain, 400 examples, 25,600 measured tokens. A fresh split is
+not buildable (see the Stage 3 section above). The two source splits are
+verified mutually disjoint and free of seed-44 rows. **The seed-44 final
+reserve and split seed 46 are both untouched by this stage.** Seeds 43 and 45
+were observed by Stages 2B and 2C, which matters for selection and tuning;
+Stage 3D does neither, and its expert rankings come from Stage 2B calibration
+routing counts measured on the disjoint frozen controlled set.
+
+Both worst-domain definitions are recorded in every table and every JSONL
+record: the maximum relative increase over BF16, which is the Stage 1 through
+2C definition, and the maximum raw per-domain loss. **Step 5 is applied to the
+relative definition only**, fixed in the preregistration before any result
+existed.
+
+Implementation (2026-08-16, local machine, no model inference):
+
+- `src/expert_analysis/stage3d_diagnostics.py` — evaluation-set pooling and
+  disjointness proof, the frozen memory matrix reload, calibration routing
+  counts anchored to a hashed Stage 2B artifact, all three sweeps' protection
+  sets, `ReversibleRouterQuantization`, router memory accounting, both
+  worst-domain metrics, JSONL run records, and the Step 5 decision functions
+  with the thresholds as module constants.
+- Scripts: `build_stage3d_evaluation_set.py` (no model),
+  `run_stage3d_harness.py` (the four Step 2 checks),
+  `run_stage3d_sweeps.py --sweep a|b|c`, and `report_stage3d.py` (no model).
+- Tests: 25 new tests; the full suite passes **226/226** locally.
+- End-to-end dry validation: synthetic run records were pushed through the real
+  reporter, which produced every table, CSV, `stage3d_decision.json`, and
+  `SUMMARY.md`, with each Step 5 branch exercised by a unit test. No synthetic
+  artifact was written into `results/`.
+
+Frozen locally already, committed: the evaluation set manifest and all 53
+configurations, registry SHA-256
+`74d36c2d6d9694611155310a5d6a167703ad2934a34aa20e8c44429f7db74a37`.
+
+Pending CUDA work, in order, from the repository root on the pinned A40/BF16
+environment with batch size 1 and seed 42:
+
+1. `PYTHONPATH=src python scripts/run_stage3d_harness.py --device cuda
+   --cache-dir .hf_cache` — the four correctness checks. Check 4 reproduces two
+   Stage 1 single-expert measurements at exact tolerance and stops the run on
+   any disagreement, reporting its size.
+2. `PYTHONPATH=src python scripts/run_stage3d_sweeps.py --sweep a --device cuda
+   --cache-dir .hf_cache`, then
+   `python scripts/report_stage3d.py --sweeps a`. Sweep A is reported before
+   Sweep B starts.
+3. `--sweep b`, then `--sweep c`, then
+   `python scripts/report_stage3d.py`.
+
+Records append and fsync one at a time and per-domain losses checkpoint, so a
+crash loses at most the run in flight and a resumed run recomputes nothing it
+already finished.
+
 ## Fresh-session checklist
 
 A new Codex session should:
@@ -1197,5 +1306,15 @@ A new Codex session should:
     commands, in the preregistered order, and never edited afterward; the
     additivity gate decides whether seed 46 may be evaluated; seed 44 may be
     evaluated only after a preregistered `FINAL_CONFIRMATION_GO` plus a
-    passing independent audit.
-16. Update this handoff after every new validated run.
+    passing independent audit. Stage 3 is on hold: it may not run until
+    Stage 3D Sweep A returns `HEADROOM`, and its seed-46 split build fails as
+    written because the coding pool is exhausted.
+16. Treat `prereg/stage3d.md` and
+    `results/stage3d_diagnostics/allocations/allocation_registry.json` as
+    frozen. Stage 3D is diagnosis only: no allocator, no 1024-expert sweep, no
+    new domain, no changed budget, no threshold edited after seeing numbers.
+    Step 5 is applied to the relative worst-domain definition; the raw one is
+    reported but never decides. Seeds 46-65 select protection sets there and
+    build no data split, so split seed 46 stays available. Report a surprising
+    sweep result; do not investigate it further without asking.
+17. Update this handoff after every new validated run.

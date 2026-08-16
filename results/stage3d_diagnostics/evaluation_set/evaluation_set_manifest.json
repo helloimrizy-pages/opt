@@ -1,0 +1,61 @@
+{
+  "schema": "stage3d_evaluation_set_v1",
+  "stage": "stage3d_selection_headroom_diagnostics",
+  "composition": "the frozen Stage 2B seed-43 development split concatenated with the frozen Stage 2C seed-45 development split, seed-43 rows first",
+  "split_seeds": [
+    43,
+    45
+  ],
+  "examples_per_domain": 100,
+  "seed44_final_reserve_untouched": true,
+  "seed46_unused": true,
+  "why_not_a_fresh_split": "the mbpp full test split has 500 rows, 332 of them long enough for the 68-token geometry, and 300 are already spent across the frozen controlled set and seeds 43, 44, and 45; only 32 eligible examples remain, so a balanced fresh split caps at 32 per domain",
+  "contamination_note": "seeds 43 and 45 were observed by Stage 2B and Stage 2C. Stage 3D selects nothing, fits nothing, and tunes nothing on them: its protection sets come from seeded permutations and from Stage 2B calibration routing counts measured on the disjoint frozen controlled set, so no Stage 3D quantity depends on any seed-43 or seed-45 outcome",
+  "domains": {
+    "general": {
+      "num_examples": 100,
+      "sequence_length": 68,
+      "measured_tokens_per_example": 64,
+      "input_ids_sha256": "ef3ddf2f98dddbc45130450a246e5f2d1227985b3735c97b0d62784e88f8b4c3",
+      "measurement_mask_sha256": "268a4617deb08005e0ce5ea3c41a37a1b1a008afbd67edbb3d0762da3b773c3f",
+      "seed43_rows": 50,
+      "seed45_rows": 50,
+      "seed44_rows": 0,
+      "disjointness_verified": true
+    },
+    "math": {
+      "num_examples": 100,
+      "sequence_length": 68,
+      "measured_tokens_per_example": 64,
+      "input_ids_sha256": "b2f530cc52f0b7db9fcb2bc9a4fb55864b862f840c56b8a7abcf342508b5f905",
+      "measurement_mask_sha256": "268a4617deb08005e0ce5ea3c41a37a1b1a008afbd67edbb3d0762da3b773c3f",
+      "seed43_rows": 50,
+      "seed45_rows": 50,
+      "seed44_rows": 0,
+      "disjointness_verified": true
+    },
+    "coding": {
+      "num_examples": 100,
+      "sequence_length": 68,
+      "measured_tokens_per_example": 64,
+      "input_ids_sha256": "5a9982563e226b3f7ed4a440b7a7069465bc0bd0b710239b93f63bcb0b89121f",
+      "measurement_mask_sha256": "268a4617deb08005e0ce5ea3c41a37a1b1a008afbd67edbb3d0762da3b773c3f",
+      "seed43_rows": 50,
+      "seed45_rows": 50,
+      "seed44_rows": 0,
+      "disjointness_verified": true
+    },
+    "reasoning": {
+      "num_examples": 100,
+      "sequence_length": 68,
+      "measured_tokens_per_example": 64,
+      "input_ids_sha256": "0ce356ed1ec9a9ae0b6b48a2dbe22c1005e9e3bf050283477d96150afd1fc3bf",
+      "measurement_mask_sha256": "268a4617deb08005e0ce5ea3c41a37a1b1a008afbd67edbb3d0762da3b773c3f",
+      "seed43_rows": 50,
+      "seed45_rows": 50,
+      "seed44_rows": 0,
+      "disjointness_verified": true
+    }
+  },
+  "created_at_utc": "2026-08-16T17:00:37.775349+00:00"
+}

@@ -1,0 +1,16 @@
+{
+  "domain": "math",
+  "pooled_from": [
+    {
+      "seed": 43,
+      "source": "stage2b_development",
+      "rows": 50
+    },
+    {
+      "seed": 45,
+      "source": "stage2c_development",
+      "rows": 50
+    }
+  ],
+  "row_order": "seed43 rows first, then seed45 rows"
+}
