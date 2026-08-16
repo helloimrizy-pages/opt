@@ -1,0 +1,11 @@
+{
+  "run_fingerprint": "d8a06e719e47fcd2142471d94bad698e8ba56f89a9880fc38995e7facc964aa7",
+  "state": "bf16",
+  "bits": 16,
+  "domain": "reasoning",
+  "resolved_model_revision": "6d84c48581ece794365f2b8e9cfb043c68ade9c5",
+  "input_ids_sha256": "8f7281972e536e38304a507bceaf8561174efa3ef52ab278afdfaf7f7a176e05",
+  "diagnostics": {
+    "reproduced_bitwise": true
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "domains": {
+    "general": {
+      "bitwise_identical": true,
+      "max_abs_loss_difference": 0.0
+    },
+    "math": {
+      "bitwise_identical": true,
+      "max_abs_loss_difference": 0.0
+    },
+    "coding": {
+      "bitwise_identical": true,
+      "max_abs_loss_difference": 0.0
+    },
+    "reasoning": {
+      "bitwise_identical": true,
+      "max_abs_loss_difference": 0.0
+    }
+  }
+}

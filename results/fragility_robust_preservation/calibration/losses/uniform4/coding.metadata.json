@@ -1,0 +1,11 @@
+{
+  "run_fingerprint": "d8a06e719e47fcd2142471d94bad698e8ba56f89a9880fc38995e7facc964aa7",
+  "state": "uniform4",
+  "bits": 4,
+  "domain": "coding",
+  "resolved_model_revision": "6d84c48581ece794365f2b8e9cfb043c68ade9c5",
+  "input_ids_sha256": "fc430ec8fbd87e82e0a54b0a77cbd321adb0f42604219056575e846eac4a47e8",
+  "diagnostics": {
+    "reproduced_bitwise": true
+  }
+}

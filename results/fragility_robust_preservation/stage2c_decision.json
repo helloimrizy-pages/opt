@@ -1,0 +1,171 @@
+{
+  "stage": "stage2c_fragility_robust_preservation",
+  "phase": "development",
+  "decision": "FRAGILITY_ROBUST_NO_GO",
+  "development_decision": {
+    "decision": "FRAGILITY_ROBUST_NO_GO",
+    "authorized_regimes": [],
+    "regimes_evaluated": {
+      "4to8": "FAIL",
+      "3to8": "FAIL"
+    },
+    "rule": "FINAL_CONFIRMATION_GO if at least one precision regime passes all five development gates on the new seed-45 split; only passing regimes are authorized for seed-44 final confirmation. A failing regime is never final-tested. On FRAGILITY_ROBUST_NO_GO the negative result is preserved, seed 44 stays untouched, and no alternative weighting may be searched."
+  },
+  "development_gates": {
+    "4to8": {
+      "gate_a": {
+        "name": "fixes_stage2b_beats_robust_functional",
+        "fragility_robust_worst_relative_delta": 0.025616010321265394,
+        "robust_functional_worst_relative_delta": 0.0332050677151144,
+        "passed": true
+      },
+      "gate_b": {
+        "name": "beats_random_mean",
+        "fragility_robust_worst_relative_delta": 0.025616010321265394,
+        "random_mean_worst_relative_delta": 0.030073969500650177,
+        "passed": true
+      },
+      "gate_c": {
+        "name": "beats_both_strong_simple_baselines",
+        "fragility_robust_worst_relative_delta": 0.025616010321265394,
+        "global_importance_worst_relative_delta": 0.012976311128729674,
+        "average_specialization_worst_relative_delta": 0.031682111580276305,
+        "passed": false
+      },
+      "gate_d": {
+        "name": "broad_recovery_vs_uniform_base",
+        "recovery_by_domain": {
+          "general": 0.021242830753326558,
+          "math": 0.014906890392303751,
+          "coding": 0.023138997554778884,
+          "reasoning": 0.026004482507705706
+        },
+        "positive_recovery_domains": [
+          "general",
+          "math",
+          "coding",
+          "reasoning"
+        ],
+        "required_positive_domains": 3,
+        "passed": true
+      },
+      "gate_e": {
+        "name": "mean_quality_within_ten_percent_of_better_baseline",
+        "fragility_robust_mean_relative_delta": 0.009221106981025653,
+        "global_importance_mean_relative_delta": 0.0073935001800396125,
+        "average_specialization_mean_relative_delta": 0.011433439610990848,
+        "comparator_mean_relative_delta": 0.0073935001800396125,
+        "relative_worseness": 0.24719101325243337,
+        "relative_tolerance": 0.1,
+        "denominator_epsilon": 1e-12,
+        "epsilon_applied": false,
+        "passed": false
+      },
+      "all_passed": false,
+      "random_baseline_statistics": {
+        "count": 5,
+        "mean_worst_relative_delta": 0.030073969500650177,
+        "std_worst_relative_delta": 0.007927075852856456,
+        "best_random_worst_relative_delta": 0.017145088038501646,
+        "worst_random_worst_relative_delta": 0.03752420404488624,
+        "mean_mean_relative_delta": 0.015199336916077541,
+        "individual_worst_relative_delta": {
+          "random_seed1001": 0.017145088038501646,
+          "random_seed1002": 0.035225565448235095,
+          "random_seed1003": 0.031262125091162704,
+          "random_seed1004": 0.03752420404488624,
+          "random_seed1005": 0.029212864880465213
+        },
+        "individual_mean_relative_delta": {
+          "random_seed1001": 0.013468170751939235,
+          "random_seed1002": 0.01745797477040481,
+          "random_seed1003": 0.01614379102273333,
+          "random_seed1004": 0.01767353117985088,
+          "random_seed1005": 0.011253216855459453
+        }
+      }
+    },
+    "3to8": {
+      "gate_a": {
+        "name": "fixes_stage2b_beats_robust_functional",
+        "fragility_robust_worst_relative_delta": 0.05208048930783881,
+        "robust_functional_worst_relative_delta": 0.050717385657801525,
+        "passed": false
+      },
+      "gate_b": {
+        "name": "beats_random_mean",
+        "fragility_robust_worst_relative_delta": 0.05208048930783881,
+        "random_mean_worst_relative_delta": 0.06823153435111404,
+        "passed": true
+      },
+      "gate_c": {
+        "name": "beats_both_strong_simple_baselines",
+        "fragility_robust_worst_relative_delta": 0.05208048930783881,
+        "global_importance_worst_relative_delta": 0.054972905306358136,
+        "average_specialization_worst_relative_delta": 0.05462615233606104,
+        "passed": true
+      },
+      "gate_d": {
+        "name": "broad_recovery_vs_uniform_base",
+        "recovery_by_domain": {
+          "general": 0.08867674827575689,
+          "math": 0.04762079715728751,
+          "coding": 0.0706128144264222,
+          "reasoning": 0.043900384902954004
+        },
+        "positive_recovery_domains": [
+          "general",
+          "math",
+          "coding",
+          "reasoning"
+        ],
+        "required_positive_domains": 3,
+        "passed": true
+      },
+      "gate_e": {
+        "name": "mean_quality_within_ten_percent_of_better_baseline",
+        "fragility_robust_mean_relative_delta": 0.04398672475003952,
+        "global_importance_mean_relative_delta": 0.0394638107910956,
+        "average_specialization_mean_relative_delta": 0.041700503459042505,
+        "comparator_mean_relative_delta": 0.0394638107910956,
+        "relative_worseness": 0.11460915376080322,
+        "relative_tolerance": 0.1,
+        "denominator_epsilon": 1e-12,
+        "epsilon_applied": false,
+        "passed": false
+      },
+      "all_passed": false,
+      "random_baseline_statistics": {
+        "count": 5,
+        "mean_worst_relative_delta": 0.06823153435111404,
+        "std_worst_relative_delta": 0.003899264754189805,
+        "best_random_worst_relative_delta": 0.0642426312455986,
+        "worst_random_worst_relative_delta": 0.07369811776894085,
+        "mean_mean_relative_delta": 0.0592372717219178,
+        "individual_worst_relative_delta": {
+          "random_seed1001": 0.07004129543205054,
+          "random_seed1002": 0.07369811776894085,
+          "random_seed1003": 0.06836872769182119,
+          "random_seed1004": 0.06480689961715905,
+          "random_seed1005": 0.0642426312455986
+        },
+        "individual_mean_relative_delta": {
+          "random_seed1001": 0.06209344650083736,
+          "random_seed1002": 0.06179065691567845,
+          "random_seed1003": 0.06064471122847567,
+          "random_seed1004": 0.060363329823871076,
+          "random_seed1005": 0.05129421414072641
+        }
+      }
+    }
+  },
+  "run_fingerprint": "748c502f86e9249e6c3bcf721c93e206633caa641aece6ce62be64b8c98357ac",
+  "registry_sha256": "b1b6b9a68c0840e60b1d080678ed7a8fb7f56a0595100a76223c4f3860b52caf",
+  "fragility_sha256": "82db7846ebfdedd62c6d2403a3af2869de507449dc7c42e63790e697291bb624",
+  "preregistration_sha256": "8001fb770c1883d1bd887c282694559c9924500dbf5a08751c7d3f1d87f17385",
+  "bootstrap_replicates": 1000,
+  "bootstrap_seed": 20260815,
+  "method_never_modified_by_gate": true,
+  "seed44_untouched_at_decision_time": true,
+  "created_at_utc": "2026-08-16T04:14:34.474967+00:00"
+}

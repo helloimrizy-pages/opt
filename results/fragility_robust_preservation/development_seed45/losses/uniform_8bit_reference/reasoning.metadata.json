@@ -1,0 +1,17 @@
+{
+  "run_fingerprint": "748c502f86e9249e6c3bcf721c93e206633caa641aece6ce62be64b8c98357ac",
+  "allocation_sha256": "a3af82a37acf128a6d85d8aaf46362879662304fc174c9488c521ec1c28af455",
+  "method": "uniform_8bit_reference",
+  "regime": null,
+  "budget_fraction": null,
+  "resolved_model_revision": "6d84c48581ece794365f2b8e9cfb043c68ade9c5",
+  "group_size": 128,
+  "domain": "reasoning",
+  "split_input_ids_sha256": "4425a57aec5614b2836ffa16fcfe5dcb00fa31b0c519ffa4e19be6f83e2eca5f",
+  "diagnostics": {
+    "elapsed_seconds": 7.027495800983161,
+    "hooks_before": 0,
+    "hooks_after": 0,
+    "mask": null
+  }
+}

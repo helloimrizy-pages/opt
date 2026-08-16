@@ -2,7 +2,7 @@
   "auditor": "standalone_stage2c_audit_v1",
   "production_analysis_functions_imported": false,
   "passed": true,
-  "checks_passed": 61,
+  "checks_passed": 1497,
   "checks_failed": 0,
   "max_numeric_difference": 0.0,
   "sections": {
@@ -14,6 +14,22 @@
       "passed": 10,
       "failed": 0
     },
+    "calibration_fragility": {
+      "passed": 67,
+      "failed": 0
+    },
+    "stage2c_allocations": {
+      "passed": 503,
+      "failed": 0
+    },
+    "milp_optimality": {
+      "passed": 104,
+      "failed": 0
+    },
+    "preregistration": {
+      "passed": 15,
+      "failed": 0
+    },
     "seed45_split": {
       "passed": 42,
       "failed": 0
@@ -21,12 +37,16 @@
     "seed44_isolation": {
       "passed": 2,
       "failed": 0
+    },
+    "development_results": {
+      "passed": 747,
+      "failed": 0
     }
   },
-  "fragility_audited": false,
-  "allocations_audited": false,
-  "development_results_audited": false,
+  "fragility_audited": true,
+  "allocations_audited": true,
+  "development_results_audited": true,
   "final_results_audited": false,
   "failures": [],
-  "created_at_utc": "2026-08-15T14:42:36.005976+00:00"
+  "created_at_utc": "2026-08-16T04:15:02.534447+00:00"
 }

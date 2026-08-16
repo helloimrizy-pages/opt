@@ -1,0 +1,17 @@
+{
+  "run_fingerprint": "748c502f86e9249e6c3bcf721c93e206633caa641aece6ce62be64b8c98357ac",
+  "allocation_sha256": "30fdb89705db0755f3c17b674b401e11c192c790df4eec73eb871967725e872a",
+  "method": "reasoning_only",
+  "regime": "3to8",
+  "budget_fraction": 0.2,
+  "resolved_model_revision": "6d84c48581ece794365f2b8e9cfb043c68ade9c5",
+  "group_size": 128,
+  "domain": "math",
+  "split_input_ids_sha256": "c564af3b87fcf034fdd4ad8bce92130641f43ccfc89302316111c0287a536fe1",
+  "diagnostics": {
+    "elapsed_seconds": 7.258264071075246,
+    "hooks_before": 0,
+    "hooks_after": 0,
+    "mask": null
+  }
+}

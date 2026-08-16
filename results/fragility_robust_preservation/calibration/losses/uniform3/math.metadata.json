@@ -1,0 +1,11 @@
+{
+  "run_fingerprint": "d8a06e719e47fcd2142471d94bad698e8ba56f89a9880fc38995e7facc964aa7",
+  "state": "uniform3",
+  "bits": 3,
+  "domain": "math",
+  "resolved_model_revision": "6d84c48581ece794365f2b8e9cfb043c68ade9c5",
+  "input_ids_sha256": "6f0d2d554db6b73145d70d4e6fb47deeab692b52a62b43b06ef5dce0d14b9a16",
+  "diagnostics": {
+    "reproduced_bitwise": true
+  }
+}
