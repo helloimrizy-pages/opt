@@ -1,0 +1,10 @@
+{
+  "schema_version": "race_stage0_transfer_calibration_v1",
+  "available": false,
+  "reason": "CUDA is not available in the active local PyTorch environment; the configured lab host requires interactive Tailscale reauthentication.",
+  "host": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+  "expert_bytes": 12582912,
+  "label": "measured host-device expert transfer cost",
+  "not_end_to_end_inference_latency": true,
+  "measurement_fabricated": false
+}

@@ -1,0 +1,99 @@
+{
+  "schema_version": "race_stage0_real_decode_smoke_audit_v1",
+  "passed": true,
+  "scientific_decision_enabled": false,
+  "trace_validation": {
+    "passed": true,
+    "trace_hash": "0d37c56ec1e98eef8bc844d111298bc0b8bf8720dc8379bdfbe8379ae4dd6a2d",
+    "events": 128,
+    "sequences": 4,
+    "generated_tokens": 8,
+    "requested_experts": 1024,
+    "events_per_layer": {
+      "0": 8,
+      "1": 8,
+      "2": 8,
+      "3": 8,
+      "4": 8,
+      "5": 8,
+      "6": 8,
+      "7": 8,
+      "8": 8,
+      "9": 8,
+      "10": 8,
+      "11": 8,
+      "12": 8,
+      "13": 8,
+      "14": 8,
+      "15": 8
+    }
+  },
+  "trace_source_bundle_hash": "736fb7263212614743f822721d6288772c99959825d6f0bd67b23240ee61a96e",
+  "model": "allenai/OLMoE-1B-7B-0924",
+  "model_revision": "6d84c48581ece794365f2b8e9cfb043c68ade9c5",
+  "precision": "bfloat16",
+  "runtime": {
+    "device": "cpu",
+    "device_description": "CPU (arm)",
+    "dtype": "bfloat16"
+  },
+  "expert_bytes": 12582912,
+  "all_experts_equal_size": true,
+  "policy_rows": [
+    {
+      "capacity": 8,
+      "oracle_misses": 619,
+      "lru_misses": 619,
+      "lfu_misses": 619,
+      "lfu_decay_misses": 619,
+      "random_misses": 619
+    },
+    {
+      "capacity": 12,
+      "oracle_misses": 452,
+      "lru_misses": 505,
+      "lfu_misses": 491,
+      "lfu_decay_misses": 491,
+      "random_misses": 526
+    },
+    {
+      "capacity": 16,
+      "oracle_misses": 408,
+      "lru_misses": 456,
+      "lfu_misses": 438,
+      "lfu_decay_misses": 439,
+      "random_misses": 473
+    },
+    {
+      "capacity": 24,
+      "oracle_misses": 400,
+      "lru_misses": 403,
+      "lfu_misses": 404,
+      "lfu_decay_misses": 404,
+      "random_misses": 403
+    },
+    {
+      "capacity": 32,
+      "oracle_misses": 400,
+      "lru_misses": 400,
+      "lfu_misses": 400,
+      "lfu_decay_misses": 400,
+      "random_misses": 400
+    }
+  ],
+  "unlimited_cache_misses": 400,
+  "expected_compulsory_unique_experts": 400,
+  "checks": {
+    "atomic_trace_schema": true,
+    "all_layers_per_generated_token": true,
+    "event_accounting": true,
+    "oracle_dominance": true,
+    "oracle_cache_monotonicity": true,
+    "unlimited_cache_compulsory_loads_only": true
+  },
+  "policy_parameters": {
+    "lfu_decay_alpha": 0.95,
+    "random_seed": 1001
+  },
+  "limitation": "Four prompts and two tokens each; mechanics smoke only, not the preregistered pilot or a Stage 0 result."
+}

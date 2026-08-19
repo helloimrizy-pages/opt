@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "exhaustive_cases": 6690,
+  "random_cases": 500,
+  "lambda_values": [
+    0.0,
+    0.25,
+    0.5,
+    1.0
+  ],
+  "maximum_cost_difference": 0.0,
+  "seed": 20260819
+}

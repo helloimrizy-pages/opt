@@ -1,0 +1,33 @@
+{
+  "schema_version": "race_stage0_implementation_manifest_v1",
+  "stage": "RACE Stage 0: Expert Residency Oracle-Headroom Study",
+  "status": "IMPLEMENTED_AND_LOCALLY_VALIDATED_PENDING_CUDA_PILOT",
+  "created_at_utc": "2026-08-19T17:28:49Z",
+  "base_source_commit": "48fe6e2dd9b42af8b7d30cff536a06cd49181eb9",
+  "stage3_source_bundle_hash": "a88d593a1ab686138b5c62e1be23b7d08200169c5f62826af272c11a5eb287d4",
+  "config_hashes": {
+    "smoke": "8a1444f530ad9d1dc1b4b5a485699b1ad9159c519245346b43baee870928b35d",
+    "pilot": "73a18d19779e2678da5a7a6ee4663f97ccc6665273b2305166b9ed18f51e7805",
+    "full_preregistered": "17017dd4c3019e1ea625d21a7102afefdaa2c03129381f3f403c0184cc6576fc"
+  },
+  "validation": {
+    "combined_pytest_command": "MPLCONFIGDIR=/tmp/race-stage0-parent-mpl PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=stage3_residency/src:src .venv/bin/pytest -q -p no:cacheprovider tests stage3_residency/tests",
+    "combined_pytest_result": "244 passed in 51.84s",
+    "new_stage0_tests": 18,
+    "compileall_passed": true,
+    "oracle_exhaustive_cases": 6690,
+    "oracle_random_cases": 500,
+    "oracle_maximum_cost_difference": 0.0,
+    "real_decode_smoke_passed": true,
+    "real_decode_smoke_trace_hash": "0d37c56ec1e98eef8bc844d111298bc0b8bf8720dc8379bdfbe8379ae4dd6a2d"
+  },
+  "environment": {
+    "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+    "python": "3.14.3",
+    "cuda_available": false,
+    "mps_available": false
+  },
+  "scientific_result_available": false,
+  "stage0_decision": null,
+  "reason_pending": "The preregistered real 10-prompt/domain CUDA pilot and 100-prompt/domain full decode run have not executed."
+}

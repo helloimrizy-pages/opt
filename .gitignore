@@ -12,6 +12,11 @@ __pycache__/
 results/quantization_cost_surrogate/capture/
 results/quantization_cost_surrogate/gradient_capture/
 results/quantization_cost_surrogate/chunks/
+# RACE Stage 0 decode traces and condition checkpoints are generated artifacts.
+# Frozen source configs, code, tests, and the pending report live outside these
+# directories and remain reviewable.
+stage3_residency/traces/
+stage3_residency/results/
 # Ignore ad hoc/generated runs, but retain the two audited 100-example snapshots.
 # results/*
 # !results/expert_domain_balanced_causal_validation/

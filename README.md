@@ -419,6 +419,33 @@ PYTHONPATH=src python scripts/audit_quantization_cost_surrogate.py \
 None of these commands implements or tunes the future distributionally robust
 mixed-precision optimizer.
 
+## RACE Stage 0 expert-residency oracle headroom
+
+The separately authorized residency study is isolated under
+`stage3_residency/`. It does not modify or reinterpret the existing Stage 3
+measured-damage or Stage 3D selection-headroom work, and it does not implement
+RACE. Its question is whether an exact future-aware expert-residency oracle has
+substantial transfer-cost headroom over Random, LRU, LFU, globally selected
+LFU-decay, and calibration-only Static Hotset on real generated-token routing.
+
+The simulator uses one independent cache per MoE layer and one atomic top-k set
+request per generated token/layer. Existing result NPZs are teacher-forced
+`[example, layer, expert]` aggregates and are not reused as temporal traces. The
+new collector performs deterministic greedy decode and records the full top-k set,
+gate weights, generated-token index, token ID, layer, prompt ID, domain, and exact
+trace/config hashes.
+
+Implementation, frozen pilot/full source configs, event semantics, tests, and
+exact commands are documented in
+[`stage3_residency/README.md`](stage3_residency/README.md). The dependency-light
+oracle validation currently passes 6,690 exhaustive and 500 fixed-seed random
+tiny set-valued traces with zero cost discrepancy against exact state-space DP. A
+real CPU smoke also passed on one prompt/domain and two generated tokens/prompt
+(128 atomic layer events; trace hash
+`0d37c56ec1e98eef8bc844d111298bc0b8bf8720dc8379bdfbe8379ae4dd6a2d`). The real
+10-prompt/domain decode pilot and 100-prompt/domain full run remain pending CUDA
+execution; no Stage 0 GO/NO-GO decision has been made.
+
 ## Outputs
 
 The analysis creates:
