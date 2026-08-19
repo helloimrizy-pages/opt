@@ -1,0 +1,243 @@
+{
+  "schema_version": "race_stage0_trace_manifest_v1",
+  "trace_path": "routing_trace.npz",
+  "trace_hash": "0d37c56ec1e98eef8bc844d111298bc0b8bf8720dc8379bdfbe8379ae4dd6a2d",
+  "config_hash": "8a1444f530ad9d1dc1b4b5a485699b1ad9159c519245346b43baee870928b35d",
+  "source_commit": "48fe6e2dd9b42af8b7d30cff536a06cd49181eb9",
+  "runtime_source_commit": "48fe6e2dd9b42af8b7d30cff536a06cd49181eb9",
+  "stage3_source_bundle_hash": "736fb7263212614743f822721d6288772c99959825d6f0bd67b23240ee61a96e",
+  "model": "allenai/OLMoE-1B-7B-0924",
+  "model_revision": "6d84c48581ece794365f2b8e9cfb043c68ade9c5",
+  "precision": "bfloat16",
+  "tokenizer": "GPTNeoXTokenizer",
+  "generation_settings": {
+    "max_new_tokens": 2,
+    "do_sample": false,
+    "stop_on_eos": true,
+    "seed": 42
+  },
+  "validation": {
+    "passed": true,
+    "trace_hash": "0d37c56ec1e98eef8bc844d111298bc0b8bf8720dc8379bdfbe8379ae4dd6a2d",
+    "events": 128,
+    "sequences": 4,
+    "generated_tokens": 8,
+    "requested_experts": 1024,
+    "events_per_layer": {
+      "0": 8,
+      "1": 8,
+      "2": 8,
+      "3": 8,
+      "4": 8,
+      "5": 8,
+      "6": 8,
+      "7": 8,
+      "8": 8,
+      "9": 8,
+      "10": 8,
+      "11": 8,
+      "12": 8,
+      "13": 8,
+      "14": 8,
+      "15": 8
+    }
+  },
+  "expert_utilization": {
+    "0": {
+      "events": 8,
+      "assignments": 64,
+      "active_experts": 29,
+      "minimum_assignments": 0,
+      "maximum_assignments": 6,
+      "entropy_bits": 4.591578664259099,
+      "normalized_entropy": 0.7652631107098499,
+      "top_10_traffic_share": 0.609375,
+      "top_20_traffic_share": 0.859375
+    },
+    "1": {
+      "events": 8,
+      "assignments": 64,
+      "active_experts": 28,
+      "minimum_assignments": 0,
+      "maximum_assignments": 6,
+      "entropy_bits": 4.533617633875558,
+      "normalized_entropy": 0.7556029389792597,
+      "top_10_traffic_share": 0.609375,
+      "top_20_traffic_share": 0.875
+    },
+    "2": {
+      "events": 8,
+      "assignments": 64,
+      "active_experts": 29,
+      "minimum_assignments": 0,
+      "maximum_assignments": 7,
+      "entropy_bits": 4.575355126722911,
+      "normalized_entropy": 0.7625591877871519,
+      "top_10_traffic_share": 0.5625,
+      "top_20_traffic_share": 0.859375
+    },
+    "3": {
+      "events": 8,
+      "assignments": 64,
+      "active_experts": 25,
+      "minimum_assignments": 0,
+      "maximum_assignments": 6,
+      "entropy_bits": 4.334322516654254,
+      "normalized_entropy": 0.7223870861090423,
+      "top_10_traffic_share": 0.6875,
+      "top_20_traffic_share": 0.921875
+    },
+    "4": {
+      "events": 8,
+      "assignments": 64,
+      "active_experts": 23,
+      "minimum_assignments": 0,
+      "maximum_assignments": 7,
+      "entropy_bits": 4.251463627454152,
+      "normalized_entropy": 0.7085772712423587,
+      "top_10_traffic_share": 0.6875,
+      "top_20_traffic_share": 0.953125
+    },
+    "5": {
+      "events": 8,
+      "assignments": 64,
+      "active_experts": 26,
+      "minimum_assignments": 0,
+      "maximum_assignments": 7,
+      "entropy_bits": 4.397729102437745,
+      "normalized_entropy": 0.7329548504062909,
+      "top_10_traffic_share": 0.640625,
+      "top_20_traffic_share": 0.90625
+    },
+    "6": {
+      "events": 8,
+      "assignments": 64,
+      "active_experts": 22,
+      "minimum_assignments": 0,
+      "maximum_assignments": 6,
+      "entropy_bits": 4.193392047769036,
+      "normalized_entropy": 0.6988986746281727,
+      "top_10_traffic_share": 0.71875,
+      "top_20_traffic_share": 0.96875
+    },
+    "7": {
+      "events": 8,
+      "assignments": 64,
+      "active_experts": 25,
+      "minimum_assignments": 0,
+      "maximum_assignments": 7,
+      "entropy_bits": 4.4053888679951365,
+      "normalized_entropy": 0.7342314779991894,
+      "top_10_traffic_share": 0.625,
+      "top_20_traffic_share": 0.921875
+    },
+    "8": {
+      "events": 8,
+      "assignments": 64,
+      "active_experts": 24,
+      "minimum_assignments": 0,
+      "maximum_assignments": 7,
+      "entropy_bits": 4.278424852072124,
+      "normalized_entropy": 0.7130708086786873,
+      "top_10_traffic_share": 0.703125,
+      "top_20_traffic_share": 0.9375
+    },
+    "9": {
+      "events": 8,
+      "assignments": 64,
+      "active_experts": 24,
+      "minimum_assignments": 0,
+      "maximum_assignments": 6,
+      "entropy_bits": 4.362997562960808,
+      "normalized_entropy": 0.727166260493468,
+      "top_10_traffic_share": 0.640625,
+      "top_20_traffic_share": 0.9375
+    },
+    "10": {
+      "events": 8,
+      "assignments": 64,
+      "active_experts": 23,
+      "minimum_assignments": 0,
+      "maximum_assignments": 7,
+      "entropy_bits": 4.201412556862432,
+      "normalized_entropy": 0.7002354261437387,
+      "top_10_traffic_share": 0.734375,
+      "top_20_traffic_share": 0.953125
+    },
+    "11": {
+      "events": 8,
+      "assignments": 64,
+      "active_experts": 26,
+      "minimum_assignments": 0,
+      "maximum_assignments": 6,
+      "entropy_bits": 4.391126767019874,
+      "normalized_entropy": 0.731854461169979,
+      "top_10_traffic_share": 0.671875,
+      "top_20_traffic_share": 0.90625
+    },
+    "12": {
+      "events": 8,
+      "assignments": 64,
+      "active_experts": 23,
+      "minimum_assignments": 0,
+      "maximum_assignments": 7,
+      "entropy_bits": 4.265069336880354,
+      "normalized_entropy": 0.7108448894800591,
+      "top_10_traffic_share": 0.6875,
+      "top_20_traffic_share": 0.953125
+    },
+    "13": {
+      "events": 8,
+      "assignments": 64,
+      "active_experts": 26,
+      "minimum_assignments": 0,
+      "maximum_assignments": 7,
+      "entropy_bits": 4.421319336880353,
+      "normalized_entropy": 0.7368865561467256,
+      "top_10_traffic_share": 0.640625,
+      "top_20_traffic_share": 0.90625
+    },
+    "14": {
+      "events": 8,
+      "assignments": 64,
+      "active_experts": 24,
+      "minimum_assignments": 0,
+      "maximum_assignments": 6,
+      "entropy_bits": 4.362997562960808,
+      "normalized_entropy": 0.727166260493468,
+      "top_10_traffic_share": 0.640625,
+      "top_20_traffic_share": 0.9375
+    },
+    "15": {
+      "events": 8,
+      "assignments": 64,
+      "active_experts": 23,
+      "minimum_assignments": 0,
+      "maximum_assignments": 7,
+      "entropy_bits": 4.140472954832899,
+      "normalized_entropy": 0.6900788258054832,
+      "top_10_traffic_share": 0.75,
+      "top_20_traffic_share": 0.953125
+    }
+  },
+  "environment": {
+    "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "python_implementation": "CPython",
+    "package_versions": {
+      "python": "3.14.3",
+      "torch": "2.13.0",
+      "transformers": "5.15.0",
+      "datasets": "5.0.1",
+      "huggingface-hub": "1.27.0",
+      "numpy": "2.5.2",
+      "scipy": "1.18.0",
+      "matplotlib": "3.11.1",
+      "safetensors": "0.8.0",
+      "accelerate": "1.14.0"
+    }
+  },
+  "elapsed_seconds": 234.33212512498721,
+  "created_at_utc": "2026-08-19T17:14:04.446093+00:00"
+}
