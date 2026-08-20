@@ -1,0 +1,87 @@
+{
+  "schema_version": "race_stage0_evaluation_manifest_v1",
+  "config_hash": "7ce228983b6547d61341757234e77ca7f59a4d0ba53b1e04b64243e9b2ea0971",
+  "trace_hash": "ccec01b2ae5059655e23d7f791427fac75b5fac21e967b9e157bb6087c639dea",
+  "run_kind": "full",
+  "conditions": 600,
+  "result_rows": 4800,
+  "per_sequence_rows": 82800,
+  "cost_models": [
+    "unit_miss",
+    "expert_bytes"
+  ],
+  "lambda_values": [
+    0.0,
+    0.25,
+    0.5,
+    1.0
+  ],
+  "policy_specs": [
+    {
+      "policy": "lru"
+    },
+    {
+      "policy": "lfu"
+    },
+    {
+      "policy": "lfu_decay",
+      "alpha": 0.9
+    },
+    {
+      "policy": "lfu_decay",
+      "alpha": 0.95
+    },
+    {
+      "policy": "lfu_decay",
+      "alpha": 0.99
+    },
+    {
+      "policy": "static_hotset"
+    },
+    {
+      "policy": "random",
+      "seed": 1001
+    },
+    {
+      "policy": "random",
+      "seed": 1002
+    },
+    {
+      "policy": "random",
+      "seed": 1003
+    },
+    {
+      "policy": "random",
+      "seed": 1004
+    },
+    {
+      "policy": "random",
+      "seed": 1005
+    },
+    {
+      "policy": "oracle"
+    }
+  ],
+  "selected_lfu_decay_alpha": 0.95,
+  "sanity_passed": true,
+  "environment": {
+    "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "python_implementation": "CPython",
+    "package_versions": {
+      "python": "3.12.3",
+      "torch": "2.8.0+cu128",
+      "transformers": "5.15.1",
+      "datasets": "5.0.1",
+      "huggingface-hub": "1.28.0",
+      "numpy": "2.1.2",
+      "scipy": "1.18.0",
+      "matplotlib": "3.11.1",
+      "safetensors": "0.8.0",
+      "accelerate": "1.14.0"
+    }
+  },
+  "elapsed_seconds": 7423.45098504005,
+  "completed_at_utc": "2026-08-20T01:09:31.880238+00:00"
+}

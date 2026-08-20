@@ -1,0 +1,33 @@
+{
+  "schema_version": "race_stage0_analysis_audit_v1",
+  "passed": true,
+  "checks": [
+    {
+      "name": "oracle_validation_passed",
+      "passed": true
+    },
+    {
+      "name": "all_five_budgets_each_regime",
+      "passed": true
+    },
+    {
+      "name": "oracle_never_exceeds_best_simple",
+      "passed": true
+    },
+    {
+      "name": "headroom_formula",
+      "passed": true
+    },
+    {
+      "name": "required_figures_exist",
+      "passed": true
+    },
+    {
+      "name": "report_exists",
+      "passed": true
+    }
+  ],
+  "decision": "RACE_STAGE0_STRONG_GO",
+  "trace_hash": "ccec01b2ae5059655e23d7f791427fac75b5fac21e967b9e157bb6087c639dea",
+  "config_hash": "7ce228983b6547d61341757234e77ca7f59a4d0ba53b1e04b64243e9b2ea0971"
+}

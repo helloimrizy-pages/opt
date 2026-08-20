@@ -1,0 +1,118 @@
+{
+  "schema_version": "race_stage0_sanity_v1",
+  "passed": true,
+  "checks": [
+    {
+      "name": "oracle_exact_validation",
+      "passed": true,
+      "details": {
+        "passed": true,
+        "exhaustive_cases": 6690,
+        "random_cases": 500,
+        "lambda_values": [
+          0.0,
+          0.25,
+          0.5,
+          1.0
+        ],
+        "maximum_cost_difference": 0.0,
+        "seed": 20260819
+      }
+    },
+    {
+      "name": "event_accounting_and_capacity",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "oracle_dominance",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "oracle_cache_monotonicity",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "minimal_topk_capacity_policy_equivalence",
+      "passed": true,
+      "details": {
+        "capacity": 8,
+        "failures": []
+      }
+    },
+    {
+      "name": "unlimited_cache_compulsory_loads_only",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "zero_cache_streaming_limit",
+      "passed": true,
+      "details": {
+        "policy": "lru",
+        "capacity": 0,
+        "workload": "stationary_general",
+        "regime": "stationary",
+        "seed": null,
+        "alpha": null,
+        "events": 163840,
+        "requests": 1310720,
+        "hits": 0,
+        "misses": 1310720,
+        "admissions": 0,
+        "evictions": 0,
+        "bytes_requested": 16492674416640,
+        "bytes_transferred": 16492674416640,
+        "admission_bytes": 0,
+        "maximum_occupancy": 0,
+        "miss_rate": 1.0,
+        "cache_churn": 0,
+        "condition_id": "f47817d556f18f8a7241",
+        "expert_transfers": 1310720
+      }
+    },
+    {
+      "name": "deterministic_replay",
+      "passed": true,
+      "details": {
+        "workload": "stationary_general",
+        "capacity": 8
+      }
+    },
+    {
+      "name": "static_hotset_no_evaluation_leakage",
+      "passed": true,
+      "details": {
+        "calibration_sequences": 80,
+        "evaluation_sequences": 320,
+        "score_assignments": 1310720
+      }
+    },
+    {
+      "name": "byte_cost_proportionality",
+      "passed": true,
+      "details": {
+        "all_experts_equal_size": true,
+        "failures": []
+      }
+    },
+    {
+      "name": "per_sequence_aggregation",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "random_seed_coverage",
+      "passed": true,
+      "details": [
+        1001,
+        1002,
+        1003,
+        1004,
+        1005
+      ]
+    }
+  ]
+}

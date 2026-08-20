@@ -1,0 +1,10 @@
+{
+  "schema_version": "race_stage0_evaluation_progress_v1",
+  "config_hash": "3b04ac06e44005d856c9b63916a69f310c6539cc13cfcbd79d2c3c1b51ce773e",
+  "trace_hash": "d1eeecb420d6762e35be158a6dcfb70e1987354a6dcec159f046311137127b0e",
+  "completed_conditions": 600,
+  "expected_conditions": 600,
+  "last_condition_hash": "c4ffeffecce9e913e86151353f783ca328874102818a327ad1af3177bf4b4b08",
+  "elapsed_seconds": 244.04763911711052,
+  "updated_at_utc": "2026-08-19T21:38:23.389794+00:00"
+}
