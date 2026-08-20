@@ -1,0 +1,156 @@
+{
+  "schema_version": "race_paper_stage_comparisons_v1",
+  "note": "Conditional paired bootstrap over source decode sequences, stratified by domain, on the frozen ten-workload suite. Positive improvement means the second stage costs less. Intervals are conditional on the frozen workload ordering; stateful trajectories are not regenerated.",
+  "comparisons": {
+    "stage3_vs_stage1": [
+      {
+        "capacity": 12,
+        "left_cost": 9748279.0,
+        "right_cost": 9470228.0,
+        "improvement": 0.028523085972406,
+        "ci_low": 0.02681532434108331,
+        "ci_high": 0.030268684591825093,
+        "sequences_improved": 1307,
+        "sequences_worsened": 68,
+        "paired_units": 1380,
+        "bootstrap_replicates": 1000
+      },
+      {
+        "capacity": 16,
+        "left_cost": 7822852.0,
+        "right_cost": 7512017.0,
+        "improvement": 0.039734229920238805,
+        "ci_low": 0.03725707712381901,
+        "ci_high": 0.04232274753367864,
+        "sequences_improved": 1292,
+        "sequences_worsened": 87,
+        "paired_units": 1380,
+        "bootstrap_replicates": 1000
+      },
+      {
+        "capacity": 24,
+        "left_cost": 5081058.0,
+        "right_cost": 4833005.0,
+        "improvement": 0.048819163253007544,
+        "ci_low": 0.04522624614182917,
+        "ci_high": 0.05270198431362736,
+        "sequences_improved": 1236,
+        "sequences_worsened": 139,
+        "paired_units": 1380,
+        "bootstrap_replicates": 1000
+      },
+      {
+        "capacity": 32,
+        "left_cost": 3159525.0,
+        "right_cost": 2978002.0,
+        "improvement": 0.05745262341649457,
+        "ci_low": 0.052248400603709576,
+        "ci_high": 0.06254564334623652,
+        "sequences_improved": 1126,
+        "sequences_worsened": 250,
+        "paired_units": 1380,
+        "bootstrap_replicates": 1000
+      }
+    ],
+    "stage3_vs_stage2": [
+      {
+        "capacity": 12,
+        "left_cost": 9851604.0,
+        "right_cost": 9470228.0,
+        "improvement": 0.038712071658584736,
+        "ci_low": 0.0368702134512322,
+        "ci_high": 0.04061411301482133,
+        "sequences_improved": 1344,
+        "sequences_worsened": 35,
+        "paired_units": 1380,
+        "bootstrap_replicates": 1000
+      },
+      {
+        "capacity": 16,
+        "left_cost": 7945937.0,
+        "right_cost": 7512017.0,
+        "improvement": 0.0546090410734442,
+        "ci_low": 0.052041539611724016,
+        "ci_high": 0.05742581223326773,
+        "sequences_improved": 1339,
+        "sequences_worsened": 41,
+        "paired_units": 1380,
+        "bootstrap_replicates": 1000
+      },
+      {
+        "capacity": 24,
+        "left_cost": 5181473.0,
+        "right_cost": 4833005.0,
+        "improvement": 0.06725269049940046,
+        "ci_low": 0.06367236072754734,
+        "ci_high": 0.07143356881461009,
+        "sequences_improved": 1307,
+        "sequences_worsened": 73,
+        "paired_units": 1380,
+        "bootstrap_replicates": 1000
+      },
+      {
+        "capacity": 32,
+        "left_cost": 3203094.0,
+        "right_cost": 2978002.0,
+        "improvement": 0.0702733044987128,
+        "ci_low": 0.06537908640748633,
+        "ci_high": 0.07526421294886859,
+        "sequences_improved": 1256,
+        "sequences_worsened": 122,
+        "paired_units": 1380,
+        "bootstrap_replicates": 1000
+      }
+    ],
+    "stage2_vs_stage1": [
+      {
+        "capacity": 12,
+        "left_cost": 9748279.0,
+        "right_cost": 9851604.0,
+        "improvement": -0.010599306810976584,
+        "ci_low": -0.011553487591679172,
+        "ci_high": -0.009577522132774201,
+        "sequences_improved": 254,
+        "sequences_worsened": 1124,
+        "paired_units": 1380,
+        "bootstrap_replicates": 1000
+      },
+      {
+        "capacity": 16,
+        "left_cost": 7822852.0,
+        "right_cost": 7945937.0,
+        "improvement": -0.0157340315271208,
+        "ci_low": -0.01716106698493551,
+        "ci_high": -0.014283264722037082,
+        "sequences_improved": 228,
+        "sequences_worsened": 1147,
+        "paired_units": 1380,
+        "bootstrap_replicates": 1000
+      },
+      {
+        "capacity": 24,
+        "left_cost": 5081058.0,
+        "right_cost": 5181473.0,
+        "improvement": -0.01976261636848074,
+        "ci_low": -0.022318137600677218,
+        "ci_high": -0.017447239688723942,
+        "sequences_improved": 258,
+        "sequences_worsened": 1115,
+        "paired_units": 1380,
+        "bootstrap_replicates": 1000
+      },
+      {
+        "capacity": 32,
+        "left_cost": 3159525.0,
+        "right_cost": 3203094.0,
+        "improvement": -0.013789731051344744,
+        "ci_low": -0.017295169293254038,
+        "ci_high": -0.010215619676067633,
+        "sequences_improved": 385,
+        "sequences_worsened": 992,
+        "paired_units": 1380,
+        "bootstrap_replicates": 1000
+      }
+    ]
+  }
+}

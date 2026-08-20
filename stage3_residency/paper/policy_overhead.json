@@ -1,0 +1,61 @@
+{
+  "schema_version": "race_paper_policy_overhead_v1",
+  "note": "Analytic arithmetic accounting for the Stage 3 scorer. Counts elementwise array operations in the feature block, the linear score and the eviction sort; transcendentals are charged 10 operations each.",
+  "operation_breakdown_per_same_layer_event": {
+    "markov gather and row mean, 6 horizons x top-8 x 64 experts": 3456,
+    "survival band differences": 256,
+    "noisy-OR at two horizons": 1152,
+    "previous-request context at two horizons": 1152,
+    "renewal features (elapsed, gaps, overdue; logs counted at 10 ops)": 2368,
+    "windowed count reads": 256,
+    "decayed request and gate statistics": 384,
+    "static popularity": 64,
+    "fixed interactions": 256,
+    "decode-request-scope features": 512,
+    "state update (absorb): decays, ring, counters": 352,
+    "linear score, 45 features x 64 experts": 2880,
+    "eviction sort over <=32 candidates (~n log n comparisons)": 160
+  },
+  "arithmetic_ops_per_same_layer_event": 13248,
+  "arithmetic_ops_per_generated_token": 211968,
+  "moe_layers": 16,
+  "assumed_active_params_per_token": 1300000000.0,
+  "assumed_decode_forward_flops_per_token": 2600000000.0,
+  "policy_fraction_of_decode_forward_pass": 8.152615384615385e-05,
+  "expert_bytes": 12582912,
+  "policy_state_bytes": {
+    "markov_tables_float64": 3145728,
+    "per_expert_feature_state": 122880,
+    "ring_buffer_bool": 32768,
+    "model_weights": 1440
+  },
+  "expert_weight_bytes_all_layers": 12884901888,
+  "evaluation_events_per_variant": 2820608,
+  "by_capacity": {
+    "12": {
+      "transfers_avoided_vs_stage1": 278051,
+      "bytes_avoided_vs_stage1": 3498691264512,
+      "policy_flops_over_the_run": 37367414784,
+      "bytes_avoided_per_policy_flop": 93.62947061593545
+    },
+    "16": {
+      "transfers_avoided_vs_stage1": 310835,
+      "bytes_avoided_vs_stage1": 3911209451520,
+      "policy_flops_over_the_run": 37367414784,
+      "bytes_avoided_per_policy_flop": 104.66898698046148
+    },
+    "24": {
+      "transfers_avoided_vs_stage1": 248053,
+      "bytes_avoided_vs_stage1": 3121229070336,
+      "policy_flops_over_the_run": 37367414784,
+      "bytes_avoided_per_policy_flop": 83.52809763206979
+    },
+    "32": {
+      "transfers_avoided_vs_stage1": 181523,
+      "bytes_avoided_vs_stage1": 2284087934976,
+      "policy_flops_over_the_run": 37367414784,
+      "bytes_avoided_per_policy_flop": 61.12512594673801
+    }
+  },
+  "caveat": "The measured Python replay throughput of roughly 145 microseconds per same-layer event is interpreter-dominated and is NOT the deployable cost. It is reported only as an upper bound for a research implementation."
+}

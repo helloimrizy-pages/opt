@@ -1,0 +1,75 @@
+{
+  "schema_version": "race_paper_headline_v1",
+  "suite": "ten frozen Stage 0 evaluation workload paths, 320 disjoint decode sequences",
+  "cost_model": "unit expert transfers (misses), lambda = 0",
+  "by_capacity": {
+    "8": {
+      "stage0_simple": 12849725.0,
+      "stage1": 12849725.0,
+      "stage2": 12849725.0,
+      "stage3": 12849725.0,
+      "oracle": 12849725.0,
+      "stage1_gap_closed": null,
+      "stage2_gap_closed": null,
+      "stage3_gap_closed": null,
+      "stage3_like_for_like_gap_closed": null
+    },
+    "12": {
+      "stage0_simple": 9907430.0,
+      "stage1": 9748279.0,
+      "stage2": 9851604.0,
+      "stage3": 9470228.0,
+      "oracle": 8146471.0,
+      "stage1_gap_closed": 0.09037745910041063,
+      "stage2_gap_closed": 0.03170204417025042,
+      "stage3_gap_closed": 0.24827494564041525,
+      "stage3_like_for_like_gap_closed": 0.23282711295379394
+    },
+    "16": {
+      "stage0_simple": 8052402.0,
+      "stage1": 7822852.0,
+      "stage2": 7945937.0,
+      "stage3": 7512017.0,
+      "oracle": 5904787.0,
+      "stage1_gap_closed": 0.10688601076077416,
+      "stage2_gap_closed": 0.04957359675733313,
+      "stage3_gap_closed": 0.25162098420806334,
+      "stage3_like_for_like_gap_closed": 0.22693546096483774
+    },
+    "24": {
+      "stage0_simple": 5303005.0,
+      "stage1": 5081058.0,
+      "stage2": 5181473.0,
+      "stage3": 4833005.0,
+      "oracle": 3294951.0,
+      "stage1_gap_closed": 0.11052840212464406,
+      "stage2_gap_closed": 0.06052227679136119,
+      "stage3_gap_closed": 0.23405745064624756,
+      "stage3_like_for_like_gap_closed": 0.2011898086406043
+    },
+    "32": {
+      "stage0_simple": 3299634.0,
+      "stage1": 3159525.0,
+      "stage2": 3203094.0,
+      "stage3": 2978002.0,
+      "oracle": 1785846.0,
+      "stage1_gap_closed": 0.09255523230465561,
+      "stage2_gap_closed": 0.06377379131027594,
+      "stage3_gap_closed": 0.21246832449457917,
+      "stage3_like_for_like_gap_closed": 0.17271969390694072
+    }
+  },
+  "verdicts": {
+    "stage0": "RACE_STAGE0_STRONG_GO",
+    "stage1": "RACE_STAGE1_STRONG_GO",
+    "stage2": "RACE_STAGE2_NO_GO",
+    "stage3": "RACE_STAGE3_PARTIAL_SUCCESS"
+  },
+  "archive_hashes": {
+    "stage0": "9af9a053502709bff9a33017c4f5b80bc0faa2306bc41d980e7bd2d7274346d2",
+    "stage1": "4539cab504052010c32f0b87571adc90884283ac060784ddef822c01768e5d1b",
+    "stage2": "a0ec2f31263daa6fb304cdfc0f03247db953ec7f676fe101d680e1785aff4cd3",
+    "stage3": "fc8307220b54f4b9b3336fc42abb4a5f8432930133dd54899c356f077c59ace7"
+  },
+  "trace_logical_hash": "ccec01b2ae5059655e23d7f791427fac75b5fac21e967b9e157bb6087c639dea"
+}
