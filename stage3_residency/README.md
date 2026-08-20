@@ -391,3 +391,19 @@ See `stage2_race/README.md`, `stage2_race/reports/race_stage2_report.md` and
 `stage2_race/reports/race_stage2_theory_notes.md`. Stage 2 remains simulation-only
 and makes no end-to-end latency or hardware-speedup claim. The Stage 0 oracle
 headroom recorded above is unchanged by this negative result.
+
+## Follow-on RACE Stage 3 result
+
+Stage 3 is under `stage3_ranking/` and likewise leaves this Stage 0 archive untouched.
+It keeps the Stage 1 eviction rule unchanged and replaces the retention score with one
+calibration-fitted linear ranking function per cache capacity over raw-scale causal
+features, acting directly on Stage 2's finding that percentile rank normalization
+discards the magnitude the Stage 1 hybrid uses.
+
+Its final decision is **`RACE_STAGE3_PARTIAL_SUCCESS`**: 21.25%--25.16% of this oracle
+gap closed at capacities 12--32 against 9.04%--11.05% for Stage 1, with 2.85%--5.75%
+lower cost than Stage 1, every paired interval excluding zero and no regressions. It
+does not reach the Stage 2 STRONG threshold; the measured ranking-accuracy wall shows
+that threshold is not reachable from causal routing history by any estimator.
+
+See `stage3_ranking/README.md` and `stage3_ranking/reports/race_stage3_report.md`.

@@ -549,6 +549,47 @@ Stage 2 remains simulation-only. It makes no end-to-end latency or hardware-spee
 claim, and its negative result does not reduce the Stage 0 oracle headroom, which is
 unchanged.
 
+## RACE Stage 3 learned causal future-reuse ranking
+
+Stage 3 is isolated under `stage3_residency/stage3_ranking/` and acts on Stage 2's own
+diagnostic. It keeps the Stage 0 cache semantics and the Stage 1 eviction rule
+completely unchanged and replaces only the retention score with one calibration-fitted
+linear ranking function per cache capacity over 45 raw-scale causal features, fitted by
+a convex weighted pairwise logistic ranking loss on within-candidate-set groups from the
+frozen 80-sequence calibration path. It trains no neural network, uses no reinforcement
+learning, and does not adapt online at evaluation time.
+
+The completed result is **`RACE_STAGE3_PARTIAL_SUCCESS`**. Across the ten frozen
+workload paths it closed 24.83%, 25.16%, 23.41% and 21.25% of the Stage 0 oracle gap at
+capacities 12, 16, 24 and 32 — against 9.04%, 10.69%, 11.05% and 9.26% for the Stage 1
+winner, so more than double — while improving on Stage 1 cost by 2.85% to 5.75% with
+every paired 95% interval excluding zero and zero regressions in fifty
+workload/capacity cells.
+
+It does not reach the Stage 2 STRONG threshold, and the same study measured why.
+Held-out pairwise ranking accuracy saturates near 69%: scaling training data 13-fold and
+model capacity 8-fold moves it by under one point, so the ceiling is the information
+carried by causal routing history rather than the estimator, and a neural network meets
+the same wall. Restricted to exactly the information Stage 1 had, Stage 3 still improves
+cost by 2.57% to 3.84%; decode-request-boundary awareness, which a serving stack always
+knows but no earlier RACE stage used, adds the remainder.
+
+Two mechanism proofs are enforced by tests and by the pilot audit: a Stage 3 replay
+driven by the frozen Stage 1 winner score reproduces the frozen Stage 1 cost exactly,
+and the same mechanism driven by exact next-use scores reproduces the Stage 0 oracle
+exactly.
+
+Full details are in
+[`stage3_residency/stage3_ranking/README.md`](stage3_residency/stage3_ranking/README.md)
+and `stage3_residency/stage3_ranking/reports/race_stage3_report.md`. Run or verify with:
+
+```bash
+RACE_STAGE3_WORKERS=12 stage3_residency/stage3_ranking/scripts/run_full.sh
+```
+
+Stage 3 remains simulation-only and makes no end-to-end latency or hardware-speedup
+claim.
+
 ## Outputs
 
 The analysis creates:

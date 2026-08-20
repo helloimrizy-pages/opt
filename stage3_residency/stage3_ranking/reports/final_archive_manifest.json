@@ -1,0 +1,65 @@
+{
+  "schema_version": "race_stage3_final_archive_v1",
+  "sealed_at_utc": "2026-08-20T15:36:18.947742+00:00",
+  "verdict": "RACE_STAGE3_PARTIAL_SUCCESS",
+  "stage0_verdict": "RACE_STAGE0_STRONG_GO",
+  "stage1_verdict": "RACE_STAGE1_STRONG_GO",
+  "stage2_verdict": "RACE_STAGE2_NO_GO",
+  "stage0_trace_hash": "ccec01b2ae5059655e23d7f791427fac75b5fac21e967b9e157bb6087c639dea",
+  "stage0_archive_manifest_sha256": "9af9a053502709bff9a33017c4f5b80bc0faa2306bc41d980e7bd2d7274346d2",
+  "stage1_archive_manifest_sha256": "4539cab504052010c32f0b87571adc90884283ac060784ddef822c01768e5d1b",
+  "stage2_archive_manifest_sha256": "a0ec2f31263daa6fb304cdfc0f03247db953ec7f676fe101d680e1785aff4cd3",
+  "stage3_preregistration_hash": "8afa3f8e7b824a04d5c4e723f2244c16e3078f63ea968b8a437bdf641bb84f16",
+  "stage3_frozen_config_file_sha256": "abe983cc889b11e37e8c22f1195bcadd5a4bc67cb2f7f582c1a041cbce28e131",
+  "stage3_repository_head_at_freeze": "b72d7931076b120e7727dc9ffe83193eacc09c22",
+  "stage3_evaluation_source_bundle_hash": "53572c8b9647a18e3e66039bd5a24d399d89f5ba9638c3611f464008115b1f3b",
+  "stage3_final_source_bundle_hash": "53572c8b9647a18e3e66039bd5a24d399d89f5ba9638c3611f464008115b1f3b",
+  "primary_variant": "STAGE3_RANKER",
+  "evaluation_manifest_sha256": "c8be1290ed8dfab6cd0b79883c998756f0e46da20f12a66a1cc19e187ffaee64",
+  "critical_files": {
+    "configs/stage3_preregistered.json": "8afa3f8e7b824a04d5c4e723f2244c16e3078f63ea968b8a437bdf641bb84f16",
+    "configs/stage3_preregistered.sha256": "9dfaef21d3d7941b54248c74273fbc7f994406c12b4b2dd06baac4292bffe5bd",
+    "results/calibration/selection.json": "70e926f84406948329c625e7c5890b1959aae4dc2738fe8c12dc7f6956585d2d",
+    "results/calibration/selection.sha256": "eaac4a8184d53308698cb9dec8c7a05f70757a45973c57e0b2f1c3075431cdb4",
+    "results/calibration/stage3_frozen_config.json": "abe983cc889b11e37e8c22f1195bcadd5a4bc67cb2f7f582c1a041cbce28e131",
+    "results/calibration/stage3_frozen_config.sha256": "7fd29a9b7939ee3f6b6614c042b0e3b5b269aaf392e7b15bf8fd34a51d8d7c09",
+    "results/pilot/pilot_audit.json": "c4c81b904736d2327ac249285778c077a99204e539c49b5c2f05a27d4020f770",
+    "results/full/results.jsonl": "c69098a14846c7fbf986b42a04977daf7f1169270b89a7efa898f98017ad5493",
+    "results/full/per_sequence_results.jsonl": "b2e059ffca196528c6cfcaa0e2fc4e7ebef84ac5ed3e26722644e409d0bd43a0",
+    "results/full/diagnostics.jsonl": "c753bc7776880061cf2392e230bc16ee8d08baa27cceb2c8f19225e14e82c53e",
+    "results/full/sanity_checks.json": "ebaf2f24ce75f3639de88c7fbd210402610117274ab39275191fab0125b1435b",
+    "results/full/evaluation_manifest.json": "c8be1290ed8dfab6cd0b79883c998756f0e46da20f12a66a1cc19e187ffaee64",
+    "reports/stage3_dependency_manifest.json": "3cdd2cdd19bae4d1d00863d24d2cdd933ae1f02502dceab07f3fbebb55a483a7",
+    "reports/analysis.json": "c3e2aaacfe263815863d9e376bcd6bcab8def117e71e00bf50c745f17c297c6b",
+    "reports/analysis_audit.json": "16e8305ab5a14dcb0597cbc852fb3b95aad068314ee95f53adda706269864182",
+    "reports/race_stage3_report.md": "ff3c0dcbc46f16e925309eeab40fb476c817b0b90e7881c8b7a0a8e529ec1606",
+    "reports/race_stage3_report.sha256": "7097fa996b62da0f66b21114b3864f7976d18de39558cf4fe790e3496b8f47ac"
+  },
+  "missing_critical_files": [],
+  "source_tree": {
+    "files": 10,
+    "sha256": "223e055b84dafef59e375886c20b993fdab3226fdd693e5e5b5a155ed4de201e"
+  },
+  "script_tree": {
+    "files": 9,
+    "sha256": "07c8f9930808614385b259acbbf474f6082ffca3053e77b6547cb372fce66e39"
+  },
+  "test_tree": {
+    "files": 1,
+    "sha256": "6af9415205137d62a5891c2c85081a08e50465ba5b2d6a4d02431e55d6d96a94"
+  },
+  "table_tree": {
+    "files": 6,
+    "sha256": "4f2cb6a022d9e2922dba86f9097a19fea63921f06ca011debf86ffdde05ae1e1"
+  },
+  "figure_tree": {
+    "files": 6,
+    "sha256": "e3a6d4fdc3f54e237973dfc655f1545b3d794d03c16fe37d364936de59211807"
+  },
+  "checkpoint_tree": {
+    "files": 160,
+    "sha256": "6c248594059fcbab3e54bc161411e5508dcca1cc3952a8f72a569ddfeb036308"
+  },
+  "simulation_scope": "Simulated expert residency, miss and transfer counts; no end-to-end latency or hardware-speedup claim.",
+  "bootstrap_scope": "Intervals reweight saved per-sequence contributions conditional on each frozen stateful workload path; stateful cache trajectories are not regenerated under reordered bootstrap workloads."
+}

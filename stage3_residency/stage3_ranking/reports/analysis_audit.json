@@ -1,0 +1,11 @@
+{
+  "schema_version": "race_stage3_analysis_audit_v1",
+  "checks": {
+    "report_begins_with_exact_verdict": true,
+    "verdict_in_ladder": true,
+    "five_capacities": true,
+    "capacity8_gap_null": true,
+    "stage2_criteria_reported": true
+  },
+  "passed": true
+}

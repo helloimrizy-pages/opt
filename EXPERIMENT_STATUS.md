@@ -67,8 +67,18 @@ complete and audited with final decision **`RACE_STAGE2_NO_GO`**. Adaptive causa
 multi-horizon future-reuse ranking under delayed feedback did **not** beat the frozen
 Stage 1 winner: it cost 1.06%--1.98% more expert transfers at capacities 12--32 and
 closed only 3.17%--6.38% of the original Stage 0 oracle gap. The measured cause is
-representational rather than adaptive, and it is documented in the Stage 2 section
-below. No latency or hardware claim is made anywhere in this branch.
+representational rather than adaptive.
+
+RACE Stage 3 acted on that diagnostic and is complete and audited with final decision
+**`RACE_STAGE3_PARTIAL_SUCCESS`**. A calibration-fitted linear ranking function over
+raw-scale causal features, driving the unchanged Stage 1 eviction rule, closed
+21.25%--25.16% of the original Stage 0 oracle gap against 9.04%--11.05% for Stage 1 --
+more than double -- while improving on Stage 1 cost by 2.85%--5.75% with every paired
+interval excluding zero and zero regressions in 50 workload/capacity cells. It does
+**not** reach the Stage 2 STRONG threshold, and the same study measured why: pairwise
+ranking accuracy over causal routing history saturates near 69% under 13x more data and
+8x more model capacity, so that ceiling is an information limit rather than a modelling
+one. No latency or hardware claim is made anywhere in this branch.
 
 ## Code baseline
 
@@ -1648,6 +1658,106 @@ calibrated common numeric scale instead of within-event percentiles, and target 
 learning loss at the retention boundary rather than at all comparable pairs. Neither
 should be adopted without its own preregistration and explicit authorization.
 
+## RACE Stage 3 learned causal future-reuse ranking: completed / audited PARTIAL SUCCESS
+
+Final decision: **`RACE_STAGE3_PARTIAL_SUCCESS`**.
+
+Artifact/code area: `stage3_residency/stage3_ranking/`. Final report:
+`stage3_residency/stage3_ranking/reports/race_stage3_report.md`. Stage 3 trains no
+neural network, uses no reinforcement learning, no recurrent or attention model, no
+online adaptation at evaluation time, no prefetching, and changes no OLMoE routing. All
+Stage 0, Stage 1 and Stage 2 archive hashes are byte-identical after the run.
+
+Stage 3 exists because Stage 2's diagnostic localized its own failure as
+representational. It keeps the Stage 0 cache semantics and the Stage 1 eviction rule
+unchanged and replaces only the retention score with one calibration-fitted linear
+ranking function per cache capacity over 45 raw-scale causal features, fitted by a
+convex weighted pairwise logistic ranking loss on within-candidate-set groups drawn from
+the frozen 80-sequence calibration path.
+
+Frozen identifiers:
+
+- Stage 3 preregistration:
+  `8afa3f8e7b824a04d5c4e723f2244c16e3078f63ea968b8a437bdf641bb84f16`;
+- Stage 3 frozen configuration file:
+  `abe983cc889b11e37e8c22f1195bcadd5a4bc67cb2f7f582c1a041cbce28e131`;
+- evaluation-time source bundle:
+  `53572c8b9647a18e3e66039bd5a24d399d89f5ba9638c3611f464008115b1f3b`;
+- full result rows:
+  `c69098a14846c7fbf986b42a04977daf7f1169270b89a7efa898f98017ad5493`;
+- final archive manifest:
+  `fc8307220b54f4b9b3336fc42abb4a5f8432930133dd54899c356f077c59ace7`.
+
+Reconstructed command from the repository root:
+
+```bash
+RACE_STAGE3_WORKERS=12 stage3_residency/stage3_ranking/scripts/run_full.sh
+```
+
+Decision-driving frozen-suite results are:
+
+| Capacity | Stage0 best | Stage 1 winner | Stage 3 | Oracle | Improvement vs Stage 1 | Gap closed | Stage 1 gap closed |
+|---:|---:|---:|---:|---:|---:|---:|---:|
+| 12 | 9,907,430 | 9,748,279 | 9,470,228 | 8,146,471 | +2.85% [2.70, 3.04] | 24.83% | 9.04% |
+| 16 | 8,052,402 | 7,822,852 | 7,512,017 | 5,904,787 | +3.97% [3.73, 4.22] | 25.16% | 10.69% |
+| 24 | 5,303,005 | 5,081,058 | 4,833,005 | 3,294,951 | +4.88% [4.51, 5.22] | 23.41% | 11.05% |
+| 32 | 3,299,634 | 3,159,525 | 2,978,002 | 1,785,846 | +5.75% [5.24, 6.25] | 21.25% | 9.26% |
+
+Zero of 50 workload/capacity cells exceed the 3% regression flag. Under Stage 2's
+criteria applied verbatim, Condition A is met at no capacity and Condition B at no
+capacity, so this run would be a Stage 2 failure; the Stage 3 ladder adds a PARTIAL rung
+between a 10% cost win and failure, written before any Stage 3 evaluation ran.
+
+Validation outcome:
+
+- all 18 Stage 0, 19 Stage 1, 61 Stage 2 and 18 Stage 3 tests pass;
+- a Stage 3 replay driven by the frozen Stage 1 winner score reproduces the frozen
+  Stage 1 cost exactly, and the same mechanism driven by exact next-use scores
+  reproduces the Stage 0 oracle exactly, which together prove the eviction mechanism is
+  unchanged;
+- the first version of that equivalence check failed on the real trace and the failure
+  was real: Stage 1 updates its EWMA history before scoring while the Stage 3 feature
+  state is deliberately read before absorbing the event. The audit scorer now reproduces
+  Stage 1's own recurrence and update order rather than approximating it;
+- mutating a later sequence cannot change any earlier action; replays are deterministic
+  and the diagnostic observer changes no cost;
+- all nine evaluation sanity checks pass over 200 conditions.
+
+Where the gain comes from, honestly:
+
+- restricted to exactly the information Stage 1 had, Stage 3 still improves cost by
+  2.57%--3.84%; decode-request-boundary awareness, which a serving stack always knows but
+  no earlier RACE stage used, adds a further 0.29%--1.98%;
+- per-capacity specialization and the second training round did **not** pay: both are
+  within a percent of the simpler pooled round-1 model and slightly worse at capacities
+  24 and 32. The simpler model would have been the better choice.
+
+Why this is not a STRONG result, measured rather than asserted:
+
+- held-out pairwise ranking accuracy saturates: Stage 1 score 60.3%, linear on 19
+  features 66.6%, linear on 45 features 67.7%, gradient-boosted trees 69.2%, and
+  gradient-boosted trees with 13x data and 8x capacity 68.95%. Scaling data and capacity
+  buys under one point, so the ceiling is the information in causal routing history, not
+  the estimator, and a neural network meets the same wall;
+- four principled estimators that ought to have worked lost to the simple baseline,
+  including the textbook `E[min(d,33)]` functional, which weights the two least
+  discriminative horizons most heavily and is dominated by its own noisiest terms;
+- boundary-weighted training, the direction the Stage 2 report recommended, made results
+  monotonically worse; that recommendation was wrong;
+- a non-causal frontier measurement on calibration shows a 10% cost win over Stage 1
+  needs roughly 70% ranking accuracy at capacities 24 and 32 and 73%--75% at capacity 16,
+  and only if the extra accuracy lands on comparisons that straddle the eviction cutoff.
+
+Bootstrap intervals reweight saved per-sequence contributions conditional on the frozen
+workload ordering. Results concern simulated expert residency/miss counts; no end-to-end
+latency improvement or hardware speedup is claimed.
+
+Next action: further gains will not come from a larger model over this feature set. The
+measured frontier says a materially better residency policy needs information about the
+tokens the model is about to emit -- for example a cheap signal derived from the current
+forward pass before the MoE layers commit. That is a different experiment and needs its
+own preregistration and explicit authorization.
+
 ## Fresh-session checklist
 
 A new Codex session should:
@@ -1722,4 +1832,11 @@ A new Codex session should:
     reinterpret the negative result as evidence that residency headroom is absent —
     Stage 0's oracle gap is unchanged — and do not respond to it by adding a neural
     predictor, prefetching, or any other capability the RACE stages exclude.
-20. Update this handoff after every new validated run.
+20. Treat `stage3_residency/stage3_ranking/` as the completed and audited RACE
+    Stage 3 archive. Its decision is `RACE_STAGE3_PARTIAL_SUCCESS`; preserve the frozen
+    preregistration, calibration selection, pilot audit, single frozen evaluation,
+    report and archive hashes. Report it as a partial result: it more than doubles
+    Stage 1's oracle-gap closure but does not reach the Stage 2 STRONG threshold, and
+    the measured accuracy wall says that threshold is not reachable from causal routing
+    history by any estimator.
+21. Update this handoff after every new validated run.

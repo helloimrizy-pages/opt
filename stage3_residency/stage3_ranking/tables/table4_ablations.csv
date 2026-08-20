@@ -1,0 +1,21 @@
+after_cost,before_cost,capacity,comparison,question,relative_change
+9470228.0,9748279.0,12,Stage 1 winner -> STAGE3_RANKER,A_stage1_to_primary,0.028523085972406
+7512017.0,7822852.0,16,Stage 1 winner -> STAGE3_RANKER,A_stage1_to_primary,0.039734229920238805
+4833005.0,5081058.0,24,Stage 1 winner -> STAGE3_RANKER,A_stage1_to_primary,0.048819163253007544
+2978002.0,3159525.0,32,Stage 1 winner -> STAGE3_RANKER,A_stage1_to_primary,0.05745262341649457
+9470228.0,9497431.0,12,without request scope -> with request scope,B_request_scope_value,0.0028642482372338374
+7512017.0,7565032.0,16,without request scope -> with request scope,B_request_scope_value,0.007007901618922432
+4833005.0,4899005.0,24,without request scope -> with request scope,B_request_scope_value,0.013472123420980383
+2978002.0,3038173.0,32,without request scope -> with request scope,B_request_scope_value,0.01980499464645364
+9497431.0,9748279.0,12,Stage 1 winner -> STAGE3_RANKER_NO_REQUEST_SCOPE (identical information),B2_stage1_to_no_request_scope,0.0257325421235892
+7565032.0,7822852.0,16,Stage 1 winner -> STAGE3_RANKER_NO_REQUEST_SCOPE (identical information),B2_stage1_to_no_request_scope,0.03295728974547901
+4899005.0,5081058.0,24,Stage 1 winner -> STAGE3_RANKER_NO_REQUEST_SCOPE (identical information),B2_stage1_to_no_request_scope,0.03582974254574539
+3038173.0,3159525.0,32,Stage 1 winner -> STAGE3_RANKER_NO_REQUEST_SCOPE (identical information),B2_stage1_to_no_request_scope,0.03840830504585341
+9470228.0,9486366.0,12,pooled model -> per-capacity models,C_per_capacity_value,0.0017011783015751236
+7512017.0,7517406.0,16,pooled model -> per-capacity models,C_per_capacity_value,0.0007168696223138673
+4833005.0,4819319.0,24,pooled model -> per-capacity models,C_per_capacity_value,-0.002839820314861913
+2978002.0,2968990.0,32,pooled model -> per-capacity models,C_per_capacity_value,-0.0030353756664724366
+9470228.0,9479472.0,12,round-1 data -> round-2 data,D_retraining_value,0.0009751597979296737
+7512017.0,7518147.0,16,round-1 data -> round-2 data,D_retraining_value,0.0008153604870987492
+4833005.0,4813280.0,24,round-1 data -> round-2 data,D_retraining_value,-0.0040980370973639595
+2978002.0,2946466.0,32,round-1 data -> round-2 data,D_retraining_value,-0.010702991312304299

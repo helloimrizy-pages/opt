@@ -1,0 +1,195 @@
+{
+  "schema_version": "race_stage3_preregistered_v1",
+  "stage": "RACE Stage 3: Learned Causal Future-Reuse Ranking",
+  "objective": "Test whether a calibration-fitted causal ranking model over raw-scale routing features recovers substantially more of the frozen Stage 0 offline-oracle advantage than the frozen Stage 1 winner, using the unchanged Stage 1 eviction mechanism.",
+  "motivation": "Stage 2 returned RACE_STAGE2_NO_GO. Its diagnostic localized the failure as representational: percentile rank normalization of each adviser separately destroys the magnitude information that the raw-scale Stage 1 hybrid exploits, and re-weighting a rank-normalized pool cannot rebuild it. Stage 3 acts on that finding directly by learning one ranking function over raw causal features instead of adaptively weighting rank-normalized advisers.",
+  "frozen_at_utc": "2026-08-20T09:40:00Z",
+  "repository_head_at_freeze": "b72d793",
+
+  "stage0_reference": {
+    "verdict": "RACE_STAGE0_STRONG_GO",
+    "trace_logical_hash": "ccec01b2ae5059655e23d7f791427fac75b5fac21e967b9e157bb6087c639dea",
+    "routing_trace_npz_sha256": "c8ca8bff37b0bd54a94f03eed4d5f3690ed6c4c058fcb1c59e939fd081e66823",
+    "routing_trace_metadata_sha256": "ab48f3decfa5eba887d084d05d9d9bea27a23247721e4523301fd2dccce973d7",
+    "frozen_evaluation_config_file_sha256": "fde50196598c99c5df4185d684d7260fe1ffb6630c149577b470d6f4ed811aa9",
+    "results_jsonl_sha256": "121a8a820bb3b19b994829138a520e7774aeb98fba74537cff105236fa841a02",
+    "per_sequence_results_jsonl_sha256": "2abe74512adc1379c92f2ef877da922f2ee4ff229af028a6505362e3ad464265",
+    "final_archive_manifest_sha256": "9af9a053502709bff9a33017c4f5b80bc0faa2306bc41d980e7bd2d7274346d2",
+    "trace_path": "stage3_residency/traces/full/routing_trace.npz",
+    "frozen_evaluation_config_path": "stage3_residency/results/full/frozen/frozen_evaluation_config.json",
+    "result_path": "stage3_residency/results/full/evaluation/results.jsonl",
+    "per_sequence_result_path": "stage3_residency/results/full/evaluation/per_sequence_results.jsonl",
+    "final_archive_manifest_path": "stage3_residency/reports/final_archive_manifest.json"
+  },
+
+  "stage1_reference": {
+    "verdict": "RACE_STAGE1_STRONG_GO",
+    "preregistration_hash": "cea89fba235aef8338774d85da0687ac06b61d269f16fd6238c89a3b60ef9524",
+    "preregistration_path": "stage3_residency/stage1_prediction/configs/stage1_preregistered.json",
+    "frozen_config_file_sha256": "c595b061a415a9874d83f167e1e0fb7873ec8850ace8acc1a5db17f814351b83",
+    "frozen_config_path": "stage3_residency/stage1_prediction/results/calibration/stage1_frozen_config.json",
+    "final_archive_manifest_sha256": "4539cab504052010c32f0b87571adc90884283ac060784ddef822c01768e5d1b",
+    "final_archive_manifest_path": "stage3_residency/stage1_prediction/reports/final_archive_manifest.json",
+    "results_jsonl_sha256": "77ee9a4e1b34d3c6deb7bec30d2292d53ca19cfb30985600d5b2e6aead2beb00",
+    "results_path": "stage3_residency/stage1_prediction/results/full/results.jsonl",
+    "per_sequence_results_path": "stage3_residency/stage1_prediction/results/full/per_sequence_results.jsonl",
+    "per_sequence_results_jsonl_sha256": "5b4fdc8089be00d8c54c2eb70fc4604be281659ad02316afc349f47c6a5360c2",
+    "per_sequence_results_reconstruction": "The 117.5 MiB aggregate is excluded from version control. It is the byte-exact concatenation, in frozen Stage 0 workload order, of the ten committed per-workload checkpoint files; Stage 3 verifies that reconstruction against the recorded SHA-256 when the aggregate is absent.",
+    "transition_model_sha256": "b8804d3ce5f87a6a129bdc9aa895a941c2343e5246659d506fcb01805d6b68a7",
+    "transition_model_path": "stage3_residency/stage1_prediction/results/calibration/transition_models.npz",
+    "winner_method_id": "markov_plus_ewma_h2_beta0.5_alpha0.95",
+    "winner_spec": {"method": "markov_plus_ewma", "horizon": 2, "beta": 0.5, "history_alpha": 0.95}
+  },
+
+  "stage2_reference": {
+    "verdict": "RACE_STAGE2_NO_GO",
+    "final_archive_manifest_sha256": "a0ec2f31263daa6fb304cdfc0f03247db953ec7f676fe101d680e1785aff4cd3",
+    "final_archive_manifest_path": "stage3_residency/stage2_race/reports/final_archive_manifest.json",
+    "frozen_config_file_sha256": "2ace8993dbe545080364223423768451b2d367b0221c6c93b2eb37f94ec1b2a9",
+    "transition_model_sha256": "d62a14dcb5fbc5b819ac955636a4260c5ea2c676d2d285ce20e2e9682e922752",
+    "transition_model_path": "stage3_residency/stage2_race/results/calibration/transition_models.npz",
+    "reused": "the Stage 2 Markov transition models at horizons 1, 2, 4, 8, 16 and 32, unmodified"
+  },
+
+  "inherited_cache_semantics": {
+    "unchanged_from_stage1_and_stage2": true,
+    "cache_namespaces": "one independent cache per MoE layer",
+    "num_layers": 16,
+    "experts_per_layer": 64,
+    "atomic_request_size": 8,
+    "admission": "all current-request misses are mandatory admissions",
+    "prefetch": false,
+    "primary_cost": "unit expert miss/transfer count",
+    "primary_lambda": 0.0,
+    "eviction_rule": "retain the capacity-minus-request-size highest-scoring eligible candidates, ordered by score descending, then LRU recency descending, then expert ID ascending",
+    "eviction_rule_unchanged": true
+  },
+
+  "cache_capacities": [8, 12, 16, 24, 32],
+  "decision_capacities": [12, 16, 24, 32],
+  "capacity_8_role": "degenerate sanity check only; spare residency is zero so no scorer can change any action",
+
+  "scoring_model": {
+    "form": "one linear ranking function per cache capacity over raw causal features",
+    "score": "S_e = w_B . x_e, larger means retain more strongly",
+    "why_not_rank_normalized": "Stage 2 established that per-adviser percentile normalization discards magnitude; Stage 3 keeps features on their natural scale",
+    "no_neural_network": true,
+    "no_reinforcement_learning": true,
+    "no_recurrent_or_attention_model": true,
+    "online_adaptation": false,
+    "rationale_for_static": "Stage 2 measured online Hedge adaptation as worth about 0.8% of cost while tracking the best fixed adviser to within 0.0005 loss per example; Stage 3 spends its complexity budget on the scoring function instead."
+  },
+
+  "features": {
+    "count": 45,
+    "all_causal": true,
+    "families": {
+      "context": "calibration-fitted Markov survival probabilities at horizons 1, 2, 4, 8, 16, 32 averaged over the current atomic request, their band differences, noisy-OR combinations at horizons 2 and 8, and the same two horizons evaluated against the previous same-layer request",
+      "renewal": "log elapsed time since last use, reciprocal elapsed, never-seen indicator, the two most recent inter-arrival gaps, and the overdue ratio elapsed/last-gap",
+      "windowed_counts": "exact counts of the expert in the last 4, 8, 16 and 32 same-layer events",
+      "decayed": "request-indicator EWMA at alpha 0.90, 0.95 and 0.99, gate-weight EWMA at alpha 0.95, last observed gate weight, previous-request indicator",
+      "static": "calibration-path expert popularity",
+      "request_scope": "position within the current decode request, an early-in-request indicator, within-request count and rate, a shrunk within-request rate, and the rate minus static popularity",
+      "interactions": "four fixed products of the above"
+    },
+    "request_scope_disclosure": "The request-scope family uses decode-request boundaries, which a serving stack always knows but which no Stage 0, Stage 1 or Stage 2 policy used. Because this is an information source the Stage 1 baseline did not have, a variant WITHOUT that family is preregistered as a mandatory ablation and reported beside the primary."
+  },
+
+  "training": {
+    "data": "the frozen Stage 0 calibration workload path only (80 sequences), disjoint from every evaluation workload",
+    "unit": "one training group is the eligible eviction-candidate set at one sampled decision event at one capacity",
+    "target": "capped next-use distance min(d, 33) in same-layer events, computed offline on the calibration path",
+    "objective": "pairwise logistic ranking loss over within-group ordered pairs (a, b) with target(a) < target(b), each group weighted to contribute equally, at most 30 sampled pairs per group with a fixed seed",
+    "regularization_grid": [0.03, 0.01, 0.003, 0.001],
+    "regularization_selection": "the value maximizing pairwise ordering accuracy on the last 20% of calibration groups held out from fitting",
+    "optimizer": "L-BFGS-B on the convex objective, zero initialization, at most 500 iterations",
+    "standardization": "features are centred and scaled by the fitting-set mean and standard deviation; the fitted vector is folded back onto raw feature scale before deployment",
+    "rounds": [
+      "round 1: collect candidate groups under the frozen Stage 1 winner policy, fit ONE pooled model across the four decision capacities",
+      "round 2: collect candidate groups under the round-1 model, fit FOUR per-capacity models"
+    ],
+    "round_2_models_are_primary": true,
+    "sampling_stride": 13,
+    "warmup_events_skipped": 40,
+    "evaluation_data_forbidden": true,
+    "no_post_evaluation_refitting": true
+  },
+
+  "variants": {
+    "STAGE3_RANKER": {"role": "primary", "description": "round-2 per-capacity linear ranking models on all 45 features"},
+    "STAGE3_RANKER_NO_REQUEST_SCOPE": {"role": "mandatory ablation", "description": "identical procedure restricted to the 37 features that use only information available to Stage 1"},
+    "STAGE3_RANKER_POOLED": {"role": "ablation", "description": "the round-1 pooled model, isolating the value of per-capacity specialization"},
+    "STAGE3_RANKER_ROUND1_DATA": {"role": "ablation", "description": "per-capacity models fitted on round-1 data only, isolating the value of retraining on the deployed policy's own trajectory"}
+  },
+
+  "evaluation_protocol": {
+    "workloads": "exactly the ten frozen Stage 0 evaluation workload records and orderings used by Stage 1 and Stage 2",
+    "capacities": [8, 12, 16, 24, 32],
+    "cost_model": "unit_miss",
+    "lambda": 0.0,
+    "runs": "one single frozen evaluation after the Stage 3 configuration is sealed",
+    "reference_costs": "the frozen Stage 1 winner rows, the frozen Stage 0 strongest-simple rows and the frozen Stage 0 oracle rows are read from the sealed archives and never recomputed"
+  },
+
+  "metrics": {
+    "race_improvement_over_stage1": "(C_Stage1 - C_Stage3) / C_Stage1",
+    "original_oracle_gap_closed": "(C_Stage0Simple - C_Stage3) / (C_Stage0Simple - C_Oracle)",
+    "stage1_residual_recovered": "(C_Stage1 - C_Stage3) / (C_Stage1 - C_Oracle)",
+    "denominator_rule": "the oracle-gap denominator always uses the original Stage 0 strongest-simple cost, exactly as in Stage 1 and Stage 2",
+    "zero_denominator_handling": "null / N/A when the denominator is zero; capacity 8 never enters a verdict"
+  },
+
+  "success_criteria": {
+    "note": "The STRONG and VERY_STRONG rungs are byte-identical to Stage 2 so the three stages remain directly comparable. Stage 2's ladder had no rung between a 10% cost win and failure, which the Stage 2 calibration evidence showed is a wide gap: Condition A is roughly twice as hard as Condition B at every capacity. The PARTIAL rung below was added before any Stage 3 evaluation was run and no threshold was moved to accommodate a measured result.",
+    "very_strong_success": {"improvement_over_stage1": 0.15, "original_oracle_gap_closed": 0.50, "required_capacities": 3, "of": 4, "verdict": "RACE_STAGE3_VERY_STRONG_SUCCESS"},
+    "strong_success": {"improvement_over_stage1": 0.10, "original_oracle_gap_closed": 0.30, "required_capacities": 3, "of": 4, "paired_ci_must_exclude_zero": true, "verdict": "RACE_STAGE3_STRONG_SUCCESS"},
+    "partial_success": {"improvement_over_stage1_strictly_positive_with_ci_excluding_zero_at": 4, "original_oracle_gap_closed": 0.20, "gap_required_capacities": 3, "no_capacity_above_regression_ratio": 1.03, "verdict": "RACE_STAGE3_PARTIAL_SUCCESS"},
+    "weak": {"improvement_over_stage1_strictly_positive_with_ci_excluding_zero_at": 3, "verdict": "RACE_STAGE3_WEAK"},
+    "no_go": {"rule": "any suite-level capacity with C_Stage3 > 1.03 * C_Stage1, or fewer than three non-degenerate capacities with a strictly positive improvement whose paired 95% interval excludes zero", "verdict": "RACE_STAGE3_NO_GO"},
+    "precedence": "NO_GO first; then VERY_STRONG_SUCCESS; then STRONG_SUCCESS; then PARTIAL_SUCCESS; then WEAK; otherwise NO_GO",
+    "stage2_criteria_also_reported_verbatim": true
+  },
+
+  "regression_criterion": {
+    "flag_when": "C_Stage3 > 1.03 * C_Stage1",
+    "granularity": ["workload", "capacity", "regime", "suite"],
+    "reporting": "every flagged regression is reported even when the aggregate result is positive"
+  },
+
+  "required_audits": {
+    "causality": "the feature state is advanced only with events already observed; a future-mutation test must show that changing a later sequence cannot change any earlier action",
+    "stage1_equivalence": "a Stage 3 replay driven by the frozen Stage 1 winner score must reproduce the frozen Stage 1 cost exactly, proving the eviction mechanism is unchanged",
+    "perfect_score_check": "the same mechanism driven by exact next-use scores must reproduce the frozen Stage 0 oracle cost exactly",
+    "determinism": "repeated replays must be bit-identical",
+    "calibration_isolation": "no evaluation sequence may enter fitting, feature standardization, static popularity or regularization selection",
+    "stage0_stage1_stage2_regression": "the Stage 0, Stage 1 and Stage 2 test suites must continue to pass unchanged and every sealed archive hash must be unchanged"
+  },
+
+  "diagnostics": {
+    "ranking_quality": "pairwise ordering accuracy against the capped and the true next-use distance, pairwise concordance, oracle-consistent and oracle-optimal eviction rates, on the actual candidate sets",
+    "accuracy_wall": "report the calibration-measured ceiling evidence: pairwise ordering accuracy as a function of model class, feature count, training-set size and model capacity",
+    "feature_attribution": "report the fitted per-capacity coefficients on standardized features",
+    "achievability_frontier": "report the calibration-measured non-causal frontier that maps ranking accuracy to oracle-gap closure"
+  },
+
+  "statistics": {
+    "bootstrap_replicates": 1000,
+    "bootstrap_seed": 20260822,
+    "paired_unit": "source decode sequence, stratified by domain",
+    "primary_suite_aggregation": "At each capacity, sum raw unit-miss costs across all ten frozen workload paths; no per-capacity, per-regime or per-workload variant reselection.",
+    "conditionality": "Intervals reweight saved per-sequence contributions conditional on each frozen stateful workload path; stateful cache trajectories are not regenerated under reordered bootstrap workloads."
+  },
+
+  "claims_scope": {
+    "simulation_only": true,
+    "end_to_end_latency_claim": false,
+    "hardware_speedup_claim": false,
+    "reinforcement_learning": false,
+    "neural_network_training": false,
+    "speculative_prefetching": false,
+    "kv_cache_optimization": false,
+    "quantization_or_mixed_precision": false,
+    "olmoe_routing_redesign": false,
+    "future_information_at_decision_time": false
+  }
+}

@@ -1,0 +1,253 @@
+{
+  "schema_version": "race_stage3_pilot_audit_v1",
+  "created_at_utc": "2026-08-20T15:30:30.245399+00:00",
+  "pilot_workload": "calibration_pilot",
+  "pilot_sequences": 8,
+  "pilot_workload_hash": "aa47fb8aa63190e31615e901da0cac7d6553009acf92279e6bc88a3993af052d",
+  "pilot_data_scope": "prefix of the frozen Stage 0 calibration workload; no evaluation sequence",
+  "events": 16384,
+  "runtime_seconds": 2.367599166005675,
+  "microseconds_per_event": 144.50678503452608,
+  "stage1_reference_pilot_costs": {
+    "8": 75313,
+    "12": 57142,
+    "16": 46003,
+    "24": 30222,
+    "32": 19242
+  },
+  "stage3_replay_of_stage1_pilot_costs": {
+    "8": 75313,
+    "12": 57142,
+    "16": 46003,
+    "24": 30222,
+    "32": 19242
+  },
+  "oracle_pilot_costs": {
+    "8": 75313,
+    "12": 47402,
+    "16": 34860,
+    "24": 20267,
+    "32": 11479
+  },
+  "frozen_primary_pilot_costs": {
+    "8": 75313,
+    "12": 55291,
+    "16": 44198,
+    "24": 29071,
+    "32": 18514
+  },
+  "ranking_diagnostics": {
+    "8": {
+      "eviction_events": 0,
+      "events_without_eviction": 0,
+      "candidate_experts": 0,
+      "evicted_experts": 0,
+      "comparable_pairs_capped": 0,
+      "concordant_capped": 0.0,
+      "discordant_capped": 0.0,
+      "tied_capped": 0.0,
+      "concordant_true": 0.0,
+      "discordant_true": 0.0,
+      "tied_true": 0.0,
+      "oracle_consistent_events": 0,
+      "oracle_optimal_events": 0,
+      "pairwise_ordering_accuracy_capped": null,
+      "pairwise_concordance_capped": null,
+      "comparable_pairs_true": 0,
+      "pairwise_ordering_accuracy_true": null,
+      "pairwise_concordance_true": null,
+      "oracle_consistent_eviction_rate": null,
+      "oracle_optimal_eviction_rate": null
+    },
+    "12": {
+      "eviction_events": 15788,
+      "events_without_eviction": 596,
+      "candidate_experts": 120102,
+      "evicted_experts": 56950,
+      "comparable_pairs_capped": 359815,
+      "concordant_capped": 238357.0,
+      "discordant_capped": 121458.0,
+      "tied_capped": 0.0,
+      "concordant_true": 239561.0,
+      "discordant_true": 122230.0,
+      "tied_true": 0.0,
+      "oracle_consistent_events": 11473,
+      "oracle_optimal_events": 3332,
+      "pairwise_ordering_accuracy_capped": 0.6624431999777664,
+      "pairwise_concordance_capped": 0.3248863999555327,
+      "comparable_pairs_true": 361791,
+      "pairwise_ordering_accuracy_true": 0.6621530109925343,
+      "pairwise_concordance_true": 0.32430602198506875,
+      "oracle_consistent_eviction_rate": 0.7266911578413985,
+      "oracle_optimal_eviction_rate": 0.21104636432733723
+    },
+    "16": {
+      "eviction_events": 14987,
+      "events_without_eviction": 1397,
+      "candidate_experts": 165643,
+      "evicted_experts": 45747,
+      "comparable_pairs_capped": 750690,
+      "concordant_capped": 483556.0,
+      "discordant_capped": 267134.0,
+      "tied_capped": 0.0,
+      "concordant_true": 485889.0,
+      "discordant_true": 268788.0,
+      "tied_true": 0.0,
+      "oracle_consistent_events": 8168,
+      "oracle_optimal_events": 2153,
+      "pairwise_ordering_accuracy_capped": 0.6441487165141403,
+      "pairwise_concordance_capped": 0.28829743302828065,
+      "comparable_pairs_true": 754677,
+      "pairwise_ordering_accuracy_true": 0.6438370322667843,
+      "pairwise_concordance_true": 0.28767406453356864,
+      "oracle_consistent_eviction_rate": 0.5450056715820377,
+      "oracle_optimal_eviction_rate": 0.1436578367918863
+    },
+    "24": {
+      "eviction_events": 12651,
+      "events_without_eviction": 3733,
+      "candidate_experts": 232254,
+      "evicted_experts": 29838,
+      "comparable_pairs_capped": 1830567,
+      "concordant_capped": 1156322.0,
+      "discordant_capped": 674245.0,
+      "tied_capped": 0.0,
+      "concordant_true": 1164869.0,
+      "discordant_true": 680407.0,
+      "tied_true": 0.0,
+      "oracle_consistent_events": 4259,
+      "oracle_optimal_events": 1374,
+      "pairwise_ordering_accuracy_capped": 0.6316742298970756,
+      "pairwise_concordance_capped": 0.2633484597941512,
+      "comparable_pairs_true": 1845276,
+      "pairwise_ordering_accuracy_true": 0.631270877635649,
+      "pairwise_concordance_true": 0.2625417552712982,
+      "oracle_consistent_eviction_rate": 0.33665322899375544,
+      "oracle_optimal_eviction_rate": 0.10860801517666588
+    },
+    "32": {
+      "eviction_events": 9786,
+      "events_without_eviction": 6598,
+      "candidate_experts": 253594,
+      "evicted_experts": 18730,
+      "comparable_pairs_capped": 2892816,
+      "concordant_capped": 1827828.0,
+      "discordant_capped": 1064988.0,
+      "tied_capped": 0.0,
+      "concordant_true": 1849253.0,
+      "discordant_true": 1082063.0,
+      "tied_true": 0.0,
+      "oracle_consistent_events": 2111,
+      "oracle_optimal_events": 855,
+      "pairwise_ordering_accuracy_capped": 0.631850764099756,
+      "pairwise_concordance_capped": 0.26370152819951215,
+      "comparable_pairs_true": 2931316,
+      "pairwise_ordering_accuracy_true": 0.6308610194192642,
+      "pairwise_concordance_true": 0.2617220388385285,
+      "oracle_consistent_eviction_rate": 0.21571632945023503,
+      "oracle_optimal_eviction_rate": 0.08736971183323115
+    }
+  },
+  "checks": [
+    {
+      "name": "stage3_reproduces_stage1_winner_exactly",
+      "passed": true,
+      "details": {
+        "stage1": {
+          "8": 75313,
+          "12": 57142,
+          "16": 46003,
+          "24": 30222,
+          "32": 19242
+        },
+        "stage3": {
+          "8": 75313,
+          "12": 57142,
+          "16": 46003,
+          "24": 30222,
+          "32": 19242
+        }
+      }
+    },
+    {
+      "name": "perfect_score_equals_stage0_oracle",
+      "passed": true,
+      "details": {
+        "perfect": {
+          "8": 75313,
+          "12": 47402,
+          "16": 34860,
+          "24": 20267,
+          "32": 11479
+        },
+        "oracle": {
+          "8": 75313,
+          "12": 47402,
+          "16": 34860,
+          "24": 20267,
+          "32": 11479
+        }
+      }
+    },
+    {
+      "name": "replay_is_deterministic_and_observer_free",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "cache_accounting",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "capacity_invariants",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "oracle_dominance",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "frozen_primary_beats_stage1_on_pilot",
+      "passed": true,
+      "details": {
+        "stage3": {
+          "8": 75313,
+          "12": 55291,
+          "16": 44198,
+          "24": 29071,
+          "32": 18514
+        },
+        "stage1": {
+          "8": 75313,
+          "12": 57142,
+          "16": 46003,
+          "24": 30222,
+          "32": 19242
+        }
+      }
+    }
+  ],
+  "passed": true,
+  "environment": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "python_implementation": "CPython",
+    "package_versions": {
+      "python": "3.14.3",
+      "torch": "2.13.0",
+      "transformers": "5.15.1",
+      "datasets": null,
+      "huggingface-hub": "1.28.0",
+      "numpy": "2.5.2",
+      "scipy": "1.18.0",
+      "matplotlib": "3.11.1",
+      "safetensors": "0.8.0",
+      "accelerate": null
+    }
+  },
+  "note": "Pilot results may not change any preregistered threshold or grid."
+}

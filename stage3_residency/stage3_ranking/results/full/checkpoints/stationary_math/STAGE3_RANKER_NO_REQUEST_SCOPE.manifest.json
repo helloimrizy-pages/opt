@@ -1,0 +1,15 @@
+{
+  "schema_version": "race_stage3_checkpoint_v1",
+  "completed_at_utc": "2026-08-20T15:31:51.347428+00:00",
+  "workload": "stationary_math",
+  "workload_hash": "bc3bf855f95a887e274c336238648952c1015530cbc92530ba57012e73f2cda5",
+  "variant": "STAGE3_RANKER_NO_REQUEST_SCOPE",
+  "frozen_config_sha256": "abe983cc889b11e37e8c22f1195bcadd5a4bc67cb2f7f582c1a041cbce28e131",
+  "conditions": 5,
+  "results_file": "STAGE3_RANKER_NO_REQUEST_SCOPE.results.jsonl",
+  "per_sequence_file": "STAGE3_RANKER_NO_REQUEST_SCOPE.per_sequence.jsonl",
+  "diagnostics_file": "STAGE3_RANKER_NO_REQUEST_SCOPE.diagnostics.jsonl",
+  "results_sha256": "2eea1c4caa04a318136584271408a411b0f0017452e53b6f070880eb54f20360",
+  "per_sequence_sha256": "718b9a802adfacfb27a0b97618a988a03c9e28dd3260afc3a4b727266fe90f85",
+  "diagnostics_sha256": "4f34b6baa9c4d1041052d5e919186cc6fce55b68602410ddfaed3c24af62dcdc"
+}

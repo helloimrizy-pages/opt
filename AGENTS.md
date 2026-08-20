@@ -16,13 +16,14 @@ separately designed distributionally robust mixed-precision experiment is the ne
 scientifically justified stage once the user explicitly authorizes it.
 
 The separately authorized RACE residency branch has completed Stage 0
-(`RACE_STAGE0_STRONG_GO`), Stage 1 (`RACE_STAGE1_STRONG_GO`) and Stage 2
-(`RACE_STAGE2_NO_GO`). `stage3_residency/`, `stage3_residency/stage1_prediction/`
-and `stage3_residency/stage2_race/` are immutable audited archives; preserve their
-frozen preregistrations, configurations, results, reports and archive hashes.
-Stage 2's negative result does not reduce the Stage 0 oracle headroom and must not be
-answered by adding a neural predictor, prefetching, or any capability the RACE stages
-exclude.
+(`RACE_STAGE0_STRONG_GO`), Stage 1 (`RACE_STAGE1_STRONG_GO`), Stage 2
+(`RACE_STAGE2_NO_GO`) and Stage 3 (`RACE_STAGE3_PARTIAL_SUCCESS`).
+`stage3_residency/` and its `stage1_prediction/`, `stage2_race/` and `stage3_ranking/`
+subdirectories are immutable audited archives; preserve their frozen preregistrations,
+configurations, results, reports and archive hashes. Stage 3 more than doubles Stage 1's
+oracle-gap closure but does not reach the Stage 2 STRONG threshold, and its measured
+ranking-accuracy wall shows that threshold is not reachable from causal routing history
+by any estimator, including a neural one. Do not answer that with a larger model.
 
 The two audited 100-example snapshots are committed under
 `results/expert_domain_importance_prompts_only/` and

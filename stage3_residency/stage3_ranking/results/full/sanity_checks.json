@@ -1,0 +1,50 @@
+{
+  "schema_version": "race_stage3_sanity_checks_v1",
+  "passed": true,
+  "checks": [
+    {
+      "name": "condition_count",
+      "passed": true,
+      "details": {
+        "actual": 200,
+        "expected": 200
+      }
+    },
+    {
+      "name": "unique_conditions",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "event_accounting",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "capacity_invariants",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "per_sequence_aggregation",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stage0_oracle_dominance",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "capacity8_degenerate_sanity",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "frozen_workload_hashes_unchanged",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "bootstrap_scope": "Intervals reweight saved per-sequence contributions conditional on each frozen stateful workload path; stateful cache trajectories are not regenerated under reordered bootstrap workloads."
+}
