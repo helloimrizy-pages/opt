@@ -1,0 +1,268 @@
+{
+  "baseline_valid_primary_arch": true,
+  "batch_size": 200,
+  "determinism": {
+    "cudnn_deterministic": true,
+    "note": "PyTorch does not provide deterministic-algorithm guarantees on the MPS backend. Matched branches are made comparable by construction (identical weights, identical batch order) rather than by global determinism.",
+    "strict_requested": false,
+    "use_deterministic_algorithms": false
+  },
+  "environment": {
+    "device": {
+      "chip": "Apple M4 Max",
+      "cuda_version": null,
+      "name": "arm",
+      "type": "mps"
+    },
+    "git_commit": "f9236cb35541f07c96a8e03b6a36eacc1f21a92c",
+    "git_dirty": true,
+    "machine": "arm64",
+    "matplotlib_version": "3.11.1",
+    "numpy_version": "2.4.6",
+    "pandas_version": "3.0.5",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "python_executable": "/Users/helloimrizy/Documents/Academic/UNB/Research/opt/.venv-optstate/bin/python",
+    "python_version": "3.11.16",
+    "robustbench_install_path": "/Users/helloimrizy/Documents/Academic/UNB/Research/opt/.venv-optstate/lib/python3.11/site-packages",
+    "robustbench_version": "unknown",
+    "scipy_version": "1.17.1",
+    "seeds": [
+      0
+    ],
+    "torch_cuda_available": false,
+    "torch_cuda_version": null,
+    "torch_mps_available": true,
+    "torch_version": "2.13.0",
+    "torchvision_version": "0.28.0"
+  },
+  "optimizer": {
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "lr": 0.001,
+    "method": "Adam",
+    "steps": 1,
+    "weight_decay": 0.0
+  },
+  "protocol": "official Tent CIFAR-10-C example (cifar10c.py), severity 5, conventional corruption order, batch 200, unshuffled, model+optimizer reset between corruption types",
+  "results": {
+    "Hendrycks2020AugMix_WRN": {
+      "abs_deviation_pp": {
+        "norm": 0.009333333333330529,
+        "source": 0.031999999999996476,
+        "tent": 0.029333333333337208
+      },
+      "arch": "Hendrycks2020AugMix_WRN",
+      "arch_description": "WideResNet-40-2 (AugMix)",
+      "baseline_valid": true,
+      "mean_error_pct": {
+        "norm": 14.49066666666667,
+        "source": 18.268000000000004,
+        "tent": 12.070666666666662,
+        "tent_continual": 14.105333333333332
+      },
+      "n_adapted_tensors": 74,
+      "n_params": 2243546,
+      "official_reference_error_pct": {
+        "norm": 14.5,
+        "source": 18.3,
+        "tent": 12.1
+      },
+      "per_corruption_error_pct": {
+        "norm": {
+          "brightness": 7.5600000000000005,
+          "contrast": 11.899999999999999,
+          "defocus_blur": 8.950000000000003,
+          "elastic_transform": 16.33,
+          "fog": 15.010000000000002,
+          "frost": 13.319999999999999,
+          "gaussian_noise": 18.510000000000005,
+          "glass_blur": 21.87,
+          "impulse_noise": 22.299999999999997,
+          "jpeg_compression": 17.459999999999997,
+          "motion_blur": 10.48,
+          "pixelate": 14.990000000000004,
+          "shot_noise": 16.180000000000007,
+          "snow": 12.809999999999999,
+          "zoom_blur": 9.689999999999998
+        },
+        "source": {
+          "brightness": 7.6200000000000045,
+          "contrast": 20.940000000000005,
+          "defocus_blur": 9.47,
+          "elastic_transform": 14.739999999999998,
+          "fog": 17.490000000000006,
+          "frost": 15.259999999999996,
+          "gaussian_noise": 28.779999999999994,
+          "glass_blur": 20.609999999999996,
+          "impulse_noise": 26.200000000000003,
+          "jpeg_compression": 14.670000000000005,
+          "motion_blur": 10.570000000000002,
+          "pixelate": 41.300000000000004,
+          "shot_noise": 22.96,
+          "snow": 14.149999999999995,
+          "zoom_blur": 9.260000000000002
+        },
+        "tent": {
+          "brightness": 6.659999999999999,
+          "contrast": 10.029999999999994,
+          "defocus_blur": 7.909999999999995,
+          "elastic_transform": 14.01,
+          "fog": 12.339999999999996,
+          "frost": 10.860000000000003,
+          "gaussian_noise": 15.610000000000001,
+          "glass_blur": 18.159999999999997,
+          "impulse_noise": 18.759999999999998,
+          "jpeg_compression": 14.749999999999996,
+          "motion_blur": 8.97,
+          "pixelate": 11.39,
+          "shot_noise": 13.209999999999999,
+          "snow": 10.399999999999999,
+          "zoom_blur": 7.9999999999999964
+        },
+        "tent_continual": {
+          "brightness": 9.999999999999998,
+          "contrast": 12.970000000000004,
+          "defocus_blur": 9.709999999999997,
+          "elastic_transform": 16.439999999999998,
+          "fog": 15.349999999999998,
+          "frost": 13.229999999999997,
+          "gaussian_noise": 15.610000000000001,
+          "glass_blur": 18.86,
+          "impulse_noise": 17.190000000000005,
+          "jpeg_compression": 18.899999999999995,
+          "motion_blur": 12.5,
+          "pixelate": 13.600000000000001,
+          "shot_noise": 12.11,
+          "snow": 13.980000000000004,
+          "zoom_blur": 11.129999999999995
+        }
+      },
+      "runtime_s": 177.6461091041565,
+      "tent_config_probe": {
+        "bn_running_stats_disabled": true,
+        "has_batchnorm2d": true,
+        "n_trainable_scalars": 5408,
+        "n_trainable_tensors": 74,
+        "not_all_params_require_grad": true,
+        "some_params_require_grad": true,
+        "training": true
+      },
+      "within_2pp_of_reference": {
+        "norm": true,
+        "source": true,
+        "tent": true
+      }
+    },
+    "Standard": {
+      "abs_deviation_pp": {
+        "norm": 0.036000000000001364,
+        "source": 0.013333333333335418,
+        "tent": 0.01666666666666572
+      },
+      "arch": "Standard",
+      "arch_description": "WideResNet-28-10",
+      "baseline_valid": true,
+      "mean_error_pct": {
+        "norm": 20.436,
+        "source": 43.513333333333335,
+        "tent": 18.583333333333336,
+        "tent_continual": 20.267333333333333
+      },
+      "n_adapted_tensors": 50,
+      "n_params": 36479194,
+      "official_reference_error_pct": {
+        "norm": 20.4,
+        "source": 43.5,
+        "tent": 18.6
+      },
+      "per_corruption_error_pct": {
+        "norm": {
+          "brightness": 8.389999999999997,
+          "contrast": 12.629999999999997,
+          "defocus_blur": 12.819999999999999,
+          "elastic_transform": 23.760000000000005,
+          "fog": 15.259999999999996,
+          "frost": 17.390000000000004,
+          "gaussian_noise": 28.080000000000005,
+          "glass_blur": 35.28,
+          "impulse_noise": 36.27,
+          "jpeg_compression": 27.3,
+          "motion_blur": 14.170000000000005,
+          "pixelate": 19.66,
+          "shot_noise": 26.119999999999997,
+          "snow": 17.279999999999994,
+          "zoom_blur": 12.129999999999995
+        },
+        "source": {
+          "brightness": 9.299999999999997,
+          "contrast": 46.69,
+          "defocus_blur": 46.940000000000005,
+          "elastic_transform": 26.590000000000003,
+          "fog": 26.009999999999998,
+          "frost": 41.300000000000004,
+          "gaussian_noise": 72.33000000000001,
+          "glass_blur": 54.32,
+          "impulse_noise": 72.92,
+          "jpeg_compression": 30.300000000000004,
+          "motion_blur": 34.75,
+          "pixelate": 58.45,
+          "shot_noise": 65.71000000000001,
+          "snow": 25.070000000000004,
+          "zoom_blur": 42.02
+        },
+        "tent": {
+          "brightness": 7.86,
+          "contrast": 12.050000000000004,
+          "defocus_blur": 11.929999999999996,
+          "elastic_transform": 21.98,
+          "fog": 13.660000000000005,
+          "frost": 16.21,
+          "gaussian_noise": 24.81,
+          "glass_blur": 31.840000000000003,
+          "impulse_noise": 33.02,
+          "jpeg_compression": 24.2,
+          "motion_blur": 13.719999999999999,
+          "pixelate": 17.300000000000004,
+          "shot_noise": 23.49,
+          "snow": 15.900000000000002,
+          "zoom_blur": 10.780000000000001
+        },
+        "tent_continual": {
+          "brightness": 11.240000000000006,
+          "contrast": 15.93,
+          "defocus_blur": 14.900000000000002,
+          "elastic_transform": 25.129999999999995,
+          "fog": 16.64,
+          "frost": 17.36,
+          "gaussian_noise": 24.81,
+          "glass_blur": 31.789999999999996,
+          "impulse_noise": 28.53,
+          "jpeg_compression": 26.74,
+          "motion_blur": 16.65,
+          "pixelate": 20.26,
+          "shot_noise": 20.479999999999997,
+          "snow": 18.55,
+          "zoom_blur": 15.000000000000002
+        }
+      },
+      "runtime_s": 1599.162966966629,
+      "tent_config_probe": {
+        "bn_running_stats_disabled": true,
+        "has_batchnorm2d": true,
+        "n_trainable_scalars": 17952,
+        "n_trainable_tensors": 50,
+        "not_all_params_require_grad": true,
+        "some_params_require_grad": true,
+        "training": true
+      },
+      "within_2pp_of_reference": {
+        "norm": true,
+        "source": true,
+        "tent": true
+      }
+    }
+  },
+  "severity": 5
+}

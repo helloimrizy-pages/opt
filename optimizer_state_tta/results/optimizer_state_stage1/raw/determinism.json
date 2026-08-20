@@ -1,0 +1,83 @@
+{
+  "batch_size": 200,
+  "correct_a": [
+    144,
+    143,
+    156,
+    147,
+    138,
+    142,
+    149,
+    151,
+    152,
+    146,
+    144,
+    144
+  ],
+  "correct_b": [
+    144,
+    143,
+    156,
+    147,
+    138,
+    142,
+    149,
+    151,
+    152,
+    146,
+    144,
+    144
+  ],
+  "determinism_settings": {
+    "cudnn_deterministic": true,
+    "note": "PyTorch does not provide deterministic-algorithm guarantees on the MPS backend. Matched branches are made comparable by construction (identical weights, identical batch order) rather than by global determinism.",
+    "strict_requested": false,
+    "use_deterministic_algorithms": false
+  },
+  "device": "mps",
+  "environment": {
+    "device": {
+      "chip": "Apple M4 Max",
+      "cuda_version": null,
+      "name": "arm",
+      "type": "mps"
+    },
+    "git_commit": "f9236cb35541f07c96a8e03b6a36eacc1f21a92c",
+    "git_dirty": true,
+    "machine": "arm64",
+    "matplotlib_version": "3.11.1",
+    "numpy_version": "2.4.6",
+    "pandas_version": "3.0.5",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "python_executable": "/Users/helloimrizy/Documents/Academic/UNB/Research/opt/.venv-optstate/bin/python",
+    "python_version": "3.11.16",
+    "robustbench_install_path": "/Users/helloimrizy/Documents/Academic/UNB/Research/opt/.venv-optstate/lib/python3.11/site-packages",
+    "robustbench_source": {
+      "direct_url": {
+        "url": "https://github.com/RobustBench/robustbench.git",
+        "vcs_info": {
+          "commit_id": "78fcc9e48a07a861268f295a777b975f25155964",
+          "vcs": "git"
+        }
+      },
+      "version": "1.1"
+    },
+    "robustbench_version": "1.1",
+    "scipy_version": "1.17.1",
+    "seeds": [
+      0
+    ],
+    "torch_cuda_available": false,
+    "torch_cuda_version": null,
+    "torch_mps_available": true,
+    "torch_version": "2.13.0",
+    "torchvision_version": "0.28.0"
+  },
+  "identical_final_weight_fingerprint": true,
+  "identical_per_batch_correct_counts": true,
+  "interpretation": "Bitwise run-to-run reproducibility on this backend.",
+  "m_norm_run_a": 0.19741728901863098,
+  "m_norm_run_b": 0.19741728901863098,
+  "max_abs_entropy_loss_difference": 0.0,
+  "n_batches": 12
+}

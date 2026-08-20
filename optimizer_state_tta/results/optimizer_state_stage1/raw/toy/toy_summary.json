@@ -1,0 +1,155 @@
+{
+  "boundary": {
+    "cos_m_g_first_B": -0.9999514222145081,
+    "exp_avg_sq": [
+      0.2252204418182373,
+      0.00028246609144844115
+    ],
+    "g_first_B": [
+      6.000390529632568,
+      -0.008664119988679886
+    ],
+    "m": [
+      -0.30671268701553345,
+      -0.0025795812252908945
+    ],
+    "state": {
+      "m_abs_mean": 0.1546461284160614,
+      "m_norm": 0.30672353506088257,
+      "n_state_entries": 1.0,
+      "sqrt_v_mean": 0.24569034576416016,
+      "sqrt_v_median": 0.016806727275252342,
+      "step_max": 60.0,
+      "step_min": 60.0,
+      "v_norm": 0.22522060573101044
+    },
+    "step": [
+      60.0
+    ],
+    "theta": [
+      3.0003905296325684,
+      -0.03465647995471954
+    ]
+  },
+  "branches": {
+    "CARRY_ALL": {
+      "final_loss": 1.34016752243042,
+      "final_theta": [
+        -1.3628277778625488,
+        0.002936650300398469
+      ],
+      "loss_after_1": 17.909832000732422,
+      "loss_after_10": 13.26149845123291,
+      "loss_after_5": 16.357494354248047
+    },
+    "FRESH_ADAM": {
+      "final_loss": 2.815816879272461,
+      "final_theta": [
+        -0.6268960237503052,
+        -0.006484777666628361
+      ],
+      "loss_after_1": 17.407838821411133,
+      "loss_after_10": 12.532815933227539,
+      "loss_after_5": 15.131744384765625
+    },
+    "RESET_MV_KEEP_STEP": {
+      "final_loss": 0.29491546750068665,
+      "final_theta": [
+        -2.2320003509521484,
+        -0.005456104874610901
+      ],
+      "loss_after_1": 17.543088912963867,
+      "loss_after_10": 10.650615692138672,
+      "loss_after_5": 14.668069839477539
+    },
+    "RESET_M_KEEP_V_STEP": {
+      "final_loss": 1.2320125102996826,
+      "final_theta": [
+        -1.4302786588668823,
+        0.0006102095358073711
+      ],
+      "loss_after_1": 17.831130981445312,
+      "loss_after_10": 12.89648723602295,
+      "loss_after_5": 16.07903289794922
+    },
+    "RESET_STEP_ONLY": {
+      "final_loss": 4.762145042419434,
+      "final_theta": [
+        0.0861443504691124,
+        -0.003640410490334034
+      ],
+      "loss_after_1": 17.882307052612305,
+      "loss_after_10": 14.709760665893555,
+      "loss_after_5": 16.67925262451172
+    },
+    "RESET_V_KEEP_M_STEP": {
+      "final_loss": 0.38673004508018494,
+      "final_theta": [
+        -2.1205391883850098,
+        -0.00591888464987278
+      ],
+      "loss_after_1": 17.76125144958496,
+      "loss_after_10": 11.270630836486816,
+      "loss_after_5": 15.212091445922852
+    }
+  },
+  "config": {
+    "curvature": [
+      1.0,
+      0.25
+    ],
+    "lr": 0.1,
+    "optimum_A": [
+      3.0,
+      0.0
+    ],
+    "optimum_B": [
+      -3.0,
+      0.0
+    ],
+    "phase_a_steps": 60,
+    "phase_b_steps": 40
+  },
+  "environment": {
+    "device": {
+      "chip": "Apple M4 Max",
+      "cuda_version": null,
+      "name": "arm",
+      "type": "mps"
+    },
+    "git_commit": "f9236cb35541f07c96a8e03b6a36eacc1f21a92c",
+    "git_dirty": true,
+    "machine": "arm64",
+    "matplotlib_version": "3.11.1",
+    "numpy_version": "2.4.6",
+    "pandas_version": "3.0.5",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "python_executable": "/Users/helloimrizy/Documents/Academic/UNB/Research/opt/.venv-optstate/bin/python",
+    "python_version": "3.11.16",
+    "robustbench_install_path": "/Users/helloimrizy/Documents/Academic/UNB/Research/opt/.venv-optstate/lib/python3.11/site-packages",
+    "robustbench_source": {
+      "direct_url": {
+        "url": "https://github.com/RobustBench/robustbench.git",
+        "vcs_info": {
+          "commit_id": "78fcc9e48a07a861268f295a777b975f25155964",
+          "vcs": "git"
+        }
+      },
+      "version": "1.1"
+    },
+    "robustbench_version": "1.1",
+    "scipy_version": "1.17.1",
+    "seeds": [
+      0
+    ],
+    "torch_cuda_available": false,
+    "torch_cuda_version": null,
+    "torch_mps_available": true,
+    "torch_version": "2.13.0",
+    "torchvision_version": "0.28.0"
+  },
+  "implied_update_predictor_matches_real_adam_everywhere": true,
+  "is_evidence_for_cv_phenomenon": false,
+  "kind": "toy_mechanistic_sanity_check",
+  "note": "Implementation/mechanism check only."
+}

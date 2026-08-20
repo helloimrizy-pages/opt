@@ -1,0 +1,159 @@
+{
+  "study": "optimizer_state_memory_stage1",
+  "verdict_namespace": "OSM_STAGE1",
+  "verdict_namespace_note": "The prompt's RACE_STAGE1_* namespace is already used by the unrelated stage3_residency/stage1_prediction study in this repository. The verdict token is renamed to OSM_STAGE1_* (Optimizer-State Memory) and is reported together with its RACE_STAGE1_* equivalent so either name resolves to the same single verdict.",
+  "stage_scope": {
+    "purpose": "Determine whether optimizer-state memory under continual test-time adaptation is a real, causal, shift-dependent phenomenon.",
+    "forbidden_in_this_stage": [
+      "designing, implementing, tuning or evaluating a new optimizer",
+      "gradient-similarity-based moment decay",
+      "adaptive or learned reset policies",
+      "optimizing any method to beat TTA baselines"
+    ]
+  },
+  "hypotheses": {
+    "H1_boundary_state": "After an abrupt shift, carrying Adam state from domain A into domain B produces measurably different early adaptation from starting B with modified/reset optimizer state, holding model parameters identical.",
+    "H2_shift_specificity": "Any reset benefit is substantially larger after a true domain change than at a stationary pseudo-boundary.",
+    "H3_first_moment": "Lower / more negative cos(m_previous, g_current) at the boundary predicts greater benefit from removing old first-moment information.",
+    "H4_memory_timescale": "Sensitivity to first-moment reset weakens as beta1 -> 0 and strengthens as beta1 -> 1.",
+    "H5_state_component": "First moment, second moment and the step/bias-correction counter contribute differently and must be manipulated separately."
+  },
+  "benchmark": {
+    "dataset": "CIFAR-10-C",
+    "severity": 5,
+    "arch_primary": "Standard",
+    "arch_primary_description": "RobustBench WideResNet-28-10, the default model of the official Tent CIFAR-10-C example",
+    "arch_secondary": "Hendrycks2020AugMix_WRN",
+    "arch_secondary_description": "WRN-40-2, the second model of the same official example; used only to resolve which reference error rates apply",
+    "adaptation": "Tent entropy minimisation, BatchNorm2d affine scale/shift only",
+    "optimizer": "Adam",
+    "lr": 0.001,
+    "beta1": 0.9,
+    "beta2": 0.999,
+    "eps": 1e-08,
+    "weight_decay": 0.0,
+    "steps_per_batch": 1,
+    "batch_size": 200,
+    "mode": "online, non-episodic",
+    "prediction_semantics": "predict -> record prediction -> entropy -> backward -> optimizer step; the recorded prediction is the pre-update one"
+  },
+  "baseline_validity": {
+    "official_reference_wrn28_10_severity5": {"source": 43.5, "norm": 20.4, "tent": 18.6},
+    "official_reference_wrn40_2_augmix_severity5": {"source": 18.3, "norm": 14.5, "tent": 12.1},
+    "prompt_reference_note": "The ~18.3% / ~12.1% figures quoted in the task brief are the WRN-40-2 AugMix row of the official Tent README, not the WRN-28-10 row. The WRN-28-10 primary model is validated against 43.5 / 20.4 / 18.6.",
+    "tolerance_pp": 2.0,
+    "rule": "If the reproduced mean corruption error differs from the matching official reference by more than 2.0 percentage points and the discrepancy cannot be explained, declare BASELINE_INVALID and make no scientific claims from later experiments."
+  },
+  "interventions": [
+    "CARRY_ALL",
+    "RESET_M_KEEP_V_STEP",
+    "RESET_V_KEEP_M_STEP",
+    "RESET_MV_KEEP_STEP",
+    "RESET_STEP_ONLY",
+    "FRESH_ADAM"
+  ],
+  "reference_intervention": "CARRY_ALL",
+  "primary_outcome": {
+    "name": "early10_accuracy",
+    "definition": "mean online top-1 accuracy over the first 10 adaptation batches after a boundary, pre-update predictions, batch size 200 (first 2000 post-boundary samples)",
+    "effect": "reset_benefit = early10_accuracy(intervention) - early10_accuracy(CARRY_ALL), in percentage points"
+  },
+  "secondary_outcomes": {
+    "windows_batches": [1, 5, 10, 25, 50],
+    "also": [
+      "full-domain accuracy",
+      "cumulative errors during early adaptation",
+      "adaptation entropy loss",
+      "mean prediction entropy",
+      "gradient norm",
+      "recovery trajectory",
+      "boundary cos(m,g)",
+      "implied-update vs negative-gradient alignment",
+      "optimizer-state norms",
+      "collapse indicator"
+    ]
+  },
+  "recovery_time_rule": {
+    "declared_before_any_curve_was_inspected": true,
+    "plateau": "accuracy of the CARRY_ALL branch over the last 10 batches of its own post-boundary window",
+    "threshold": "plateau - 0.02",
+    "statistic": "smallest k >= 1 such that the mean accuracy of batches k..k+4 is >= threshold",
+    "censored_value": 999,
+    "note": "the threshold is shared by all branches at a boundary so branches are comparable"
+  },
+  "design": {
+    "primary": {
+      "name": "matched_branch_boundary",
+      "trajectory": "one continual Tent chain per (corruption order, seed) starting from the source checkpoint; the chain itself is standard continual Tent (CARRY_ALL)",
+      "domain_length_batches": 50,
+      "warmup_adam_updates_before_each_boundary": 50,
+      "branch_length_batches": 50,
+      "branching": "at every domain boundary the exact model checkpoint and the exact optimizer snapshot are cloned into all six interventions; every branch starts domain B with bitwise-identical model weights and consumes the identical domain-B batches in identical order",
+      "carry_all_branch_is_the_chain_continuation": true,
+      "corruption_orders": ["conventional", "perm1", "perm2", "perm3"],
+      "corruption_order_perm_seeds": [20240, 20241, 20242],
+      "seeds": [0, 1, 2],
+      "transitions_per_order": 14,
+      "oracle_flag": "ORACLE_BOUNDARY_DIAGNOSTIC"
+    },
+    "stationary_control": {
+      "name": "matched_pseudo_boundary",
+      "description": "At the mid-point of each domain (after 25 Adam updates inside the domain) the identical checkpoint is branched twice: once onto the held-out second half of the SAME corruption (stationary) and once onto the first half of the NEXT corruption (shifted). Both conditions share the same checkpoint, the same optimizer history and the same number of Adam updates; only the incoming distribution differs.",
+      "branch_length_batches": 25,
+      "orders": ["conventional"],
+      "seeds": [0, 1, 2],
+      "oracle_flag": "ORACLE_BOUNDARY_DIAGNOSTIC"
+    },
+    "beta1_sweep": {
+      "values": [0.0, 0.5, 0.9, 0.99],
+      "orders": ["conventional"],
+      "seeds": [0, 1, 2],
+      "note": "beta1=0.9 is shared with the primary run and is re-run inside the sweep so the sweep is internally matched"
+    },
+    "lr_sweep": {
+      "values": [0.0003, 0.001, 0.003],
+      "orders": ["conventional"],
+      "seeds": [0, 1, 2],
+      "note": "3e-3 only if stable; instability is reported, not silently dropped"
+    },
+    "gradual_control": {
+      "optional": true,
+      "description": "severity 1 -> 2 -> 3 -> 4 -> 5 inside one corruption type",
+      "run_only_if_compute_remains": true
+    }
+  },
+  "statistics": {
+    "experimental_unit": "transition = (corruption order, boundary index); seeds are replicates within a transition",
+    "aggregation": "mean over seeds within a transition, then bootstrap over transitions",
+    "bootstrap": {"n_resamples": 10000, "alpha": 0.05, "seed": 12345},
+    "association": {"primary": "Spearman rho between boundary cos(m,g) and reset_benefit(RESET_M_KEEP_V_STEP)", "ci": "cluster bootstrap over transitions"},
+    "outlier_rule": "No transition is removed for any reason. Every tested transition, including negative results, is stored and reported.",
+    "nonparametric_test": "paired Wilcoxon reported as a secondary descriptor only"
+  },
+  "go_no_go": {
+    "STRONG_GO": [
+      "at least one moment intervention improves early10_accuracy over CARRY_ALL by >= 1.0 percentage point on average (or produces a comparably meaningful transient improvement)",
+      "paired 95% cluster-bootstrap CI excludes zero",
+      "effect present in >= 70% of tested abrupt transitions",
+      "true-shift benefit substantially larger than the stationary pseudo-boundary benefit",
+      "RESET_STEP_ONLY does not explain most of the effect",
+      "at least one mechanistic signature supports the hypothesis (cos(m,g) predicts benefit, or sensitivity grows with beta1)"
+    ],
+    "WEAK_GO": [
+      "reproducible effects of roughly 0.5-1.0 percentage point",
+      "borderline confidence intervals",
+      "only a subset of shifts shows the phenomenon",
+      "mechanistic relationship suggestive but not strong"
+    ],
+    "NO_GO": [
+      "effects consistently < 0.5 percentage point",
+      "resets help equally in stationary conditions",
+      "sign changes unpredictably across seeds",
+      "RESET_STEP_ONLY explains the apparent effect",
+      "baseline reproduction invalid",
+      "optimizer-state diagnostics show no meaningful relationship with adaptation behaviour"
+    ],
+    "reverse_result_rule": "If carried optimizer state consistently HELPS after shifts, that result is preserved and reported as-is. The scientific objective is to understand when optimizer memory helps versus hurts; the desired conclusion is not predetermined."
+  },
+  "label_policy": "Target labels are used for evaluation only. They never enter adaptation, optimizer-state decisions, gradient diagnostics, or any hyper-parameter choice. Corruption identities and boundary locations are used only as oracle diagnostics and every such experiment is tagged ORACLE_BOUNDARY_DIAGNOSTIC."
+}

@@ -1,0 +1,147 @@
+
+=== Standard (WideResNet-28-10) ===
+  source  gaussian_noise       err  72.33%
+  source  shot_noise           err  65.71%
+  source  impulse_noise        err  72.92%
+  source  defocus_blur         err  46.94%
+  source  glass_blur           err  54.32%
+  source  motion_blur          err  34.75%
+  source  zoom_blur            err  42.02%
+  source  snow                 err  25.07%
+  source  frost                err  41.30%
+  source  fog                  err  26.01%
+  source  brightness           err   9.30%
+  source  contrast             err  46.69%
+  source  elastic_transform    err  26.59%
+  source  pixelate             err  58.45%
+  source  jpeg_compression     err  30.30%
+  norm    gaussian_noise       err  28.08%
+  norm    shot_noise           err  26.12%
+  norm    impulse_noise        err  36.27%
+  norm    defocus_blur         err  12.82%
+  norm    glass_blur           err  35.28%
+  norm    motion_blur          err  14.17%
+  norm    zoom_blur            err  12.13%
+  norm    snow                 err  17.28%
+  norm    frost                err  17.39%
+  norm    fog                  err  15.26%
+  norm    brightness           err   8.39%
+  norm    contrast             err  12.63%
+  norm    elastic_transform    err  23.76%
+  norm    pixelate             err  19.66%
+  norm    jpeg_compression     err  27.30%
+  tent    gaussian_noise       err  24.81%
+  tent    shot_noise           err  23.49%
+  tent    impulse_noise        err  33.02%
+  tent    defocus_blur         err  11.93%
+  tent    glass_blur           err  31.84%
+  tent    motion_blur          err  13.72%
+  tent    zoom_blur            err  10.78%
+  tent    snow                 err  15.90%
+  tent    frost                err  16.21%
+  tent    fog                  err  13.66%
+  tent    brightness           err   7.86%
+  tent    contrast             err  12.05%
+  tent    elastic_transform    err  21.98%
+  tent    pixelate             err  17.30%
+  tent    jpeg_compression     err  24.20%
+  tent_continual gaussian_noise       err  24.81%
+  tent_continual shot_noise           err  20.48%
+  tent_continual impulse_noise        err  28.53%
+  tent_continual defocus_blur         err  14.90%
+  tent_continual glass_blur           err  31.79%
+  tent_continual motion_blur          err  16.65%
+  tent_continual zoom_blur            err  15.00%
+  tent_continual snow                 err  18.55%
+  tent_continual frost                err  17.36%
+  tent_continual fog                  err  16.64%
+  tent_continual brightness           err  11.24%
+  tent_continual contrast             err  15.93%
+  tent_continual elastic_transform    err  25.13%
+  tent_continual pixelate             err  20.26%
+  tent_continual jpeg_compression     err  26.74%
+  MEAN source 43.51  norm 20.44  tent 18.58  tent_continual 20.27  (ref {'source': 43.5, 'norm': 20.4, 'tent': 18.6, 'arch': 'WideResNet-28-10'})
+
+=== Hendrycks2020AugMix_WRN (WideResNet-40-2 (AugMix)) ===
+Downloading...
+From: https://drive.google.com/uc?id=1wy7gSRsUZzCzj8QhmTbcnwmES_2kkNph
+To: /Users/helloimrizy/Documents/Academic/UNB/Research/opt/optimizer_state_tta/data/ckpt/cifar10/corruptions/Hendrycks2020AugMix_WRN.pt
+Downloading /Users/helloimrizy/Documents/Academic/UNB/Research/opt/optimizer_state_tta/data/ckpt/cifar10/corruptions/Hendrycks2020AugMix_WRN.pt (gdrive_id=1wy7gSRsUZzCzj8QhmTbcnwmES_2kkNph).
+  0%|          | 0.00/9.04M [00:00<?, ?B/s]  6%|▌         | 524k/9.04M [00:00<00:15, 558kB/s] 12%|█▏        | 1.05M/9.04M [00:01<00:11, 699kB/s] 17%|█▋        | 1.57M/9.04M [00:02<00:09, 800kB/s] 23%|██▎       | 2.10M/9.04M [00:02<00:08, 858kB/s] 29%|██▉       | 2.62M/9.04M [00:03<00:07, 899kB/s] 35%|███▍      | 3.15M/9.04M [00:03<00:06, 927kB/s] 41%|████      | 3.67M/9.04M [00:04<00:05, 965kB/s] 46%|████▋     | 4.19M/9.04M [00:04<00:04, 1.08MB/s] 52%|█████▏    | 4.72M/9.04M [00:04<00:03, 1.24MB/s] 58%|█████▊    | 5.24M/9.04M [00:05<00:02, 1.45MB/s] 64%|██████▍   | 5.77M/9.04M [00:05<00:02, 1.32MB/s] 70%|██████▉   | 6.29M/9.04M [00:05<00:01, 1.46MB/s] 75%|███████▌  | 6.82M/9.04M [00:06<00:01, 1.66MB/s] 81%|████████  | 7.34M/9.04M [00:06<00:00, 1.80MB/s] 87%|████████▋ | 7.86M/9.04M [00:06<00:00, 1.99MB/s] 93%|█████████▎| 8.39M/9.04M [00:06<00:00, 2.10MB/s] 99%|█████████▊| 8.91M/9.04M [00:06<00:00, 2.15MB/s]100%|██████████| 9.04M/9.04M [00:06<00:00, 1.30MB/s]
+  source  gaussian_noise       err  28.78%
+  source  shot_noise           err  22.96%
+  source  impulse_noise        err  26.20%
+  source  defocus_blur         err   9.47%
+  source  glass_blur           err  20.61%
+  source  motion_blur          err  10.57%
+  source  zoom_blur            err   9.26%
+  source  snow                 err  14.15%
+  source  frost                err  15.26%
+  source  fog                  err  17.49%
+  source  brightness           err   7.62%
+  source  contrast             err  20.94%
+  source  elastic_transform    err  14.74%
+  source  pixelate             err  41.30%
+  source  jpeg_compression     err  14.67%
+  norm    gaussian_noise       err  18.51%
+  norm    shot_noise           err  16.18%
+  norm    impulse_noise        err  22.30%
+  norm    defocus_blur         err   8.95%
+  norm    glass_blur           err  21.87%
+  norm    motion_blur          err  10.48%
+  norm    zoom_blur            err   9.69%
+  norm    snow                 err  12.81%
+  norm    frost                err  13.32%
+  norm    fog                  err  15.01%
+  norm    brightness           err   7.56%
+  norm    contrast             err  11.90%
+  norm    elastic_transform    err  16.33%
+  norm    pixelate             err  14.99%
+  norm    jpeg_compression     err  17.46%
+  tent    gaussian_noise       err  15.61%
+  tent    shot_noise           err  13.21%
+  tent    impulse_noise        err  18.76%
+  tent    defocus_blur         err   7.91%
+  tent    glass_blur           err  18.16%
+  tent    motion_blur          err   8.97%
+  tent    zoom_blur            err   8.00%
+  tent    snow                 err  10.40%
+  tent    frost                err  10.86%
+  tent    fog                  err  12.34%
+  tent    brightness           err   6.66%
+  tent    contrast             err  10.03%
+  tent    elastic_transform    err  14.01%
+  tent    pixelate             err  11.39%
+  tent    jpeg_compression     err  14.75%
+  tent_continual gaussian_noise       err  15.61%
+  tent_continual shot_noise           err  12.11%
+  tent_continual impulse_noise        err  17.19%
+  tent_continual defocus_blur         err   9.71%
+  tent_continual glass_blur           err  18.86%
+  tent_continual motion_blur          err  12.50%
+  tent_continual zoom_blur            err  11.13%
+  tent_continual snow                 err  13.98%
+  tent_continual frost                err  13.23%
+  tent_continual fog                  err  15.35%
+  tent_continual brightness           err  10.00%
+  tent_continual contrast             err  12.97%
+  tent_continual elastic_transform    err  16.44%
+  tent_continual pixelate             err  13.60%
+  tent_continual jpeg_compression     err  18.90%
+  MEAN source 18.27  norm 14.49  tent 12.07  tent_continual 14.11  (ref {'source': 18.3, 'norm': 14.5, 'tent': 12.1, 'arch': 'WideResNet-40-2 (AugMix)'})
+
+{
+  "Standard": {
+    "source": 43.513333333333335,
+    "norm": 20.436,
+    "tent": 18.583333333333336,
+    "tent_continual": 20.267333333333333
+  },
+  "Hendrycks2020AugMix_WRN": {
+    "source": 18.268000000000004,
+    "norm": 14.49066666666667,
+    "tent": 12.070666666666662,
+    "tent_continual": 14.105333333333332
+  }
+}
+wrote /Users/helloimrizy/Documents/Academic/UNB/Research/opt/optimizer_state_tta/results/optimizer_state_stage1/raw/baseline/baseline_per_corruption.csv

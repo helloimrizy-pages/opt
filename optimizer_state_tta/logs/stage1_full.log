@@ -1,0 +1,219 @@
+
+[1m=== 0. environment ===[0m
+python 3.11.16 | torch 2.13.0 | torchvision 0.28.0 | robustbench installed
+cuda False | mps True
+
+[1m=== 1. data + checkpoint ===[0m
+
+[1m=== 2. unit tests (optimizer-state manipulation) ===[0m
+............................................                             [100%]
+=============================== warnings summary ===============================
+optimizer_state_tta/tests/test_data_and_bn.py::test_stream_matches_robustbench_loader_exactly
+  /Users/helloimrizy/Documents/Academic/UNB/Research/opt/.venv-optstate/lib/python3.11/site-packages/robustbench/loaders.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+    import pkg_resources
+
+optimizer_state_tta/tests/test_metrics_stats.py::test_nan_values_are_dropped_not_treated_as_zero
+  /Users/helloimrizy/Documents/Academic/UNB/Research/opt/optimizer_state_tta/src/optstate/stats.py:23: RuntimeWarning: Mean of empty slice
+    float(np.nanmean(np.asarray(values_by_cluster[k], dtype=float)))
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+44 passed, 2 warnings in 2.13s
+
+[1m=== 2b. backend reproducibility check ===[0m
+identical accuracy trajectory : True
+identical weight fingerprint  : True
+max |entropy loss| difference : 0.000e+00
+
+[1m=== 3. toy mechanistic sanity check (not evidence for the CV phenomenon) ===[0m
+{
+  "boundary_cos_m_g_first_B": -0.9999514222145081,
+  "boundary_step": [
+    60.0
+  ],
+  "predictor_exact": true,
+  "loss_after_1": {
+    "CARRY_ALL": 17.909832000732422,
+    "RESET_M_KEEP_V_STEP": 17.831130981445312,
+    "RESET_V_KEEP_M_STEP": 17.76125144958496,
+    "RESET_MV_KEEP_STEP": 17.543088912963867,
+    "RESET_STEP_ONLY": 17.882307052612305,
+    "FRESH_ADAM": 17.407838821411133
+  },
+  "loss_after_10": {
+    "CARRY_ALL": 13.26149845123291,
+    "RESET_M_KEEP_V_STEP": 12.89648723602295,
+    "RESET_V_KEEP_M_STEP": 11.270630836486816,
+    "RESET_MV_KEEP_STEP": 10.650615692138672,
+    "RESET_STEP_ONLY": 14.709760665893555,
+    "FRESH_ADAM": 12.532815933227539
+  },
+  "final_loss": {
+    "CARRY_ALL": 1.34016752243042,
+    "RESET_M_KEEP_V_STEP": 1.2320125102996826,
+    "RESET_V_KEEP_M_STEP": 0.38673004508018494,
+    "RESET_MV_KEEP_STEP": 0.29491546750068665,
+    "RESET_STEP_ONLY": 4.762145042419434,
+    "FRESH_ADAM": 2.815816879272461
+  }
+}
+
+wrote /Users/helloimrizy/Documents/Academic/UNB/Research/opt/optimizer_state_tta/results/optimizer_state_stage1/raw/toy/toy_trace.csv
+wrote /Users/helloimrizy/Documents/Academic/UNB/Research/opt/optimizer_state_tta/results/optimizer_state_stage1/raw/toy/toy_summary.json
+
+[1m=== 5a. primary matched-branch boundary experiment, conventional order (ORACLE_BOUNDARY_DIAGNOSTIC) ===[0m
+[primary_conventional_seed0_b10.9_lr0.001] warmup gaussian_noise:s5 acc=0.7519
+[primary_conventional_seed0_b10.9_lr0.001] boundary 0 gaussian_noise:s5->shot_noise:s5 cos_m_g=+0.070 carry10=0.7885 | RESET_M:-0.05  RESET_V:-11.15  RESET_MV:+0.65  RESET_STEP:+0.00  FRESH:+0.45
+[primary_conventional_seed0_b10.9_lr0.001] boundary 1 shot_noise:s5->impulse_noise:s5 cos_m_g=-0.064 carry10=0.7275 | RESET_M:+0.40  RESET_V:-11.75  RESET_MV:+0.15  RESET_STEP:+0.10  FRESH:+0.15
+[primary_conventional_seed0_b10.9_lr0.001] boundary 2 impulse_noise:s5->defocus_blur:s5 cos_m_g=-0.047 carry10=0.8420 | RESET_M:+0.15  RESET_V:-40.40  RESET_MV:+0.55  RESET_STEP:+0.00  FRESH:+0.30
+[primary_conventional_seed0_b10.9_lr0.001] boundary 3 defocus_blur:s5->glass_blur:s5 cos_m_g=+0.012 carry10=0.6765 | RESET_M:+0.00  RESET_V:-33.60  RESET_MV:+0.70  RESET_STEP:-0.30  FRESH:+0.05
+[primary_conventional_seed0_b10.9_lr0.001] boundary 4 glass_blur:s5->motion_blur:s5 cos_m_g=+0.019 carry10=0.8345 | RESET_M:-0.05  RESET_V:-23.00  RESET_MV:-0.40  RESET_STEP:+0.05  FRESH:-0.15
+[primary_conventional_seed0_b10.9_lr0.001] boundary 5 motion_blur:s5->zoom_blur:s5 cos_m_g=+0.001 carry10=0.8425 | RESET_M:-0.10  RESET_V:-29.70  RESET_MV:-1.65  RESET_STEP:-0.05  FRESH:-0.55
+[primary_conventional_seed0_b10.9_lr0.001] boundary 6 zoom_blur:s5->snow:s5 cos_m_g=+0.037 carry10=0.8175 | RESET_M:-0.15  RESET_V:-63.65  RESET_MV:-0.55  RESET_STEP:-0.15  FRESH:+0.25
+[primary_conventional_seed0_b10.9_lr0.001] boundary 7 snow:s5->frost:s5 cos_m_g=-0.013 carry10=0.8225 | RESET_M:+0.05  RESET_V:-58.50  RESET_MV:-0.45  RESET_STEP:+0.15  FRESH:+0.00
+[primary_conventional_seed0_b10.9_lr0.001] boundary 8 frost:s5->fog:s5 cos_m_g=+0.014 carry10=0.8365 | RESET_M:-0.10  RESET_V:-17.30  RESET_MV:-0.70  RESET_STEP:-0.10  FRESH:-0.45
+[primary_conventional_seed0_b10.9_lr0.001] boundary 9 fog:s5->brightness:s5 cos_m_g=+0.071 carry10=0.8880 | RESET_M:+0.00  RESET_V:-53.15  RESET_MV:-0.75  RESET_STEP:+0.25  FRESH:+0.00
+[primary_conventional_seed0_b10.9_lr0.001] boundary 10 brightness:s5->contrast:s5 cos_m_g=-0.036 carry10=0.8355 | RESET_M:-0.15  RESET_V:-37.60  RESET_MV:-4.30  RESET_STEP:+0.30  FRESH:-1.40
+[primary_conventional_seed0_b10.9_lr0.001] boundary 11 contrast:s5->elastic_transform:s5 cos_m_g=+0.023 carry10=0.7545 | RESET_M:+0.25  RESET_V:-26.30  RESET_MV:-2.10  RESET_STEP:+0.15  FRESH:+0.20
+[primary_conventional_seed0_b10.9_lr0.001] boundary 12 elastic_transform:s5->pixelate:s5 cos_m_g=+0.045 carry10=0.8025 | RESET_M:-0.35  RESET_V:-48.00  RESET_MV:-1.00  RESET_STEP:-0.10  FRESH:-0.55
+[primary_conventional_seed0_b10.9_lr0.001] boundary 13 pixelate:s5->jpeg_compression:s5 cos_m_g=-0.022 carry10=0.7405 | RESET_M:-0.25  RESET_V:-46.15  RESET_MV:-1.35  RESET_STEP:+0.00  FRESH:+0.25
+[primary_conventional_seed0_b10.9_lr0.001] done: 14 boundaries in 48.4 min -> /Users/helloimrizy/Documents/Academic/UNB/Research/opt/optimizer_state_tta/results/optimizer_state_stage1/raw/boundary/primary_conventional_seed0_b10.9_lr0.001.jsonl
+[primary_conventional_seed1_b10.9_lr0.001] warmup gaussian_noise:s5 acc=0.7575
+[primary_conventional_seed1_b10.9_lr0.001] boundary 0 gaussian_noise:s5->shot_noise:s5 cos_m_g=+0.006 carry10=0.8025 | RESET_M:+0.00  RESET_V:-8.15  RESET_MV:-0.40  RESET_STEP:+0.00  FRESH:-0.30
+[primary_conventional_seed1_b10.9_lr0.001] boundary 1 shot_noise:s5->impulse_noise:s5 cos_m_g=+0.056 carry10=0.7085 | RESET_M:+0.05  RESET_V:-19.60  RESET_MV:+0.10  RESET_STEP:-0.10  FRESH:+0.20
+[primary_conventional_seed1_b10.9_lr0.001] boundary 2 impulse_noise:s5->defocus_blur:s5 cos_m_g=-0.007 carry10=0.8805 | RESET_M:+0.00  RESET_V:-50.85  RESET_MV:-0.10  RESET_STEP:+0.00  FRESH:+0.00
+[primary_conventional_seed1_b10.9_lr0.001] boundary 3 defocus_blur:s5->glass_blur:s5 cos_m_g=+0.054 carry10=0.7105 | RESET_M:+0.15  RESET_V:-10.90  RESET_MV:-0.80  RESET_STEP:+0.10  FRESH:-0.45
+[primary_conventional_seed1_b10.9_lr0.001] boundary 4 glass_blur:s5->motion_blur:s5 cos_m_g=-0.113 carry10=0.8545 | RESET_M:+0.00  RESET_V:-46.50  RESET_MV:+0.30  RESET_STEP:+0.00  FRESH:+0.30
+[primary_conventional_seed1_b10.9_lr0.001] boundary 5 motion_blur:s5->zoom_blur:s5 cos_m_g=-0.058 carry10=0.8730 | RESET_M:+0.10  RESET_V:-29.95  RESET_MV:+0.45  RESET_STEP:-0.05  FRESH:+0.15
+[primary_conventional_seed1_b10.9_lr0.001] boundary 6 zoom_blur:s5->snow:s5 cos_m_g=-0.017 carry10=0.8070 | RESET_M:-0.25  RESET_V:-11.75  RESET_MV:-1.90  RESET_STEP:+0.05  FRESH:-1.05
+[primary_conventional_seed1_b10.9_lr0.001] boundary 7 snow:s5->frost:s5 cos_m_g=-0.015 carry10=0.8285 | RESET_M:+0.30  RESET_V:-36.50  RESET_MV:+0.05  RESET_STEP:+0.15  FRESH:+0.20
+[primary_conventional_seed1_b10.9_lr0.001] boundary 8 frost:s5->fog:s5 cos_m_g=-0.006 carry10=0.8365 | RESET_M:+0.15  RESET_V:-39.65  RESET_MV:+0.30  RESET_STEP:+0.15  FRESH:+0.30
+[primary_conventional_seed1_b10.9_lr0.001] boundary 9 fog:s5->brightness:s5 cos_m_g=-0.126 carry10=0.9005 | RESET_M:+0.05  RESET_V:-57.60  RESET_MV:-0.05  RESET_STEP:+0.00  FRESH:+0.10
+[primary_conventional_seed1_b10.9_lr0.001] boundary 10 brightness:s5->contrast:s5 cos_m_g=-0.040 carry10=0.8535 | RESET_M:-0.35  RESET_V:-35.70  RESET_MV:-0.80  RESET_STEP:-0.10  FRESH:-0.45
+[primary_conventional_seed1_b10.9_lr0.001] boundary 11 contrast:s5->elastic_transform:s5 cos_m_g=+0.004 carry10=0.7710 | RESET_M:-0.05  RESET_V:-18.80  RESET_MV:-1.35  RESET_STEP:+0.00  FRESH:-0.30
+[primary_conventional_seed1_b10.9_lr0.001] boundary 12 elastic_transform:s5->pixelate:s5 cos_m_g=+0.005 carry10=0.8285 | RESET_M:-0.20  RESET_V:-67.25  RESET_MV:-2.20  RESET_STEP:-0.25  FRESH:-0.05
+[primary_conventional_seed1_b10.9_lr0.001] boundary 13 pixelate:s5->jpeg_compression:s5 cos_m_g=+0.050 carry10=0.7260 | RESET_M:+0.50  RESET_V:-47.20  RESET_MV:-0.05  RESET_STEP:+0.30  FRESH:+0.40
+[primary_conventional_seed1_b10.9_lr0.001] done: 14 boundaries in 44.7 min -> /Users/helloimrizy/Documents/Academic/UNB/Research/opt/optimizer_state_tta/results/optimizer_state_stage1/raw/boundary/primary_conventional_seed1_b10.9_lr0.001.jsonl
+[primary_conventional_seed2_b10.9_lr0.001] warmup gaussian_noise:s5 acc=0.7474
+[primary_conventional_seed2_b10.9_lr0.001] boundary 0 gaussian_noise:s5->shot_noise:s5 cos_m_g=+0.019 carry10=0.7830 | RESET_M:+0.00  RESET_V:-12.10  RESET_MV:-0.20  RESET_STEP:-0.05  FRESH:-0.20
+[primary_conventional_seed2_b10.9_lr0.001] boundary 1 shot_noise:s5->impulse_noise:s5 cos_m_g=+0.024 carry10=0.6990 | RESET_M:-0.05  RESET_V:-11.15  RESET_MV:+0.15  RESET_STEP:-0.10  FRESH:+0.20
+[primary_conventional_seed2_b10.9_lr0.001] boundary 2 impulse_noise:s5->defocus_blur:s5 cos_m_g=+0.008 carry10=0.8680 | RESET_M:+0.20  RESET_V:-54.20  RESET_MV:+0.15  RESET_STEP:+0.00  FRESH:+0.20
+[primary_conventional_seed2_b10.9_lr0.001] boundary 3 defocus_blur:s5->glass_blur:s5 cos_m_g=+0.042 carry10=0.6755 | RESET_M:+0.10  RESET_V:-13.00  RESET_MV:-0.40  RESET_STEP:+0.00  FRESH:+0.10
+[primary_conventional_seed2_b10.9_lr0.001] boundary 4 glass_blur:s5->motion_blur:s5 cos_m_g=+0.070 carry10=0.8140 | RESET_M:+0.40  RESET_V:-21.40  RESET_MV:+0.50  RESET_STEP:+0.15  FRESH:+0.50
+[primary_conventional_seed2_b10.9_lr0.001] boundary 5 motion_blur:s5->zoom_blur:s5 cos_m_g=-0.064 carry10=0.8315 | RESET_M:+0.10  RESET_V:-30.95  RESET_MV:-1.10  RESET_STEP:+0.10  FRESH:+0.20
+[primary_conventional_seed2_b10.9_lr0.001] boundary 6 zoom_blur:s5->snow:s5 cos_m_g=+0.015 carry10=0.8215 | RESET_M:+0.10  RESET_V:-26.55  RESET_MV:+0.05  RESET_STEP:-0.10  FRESH:+0.50
+[primary_conventional_seed2_b10.9_lr0.001] boundary 7 snow:s5->frost:s5 cos_m_g=+0.010 carry10=0.8330 | RESET_M:+0.15  RESET_V:-19.35  RESET_MV:-0.25  RESET_STEP:+0.00  FRESH:+0.15
+[primary_conventional_seed2_b10.9_lr0.001] boundary 8 frost:s5->fog:s5 cos_m_g=+0.056 carry10=0.7980 | RESET_M:-0.05  RESET_V:-16.05  RESET_MV:-0.60  RESET_STEP:+0.00  FRESH:-0.25
+[primary_conventional_seed2_b10.9_lr0.001] boundary 9 fog:s5->brightness:s5 cos_m_g=+0.021 carry10=0.8840 | RESET_M:-0.10  RESET_V:-60.35  RESET_MV:+0.10  RESET_STEP:+0.05  FRESH:+0.00
+[primary_conventional_seed2_b10.9_lr0.001] boundary 10 brightness:s5->contrast:s5 cos_m_g=-0.053 carry10=0.8715 | RESET_M:-0.05  RESET_V:-33.65  RESET_MV:-1.10  RESET_STEP:-0.25  FRESH:-0.05
+[primary_conventional_seed2_b10.9_lr0.001] boundary 11 contrast:s5->elastic_transform:s5 cos_m_g=+0.103 carry10=0.7810 | RESET_M:+0.00  RESET_V:-43.50  RESET_MV:-1.45  RESET_STEP:+0.25  FRESH:+0.00
+[primary_conventional_seed2_b10.9_lr0.001] boundary 12 elastic_transform:s5->pixelate:s5 cos_m_g=-0.070 carry10=0.8175 | RESET_M:+0.20  RESET_V:-47.10  RESET_MV:+0.00  RESET_STEP:+0.15  FRESH:+0.40
+[primary_conventional_seed2_b10.9_lr0.001] boundary 13 pixelate:s5->jpeg_compression:s5 cos_m_g=+0.044 carry10=0.7630 | RESET_M:-0.20  RESET_V:-35.05  RESET_MV:-3.30  RESET_STEP:+0.10  FRESH:-0.25
+[primary_conventional_seed2_b10.9_lr0.001] done: 14 boundaries in 38.5 min -> /Users/helloimrizy/Documents/Academic/UNB/Research/opt/optimizer_state_tta/results/optimizer_state_stage1/raw/boundary/primary_conventional_seed2_b10.9_lr0.001.jsonl
+
+[1m=== 6. stationary pseudo-boundary control (matched checkpoint) ===[0m
+[control_conventional_seed0_b10.9_lr0.001] pseudo-boundary 0 gaussian_noise:s5 done
+[control_conventional_seed0_b10.9_lr0.001] pseudo-boundary 1 shot_noise:s5 done
+[control_conventional_seed0_b10.9_lr0.001] pseudo-boundary 2 impulse_noise:s5 done
+[control_conventional_seed0_b10.9_lr0.001] pseudo-boundary 3 defocus_blur:s5 done
+[control_conventional_seed0_b10.9_lr0.001] pseudo-boundary 4 glass_blur:s5 done
+[control_conventional_seed0_b10.9_lr0.001] pseudo-boundary 5 motion_blur:s5 done
+[control_conventional_seed0_b10.9_lr0.001] pseudo-boundary 6 zoom_blur:s5 done
+[control_conventional_seed0_b10.9_lr0.001] pseudo-boundary 7 snow:s5 done
+[control_conventional_seed0_b10.9_lr0.001] pseudo-boundary 8 frost:s5 done
+[control_conventional_seed0_b10.9_lr0.001] pseudo-boundary 9 fog:s5 done
+[control_conventional_seed0_b10.9_lr0.001] pseudo-boundary 10 brightness:s5 done
+[control_conventional_seed0_b10.9_lr0.001] pseudo-boundary 11 contrast:s5 done
+[control_conventional_seed0_b10.9_lr0.001] pseudo-boundary 12 elastic_transform:s5 done
+[control_conventional_seed0_b10.9_lr0.001] pseudo-boundary 13 pixelate:s5 done
+[control_conventional_seed0_b10.9_lr0.001] pseudo-boundary 14 jpeg_compression:s5 done
+[control_conventional_seed0_b10.9_lr0.001] done: 15 boundaries in 41.8 min -> /Users/helloimrizy/Documents/Academic/UNB/Research/opt/optimizer_state_tta/results/optimizer_state_stage1/raw/boundary/control_conventional_seed0_b10.9_lr0.001.jsonl
+[control_conventional_seed1_b10.9_lr0.001] pseudo-boundary 0 gaussian_noise:s5 done
+[control_conventional_seed1_b10.9_lr0.001] pseudo-boundary 1 shot_noise:s5 done
+[control_conventional_seed1_b10.9_lr0.001] pseudo-boundary 2 impulse_noise:s5 done
+[control_conventional_seed1_b10.9_lr0.001] pseudo-boundary 3 defocus_blur:s5 done
+[control_conventional_seed1_b10.9_lr0.001] pseudo-boundary 4 glass_blur:s5 done
+[control_conventional_seed1_b10.9_lr0.001] pseudo-boundary 5 motion_blur:s5 done
+[control_conventional_seed1_b10.9_lr0.001] pseudo-boundary 6 zoom_blur:s5 done
+[control_conventional_seed1_b10.9_lr0.001] pseudo-boundary 7 snow:s5 done
+[control_conventional_seed1_b10.9_lr0.001] pseudo-boundary 8 frost:s5 done
+[control_conventional_seed1_b10.9_lr0.001] pseudo-boundary 9 fog:s5 done
+[control_conventional_seed1_b10.9_lr0.001] pseudo-boundary 10 brightness:s5 done
+[control_conventional_seed1_b10.9_lr0.001] pseudo-boundary 11 contrast:s5 done
+[control_conventional_seed1_b10.9_lr0.001] pseudo-boundary 12 elastic_transform:s5 done
+[control_conventional_seed1_b10.9_lr0.001] pseudo-boundary 13 pixelate:s5 done
+[control_conventional_seed1_b10.9_lr0.001] pseudo-boundary 14 jpeg_compression:s5 done
+[control_conventional_seed1_b10.9_lr0.001] done: 15 boundaries in 41.7 min -> /Users/helloimrizy/Documents/Academic/UNB/Research/opt/optimizer_state_tta/results/optimizer_state_stage1/raw/boundary/control_conventional_seed1_b10.9_lr0.001.jsonl
+[control_conventional_seed2_b10.9_lr0.001] pseudo-boundary 0 gaussian_noise:s5 done
+[control_conventional_seed2_b10.9_lr0.001] pseudo-boundary 1 shot_noise:s5 done
+[control_conventional_seed2_b10.9_lr0.001] pseudo-boundary 2 impulse_noise:s5 done
+[control_conventional_seed2_b10.9_lr0.001] pseudo-boundary 3 defocus_blur:s5 done
+[control_conventional_seed2_b10.9_lr0.001] pseudo-boundary 4 glass_blur:s5 done
+[control_conventional_seed2_b10.9_lr0.001] pseudo-boundary 5 motion_blur:s5 done
+[control_conventional_seed2_b10.9_lr0.001] pseudo-boundary 6 zoom_blur:s5 done
+[control_conventional_seed2_b10.9_lr0.001] pseudo-boundary 7 snow:s5 done
+[control_conventional_seed2_b10.9_lr0.001] pseudo-boundary 8 frost:s5 done
+[control_conventional_seed2_b10.9_lr0.001] pseudo-boundary 9 fog:s5 done
+[control_conventional_seed2_b10.9_lr0.001] pseudo-boundary 10 brightness:s5 done
+[control_conventional_seed2_b10.9_lr0.001] pseudo-boundary 11 contrast:s5 done
+[control_conventional_seed2_b10.9_lr0.001] pseudo-boundary 12 elastic_transform:s5 done
+[control_conventional_seed2_b10.9_lr0.001] pseudo-boundary 13 pixelate:s5 done
+[control_conventional_seed2_b10.9_lr0.001] pseudo-boundary 14 jpeg_compression:s5 done
+[control_conventional_seed2_b10.9_lr0.001] done: 15 boundaries in 41.7 min -> /Users/helloimrizy/Documents/Academic/UNB/Research/opt/optimizer_state_tta/results/optimizer_state_stage1/raw/boundary/control_conventional_seed2_b10.9_lr0.001.jsonl
+
+[1m=== 7. beta1 mechanistic validation ===[0m
+[primary_conventional_seed0_b10_lr0.001] warmup gaussian_noise:s5 acc=0.7503
+[primary_conventional_seed0_b10_lr0.001] boundary 0 gaussian_noise:s5->shot_noise:s5 cos_m_g=+0.057 carry10=0.7980 | RESET_M:+0.00  RESET_V:+0.55  RESET_MV:+0.55  RESET_STEP:-0.60  FRESH:+0.15
+[primary_conventional_seed0_b10_lr0.001] boundary 1 shot_noise:s5->impulse_noise:s5 cos_m_g=+0.005 carry10=0.7190 | RESET_M:+0.00  RESET_V:-2.70  RESET_MV:-2.70  RESET_STEP:+0.00  FRESH:+0.05
+[primary_conventional_seed0_b10_lr0.001] boundary 2 impulse_noise:s5->defocus_blur:s5 cos_m_g=-0.010 carry10=0.8630 | RESET_M:+0.00  RESET_V:-1.10  RESET_MV:-0.95  RESET_STEP:-0.05  FRESH:+0.05
+[primary_conventional_seed0_b10_lr0.001] boundary 3 defocus_blur:s5->glass_blur:s5 cos_m_g=+0.042 carry10=0.6990 | RESET_M:+0.00  RESET_V:-2.75  RESET_MV:-3.15  RESET_STEP:-0.45  FRESH:-0.25
+[primary_conventional_seed0_b10_lr0.001] boundary 4 glass_blur:s5->motion_blur:s5 cos_m_g=+0.065 carry10=0.8525 | RESET_M:+0.00  RESET_V:-2.55  RESET_MV:-2.65  RESET_STEP:-0.10  FRESH:+0.05
+[primary_conventional_seed0_b10_lr0.001] boundary 5 motion_blur:s5->zoom_blur:s5 cos_m_g=-0.044 carry10=0.8570 | RESET_M:+0.00  RESET_V:-3.90  RESET_MV:-4.00  RESET_STEP:-0.20  FRESH:+0.05
+[primary_conventional_seed0_b10_lr0.001] boundary 6 zoom_blur:s5->snow:s5 cos_m_g=+0.058 carry10=0.8255 | RESET_M:+0.00  RESET_V:-4.50  RESET_MV:-4.50  RESET_STEP:-0.10  FRESH:+0.05
+[primary_conventional_seed0_b10_lr0.001] done: 7 boundaries in 18.8 min -> /Users/helloimrizy/Documents/Academic/UNB/Research/opt/optimizer_state_tta/results/optimizer_state_stage1/raw/boundary/primary_conventional_seed0_b10_lr0.001.jsonl
+[primary_conventional_seed1_b10_lr0.001] warmup gaussian_noise:s5 acc=0.7447
+[primary_conventional_seed1_b10_lr0.001] boundary 0 gaussian_noise:s5->shot_noise:s5 cos_m_g=+0.069 carry10=0.7795 | RESET_M:+0.00  RESET_V:-1.55  RESET_MV:-1.50  RESET_STEP:-0.20  FRESH:+0.05
+[primary_conventional_seed1_b10_lr0.001] boundary 1 shot_noise:s5->impulse_noise:s5 cos_m_g=-0.055 carry10=0.7210 | RESET_M:+0.00  RESET_V:-2.80  RESET_MV:-2.65  RESET_STEP:+0.00  FRESH:+0.00
+[primary_conventional_seed1_b10_lr0.001] boundary 2 impulse_noise:s5->defocus_blur:s5 cos_m_g=+0.057 carry10=0.8840 | RESET_M:+0.00  RESET_V:-0.65  RESET_MV:-0.65  RESET_STEP:-0.20  FRESH:-0.10
+[primary_conventional_seed1_b10_lr0.001] boundary 3 defocus_blur:s5->glass_blur:s5 cos_m_g=+0.024 carry10=0.6760 | RESET_M:+0.00  RESET_V:-6.35  RESET_MV:-6.30  RESET_STEP:-0.45  FRESH:-0.15
+[primary_conventional_seed1_b10_lr0.001] boundary 4 glass_blur:s5->motion_blur:s5 cos_m_g=-0.002 carry10=0.8575 | RESET_M:+0.00  RESET_V:-5.00  RESET_MV:-5.10  RESET_STEP:-0.05  FRESH:-0.05
+[primary_conventional_seed1_b10_lr0.001] boundary 5 motion_blur:s5->zoom_blur:s5 cos_m_g=-0.035 carry10=0.8585 | RESET_M:+0.00  RESET_V:-4.50  RESET_MV:-4.60  RESET_STEP:+0.15  FRESH:+0.05
+[primary_conventional_seed1_b10_lr0.001] boundary 6 zoom_blur:s5->snow:s5 cos_m_g=+0.067 carry10=0.8185 | RESET_M:+0.00  RESET_V:-5.05  RESET_MV:-4.75  RESET_STEP:-0.30  FRESH:+0.20
+[primary_conventional_seed1_b10_lr0.001] done: 7 boundaries in 18.9 min -> /Users/helloimrizy/Documents/Academic/UNB/Research/opt/optimizer_state_tta/results/optimizer_state_stage1/raw/boundary/primary_conventional_seed1_b10_lr0.001.jsonl
+[primary_conventional_seed2_b10_lr0.001] warmup gaussian_noise:s5 acc=0.7517
+[primary_conventional_seed2_b10_lr0.001] boundary 0 gaussian_noise:s5->shot_noise:s5 cos_m_g=-0.032 carry10=0.7725 | RESET_M:+0.00  RESET_V:-0.75  RESET_MV:-0.85  RESET_STEP:+0.10  FRESH:+0.20
+[primary_conventional_seed2_b10_lr0.001] boundary 1 shot_noise:s5->impulse_noise:s5 cos_m_g=-0.016 carry10=0.7040 | RESET_M:+0.00  RESET_V:-0.90  RESET_MV:-0.80  RESET_STEP:-0.25  FRESH:-0.05
+[primary_conventional_seed2_b10_lr0.001] boundary 2 impulse_noise:s5->defocus_blur:s5 cos_m_g=-0.018 carry10=0.8715 | RESET_M:+0.00  RESET_V:-1.95  RESET_MV:-2.05  RESET_STEP:-0.20  FRESH:-0.05
+[primary_conventional_seed2_b10_lr0.001] boundary 3 defocus_blur:s5->glass_blur:s5 cos_m_g=-0.010 carry10=0.6765 | RESET_M:+0.00  RESET_V:-7.20  RESET_MV:-7.50  RESET_STEP:-0.35  FRESH:+0.10
+[primary_conventional_seed2_b10_lr0.001] boundary 4 glass_blur:s5->motion_blur:s5 cos_m_g=+0.070 carry10=0.8450 | RESET_M:+0.00  RESET_V:-5.15  RESET_MV:-5.15  RESET_STEP:+0.00  FRESH:+0.05
+[primary_conventional_seed2_b10_lr0.001] boundary 5 motion_blur:s5->zoom_blur:s5 cos_m_g=-0.014 carry10=0.8705 | RESET_M:+0.00  RESET_V:-3.85  RESET_MV:-3.85  RESET_STEP:-0.15  FRESH:+0.15
+[primary_conventional_seed2_b10_lr0.001] boundary 6 zoom_blur:s5->snow:s5 cos_m_g=+0.006 carry10=0.8175 | RESET_M:+0.00  RESET_V:-6.40  RESET_MV:-6.70  RESET_STEP:-0.05  FRESH:+0.00
+[primary_conventional_seed2_b10_lr0.001] done: 7 boundaries in 18.7 min -> /Users/helloimrizy/Documents/Academic/UNB/Research/opt/optimizer_state_tta/results/optimizer_state_stage1/raw/boundary/primary_conventional_seed2_b10_lr0.001.jsonl
+[primary_conventional_seed0_b10.5_lr0.001] warmup gaussian_noise:s5 acc=0.7498
+[primary_conventional_seed0_b10.5_lr0.001] boundary 0 gaussian_noise:s5->shot_noise:s5 cos_m_g=+0.023 carry10=0.7950 | RESET_M:-0.05  RESET_V:-9.05  RESET_MV:+0.45  RESET_STEP:+0.00  FRESH:-0.10
+[primary_conventional_seed0_b10.5_lr0.001] boundary 1 shot_noise:s5->impulse_noise:s5 cos_m_g=+0.002 carry10=0.7235 | RESET_M:+0.00  RESET_V:-10.65  RESET_MV:-1.05  RESET_STEP:-0.40  FRESH:-0.10
+[primary_conventional_seed0_b10.5_lr0.001] boundary 2 impulse_noise:s5->defocus_blur:s5 cos_m_g=-0.026 carry10=0.8530 | RESET_M:+0.10  RESET_V:-36.15  RESET_MV:-0.70  RESET_STEP:+0.40  FRESH:+0.15
+[primary_conventional_seed0_b10.5_lr0.001] boundary 3 defocus_blur:s5->glass_blur:s5 cos_m_g=+0.006 carry10=0.6705 | RESET_M:+0.00  RESET_V:-32.35  RESET_MV:-0.20  RESET_STEP:-0.45  FRESH:+0.00
+[primary_conventional_seed0_b10.5_lr0.001] boundary 4 glass_blur:s5->motion_blur:s5 cos_m_g=-0.043 carry10=0.8325 | RESET_M:+0.05  RESET_V:-66.25  RESET_MV:-4.70  RESET_STEP:+0.05  FRESH:+0.05
+[primary_conventional_seed0_b10.5_lr0.001] boundary 5 motion_blur:s5->zoom_blur:s5 cos_m_g=-0.016 carry10=0.8480 | RESET_M:-0.20  RESET_V:-33.65  RESET_MV:-4.90  RESET_STEP:+0.10  FRESH:-0.20
+[primary_conventional_seed0_b10.5_lr0.001] boundary 6 zoom_blur:s5->snow:s5 cos_m_g=-0.002 carry10=0.8005 | RESET_M:+0.15  RESET_V:-19.95  RESET_MV:-4.35  RESET_STEP:-0.30  FRESH:+0.00
+[primary_conventional_seed0_b10.5_lr0.001] done: 7 boundaries in 18.6 min -> /Users/helloimrizy/Documents/Academic/UNB/Research/opt/optimizer_state_tta/results/optimizer_state_stage1/raw/boundary/primary_conventional_seed0_b10.5_lr0.001.jsonl
+[primary_conventional_seed1_b10.5_lr0.001] warmup gaussian_noise:s5 acc=0.7482
+[primary_conventional_seed1_b10.5_lr0.001] boundary 0 gaussian_noise:s5->shot_noise:s5 cos_m_g=+0.008 carry10=0.7930 | RESET_M:-0.10  RESET_V:-49.00  RESET_MV:-0.65  RESET_STEP:-0.30  FRESH:+0.00
+[primary_conventional_seed1_b10.5_lr0.001] boundary 1 shot_noise:s5->impulse_noise:s5 cos_m_g=-0.023 carry10=0.7120 | RESET_M:+0.00  RESET_V:-18.85  RESET_MV:+0.60  RESET_STEP:+0.20  FRESH:+0.40
+[primary_conventional_seed1_b10.5_lr0.001] boundary 2 impulse_noise:s5->defocus_blur:s5 cos_m_g=-0.044 carry10=0.8620 | RESET_M:+0.20  RESET_V:-71.45  RESET_MV:+0.40  RESET_STEP:-0.35  FRESH:+0.40
+[primary_conventional_seed1_b10.5_lr0.001] boundary 3 defocus_blur:s5->glass_blur:s5 cos_m_g=+0.015 carry10=0.6830 | RESET_M:+0.20  RESET_V:-8.95  RESET_MV:-7.40  RESET_STEP:-0.05  FRESH:-0.25
+[primary_conventional_seed1_b10.5_lr0.001] boundary 4 glass_blur:s5->motion_blur:s5 cos_m_g=-0.057 carry10=0.8350 | RESET_M:+0.00  RESET_V:-63.25  RESET_MV:+0.30  RESET_STEP:-0.10  FRESH:+0.50
+[primary_conventional_seed1_b10.5_lr0.001] boundary 5 motion_blur:s5->zoom_blur:s5 cos_m_g=+0.055 carry10=0.8505 | RESET_M:+0.00  RESET_V:-65.65  RESET_MV:-3.30  RESET_STEP:+0.00  FRESH:-0.30
+[primary_conventional_seed1_b10.5_lr0.001] boundary 6 zoom_blur:s5->snow:s5 cos_m_g=+0.010 carry10=0.8095 | RESET_M:-0.10  RESET_V:-26.05  RESET_MV:-3.60  RESET_STEP:-0.15  FRESH:-0.30
+[primary_conventional_seed1_b10.5_lr0.001] done: 7 boundaries in 18.7 min -> /Users/helloimrizy/Documents/Academic/UNB/Research/opt/optimizer_state_tta/results/optimizer_state_stage1/raw/boundary/primary_conventional_seed1_b10.5_lr0.001.jsonl
+[primary_conventional_seed2_b10.5_lr0.001] warmup gaussian_noise:s5 acc=0.7486
+[primary_conventional_seed2_b10.5_lr0.001] boundary 0 gaussian_noise:s5->shot_noise:s5 cos_m_g=-0.001 carry10=0.7780 | RESET_M:-0.15  RESET_V:-47.45  RESET_MV:+0.20  RESET_STEP:-0.15  FRESH:-0.15
+[primary_conventional_seed2_b10.5_lr0.001] boundary 1 shot_noise:s5->impulse_noise:s5 cos_m_g=+0.038 carry10=0.7185 | RESET_M:+0.10  RESET_V:-53.15  RESET_MV:-1.55  RESET_STEP:-0.40  FRESH:+0.10
+[primary_conventional_seed2_b10.5_lr0.001] boundary 2 impulse_noise:s5->defocus_blur:s5 cos_m_g=+0.040 carry10=0.8680 | RESET_M:+0.00  RESET_V:-61.55  RESET_MV:-2.20  RESET_STEP:-0.05  FRESH:-0.15
+[primary_conventional_seed2_b10.5_lr0.001] boundary 3 defocus_blur:s5->glass_blur:s5 cos_m_g=-0.005 carry10=0.7010 | RESET_M:+0.00  RESET_V:-12.05  RESET_MV:-3.40  RESET_STEP:-0.25  FRESH:+0.00
+[primary_conventional_seed2_b10.5_lr0.001] boundary 4 glass_blur:s5->motion_blur:s5 cos_m_g=+0.000 carry10=0.8625 | RESET_M:-0.10  RESET_V:-51.60  RESET_MV:-1.90  RESET_STEP:-0.30  FRESH:-0.10
+[primary_conventional_seed2_b10.5_lr0.001] boundary 5 motion_blur:s5->zoom_blur:s5 cos_m_g=-0.010 carry10=0.8685 | RESET_M:-0.15  RESET_V:-69.60  RESET_MV:-0.40  RESET_STEP:+0.15  FRESH:-0.10
+[primary_conventional_seed2_b10.5_lr0.001] boundary 6 zoom_blur:s5->snow:s5 cos_m_g=-0.014 carry10=0.8215 | RESET_M:+0.10  RESET_V:-46.10  RESET_MV:-3.95  RESET_STEP:+0.10  FRESH:-0.05
+[primary_conventional_seed2_b10.5_lr0.001] done: 7 boundaries in 55.0 min -> /Users/helloimrizy/Documents/Academic/UNB/Research/opt/optimizer_state_tta/results/optimizer_state_stage1/raw/boundary/primary_conventional_seed2_b10.5_lr0.001.jsonl
+[primary_conventional_seed0_b10.99_lr0.001] warmup gaussian_noise:s5 acc=0.7502
+[primary_conventional_seed0_b10.99_lr0.001] boundary 0 gaussian_noise:s5->shot_noise:s5 cos_m_g=+0.084 carry10=0.7920 | RESET_M:+0.05  RESET_V:-22.40  RESET_MV:+0.10  RESET_STEP:+0.35  FRESH:+0.15
