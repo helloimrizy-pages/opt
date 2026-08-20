@@ -1,0 +1,767 @@
+{
+  "schema_version": "race_stage2_frozen_config_v1",
+  "frozen_at_utc": "2026-08-20T06:29:14.687796+00:00",
+  "preregistration_hash": "0cb2ce8ab260094934310edc188dc925811ccefb3ca11912a3aae8f361f09aef",
+  "preregistration_path": "stage3_residency/stage2_race/configs/stage2_preregistered.json",
+  "stage0_trace_hash": "ccec01b2ae5059655e23d7f791427fac75b5fac21e967b9e157bb6087c639dea",
+  "stage0_archive_manifest_sha256": "9af9a053502709bff9a33017c4f5b80bc0faa2306bc41d980e7bd2d7274346d2",
+  "stage1_archive_manifest_sha256": "4539cab504052010c32f0b87571adc90884283ac060784ddef822c01768e5d1b",
+  "stage1_frozen_config_file_sha256": "c595b061a415a9874d83f167e1e0fb7873ec8850ace8acc1a5db17f814351b83",
+  "stage1_winner_method_id": "markov_plus_ewma_h2_beta0.5_alpha0.95",
+  "stage2_repository_head": "f9236cb35541f07c96a8e03b6a36eacc1f21a92c",
+  "stage2_source_bundle_hash": "3ff7dc3cf0ff15e242231535b7ffc021e5b0858ef04b1595f5688454f43b3ae6",
+  "calibration_workload_hash": "c74926f84f4e95e73c5934ca3b306f011b33f65b6f79613f6c7bcbdbb07a727b",
+  "workload_hashes": {
+    "stationary_general": "9263b7b3367780da1f1c56e024de8fa41c29d475aefa2e14b305add555299fc8",
+    "stationary_coding": "e720f3a5d2ef340ba246a36ea15e81fd383fedd3bf6ebcab44571605bb4888e0",
+    "stationary_math": "bc3bf855f95a887e274c336238648952c1015530cbc92530ba57012e73f2cda5",
+    "stationary_reasoning": "8f9376e42eeed14399ae8152f459c8f2f107dd5ffb00d4327d71a9363f1081ab",
+    "general_to_coding": "47974da06c97f0f52edaf236fafada79a30c99e6728558b3c744946f2ae0d85b",
+    "coding_to_general": "d833f85aa91e4063ec4a460409be593d44a783ff023475dda8234961fba3801a",
+    "general_to_math": "4d1aa9064e265cc271702113ab113627435a1e7ea48610744be46b3a96024498",
+    "math_to_reasoning": "7d9fc6d7e2fc07d16cb678a1fd35c19ee8fdccce45da7465de7447c55122c8db",
+    "repeated_domain_cycle": "b2b85bb05a073b442b53d96807561c3ebd6dda8fb6dbc7028891c7e753ced2f6",
+    "mixed_interleaved": "79035f95954db5eeda102eba44cf66a61ebecfb5cf30d7482c67cf43d74ca144"
+  },
+  "cache_capacities": [
+    8,
+    12,
+    16,
+    24,
+    32
+  ],
+  "decision_capacities": [
+    12,
+    16,
+    24,
+    32
+  ],
+  "transition_model_path": "stage3_residency/stage2_race/results/calibration/transition_models.npz",
+  "transition_model_hash": "d62a14dcb5fbc5b819ac955636a4260c5ea2c676d2d285ce20e2e9682e922752",
+  "selection_path": "stage3_residency/stage2_race/results/calibration/selection.json",
+  "selection_file_sha256": "d6072514572a546a73eb70b3c2b0bc4b734190f45fdec671de5fcc9a88aec2ae",
+  "H_max": 32,
+  "selected_eta": 0.1,
+  "selected_initialization": "uniform",
+  "primary_loss": "rank",
+  "primary_variant_id": "race_online_rankloss_eta0.1_init_uniform_scope_per_layer",
+  "primary_variant_name": "RACE_ONLINE",
+  "weight_scope_primary": "per_layer",
+  "adviser_pools": {
+    "primary": {
+      "pool": "primary",
+      "order": [
+        "MARKOV_H1",
+        "MARKOV_H2",
+        "MARKOV_H4",
+        "MARKOV_H8",
+        "MARKOV_H16",
+        "MARKOV_H32",
+        "GATE_EWMA",
+        "LFU_DECAY",
+        "PERSISTENCE"
+      ],
+      "markov_horizons": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32
+      ],
+      "gate_ewma_alpha": 0.95,
+      "lfu_decay_alpha": 0.95,
+      "stage1_inherited_horizons": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ]
+    },
+    "extended": {
+      "pool": "extended",
+      "order": [
+        "MARKOV_H1",
+        "MARKOV_H2",
+        "MARKOV_H4",
+        "MARKOV_H8",
+        "MARKOV_H16",
+        "MARKOV_H32",
+        "GATE_EWMA",
+        "LFU_DECAY",
+        "PERSISTENCE",
+        "STAGE1_HYBRID"
+      ],
+      "markov_horizons": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32
+      ],
+      "gate_ewma_alpha": 0.95,
+      "lfu_decay_alpha": 0.95,
+      "stage1_inherited_horizons": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "stage1_hybrid": {
+        "horizon": 2,
+        "beta": 0.5,
+        "history_alpha": 0.95,
+        "identifier": "markov_plus_ewma_h2_beta0.5_alpha0.95"
+      }
+    }
+  },
+  "static_weights_global": {
+    "primary": [
+      0.1521807004916651,
+      0.0019984102324220737,
+      0.09510628906289038,
+      0.05349153216161974,
+      0.09251083291307921,
+      0.0,
+      0.13138043683084985,
+      0.11171930400672497,
+      0.3616124943007487
+    ],
+    "extended": [
+      0.14043983903113,
+      0.026901643150017432,
+      0.0867259043037309,
+      0.04136088470840817,
+      0.09788522072708271,
+      0.0,
+      0.1378517177163922,
+      0.11072192402415355,
+      0.358112866339085,
+      0.0
+    ]
+  },
+  "static_weights_per_layer_primary": [
+    [
+      0.13913151186256406,
+      0.05433276264730647,
+      0.09751135897919844,
+      0.00916306447249639,
+      0.08912067872248704,
+      0.04064418110501657,
+      0.13117751412412954,
+      0.11691891080554873,
+      0.3220000172812529
+    ],
+    [
+      0.11229952035731833,
+      0.008009933964246915,
+      0.15188881725105624,
+      0.0,
+      0.009947078429854095,
+      0.10996146726336019,
+      0.1383127595648444,
+      0.11903139164905233,
+      0.3505490315202675
+    ],
+    [
+      0.12207754027826861,
+      0.040534110567582715,
+      0.10004210762610745,
+      0.0,
+      0.06903525447027072,
+      0.06811589665556558,
+      0.16860167220962477,
+      0.07994949683867139,
+      0.35164392135390876
+    ],
+    [
+      0.10292007488622296,
+      0.05285251326873165,
+      0.09213796027284807,
+      0.16540333273847807,
+      0.00694573922805769,
+      0.0,
+      0.13919359157873845,
+      0.0890822380378144,
+      0.35146454998910864
+    ],
+    [
+      0.1210608082774848,
+      0.002233698259414288,
+      0.07212555710525576,
+      0.01025939253604874,
+      0.1806803132271117,
+      0.0,
+      0.1430871503943515,
+      0.10259460988937713,
+      0.3679584703109561
+    ],
+    [
+      0.13328709777295691,
+      0.0,
+      0.0,
+      0.07203259833751477,
+      0.1670589752021311,
+      0.0,
+      0.1099651143108728,
+      0.15702450085075315,
+      0.3606317135257713
+    ],
+    [
+      0.11684897230290464,
+      0.11666030752644035,
+      0.0,
+      0.0,
+      0.14174143129730796,
+      0.014277397710199063,
+      0.13089656512191303,
+      0.10163582554086371,
+      0.3779395005003712
+    ],
+    [
+      0.11638182225357618,
+      0.0,
+      0.09870903640451564,
+      0.1020621532979685,
+      0.0822366418017917,
+      0.0,
+      0.1249546793092806,
+      0.1021865785133034,
+      0.3734690884195639
+    ],
+    [
+      0.16888946329073032,
+      0.0,
+      0.0,
+      0.14810177144679154,
+      0.10365216633519872,
+      0.0,
+      0.16019167505831333,
+      0.06308893733454238,
+      0.3560759865344236
+    ],
+    [
+      0.142080968501092,
+      0.0,
+      0.11203401777568726,
+      0.04757220557657296,
+      0.07855597105185325,
+      0.0,
+      0.1430151922950126,
+      0.0956840411894647,
+      0.3810576036103174
+    ],
+    [
+      0.19081837859970652,
+      0.0,
+      0.09281973061533917,
+      0.026264167997552476,
+      0.09132358557917186,
+      0.0,
+      0.1352068441499848,
+      0.09266364124577121,
+      0.370903651812474
+    ],
+    [
+      0.15218600394737053,
+      0.0,
+      0.11769989179518865,
+      0.11724992127424612,
+      0.0,
+      0.03794000658667293,
+      0.08019309195804154,
+      0.12754690479519998,
+      0.36718417964328015
+    ],
+    [
+      0.1537367037260411,
+      0.0,
+      0.12842627730298614,
+      0.07507278097501505,
+      0.03159615665048454,
+      0.00621622882329452,
+      0.1202037983658034,
+      0.10902418864558383,
+      0.37572386551079134
+    ],
+    [
+      0.18517529091122087,
+      0.016591452645804097,
+      0.08437065351775498,
+      0.0317434395925298,
+      0.012932570067914526,
+      0.051269921428985434,
+      0.16373204432591765,
+      0.09656235107866687,
+      0.35762227643120587
+    ],
+    [
+      0.15547993258331347,
+      0.06872722563566593,
+      0.0879009779786501,
+      0.05991950270913393,
+      0.0,
+      0.0,
+      0.10333243409152135,
+      0.16588938551521612,
+      0.3587505414864991
+    ],
+    [
+      0.18863038572270566,
+      0.0,
+      0.0397129761605465,
+      0.06651456053313036,
+      0.06684942647252372,
+      0.00799913326860502,
+      0.15733395105377868,
+      0.1241237863398294,
+      0.3488357804488808
+    ]
+  ],
+  "variants": [
+    {
+      "label": "RACE_UNIFORM",
+      "role": "primary",
+      "is_primary": false,
+      "variant_id": "race_uniform",
+      "spec": {
+        "name": "RACE_UNIFORM",
+        "weight_source": "uniform",
+        "adaptive": false,
+        "loss": null,
+        "eta": null,
+        "scope": "per_layer",
+        "pool": "primary",
+        "static_weights": null
+      }
+    },
+    {
+      "label": "RACE_STATIC",
+      "role": "primary",
+      "is_primary": false,
+      "variant_id": "race_static_static_global",
+      "spec": {
+        "name": "RACE_STATIC",
+        "weight_source": "static_global",
+        "adaptive": false,
+        "loss": null,
+        "eta": null,
+        "scope": "per_layer",
+        "pool": "primary",
+        "static_weights": [
+          0.1521807004916651,
+          0.0019984102324220737,
+          0.09510628906289038,
+          0.05349153216161974,
+          0.09251083291307921,
+          0.0,
+          0.13138043683084985,
+          0.11171930400672497,
+          0.3616124943007487
+        ]
+      }
+    },
+    {
+      "label": "RACE_ONLINE",
+      "role": "primary",
+      "is_primary": true,
+      "variant_id": "race_online_rankloss_eta0.1_init_uniform_scope_per_layer",
+      "spec": {
+        "name": "RACE_ONLINE",
+        "weight_source": "uniform",
+        "adaptive": true,
+        "loss": "rank",
+        "eta": 0.1,
+        "scope": "per_layer",
+        "pool": "primary",
+        "static_weights": null
+      }
+    },
+    {
+      "label": "RACE_COST",
+      "role": "primary",
+      "is_primary": false,
+      "variant_id": "race_cost_costloss_eta0.1_init_uniform_scope_per_layer",
+      "spec": {
+        "name": "RACE_COST",
+        "weight_source": "uniform",
+        "adaptive": true,
+        "loss": "cost",
+        "eta": 0.1,
+        "scope": "per_layer",
+        "pool": "primary",
+        "static_weights": null
+      }
+    },
+    {
+      "label": "RACE_STATIC_PERLAYER",
+      "role": "ablation",
+      "is_primary": false,
+      "variant_id": "race_static_perlayer_static_per_layer",
+      "spec": {
+        "name": "RACE_STATIC_PERLAYER",
+        "weight_source": "static_per_layer",
+        "adaptive": false,
+        "loss": null,
+        "eta": null,
+        "scope": "per_layer",
+        "pool": "primary",
+        "static_weights": [
+          [
+            0.13913151186256406,
+            0.05433276264730647,
+            0.09751135897919844,
+            0.00916306447249639,
+            0.08912067872248704,
+            0.04064418110501657,
+            0.13117751412412954,
+            0.11691891080554873,
+            0.3220000172812529
+          ],
+          [
+            0.11229952035731833,
+            0.008009933964246915,
+            0.15188881725105624,
+            0.0,
+            0.009947078429854095,
+            0.10996146726336019,
+            0.1383127595648444,
+            0.11903139164905233,
+            0.3505490315202675
+          ],
+          [
+            0.12207754027826861,
+            0.040534110567582715,
+            0.10004210762610745,
+            0.0,
+            0.06903525447027072,
+            0.06811589665556558,
+            0.16860167220962477,
+            0.07994949683867139,
+            0.35164392135390876
+          ],
+          [
+            0.10292007488622296,
+            0.05285251326873165,
+            0.09213796027284807,
+            0.16540333273847807,
+            0.00694573922805769,
+            0.0,
+            0.13919359157873845,
+            0.0890822380378144,
+            0.35146454998910864
+          ],
+          [
+            0.1210608082774848,
+            0.002233698259414288,
+            0.07212555710525576,
+            0.01025939253604874,
+            0.1806803132271117,
+            0.0,
+            0.1430871503943515,
+            0.10259460988937713,
+            0.3679584703109561
+          ],
+          [
+            0.13328709777295691,
+            0.0,
+            0.0,
+            0.07203259833751477,
+            0.1670589752021311,
+            0.0,
+            0.1099651143108728,
+            0.15702450085075315,
+            0.3606317135257713
+          ],
+          [
+            0.11684897230290464,
+            0.11666030752644035,
+            0.0,
+            0.0,
+            0.14174143129730796,
+            0.014277397710199063,
+            0.13089656512191303,
+            0.10163582554086371,
+            0.3779395005003712
+          ],
+          [
+            0.11638182225357618,
+            0.0,
+            0.09870903640451564,
+            0.1020621532979685,
+            0.0822366418017917,
+            0.0,
+            0.1249546793092806,
+            0.1021865785133034,
+            0.3734690884195639
+          ],
+          [
+            0.16888946329073032,
+            0.0,
+            0.0,
+            0.14810177144679154,
+            0.10365216633519872,
+            0.0,
+            0.16019167505831333,
+            0.06308893733454238,
+            0.3560759865344236
+          ],
+          [
+            0.142080968501092,
+            0.0,
+            0.11203401777568726,
+            0.04757220557657296,
+            0.07855597105185325,
+            0.0,
+            0.1430151922950126,
+            0.0956840411894647,
+            0.3810576036103174
+          ],
+          [
+            0.19081837859970652,
+            0.0,
+            0.09281973061533917,
+            0.026264167997552476,
+            0.09132358557917186,
+            0.0,
+            0.1352068441499848,
+            0.09266364124577121,
+            0.370903651812474
+          ],
+          [
+            0.15218600394737053,
+            0.0,
+            0.11769989179518865,
+            0.11724992127424612,
+            0.0,
+            0.03794000658667293,
+            0.08019309195804154,
+            0.12754690479519998,
+            0.36718417964328015
+          ],
+          [
+            0.1537367037260411,
+            0.0,
+            0.12842627730298614,
+            0.07507278097501505,
+            0.03159615665048454,
+            0.00621622882329452,
+            0.1202037983658034,
+            0.10902418864558383,
+            0.37572386551079134
+          ],
+          [
+            0.18517529091122087,
+            0.016591452645804097,
+            0.08437065351775498,
+            0.0317434395925298,
+            0.012932570067914526,
+            0.051269921428985434,
+            0.16373204432591765,
+            0.09656235107866687,
+            0.35762227643120587
+          ],
+          [
+            0.15547993258331347,
+            0.06872722563566593,
+            0.0879009779786501,
+            0.05991950270913393,
+            0.0,
+            0.0,
+            0.10333243409152135,
+            0.16588938551521612,
+            0.3587505414864991
+          ],
+          [
+            0.18863038572270566,
+            0.0,
+            0.0397129761605465,
+            0.06651456053313036,
+            0.06684942647252372,
+            0.00799913326860502,
+            0.15733395105377868,
+            0.1241237863398294,
+            0.3488357804488808
+          ]
+        ]
+      }
+    },
+    {
+      "label": "RACE_ONLINE_GLOBAL",
+      "role": "ablation",
+      "is_primary": false,
+      "variant_id": "race_online_global_rankloss_eta0.1_init_uniform_scope_global",
+      "spec": {
+        "name": "RACE_ONLINE_GLOBAL",
+        "weight_source": "uniform",
+        "adaptive": true,
+        "loss": "rank",
+        "eta": 0.1,
+        "scope": "global",
+        "pool": "primary",
+        "static_weights": null
+      }
+    },
+    {
+      "label": "RACE_UNIFORM_EXTENDED",
+      "role": "ablation",
+      "is_primary": false,
+      "variant_id": "race_uniform_extended_pool_extended",
+      "spec": {
+        "name": "RACE_UNIFORM_EXTENDED",
+        "weight_source": "uniform",
+        "adaptive": false,
+        "loss": null,
+        "eta": null,
+        "scope": "per_layer",
+        "pool": "extended",
+        "static_weights": null
+      }
+    },
+    {
+      "label": "RACE_STATIC_EXTENDED",
+      "role": "ablation",
+      "is_primary": false,
+      "variant_id": "race_static_extended_static_global_pool_extended",
+      "spec": {
+        "name": "RACE_STATIC_EXTENDED",
+        "weight_source": "static_global",
+        "adaptive": false,
+        "loss": null,
+        "eta": null,
+        "scope": "per_layer",
+        "pool": "extended",
+        "static_weights": [
+          0.14043983903113,
+          0.026901643150017432,
+          0.0867259043037309,
+          0.04136088470840817,
+          0.09788522072708271,
+          0.0,
+          0.1378517177163922,
+          0.11072192402415355,
+          0.358112866339085,
+          0.0
+        ]
+      }
+    },
+    {
+      "label": "RACE_ONLINE_EXTENDED",
+      "role": "ablation",
+      "is_primary": false,
+      "variant_id": "race_online_extended_rankloss_eta0.1_init_uniform_scope_per_layer_pool_extended",
+      "spec": {
+        "name": "RACE_ONLINE_EXTENDED",
+        "weight_source": "uniform",
+        "adaptive": true,
+        "loss": "rank",
+        "eta": 0.1,
+        "scope": "per_layer",
+        "pool": "extended",
+        "static_weights": null
+      }
+    },
+    {
+      "label": "RACE_COST_EXTENDED",
+      "role": "ablation",
+      "is_primary": false,
+      "variant_id": "race_cost_extended_costloss_eta0.1_init_uniform_scope_per_layer_pool_extended",
+      "spec": {
+        "name": "RACE_COST_EXTENDED",
+        "weight_source": "uniform",
+        "adaptive": true,
+        "loss": "cost",
+        "eta": 0.1,
+        "scope": "per_layer",
+        "pool": "extended",
+        "static_weights": null
+      }
+    }
+  ],
+  "statistics": {
+    "bootstrap_replicates": 1000,
+    "bootstrap_seed": 20260821,
+    "paired_unit": "source decode sequence, stratified by domain",
+    "primary_suite_aggregation": "At each capacity, sum raw unit-miss costs across all ten frozen workload paths; no per-capacity, per-regime or per-workload variant reselection.",
+    "regime_results": "also report stationary, abrupt, repeated and mixed aggregates separately",
+    "conditionality": "Intervals reweight saved per-sequence contributions conditional on each frozen stateful workload path; stateful cache and online-learning trajectories are not regenerated under reordered bootstrap workloads."
+  },
+  "success_criteria": {
+    "strong_success": {
+      "condition_a": {
+        "metric": "race_improvement_over_stage1",
+        "threshold": 0.1,
+        "required_capacities": 3,
+        "of": 4,
+        "paired_uncertainty_requirement": "the paired bootstrap 95% interval for the improvement must exclude zero from below at each counted capacity"
+      },
+      "condition_b": {
+        "metric": "original_oracle_gap_closed",
+        "threshold": 0.3,
+        "required_capacities": 3,
+        "of": 4
+      },
+      "both_conditions_required": true,
+      "verdict": "RACE_STAGE2_STRONG_SUCCESS"
+    },
+    "very_strong_success": {
+      "condition_a": {
+        "metric": "race_improvement_over_stage1",
+        "threshold": 0.15,
+        "required_capacities": 3,
+        "of": 4
+      },
+      "condition_b": {
+        "metric": "original_oracle_gap_closed",
+        "threshold": 0.5,
+        "required_capacities": 3,
+        "of": 4
+      },
+      "both_conditions_required": true,
+      "verdict": "RACE_STAGE2_VERY_STRONG_SUCCESS",
+      "note": "this label never modifies the STRONG_SUCCESS rule"
+    },
+    "weak": {
+      "rule": "a consistent improvement over Stage 1 of at least 0.05 at 3 or more of the four non-degenerate capacities that nonetheless misses the STRONG_SUCCESS rule",
+      "verdict": "RACE_STAGE2_WEAK"
+    },
+    "no_go": {
+      "rule": "improvement over Stage 1 below 0.05 at 2 or more of the four non-degenerate capacities, or any non-degenerate capacity with C_RACE > 1.03 * C_Stage1, or the primary online variant failing to beat both RACE_STATIC and RACE_UNIFORM on the frozen suite aggregate at 3 or more non-degenerate capacities",
+      "verdict": "RACE_STAGE2_NO_GO"
+    },
+    "precedence": "NO_GO if the NO_GO rule holds; otherwise VERY_STRONG_SUCCESS if its rule holds; otherwise STRONG_SUCCESS if its rule holds; otherwise WEAK if its rule holds; otherwise NO_GO",
+    "primary_basis": "frozen ten-workload-suite aggregate unit-miss cost at each non-degenerate capacity for the frozen primary RACE variant"
+  },
+  "regression_criterion": {
+    "flag_when": "C_RACE > 1.03 * C_Stage1",
+    "granularity": [
+      "workload",
+      "capacity",
+      "regime",
+      "suite"
+    ],
+    "reporting": "every flagged regression is reported even when the aggregate result is positive; capacities are never cherry-picked"
+  },
+  "environment": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "python_implementation": "CPython",
+    "package_versions": {
+      "python": "3.14.3",
+      "torch": "2.13.0",
+      "transformers": "5.15.1",
+      "datasets": null,
+      "huggingface-hub": "1.28.0",
+      "numpy": "2.5.2",
+      "scipy": "1.18.0",
+      "matplotlib": "3.11.1",
+      "safetensors": "0.8.0",
+      "accelerate": null
+    }
+  },
+  "evaluation_started": false
+}

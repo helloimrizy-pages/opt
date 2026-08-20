@@ -1,0 +1,545 @@
+{
+  "schema_version": "race_stage2_pilot_audit_v1",
+  "created_at_utc": "2026-08-20T06:21:56.771809+00:00",
+  "pilot_workload": "calibration_pilot",
+  "pilot_sequences": 8,
+  "pilot_workload_hash": "aa47fb8aa63190e31615e901da0cac7d6553009acf92279e6bc88a3993af052d",
+  "pilot_data_scope": "prefix of the frozen Stage 0 calibration workload; no evaluation sequence",
+  "events": 16384,
+  "capacities": [
+    8,
+    12,
+    16,
+    24,
+    32
+  ],
+  "adviser_pool_size": 9,
+  "adviser_order": [
+    "MARKOV_H1",
+    "MARKOV_H2",
+    "MARKOV_H4",
+    "MARKOV_H8",
+    "MARKOV_H16",
+    "MARKOV_H32",
+    "GATE_EWMA",
+    "LFU_DECAY",
+    "PERSISTENCE"
+  ],
+  "runtime_seconds_with_diagnostics": 5.339914666999903,
+  "microseconds_per_event": 325.9225260620058,
+  "pilot_costs": {
+    "8": 75313,
+    "12": 57769,
+    "16": 47007,
+    "24": 31163,
+    "32": 19830
+  },
+  "delayed_feedback": {
+    "8": {
+      "generated": 0,
+      "resolved": 0,
+      "unresolved_at_stream_end": 0,
+      "unresolved_fraction": 0.0,
+      "average_delay": null,
+      "maximum_delay": 0
+    },
+    "12": {
+      "generated": 15825,
+      "resolved": 15332,
+      "unresolved_at_stream_end": 493,
+      "unresolved_fraction": 0.031153238546603474,
+      "average_delay": 32.0,
+      "maximum_delay": 32
+    },
+    "16": {
+      "generated": 15069,
+      "resolved": 14598,
+      "unresolved_at_stream_end": 471,
+      "unresolved_fraction": 0.03125622138164444,
+      "average_delay": 32.0,
+      "maximum_delay": 32
+    },
+    "24": {
+      "generated": 12884,
+      "resolved": 12478,
+      "unresolved_at_stream_end": 406,
+      "unresolved_fraction": 0.03151195280968643,
+      "average_delay": 32.0,
+      "maximum_delay": 32
+    },
+    "32": {
+      "generated": 10020,
+      "resolved": 9716,
+      "unresolved_at_stream_end": 304,
+      "unresolved_fraction": 0.03033932135728543,
+      "average_delay": 32.0,
+      "maximum_delay": 32
+    }
+  },
+  "ranking_diagnostics": {
+    "8": {
+      "eviction_events": 0,
+      "events_without_eviction": 0,
+      "candidate_experts": 0,
+      "evicted_experts": 0,
+      "comparable_pairs_capped": 0,
+      "concordant_capped": 0.0,
+      "discordant_capped": 0.0,
+      "tied_capped": 0.0,
+      "concordant_true": 0.0,
+      "discordant_true": 0.0,
+      "tied_true": 0.0,
+      "oracle_consistent_events": 0,
+      "oracle_optimal_events": 0,
+      "pairwise_ordering_accuracy_capped": null,
+      "pairwise_concordance_capped": null,
+      "comparable_pairs_true": 0,
+      "pairwise_ordering_accuracy_true": null,
+      "pairwise_concordance_true": null,
+      "oracle_consistent_eviction_rate": null,
+      "oracle_optimal_eviction_rate": null
+    },
+    "12": {
+      "eviction_events": 15825,
+      "events_without_eviction": 559,
+      "candidate_experts": 120877,
+      "evicted_experts": 57577,
+      "comparable_pairs_capped": 365034,
+      "concordant_capped": 234938.0,
+      "discordant_capped": 130001.0,
+      "tied_capped": 95.0,
+      "concordant_true": 236151.0,
+      "discordant_true": 130822.0,
+      "tied_true": 95.0,
+      "oracle_consistent_events": 11062,
+      "oracle_optimal_events": 2929,
+      "pairwise_ordering_accuracy_capped": 0.6437359259685399,
+      "pairwise_concordance_capped": 0.2875466858844903,
+      "comparable_pairs_true": 367068,
+      "pairwise_ordering_accuracy_true": 0.643473416369719,
+      "pairwise_concordance_true": 0.2870211159949097,
+      "oracle_consistent_eviction_rate": 0.6990205371248025,
+      "oracle_optimal_eviction_rate": 0.185086887835703
+    },
+    "16": {
+      "eviction_events": 15069,
+      "events_without_eviction": 1315,
+      "candidate_experts": 167303,
+      "evicted_experts": 46751,
+      "comparable_pairs_capped": 764987,
+      "concordant_capped": 479793.0,
+      "discordant_capped": 285065.0,
+      "tied_capped": 129.0,
+      "concordant_true": 482149.0,
+      "discordant_true": 286790.0,
+      "tied_true": 129.0,
+      "oracle_consistent_events": 7845,
+      "oracle_optimal_events": 1859,
+      "pairwise_ordering_accuracy_capped": 0.6272753654637269,
+      "pairwise_concordance_capped": 0.2545936631374713,
+      "comparable_pairs_true": 769068,
+      "pairwise_ordering_accuracy_true": 0.627010225363687,
+      "pairwise_concordance_true": 0.2540630661209797,
+      "oracle_consistent_eviction_rate": 0.5206052160063707,
+      "oracle_optimal_eviction_rate": 0.12336585042139492
+    },
+    "24": {
+      "eviction_events": 12884,
+      "events_without_eviction": 3500,
+      "candidate_experts": 236923,
+      "evicted_experts": 30779,
+      "comparable_pairs_capped": 1871728,
+      "concordant_capped": 1161942.0,
+      "discordant_capped": 709593.0,
+      "tied_capped": 193.0,
+      "concordant_true": 1170110.0,
+      "discordant_true": 715825.0,
+      "tied_true": 193.0,
+      "oracle_consistent_events": 4093,
+      "oracle_optimal_events": 1272,
+      "pairwise_ordering_accuracy_capped": 0.6208372690903806,
+      "pairwise_concordance_capped": 0.2416994606031947,
+      "comparable_pairs_true": 1886128,
+      "pairwise_ordering_accuracy_true": 0.6204279349015549,
+      "pairwise_concordance_true": 0.24088051815147393,
+      "oracle_consistent_eviction_rate": 0.3176808444582428,
+      "oracle_optimal_eviction_rate": 0.09872710338404223
+    },
+    "32": {
+      "eviction_events": 10020,
+      "events_without_eviction": 6364,
+      "candidate_experts": 259798,
+      "evicted_experts": 19318,
+      "comparable_pairs_capped": 2965594,
+      "concordant_capped": 1846550.0,
+      "discordant_capped": 1118862.0,
+      "tied_capped": 182.0,
+      "concordant_true": 1867627.0,
+      "discordant_true": 1134990.0,
+      "tied_true": 182.0,
+      "oracle_consistent_events": 2120,
+      "oracle_optimal_events": 854,
+      "pairwise_ordering_accuracy_capped": 0.6226884057628927,
+      "pairwise_concordance_capped": 0.2453918713487367,
+      "comparable_pairs_true": 3002799,
+      "pairwise_ordering_accuracy_true": 0.6219923478061635,
+      "pairwise_concordance_true": 0.24399948444973169,
+      "oracle_consistent_eviction_rate": 0.21157684630738524,
+      "oracle_optimal_eviction_rate": 0.08522954091816368
+    }
+  },
+  "checks": [
+    {
+      "name": "stage1_perfect_score_equals_stage0_oracle_from_archive",
+      "passed": true,
+      "details": {
+        "passed": true,
+        "conditions_checked": 50,
+        "mismatches": []
+      }
+    },
+    {
+      "name": "stage2_perfect_score_equals_stage0_oracle_on_pilot",
+      "passed": true,
+      "details": {
+        "perfect": {
+          "8": 75313,
+          "12": 47402,
+          "16": 34860,
+          "24": 20267,
+          "32": 11479
+        },
+        "oracle": {
+          "8": 75313,
+          "12": 47402,
+          "16": 34860,
+          "24": 20267,
+          "32": 11479
+        }
+      }
+    },
+    {
+      "name": "stage2_single_adviser_reproduces_stage1_predictor",
+      "passed": true,
+      "details": [
+        {
+          "adviser": "MARKOV_H1",
+          "stage1": {
+            "8": 75313,
+            "12": 58254,
+            "16": 47931,
+            "24": 32942,
+            "32": 22050
+          },
+          "stage2": {
+            "8": 75313,
+            "12": 58254,
+            "16": 47931,
+            "24": 32942,
+            "32": 22050
+          },
+          "equal": true
+        },
+        {
+          "adviser": "MARKOV_H2",
+          "stage1": {
+            "8": 75313,
+            "12": 58016,
+            "16": 47436,
+            "24": 32628,
+            "32": 21738
+          },
+          "stage2": {
+            "8": 75313,
+            "12": 58016,
+            "16": 47436,
+            "24": 32628,
+            "32": 21738
+          },
+          "equal": true
+        },
+        {
+          "adviser": "MARKOV_H4",
+          "stage1": {
+            "8": 75313,
+            "12": 58432,
+            "16": 47728,
+            "24": 32741,
+            "32": 21646
+          },
+          "stage2": {
+            "8": 75313,
+            "12": 58432,
+            "16": 47728,
+            "24": 32741,
+            "32": 21646
+          },
+          "equal": true
+        },
+        {
+          "adviser": "MARKOV_H8",
+          "stage1": {
+            "8": 75313,
+            "12": 59521,
+            "16": 49094,
+            "24": 33491,
+            "32": 21981
+          },
+          "stage2": {
+            "8": 75313,
+            "12": 59521,
+            "16": 49094,
+            "24": 33491,
+            "32": 21981
+          },
+          "equal": true
+        },
+        {
+          "adviser": "MARKOV_H16",
+          "stage1": {
+            "8": 75313,
+            "12": 61075,
+            "16": 50802,
+            "24": 34804,
+            "32": 22895
+          },
+          "stage2": {
+            "8": 75313,
+            "12": 61075,
+            "16": 50802,
+            "24": 34804,
+            "32": 22895
+          },
+          "equal": true
+        },
+        {
+          "adviser": "GATE_EWMA",
+          "stage1": {
+            "8": 75313,
+            "12": 59300,
+            "16": 48544,
+            "24": 32465,
+            "32": 20642
+          },
+          "stage2": {
+            "8": 75313,
+            "12": 59300,
+            "16": 48544,
+            "24": 32465,
+            "32": 20642
+          },
+          "equal": true
+        },
+        {
+          "adviser": "PERSISTENCE",
+          "stage1": {
+            "8": 75313,
+            "12": 61915,
+            "16": 51678,
+            "24": 36913,
+            "32": 24981
+          },
+          "stage2": {
+            "8": 75313,
+            "12": 61915,
+            "16": 51678,
+            "24": 36913,
+            "32": 24981
+          },
+          "equal": true
+        },
+        {
+          "adviser": "STAGE1_HYBRID",
+          "stage1": {
+            "8": 75313,
+            "12": 57142,
+            "16": 46003,
+            "24": 30222,
+            "32": 19242
+          },
+          "stage2": {
+            "8": 75313,
+            "12": 57142,
+            "16": 46003,
+            "24": 30222,
+            "32": 19242
+          },
+          "equal": true
+        }
+      ]
+    },
+    {
+      "name": "diagnostic_observer_does_not_change_any_cost",
+      "passed": true,
+      "details": {
+        "with": [
+          75313,
+          57769,
+          47007,
+          31163,
+          19830
+        ],
+        "without": [
+          75313,
+          57769,
+          47007,
+          31163,
+          19830
+        ]
+      }
+    },
+    {
+      "name": "replay_is_deterministic",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "delayed_update_never_precedes_its_label",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "causal_capped_label_matches_offline_future_use",
+      "passed": true,
+      "details": {
+        "cross_checks_passed": 52124
+      }
+    },
+    {
+      "name": "delayed_example_accounting_balances",
+      "passed": true,
+      "details": {
+        "8": {
+          "generated": 0,
+          "resolved": 0,
+          "unresolved_at_stream_end": 0,
+          "unresolved_fraction": 0.0,
+          "average_delay": null,
+          "maximum_delay": 0
+        },
+        "12": {
+          "generated": 15825,
+          "resolved": 15332,
+          "unresolved_at_stream_end": 493,
+          "unresolved_fraction": 0.031153238546603474,
+          "average_delay": 32.0,
+          "maximum_delay": 32
+        },
+        "16": {
+          "generated": 15069,
+          "resolved": 14598,
+          "unresolved_at_stream_end": 471,
+          "unresolved_fraction": 0.03125622138164444,
+          "average_delay": 32.0,
+          "maximum_delay": 32
+        },
+        "24": {
+          "generated": 12884,
+          "resolved": 12478,
+          "unresolved_at_stream_end": 406,
+          "unresolved_fraction": 0.03151195280968643,
+          "average_delay": 32.0,
+          "maximum_delay": 32
+        },
+        "32": {
+          "generated": 10020,
+          "resolved": 9716,
+          "unresolved_at_stream_end": 304,
+          "unresolved_fraction": 0.03033932135728543,
+          "average_delay": 32.0,
+          "maximum_delay": 32
+        }
+      }
+    },
+    {
+      "name": "adviser_weights_stay_on_the_simplex",
+      "passed": true,
+      "details": [
+        {
+          "capacity": 8,
+          "layer": 0,
+          "sum": 1.0,
+          "min": 0.1111111111111111,
+          "finite": true,
+          "effective": 9.000000000000002
+        },
+        {
+          "capacity": 8,
+          "layer": 1,
+          "sum": 1.0,
+          "min": 0.1111111111111111,
+          "finite": true,
+          "effective": 9.000000000000002
+        },
+        {
+          "capacity": 8,
+          "layer": 2,
+          "sum": 1.0,
+          "min": 0.1111111111111111,
+          "finite": true,
+          "effective": 9.000000000000002
+        },
+        {
+          "capacity": 8,
+          "layer": 3,
+          "sum": 1.0,
+          "min": 0.1111111111111111,
+          "finite": true,
+          "effective": 9.000000000000002
+        },
+        {
+          "capacity": 8,
+          "layer": 4,
+          "sum": 1.0,
+          "min": 0.1111111111111111,
+          "finite": true,
+          "effective": 9.000000000000002
+        },
+        {
+          "capacity": 8,
+          "layer": 5,
+          "sum": 1.0,
+          "min": 0.1111111111111111,
+          "finite": true,
+          "effective": 9.000000000000002
+        },
+        {
+          "capacity": 8,
+          "layer": 6,
+          "sum": 1.0,
+          "min": 0.1111111111111111,
+          "finite": true,
+          "effective": 9.000000000000002
+        },
+        {
+          "capacity": 8,
+          "layer": 7,
+          "sum": 1.0,
+          "min": 0.1111111111111111,
+          "finite": true,
+          "effective": 9.000000000000002
+        }
+      ]
+    }
+  ],
+  "passed": true,
+  "environment": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "python_implementation": "CPython",
+    "package_versions": {
+      "python": "3.14.3",
+      "torch": "2.13.0",
+      "transformers": "5.15.1",
+      "datasets": null,
+      "huggingface-hub": "1.28.0",
+      "numpy": "2.5.2",
+      "scipy": "1.18.0",
+      "matplotlib": "3.11.1",
+      "safetensors": "0.8.0",
+      "accelerate": null
+    }
+  },
+  "note": "Pilot results may not change any preregistered threshold or hyperparameter grid."
+}

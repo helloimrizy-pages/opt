@@ -460,6 +460,95 @@ reweight per-sequence contributions; stateful cache trajectories are not
 regenerated under reordered bootstrap workloads. Results concern simulated
 expert residency/miss counts; no end-to-end latency improvement is claimed.
 
+## RACE Stage 1 simple-prediction headroom
+
+The follow-on prediction study is isolated under
+`stage3_residency/stage1_prediction/` and reuses the exact frozen Stage 0 trace,
+workload paths, cache semantics, baseline costs, and offline oracle. It implements
+only Persistence, LastGate, Gate-EWMA, calibration-fitted first-order Markov,
+direct Markov-H, and a simple Markov-plus-popularity hybrid behind one common
+prediction-score/LRU/expert-ID retention rule. It contains no RACE optimizer and
+does not prefetch.
+
+The completed result is **`RACE_STAGE1_STRONG_GO`**. Calibration selected
+`markov_plus_ewma_h2_beta0.5_alpha0.95` globally. Across all ten frozen workload
+paths, this method closed 9.04%, 10.69%, 11.05%, and 9.26% of the Stage 0 oracle
+gap at capacities 12, 16, 24, and 32, respectively. Residual oracle headroom was
+16.17%, 23.82%, 33.68%, and 41.63% of Stage 0 baseline cost. Both preregistered
+STRONG-GO conditions therefore pass at 4/4 non-degenerate capacities.
+
+The exact report, raw JSONL, 95% paired conditional-bootstrap intervals,
+lookahead diagnostics, prediction-quality metrics, required tables/figures, and
+hash manifest are documented in
+[`stage3_residency/stage1_prediction/README.md`](stage3_residency/stage1_prediction/README.md).
+Run or verify the complete workflow with:
+
+```bash
+RACE_STAGE1_WORKERS=4 stage3_residency/stage1_prediction/scripts/run_full.sh
+```
+
+Finite-lookahead validation matched exact DP on 37,052 enumerated and 300 random
+tiny traces. Perfect next-use scoring with the same simple eviction mechanism
+matched the full Stage 0 oracle, while exact H=4 recovered 97.34% of oracle
+advantage at capacity 12 but only 32.22% at capacity 32. This supports a
+longer-horizon prediction target at larger spare budgets; it is not evidence that
+RACE already works.
+
+Bootstrap intervals reweight saved per-sequence contributions conditional on the
+frozen workload ordering; stateful cache trajectories are not regenerated under
+reordered bootstrap workloads. Results concern simulated expert residency/miss
+counts; no end-to-end latency improvement or hardware speedup is claimed.
+
+## RACE Stage 2 adaptive multi-horizon future-reuse ranking
+
+Stage 2 is isolated under `stage3_residency/stage2_race/` and implements the first
+actual RACE algorithm. It reuses the exact frozen Stage 0 trace, workload paths,
+cache semantics, baseline costs and offline oracle, and it leaves the Stage 1
+eviction rule completely unchanged. Only the retention score changes: nine causal
+advisers (`MARKOV_H{1,2,4,8,16,32}`, `GATE_EWMA`, `LFU_DECAY`, `PERSISTENCE`) are
+percentile-normalized over the current eviction-candidate set and combined as
+`S_e = sum_j w_j z_{j,e}`, with the adviser weights adapted online by
+multiplicative weights under a mandatory 32-event delayed-feedback protocol.
+
+The completed result is **`RACE_STAGE2_NO_GO`**. Calibration selected learning rate
+0.1, uniform initialization and the unweighted pairwise rank loss, making
+`RACE_ONLINE` the frozen primary variant. Across the ten frozen workload paths it
+cost 1.06%--1.98% *more* than the Stage 1 winner at capacities 12--32 and closed
+only 3.17%--6.38% of the original Stage 0 oracle gap, against 9.04%--11.05% for
+Stage 1.
+
+The ablation chain explains the outcome: uniform rank aggregation is 4.23% worse
+than Stage 1 on average, calibration-learned static weights recover 1.80%, online
+adaptation recovers 0.82%, and a labeled ablation adding the frozen Stage 1 winner
+itself as a tenth adviser recovers 1.77% more, reaching only 0.30% better than
+Stage 1. The measured cause is representational: the Stage 1 winner is a raw-scale
+blend of two pool members, and per-adviser percentile normalization discards the
+magnitude that blend uses. The online learner itself is near-optimal for its own
+objective, with empirical per-example adviser regret between -0.00004 and +0.00049
+over 8,995,644 delayed updates.
+
+Two structural equivalences are enforced by tests and by the pilot audit and prove
+that the eviction mechanism was not changed: a Stage 2 variant with all weight on
+one adviser reproduces the corresponding Stage 1 single-predictor cost exactly, and
+the same mechanism driven by exact next-use scores reproduces the Stage 0 oracle
+exactly.
+
+Full details, all required tables and figures, the causality audit, the diagnostic
+analysis and the archive hashes are in
+[`stage3_residency/stage2_race/README.md`](stage3_residency/stage2_race/README.md)
+and `stage3_residency/stage2_race/reports/race_stage2_report.md`. A separate theory
+note proves a delayed-Hedge regret bound for the exact implemented update and states
+explicitly that no regret theorem is claimed for the combined ranking loss or for
+transfer cost. Run or verify the complete workflow with:
+
+```bash
+RACE_STAGE2_WORKERS=12 stage3_residency/stage2_race/scripts/run_full.sh
+```
+
+Stage 2 remains simulation-only. It makes no end-to-end latency or hardware-speedup
+claim, and its negative result does not reduce the Stage 0 oracle headroom, which is
+unchanged.
+
 ## Outputs
 
 The analysis creates:

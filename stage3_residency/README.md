@@ -355,3 +355,39 @@ Verify the sealed manifest and both report copies with:
 
 The manifest additionally records the deterministic `sha256_tree_v1` digests for
 the complete chunk, condition-checkpoint, report, and preserved-pilot trees.
+
+## Follow-on RACE Stage 1 result
+
+The separately frozen simple-prediction study is under `stage1_prediction/` and
+does not alter this Stage 0 archive. It reused this exact trace, workload ordering,
+per-layer atomic admission semantics, strongest-simple references, and oracle.
+Its final decision is **`RACE_STAGE1_STRONG_GO`**: the globally calibration-selected
+`markov_plus_ewma_h2_beta0.5_alpha0.95` policy closed only 9.04%--11.05% of the
+oracle gap at capacities 12--32, leaving 16.17%--41.63% of Stage 0 baseline cost as
+residual headroom.
+
+See `stage1_prediction/README.md` and
+`stage1_prediction/reports/race_stage1_prediction_headroom_report.md` for the
+frozen configuration, exact commands, uncertainty, lookahead curve, predictor
+quality, caveats, and archive hashes. Stage 1 remains simulation-only and makes no
+end-to-end latency or hardware-speedup claim.
+
+## Follow-on RACE Stage 2 result
+
+The first actual RACE algorithm is under `stage2_race/` and likewise does not alter
+this Stage 0 archive; every Stage 0 and Stage 1 hash is byte-identical after the run.
+It reused this exact trace, workload ordering, per-layer atomic admission semantics,
+strongest-simple references and oracle, and it kept the Stage 1 eviction rule
+unchanged, replacing only the retention score with a delayed-Hedge-weighted
+combination of nine percentile-normalized causal advisers.
+
+Its final decision is **`RACE_STAGE2_NO_GO`**: the frozen primary variant cost
+1.06%--1.98% more than the Stage 1 winner at capacities 12--32 and closed only
+3.17%--6.38% of this oracle gap. The measured cause is that per-adviser percentile
+normalization discards the raw-scale magnitude information the Stage 1 hybrid uses,
+not that the online adaptation is too slow.
+
+See `stage2_race/README.md`, `stage2_race/reports/race_stage2_report.md` and
+`stage2_race/reports/race_stage2_theory_notes.md`. Stage 2 remains simulation-only
+and makes no end-to-end latency or hardware-speedup claim. The Stage 0 oracle
+headroom recorded above is unchanged by this negative result.

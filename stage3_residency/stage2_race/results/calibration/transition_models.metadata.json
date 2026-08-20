@@ -1,0 +1,15 @@
+{
+  "schema_version": "race_stage1_transition_models_v1",
+  "trace_hash": "ccec01b2ae5059655e23d7f791427fac75b5fac21e967b9e157bb6087c639dea",
+  "calibration_workload_hash": "c74926f84f4e95e73c5934ca3b306f011b33f65b6f79613f6c7bcbdbb07a727b",
+  "smoothing": "independent_beta_1_1_binary_event_smoothing",
+  "horizons": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32
+  ],
+  "npz_sha256": "d62a14dcb5fbc5b819ac955636a4260c5ea2c676d2d285ce20e2e9682e922752"
+}

@@ -1,0 +1,146 @@
+{
+  "schema_version": "race_stage2_final_archive_v1",
+  "sealed_at_utc": "2026-08-20T07:33:03.874155+00:00",
+  "verdict": "RACE_STAGE2_NO_GO",
+  "stage0_verdict": "RACE_STAGE0_STRONG_GO",
+  "stage1_verdict": "RACE_STAGE1_STRONG_GO",
+  "stage0_trace_hash": "ccec01b2ae5059655e23d7f791427fac75b5fac21e967b9e157bb6087c639dea",
+  "stage0_archive_manifest_sha256": "9af9a053502709bff9a33017c4f5b80bc0faa2306bc41d980e7bd2d7274346d2",
+  "stage1_archive_manifest_sha256": "4539cab504052010c32f0b87571adc90884283ac060784ddef822c01768e5d1b",
+  "stage1_frozen_config_file_sha256": "c595b061a415a9874d83f167e1e0fb7873ec8850ace8acc1a5db17f814351b83",
+  "stage1_winner_method_id": "markov_plus_ewma_h2_beta0.5_alpha0.95",
+  "stage2_preregistration_hash": "0cb2ce8ab260094934310edc188dc925811ccefb3ca11912a3aae8f361f09aef",
+  "stage2_frozen_config_file_sha256": "2ace8993dbe545080364223423768451b2d367b0221c6c93b2eb37f94ec1b2a9",
+  "stage2_repository_head_at_freeze": "f9236cb35541f07c96a8e03b6a36eacc1f21a92c",
+  "stage2_evaluation_source_bundle_hash": "3ff7dc3cf0ff15e242231535b7ffc021e5b0858ef04b1595f5688454f43b3ae6",
+  "stage2_final_source_bundle_hash": "eb156377ccf5963b50ca1da161189930b883b46d388fdc5cb154ab29bb3d49dc",
+  "selected_eta": 0.1,
+  "selected_initialization": "uniform",
+  "primary_loss": "rank",
+  "primary_variant_id": "race_online_rankloss_eta0.1_init_uniform_scope_per_layer",
+  "weight_scope_primary": "per_layer",
+  "H_max": 32,
+  "adviser_pools": {
+    "primary": {
+      "pool": "primary",
+      "order": [
+        "MARKOV_H1",
+        "MARKOV_H2",
+        "MARKOV_H4",
+        "MARKOV_H8",
+        "MARKOV_H16",
+        "MARKOV_H32",
+        "GATE_EWMA",
+        "LFU_DECAY",
+        "PERSISTENCE"
+      ],
+      "markov_horizons": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32
+      ],
+      "gate_ewma_alpha": 0.95,
+      "lfu_decay_alpha": 0.95,
+      "stage1_inherited_horizons": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ]
+    },
+    "extended": {
+      "pool": "extended",
+      "order": [
+        "MARKOV_H1",
+        "MARKOV_H2",
+        "MARKOV_H4",
+        "MARKOV_H8",
+        "MARKOV_H16",
+        "MARKOV_H32",
+        "GATE_EWMA",
+        "LFU_DECAY",
+        "PERSISTENCE",
+        "STAGE1_HYBRID"
+      ],
+      "markov_horizons": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32
+      ],
+      "gate_ewma_alpha": 0.95,
+      "lfu_decay_alpha": 0.95,
+      "stage1_inherited_horizons": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "stage1_hybrid": {
+        "horizon": 2,
+        "beta": 0.5,
+        "history_alpha": 0.95,
+        "identifier": "markov_plus_ewma_h2_beta0.5_alpha0.95"
+      }
+    }
+  },
+  "transition_model_hash": "d62a14dcb5fbc5b819ac955636a4260c5ea2c676d2d285ce20e2e9682e922752",
+  "evaluation_manifest_sha256": "bcb65350561d28213b76c6671ebb3058f80b69f709b091a7d745b7f0b1fd7cb8",
+  "critical_files": {
+    "configs/stage2_preregistered.json": "0cb2ce8ab260094934310edc188dc925811ccefb3ca11912a3aae8f361f09aef",
+    "configs/stage2_preregistered.sha256": "ba2acfb1f8dcbfbcde01fdf8f36c04069a4761fb7c2217073ed01a1c0c3ab490",
+    "results/calibration/transition_models.npz": "d62a14dcb5fbc5b819ac955636a4260c5ea2c676d2d285ce20e2e9682e922752",
+    "results/calibration/transition_models.metadata.json": "3e02e525d33b265fd4ce34c828a1b63914c7fd0f584eedd0fac51e10b64d22cf",
+    "results/calibration/selection.json": "d6072514572a546a73eb70b3c2b0bc4b734190f45fdec671de5fcc9a88aec2ae",
+    "results/calibration/selection.sha256": "548156226c49a6eb839e3640338e815fb282507d9a233775260f0ea783e998df",
+    "results/calibration/stage2_frozen_config.json": "2ace8993dbe545080364223423768451b2d367b0221c6c93b2eb37f94ec1b2a9",
+    "results/calibration/stage2_frozen_config.sha256": "599f441b45756411f3e91a34d0d54cff2517deede882bba25f6a761746c9b1c2",
+    "results/pilot/pilot_audit.json": "cfed72c852862e03e6a8a2d5b0602d7690a4432fdf159b533b40a9c712e37855",
+    "results/full/results.jsonl": "af07b78d531b18fe7162bbb3f598455ec7f428a8394cffa0c3a1a426f32a2845",
+    "results/full/per_sequence_results.jsonl": "179e8ecae664cb9fba9e5ff7ead455a4057739fa9eb1aa5f9bcaf003bd94ec9c",
+    "results/full/diagnostics.jsonl": "83eb7f427d8dd0170b87fe6f90b4db34a2b2616999e0f72f198e7e4da703f4cb",
+    "results/full/weight_trajectories.jsonl": "88a5cd4403e4774bc3bca414af2bcafe78dd4c91d2046cadf3094061e8e5ecca",
+    "results/full/sanity_checks.json": "ea4bc29660aa137e9c68e90af0677b05d3e9e36d4cbe5b8a1f8400a2c2446ad0",
+    "results/full/evaluation_manifest.json": "bcb65350561d28213b76c6671ebb3058f80b69f709b091a7d745b7f0b1fd7cb8",
+    "reports/stage2_dependency_manifest.json": "d9db6380d8a4e17157be968cc65e3db2684636427c1ed400589520ede4d3b345",
+    "reports/analysis.json": "fc3e3cf7341e9b57582e101ab28cfd2814d78cb4989a10c9ed09ff5d89fc48e5",
+    "reports/analysis_audit.json": "7f8d8ee674b7e623609fdf744d0374d4ada8ab94f4264030162aa53691e2c977",
+    "reports/race_stage2_report.md": "8ac375cddc1c68da24a7ea674c2c98a0bab816e5cb1e1087518aedb70ce42568",
+    "reports/race_stage2_report.sha256": "3c09aa370b98db6a30334b3b623b0a2b40d7d5d0953ccffe32085d415c232645",
+    "reports/race_stage2_theory_notes.md": "dd7ec12b768b9ce937d53df3b65fc53ff020c21e99a020bdf030d3ec12efa822"
+  },
+  "missing_critical_files": [],
+  "source_tree": {
+    "files": 18,
+    "sha256": "00f1dd1ce536516720c84f2ac9b0354df9dc562c755ff737cde41907e6d5cfe4"
+  },
+  "script_tree": {
+    "files": 10,
+    "sha256": "90fd3ca2a96913e704a857c16ec8a69cac858ff237e1ab77c89e81ac59bb2c39"
+  },
+  "test_tree": {
+    "files": 3,
+    "sha256": "e9fb86585f64f9832cceda8bc6a6e97ab6fbc760bed5ba5f419553a2ce19eff9"
+  },
+  "table_tree": {
+    "files": 12,
+    "sha256": "28833fc85a5ab8eb819f651fad451b5602907351f154337ee2fe2e45c3b76d9f"
+  },
+  "figure_tree": {
+    "files": 8,
+    "sha256": "9216c8a0758d0fcb62af4fdcc61b0eb96fc3cb2d621c2feb245938f9bb7e6291"
+  },
+  "checkpoint_tree": {
+    "files": 401,
+    "sha256": "ef1f1c82a3e14af42ee4b1bb37229b6b8119914949759f5abfef66ea9be67f2b"
+  },
+  "simulation_scope": "Simulated expert residency, miss and transfer counts; no end-to-end latency or hardware-speedup claim.",
+  "bootstrap_scope": "Intervals reweight saved per-sequence contributions conditional on each frozen stateful workload path; stateful cache and online-learning trajectories are not regenerated under reordered bootstrap workloads."
+}

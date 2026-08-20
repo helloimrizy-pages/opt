@@ -1,6 +1,6 @@
 # Expert-domain importance experiment: persistent handoff
 
-Last updated: 2026-08-19
+Last updated: 2026-08-20
 
 This file is the durable cross-session research handoff. It records the current
 experimental state and the conclusions supported by the available validated run
@@ -54,6 +54,21 @@ per layer/expert/bit-width, then a min-max allocation over the measured values,
 with a preregistered additivity gate that must pass on calibration probes
 before the new seed-46 development split may be evaluated. See the Stage 3
 section below.
+
+The separately authorized RACE residency branch has also advanced beyond its
+audited Stage 0 oracle-headroom result. RACE Stage 1 is complete and audited with
+final decision **`RACE_STAGE1_STRONG_GO`**. A single calibration-selected causal
+Hybrid predictor closed only 9.04%--11.05% of the Stage 0 oracle gap at capacities
+12--32 and left 16.17%--41.63% of Stage 0 baseline cost as residual oracle
+headroom.
+
+RACE Stage 2 then implemented and evaluated the first actual RACE algorithm and is
+complete and audited with final decision **`RACE_STAGE2_NO_GO`**. Adaptive causal
+multi-horizon future-reuse ranking under delayed feedback did **not** beat the frozen
+Stage 1 winner: it cost 1.06%--1.98% more expert transfers at capacities 12--32 and
+closed only 3.17%--6.38% of the original Stage 0 oracle gap. The measured cause is
+representational rather than adaptive, and it is documented in the Stage 2 section
+below. No latency or hardware claim is made anywhere in this branch.
 
 ## Code baseline
 
@@ -1395,6 +1410,244 @@ Next action: proceed to design RACE as a separately authorized stage. Do not cla
 that RACE works until an online method is implemented and evaluated, and do not
 claim inference speedup without end-to-end runtime measurement.
 
+## RACE Stage 1 simple-prediction headroom: completed / audited STRONG GO
+
+Final decision: **`RACE_STAGE1_STRONG_GO`**.
+
+Artifact/code area: `stage3_residency/stage1_prediction/`. Final report:
+`stage3_residency/stage1_prediction/reports/race_stage1_prediction_headroom_report.md`.
+Exact raw costs, per-sequence contributions, quality metrics, tables, figures,
+sanity checks, and archive hashes are stored below that directory. Stage 1 did not
+implement RACE, prefetch experts, train a neural predictor, modify the router, or
+change model weights.
+
+The experiment reused the exact Stage 0 full trace, disjoint calibration/evaluation
+split, ten workload paths, per-layer atomic top-8 admission semantics, capacities
+8/12/16/24/32, primary unit-miss cost, strongest-simple references, and validated
+offline oracle. Capacity 8 was retained as a zero-gap sanity condition and excluded
+from the decision.
+
+Frozen identifiers:
+
+- Stage 1 preregistration:
+  `cea89fba235aef8338774d85da0687ac06b61d269f16fd6238c89a3b60ef9524`;
+- Stage 1 calibration/full configuration file:
+  `c595b061a415a9874d83f167e1e0fb7873ec8850ace8acc1a5db17f814351b83`;
+- calibration-fitted transition model:
+  `b8804d3ce5f87a6a129bdc9aa895a941c2343e5246659d506fcb01805d6b68a7`;
+- frozen evaluation source bundle:
+  `669cedbf5e5f3a461531610bfb595f9283d622e6ed55a429f0e3092ec6dc75c5`;
+- full result rows:
+  `77ee9a4e1b34d3c6deb7bec30d2292d53ca19cfb30985600d5b2e6aead2beb00`;
+- full per-sequence rows:
+  `5b4fdc8089be00d8c54c2eb70fc4604be281659ad02316afc349f47c6a5360c2`.
+
+Reconstructed command from the repository root:
+
+```bash
+RACE_STAGE1_WORKERS=4 stage3_residency/stage1_prediction/scripts/run_full.sh
+```
+
+The actual run used CPython 3.14.3 on Apple arm64 for trace replay only; it did not
+load the model or regenerate the A40 trace. Calibration used the frozen 80-sequence
+path and selected Gate-EWMA alpha 0.95, direct Markov horizon 2, Hybrid beta 0.50,
+and finally `markov_plus_ewma_h2_beta0.5_alpha0.95` globally by summed calibration
+misses at capacities 12/16/24/32. Evaluation then ran that fixed choice and all
+preregistered sensitivities once on the disjoint frozen evaluation paths.
+
+Validation outcome:
+
+- all 18 Stage 0 and 19 Stage 1 tests pass;
+- finite-lookahead actions match exact DP with zero difference across 37,052
+  enumerated cases, 300 fixed-seed random cases, and 873,444 action checks;
+- the full run contains 1,050 conditions, 144,900 per-sequence rows, and 14
+  predictor-quality rows;
+- atomic accounting, mandatory admission, capacity bounds, causal/diagnostic
+  labels, calibration isolation, oracle dominance, capacity-8 equivalence,
+  increasing-lookahead nondegradation, and perfect-score/full-oracle equality pass;
+- an independent full `stationary_general` replay of the selected policy exactly
+  reproduced all five stored miss totals.
+
+Decision-driving frozen-suite results are:
+
+| Capacity | Stage0 best | Selected causal | Oracle | Gap closed | Residual headroom |
+|---:|---:|---:|---:|---:|---:|
+| 8 | 12,849,725 | 12,849,725 | 12,849,725 | N/A | 0.00% |
+| 12 | 9,907,430 | 9,748,279 | 8,146,471 | 9.04% | 16.17% |
+| 16 | 8,052,402 | 7,822,852 | 5,904,787 | 10.69% | 23.82% |
+| 24 | 5,303,005 | 5,081,058 | 3,294,951 | 11.05% | 33.68% |
+| 32 | 3,299,634 | 3,159,525 | 1,785,846 | 9.26% | 41.63% |
+
+Both frozen STRONG-GO conditions pass at 4/4 non-degenerate capacities. The
+limited-lookahead curve shows that the useful horizon grows with spare residency:
+H=4 recovers 97.34% of full-oracle advantage at capacity 12 but only 32.22% at
+capacity 32; H=16 recovers 95.36% at capacity 32. The perfect next-use score plus
+the same trivial retention rule exactly matches the full oracle, indicating that
+the residual in this equal-cost model is principally prediction/horizon error, not
+a demonstrated limitation of the score-to-eviction mechanism.
+
+The first report-generation attempt encountered a reporting-key mismatch after the
+full results were already hashed. No simulation was rerun or changed. The exact
+one-line reporting repair, unchanged result hashes, reconstructed pre-fix source
+hash, and subsequent archival-only attestation support are recorded in
+`stage3_residency/stage1_prediction/reports/post_evaluation_reporting_fixes.json`.
+
+Bootstrap intervals reweight saved per-sequence contributions conditional on the
+frozen workload ordering; stateful cache trajectories are not regenerated under
+reordered bootstrap workloads. Results concern simulated expert residency/miss
+counts; no end-to-end latency improvement or hardware speedup is claimed.
+
+Next action: proceed to RACE algorithm design as a new, explicitly authorized
+stage. Stage 1 itself contains no RACE implementation.
+
+## RACE Stage 2 adaptive multi-horizon future-reuse ranking: completed / audited NO-GO
+
+Final decision: **`RACE_STAGE2_NO_GO`**.
+
+Artifact/code area: `stage3_residency/stage2_race/`. Final report:
+`stage3_residency/stage2_race/reports/race_stage2_report.md`. Theory note:
+`stage3_residency/stage2_race/reports/race_stage2_theory_notes.md`. Stage 2 did not
+implement RL, train a neural network, use Transformer/RNN/LSTM/MLP predictors,
+prefetch speculatively, touch the KV cache, quantize anything, or change OLMoE
+routing. It did not alter the Stage 0 oracle or any Stage 1 result; all Stage 0 and
+Stage 1 archive hashes are byte-identical after the run.
+
+Stage 2 reused the exact Stage 0 trace, disjoint calibration/evaluation split, ten
+frozen workload paths, per-layer atomic top-8 mandatory-admission semantics,
+capacities 8/12/16/24/32, unit-miss cost at lambda zero, Stage 0 strongest-simple
+references, the validated offline oracle, and — critically — the **unchanged** Stage 1
+eviction rule. Only the retention score changed: from one fixed predictor score to
+`S_e = sum_j w_j z_{j,e}`, a delayed-Hedge-weighted combination of nine
+percentile-normalized causal advisers.
+
+Frozen identifiers:
+
+- Stage 2 preregistration:
+  `0cb2ce8ab260094934310edc188dc925811ccefb3ca11912a3aae8f361f09aef`;
+- Stage 2 frozen configuration file:
+  `2ace8993dbe545080364223423768451b2d367b0221c6c93b2eb37f94ec1b2a9`;
+- calibration-fitted Stage 2 transition model:
+  `d62a14dcb5fbc5b819ac955636a4260c5ea2c676d2d285ce20e2e9682e922752`;
+- evaluation-time source bundle:
+  `3ff7dc3cf0ff15e242231535b7ffc021e5b0858ef04b1595f5688454f43b3ae6`;
+- full result rows:
+  `af07b78d531b18fe7162bbb3f598455ec7f428a8394cffa0c3a1a426f32a2845`;
+- full per-sequence rows:
+  `179e8ecae664cb9fba9e5ff7ead455a4057739fa9eb1aa5f9bcaf003bd94ec9c`;
+- final archive manifest:
+  `a0ec2f31263daa6fb304cdfc0f03247db953ec7f676fe101d680e1785aff4cd3`.
+
+Reconstructed command from the repository root:
+
+```bash
+RACE_STAGE2_WORKERS=12 stage3_residency/stage2_race/scripts/run_full.sh
+```
+
+The run used CPython 3.14.3 with numpy 2.5.2 on Apple arm64 for trace replay only; it
+never loaded the model or regenerated the trace. Calibration used the frozen
+80-sequence path and selected learning rate 0.1, uniform initialization and the
+unweighted pairwise rank loss, making `RACE_ONLINE` the frozen primary variant.
+Evaluation then ran that fixed choice, the three other primary variants, and six
+labeled ablations once each on the ten disjoint frozen evaluation paths.
+
+Validation outcome:
+
+- all 18 Stage 0, 19 Stage 1 and 61 Stage 2 tests pass;
+- a Stage 2 variant with all adviser weight on one pool member reproduces the
+  corresponding frozen Stage 1 single-predictor cost exactly, and the same mechanism
+  driven by exact next-use scores reproduces the Stage 0 oracle exactly, so the
+  eviction mechanism was provably not changed;
+- the frozen Stage 1 `perfect_score_simple_policy` rows still equal the Stage 0 oracle
+  rows at all 50 archived conditions;
+- the minimum update-minus-decision offset is exactly 32 same-layer events at every
+  capacity, mean and maximum delay are both exactly 32, 0.18% of examples remain
+  unresolved at stream end and are discarded rather than labelled, and the causal
+  rolling-window label matched an independent offline future-use computation on every
+  cross-checked pilot example;
+- enabling the offline diagnostic observer leaves every simulated cost bit-identical,
+  and mutating future trace content cannot change any earlier causal action;
+- the full run contains 500 conditions and 69,000 per-sequence rows; all nine
+  evaluation sanity checks pass.
+
+Decision-driving frozen-suite results are:
+
+| Capacity | Stage1 winner | RACE Uniform | RACE Static | RACE Online | RACE Cost | Oracle |
+|---:|---:|---:|---:|---:|---:|---:|
+| 8 | 12,849,725 | 12,849,725 | 12,849,725 | 12,849,725 | 12,849,725 | 12,849,725 |
+| 12 | 9,748,279 | 9,999,390 | 9,919,727 | 9,851,604 | 9,833,069 | 8,146,471 |
+| 16 | 7,822,852 | 8,120,618 | 8,005,697 | 7,945,937 | 7,939,359 | 5,904,787 |
+| 24 | 5,081,058 | 5,333,296 | 5,230,074 | 5,181,473 | 5,245,722 | 3,294,951 |
+| 32 | 3,159,525 | 3,335,492 | 3,233,051 | 3,203,094 | 3,323,031 | 1,785,846 |
+
+For the frozen primary variant `RACE_ONLINE`:
+
+| Capacity | Improvement vs Stage1 | Original oracle gap closed | Stage1 residual recovered |
+|---:|---:|---:|---:|
+| 12 | -1.06% [-1.15, -0.96] | 3.17% [2.90, 3.44] | -6.45% [-7.02, -5.83] |
+| 16 | -1.57% [-1.71, -1.43] | 4.96% [4.50, 5.38] | -6.42% [-7.04, -5.84] |
+| 24 | -1.98% [-2.23, -1.74] | 6.05% [5.30, 6.76] | -5.62% [-6.40, -4.96] |
+| 32 | -1.38% [-1.75, -1.04] | 6.38% [5.42, 7.21] | -3.17% [-4.05, -2.38] |
+
+The preregistered NO-GO rule fired because improvement over the frozen Stage 1 winner
+stayed below 5% at all four non-degenerate capacities. Four of fifty
+workload/capacity cells exceeded the 3% regression flag, with a maximum ratio of
+1.0454.
+
+The ablation decomposition is monotone and explains the result completely. Averaged
+over capacities 12--32: uniform rank aggregation costs 4.23% more than the Stage 1
+winner; calibration-learned static weights recover 1.80%; online adaptation recovers a
+further 0.82%; and a labeled ablation that adds the frozen Stage 1 winner itself as a
+tenth adviser recovers a further 1.77%, finally reaching 0.30% better than Stage 1.
+Cost-sensitive learning was worse than the plain rank loss at the two largest
+capacities (-1.24% and -3.74%), so the simpler loss is retained. Per-layer weight
+scope beat a single global vector by 0.37%--3.12%.
+
+The measured cause is representational, not adaptive:
+
+- the online learner is already near-optimal for its own objective — empirical
+  per-example adviser regret against the best fixed adviser in hindsight lies between
+  -0.00004 and +0.00049 over 8,995,644 delayed updates, and calibration selected the
+  smallest learning rate in the frozen grid;
+- the Stage 1 winner is a *raw-scale* blend of two pool members, and the mandated
+  percentile normalization applied to each adviser separately destroys the magnitude
+  information that blend uses; no weighting over the normalized pool can rebuild it;
+- the useful causal horizon is short, not long: the weight-averaged Markov horizon is
+  2.97--3.91 same-layer events and MARKOV_H16 plus MARKOV_H32 together hold only
+  0.45%--1.16% of the deployed weight, so raising `H_max` is not indicated;
+- the effective horizon nevertheless grows with spare residency (2.97 at S=8 to 3.91
+  at S=24), and effective adviser count grows from 1.78 to 3.19, so the Stage 1
+  finding that longer horizons matter more at larger budgets is reproduced;
+- ranking quality tracks realized cost strongly across the 40 evaluated
+  configuration points (Spearman 0.804, descriptive p=4e-10 for pairwise ordering
+  accuracy), but absolute ranking quality stays at 60%--67% of comparable pairs
+  ordered correctly, against 100% for the perfect-score policy.
+
+`stage3_residency/stage2_race/reports/race_stage2_theory_notes.md` proves a
+delayed-Hedge regret bound for the exact implemented update
+(`Regret <= ln K/eta + eta T/8 + T(e^{eta(H-1)} - 1)`, giving `O(sqrt(H T ln K))` at the
+optimal rate) and states explicitly that no regret theorem is claimed for the combined
+ranking loss or for expert-transfer cost, with the three gaps that would have to be
+closed first.
+
+Two reporting-only changes were applied after the frozen evaluation completed and was
+hashed: the NO-GO reason sentence now names only the clauses that actually fired, and
+the report gained its diagnostic-analysis subsection. No simulation was rerun and every
+evaluation artifact hash is unchanged; see
+`stage3_residency/stage2_race/reports/post_evaluation_reporting_fixes.json`.
+
+Bootstrap intervals reweight saved per-sequence contributions conditional on the frozen
+workload ordering; cache and online-learning trajectories are not regenerated under
+reordered bootstrap workloads. Results concern simulated expert residency/miss counts;
+no end-to-end latency improvement or hardware speedup is claimed.
+
+Next action: do **not** add a neural predictor in response to this outcome. The
+indicated direction is a richer causal feature or scoring representation that preserves
+magnitude, evaluated against the same frozen Stage 0/Stage 1 references. Two concrete,
+still-non-neural candidates follow from the measurements: combine advisers on a
+calibrated common numeric scale instead of within-event percentiles, and target the
+learning loss at the retention boundary rather than at all comparable pairs. Neither
+should be adopted without its own preregistration and explicit authorization.
+
 ## Fresh-session checklist
 
 A new Codex session should:
@@ -1457,4 +1710,16 @@ A new Codex session should:
     `RACE_STAGE0_STRONG_GO`. The missing raw pilot trace is an archival limitation,
     not a failure of the validated full run. Do not implement RACE as part of
     Stage 0; any RACE design is a separately authorized next stage.
-18. Update this handoff after every new validated run.
+18. Treat `stage3_residency/stage1_prediction/` as the completed and audited RACE
+    Stage 1 archive. Its decision is `RACE_STAGE1_STRONG_GO`; preserve the frozen
+    predictor selection, full results, report, reporting-fix attestation, and final
+    archive hashes. Do not reinterpret this as evidence of latency speedup or as a
+    completed RACE algorithm.
+19. Treat `stage3_residency/stage2_race/` as the completed and audited RACE
+    Stage 2 archive. Its decision is `RACE_STAGE2_NO_GO`; preserve the frozen
+    preregistration, calibration selection, pilot audit, single frozen evaluation,
+    report, theory note, reporting-fix attestation, and final archive hashes. Do not
+    reinterpret the negative result as evidence that residency headroom is absent —
+    Stage 0's oracle gap is unchanged — and do not respond to it by adding a neural
+    predictor, prefetching, or any other capability the RACE stages exclude.
+20. Update this handoff after every new validated run.

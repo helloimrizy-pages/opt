@@ -1,0 +1,38 @@
+{
+  "schema_version": "race_stage2_post_evaluation_reporting_fixes_v1",
+  "created_at_utc": "2026-08-20T07:31:19.975240+00:00",
+  "summary": "Two reporting-only changes were applied after the single frozen evaluation had completed and its artifacts had been hashed. No simulation was rerun, no policy, loss, weight, capacity, workload, threshold or verdict rule was changed, and every evaluation artifact hash is unchanged.",
+  "changes": [
+    {
+      "file": "src/race_stage2/analysis.py",
+      "change": "_stage2_decision now names only the NO-GO clauses that actually fired instead of restating all three. The pre-fix sentence reported the non-firing clause as 'beat both RACE_STATIC and RACE_UNIFORM at only 4 of 4 non-degenerate capacities', which reads as a failure although it is a pass. The boolean rule itself is byte-for-byte unchanged and the verdict is unchanged.",
+      "affects": "reason string and a new no_go_triggers field in analysis.json; no numeric result"
+    },
+    {
+      "file": "src/race_stage2/report.py",
+      "change": "Cleaned one report f-string that rendered the frozen eta grid through a redundant truthiness conjunction, and added section L's diagnostic analysis, which answers the preregistered post-outcome questions from measurements already present in analysis.json.",
+      "affects": "report prose only; no numeric result"
+    }
+  ],
+  "verdict_before_fix": "RACE_STAGE2_NO_GO",
+  "verdict_after_fix": "RACE_STAGE2_NO_GO",
+  "evaluation_artifact_hashes_unchanged": true,
+  "evaluation_artifact_hashes": {
+    "results.jsonl": "af07b78d531b18fe7162bbb3f598455ec7f428a8394cffa0c3a1a426f32a2845",
+    "per_sequence_results.jsonl": "179e8ecae664cb9fba9e5ff7ead455a4057739fa9eb1aa5f9bcaf003bd94ec9c",
+    "diagnostics.jsonl": "83eb7f427d8dd0170b87fe6f90b4db34a2b2616999e0f72f198e7e4da703f4cb",
+    "weight_trajectories.jsonl": "88a5cd4403e4774bc3bca414af2bcafe78dd4c91d2046cadf3094061e8e5ecca",
+    "sanity_checks.json": "ea4bc29660aa137e9c68e90af0677b05d3e9e36d4cbe5b8a1f8400a2c2446ad0",
+    "evaluation_manifest.json": "bcb65350561d28213b76c6671ebb3058f80b69f709b091a7d745b7f0b1fd7cb8"
+  },
+  "frozen_config_sha256": "2ace8993dbe545080364223423768451b2d367b0221c6c93b2eb37f94ec1b2a9",
+  "selection_sha256": "d6072514572a546a73eb70b3c2b0bc4b734190f45fdec671de5fcc9a88aec2ae",
+  "pilot_audit_sha256": "cfed72c852862e03e6a8a2d5b0602d7690a4432fdf159b533b40a9c712e37855",
+  "stage2_source_bundle_hash_at_evaluation": "3ff7dc3cf0ff15e242231535b7ffc021e5b0858ef04b1595f5688454f43b3ae6",
+  "stage2_source_bundle_hash_after_reporting_fix": "eb156377ccf5963b50ca1da161189930b883b46d388fdc5cb154ab29bb3d49dc",
+  "pre_fix_report_sha256": "dccafe26cf34ac2fd977abcc3dd32d7fbbc4d7910efabbe012a9f5a30541a207",
+  "post_fix_report_sha256": "8ac375cddc1c68da24a7ea674c2c98a0bab816e5cb1e1087518aedb70ce42568",
+  "pre_fix_analysis_sha256": "6c348b4e53af606e7d18a17883675cadf4bf7449727a39d821ac6c03802afa72",
+  "post_fix_analysis_sha256": "fc3e3cf7341e9b57582e101ab28cfd2814d78cb4989a10c9ed09ff5d89fc48e5",
+  "note": "The frozen configuration records the evaluation-time source bundle hash. Re-running stage3_residency/stage2_race/scripts/run_evaluation.py against that frozen config will now refuse by design, which is the intended guard: the frozen evaluation may not be repeated under changed source."
+}

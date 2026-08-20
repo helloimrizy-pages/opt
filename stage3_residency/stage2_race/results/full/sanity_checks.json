@@ -1,0 +1,86 @@
+{
+  "schema_version": "race_stage2_sanity_checks_v1",
+  "passed": true,
+  "checks": [
+    {
+      "name": "condition_count",
+      "passed": true,
+      "details": {
+        "actual": 500,
+        "expected": 500
+      }
+    },
+    {
+      "name": "unique_conditions",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "event_accounting",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "capacity_invariants",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "per_sequence_aggregation",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "stage0_oracle_dominance",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "capacity8_degenerate_sanity",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "event_counts_consistent_per_workload",
+      "passed": true,
+      "details": {
+        "stationary_general": [
+          163840
+        ],
+        "stationary_coding": [
+          163840
+        ],
+        "stationary_math": [
+          162432
+        ],
+        "stationary_reasoning": [
+          163840
+        ],
+        "general_to_coding": [
+          327680
+        ],
+        "coding_to_general": [
+          327680
+        ],
+        "general_to_math": [
+          326272
+        ],
+        "math_to_reasoning": [
+          326272
+        ],
+        "repeated_domain_cycle": [
+          204800
+        ],
+        "mixed_interleaved": [
+          653952
+        ]
+      }
+    },
+    {
+      "name": "frozen_workload_hashes_unchanged",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "bootstrap_scope": "Intervals reweight saved per-sequence contributions conditional on each frozen stateful workload path; stateful cache and online-learning trajectories are not regenerated under reordered bootstrap workloads."
+}

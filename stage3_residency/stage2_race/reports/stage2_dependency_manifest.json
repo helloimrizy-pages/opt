@@ -1,0 +1,166 @@
+{
+  "schema_version": "race_stage2_dependency_manifest_v1",
+  "created_at_utc": "2026-08-20T06:20:38.262353+00:00",
+  "stage0_trace_logical_hash": "ccec01b2ae5059655e23d7f791427fac75b5fac21e967b9e157bb6087c639dea",
+  "stage0_routing_trace_npz_sha256": "c8ca8bff37b0bd54a94f03eed4d5f3690ed6c4c058fcb1c59e939fd081e66823",
+  "stage0_archive_manifest_sha256": "9af9a053502709bff9a33017c4f5b80bc0faa2306bc41d980e7bd2d7274346d2",
+  "stage1_archive_manifest_sha256": "4539cab504052010c32f0b87571adc90884283ac060784ddef822c01768e5d1b",
+  "stage1_frozen_config_file_sha256": "c595b061a415a9874d83f167e1e0fb7873ec8850ace8acc1a5db17f814351b83",
+  "stage1_winner_method_id": "markov_plus_ewma_h2_beta0.5_alpha0.95",
+  "stage1_winner_spec": {
+    "method": "markov_plus_ewma",
+    "horizon": 2,
+    "beta": 0.5,
+    "history_alpha": 0.95
+  },
+  "stage2_preregistration_sha256": "0cb2ce8ab260094934310edc188dc925811ccefb3ca11912a3aae8f361f09aef",
+  "stage2_source_commit": "f9236cb35541f07c96a8e03b6a36eacc1f21a92c",
+  "stage2_source_bundle_hash": "3ff7dc3cf0ff15e242231535b7ffc021e5b0858ef04b1595f5688454f43b3ae6",
+  "adviser_pools": {
+    "primary": {
+      "pool": "primary",
+      "order": [
+        "MARKOV_H1",
+        "MARKOV_H2",
+        "MARKOV_H4",
+        "MARKOV_H8",
+        "MARKOV_H16",
+        "MARKOV_H32",
+        "GATE_EWMA",
+        "LFU_DECAY",
+        "PERSISTENCE"
+      ],
+      "markov_horizons": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32
+      ],
+      "gate_ewma_alpha": 0.95,
+      "lfu_decay_alpha": 0.95,
+      "stage1_inherited_horizons": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ]
+    },
+    "extended": {
+      "pool": "extended",
+      "order": [
+        "MARKOV_H1",
+        "MARKOV_H2",
+        "MARKOV_H4",
+        "MARKOV_H8",
+        "MARKOV_H16",
+        "MARKOV_H32",
+        "GATE_EWMA",
+        "LFU_DECAY",
+        "PERSISTENCE",
+        "STAGE1_HYBRID"
+      ],
+      "markov_horizons": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32
+      ],
+      "gate_ewma_alpha": 0.95,
+      "lfu_decay_alpha": 0.95,
+      "stage1_inherited_horizons": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "stage1_hybrid": {
+        "horizon": 2,
+        "beta": 0.5,
+        "history_alpha": 0.95,
+        "identifier": "markov_plus_ewma_h2_beta0.5_alpha0.95"
+      }
+    }
+  },
+  "verified_files": [
+    {
+      "label": "stage0 archive manifest",
+      "path": "stage3_residency/reports/final_archive_manifest.json",
+      "sha256": "9af9a053502709bff9a33017c4f5b80bc0faa2306bc41d980e7bd2d7274346d2"
+    },
+    {
+      "label": "stage0 routing trace",
+      "path": "stage3_residency/traces/full/routing_trace.npz",
+      "sha256": "c8ca8bff37b0bd54a94f03eed4d5f3690ed6c4c058fcb1c59e939fd081e66823"
+    },
+    {
+      "label": "stage0 frozen evaluation config",
+      "path": "stage3_residency/results/full/frozen/frozen_evaluation_config.json",
+      "sha256": "fde50196598c99c5df4185d684d7260fe1ffb6630c149577b470d6f4ed811aa9"
+    },
+    {
+      "label": "stage0 results",
+      "path": "stage3_residency/results/full/evaluation/results.jsonl",
+      "sha256": "121a8a820bb3b19b994829138a520e7774aeb98fba74537cff105236fa841a02"
+    },
+    {
+      "label": "stage0 per-sequence results",
+      "path": "stage3_residency/results/full/evaluation/per_sequence_results.jsonl",
+      "sha256": "2abe74512adc1379c92f2ef877da922f2ee4ff229af028a6505362e3ad464265"
+    },
+    {
+      "label": "stage1 archive manifest",
+      "path": "stage3_residency/stage1_prediction/reports/final_archive_manifest.json",
+      "sha256": "4539cab504052010c32f0b87571adc90884283ac060784ddef822c01768e5d1b"
+    },
+    {
+      "label": "stage1 preregistration",
+      "path": "stage3_residency/stage1_prediction/configs/stage1_preregistered.json",
+      "sha256": "cea89fba235aef8338774d85da0687ac06b61d269f16fd6238c89a3b60ef9524"
+    },
+    {
+      "label": "stage1 frozen config",
+      "path": "stage3_residency/stage1_prediction/results/calibration/stage1_frozen_config.json",
+      "sha256": "c595b061a415a9874d83f167e1e0fb7873ec8850ace8acc1a5db17f814351b83"
+    },
+    {
+      "label": "stage1 results",
+      "path": "stage3_residency/stage1_prediction/results/full/results.jsonl",
+      "sha256": "77ee9a4e1b34d3c6deb7bec30d2292d53ca19cfb30985600d5b2e6aead2beb00"
+    },
+    {
+      "label": "stage1 per-sequence results",
+      "path": "stage3_residency/stage1_prediction/results/full/per_sequence_results.jsonl",
+      "sha256": "5b4fdc8089be00d8c54c2eb70fc4604be281659ad02316afc349f47c6a5360c2"
+    },
+    {
+      "label": "stage1 transition models",
+      "path": "stage3_residency/stage1_prediction/results/calibration/transition_models.npz",
+      "sha256": "b8804d3ce5f87a6a129bdc9aa895a941c2343e5246659d506fcb01805d6b68a7"
+    }
+  ],
+  "frozen_stage1_perfect_score_equals_stage0_oracle": {
+    "passed": true,
+    "conditions_checked": 50,
+    "mismatches": []
+  },
+  "calibration_workload_hash": "c74926f84f4e95e73c5934ca3b306f011b33f65b6f79613f6c7bcbdbb07a727b",
+  "evaluation_workload_hashes": {
+    "stationary_general": "9263b7b3367780da1f1c56e024de8fa41c29d475aefa2e14b305add555299fc8",
+    "stationary_coding": "e720f3a5d2ef340ba246a36ea15e81fd383fedd3bf6ebcab44571605bb4888e0",
+    "stationary_math": "bc3bf855f95a887e274c336238648952c1015530cbc92530ba57012e73f2cda5",
+    "stationary_reasoning": "8f9376e42eeed14399ae8152f459c8f2f107dd5ffb00d4327d71a9363f1081ab",
+    "general_to_coding": "47974da06c97f0f52edaf236fafada79a30c99e6728558b3c744946f2ae0d85b",
+    "coding_to_general": "d833f85aa91e4063ec4a460409be593d44a783ff023475dda8234961fba3801a",
+    "general_to_math": "4d1aa9064e265cc271702113ab113627435a1e7ea48610744be46b3a96024498",
+    "math_to_reasoning": "7d9fc6d7e2fc07d16cb678a1fd35c19ee8fdccce45da7465de7447c55122c8db",
+    "repeated_domain_cycle": "b2b85bb05a073b442b53d96807561c3ebd6dda8fb6dbc7028891c7e753ced2f6",
+    "mixed_interleaved": "79035f95954db5eeda102eba44cf66a61ebecfb5cf30d7482c67cf43d74ca144"
+  },
+  "calibration_evaluation_disjoint": true
+}

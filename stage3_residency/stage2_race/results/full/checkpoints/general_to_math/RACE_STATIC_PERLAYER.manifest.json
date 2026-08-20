@@ -1,0 +1,18 @@
+{
+  "schema_version": "race_stage2_checkpoint_v1",
+  "completed_at_utc": "2026-08-20T06:58:54.270721+00:00",
+  "workload": "general_to_math",
+  "workload_hash": "4d1aa9064e265cc271702113ab113627435a1e7ea48610744be46b3a96024498",
+  "label": "RACE_STATIC_PERLAYER",
+  "variant_id": "race_static_perlayer_static_per_layer",
+  "frozen_config_sha256": "2ace8993dbe545080364223423768451b2d367b0221c6c93b2eb37f94ec1b2a9",
+  "conditions": 5,
+  "per_sequence_rows": 800,
+  "trajectory_rows": 0,
+  "results_file": "RACE_STATIC_PERLAYER.results.jsonl",
+  "per_sequence_file": "RACE_STATIC_PERLAYER.per_sequence.jsonl",
+  "diagnostics_file": "RACE_STATIC_PERLAYER.diagnostics.jsonl",
+  "results_sha256": "d361351f4e131b804e4d6f7cc98936423f05af1a369e99c33d13ce125cc02acb",
+  "per_sequence_sha256": "d2fb0b50450f617035be3ab40ca8d8fecd8e249d7ea6bbecade7659c37e05a39",
+  "diagnostics_sha256": "cdc6c60f9f1658b605a07d8b819567f0fa1d82fcdb624c429f434721f1bb9b82"
+}

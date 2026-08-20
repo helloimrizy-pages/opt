@@ -1,0 +1,18 @@
+{
+  "schema_version": "race_stage2_checkpoint_v1",
+  "completed_at_utc": "2026-08-20T07:24:23.980703+00:00",
+  "workload": "math_to_reasoning",
+  "workload_hash": "7d9fc6d7e2fc07d16cb678a1fd35c19ee8fdccce45da7465de7447c55122c8db",
+  "label": "RACE_COST_EXTENDED",
+  "variant_id": "race_cost_extended_costloss_eta0.1_init_uniform_scope_per_layer_pool_extended",
+  "frozen_config_sha256": "2ace8993dbe545080364223423768451b2d367b0221c6c93b2eb37f94ec1b2a9",
+  "conditions": 5,
+  "per_sequence_rows": 800,
+  "trajectory_rows": 0,
+  "results_file": "RACE_COST_EXTENDED.results.jsonl",
+  "per_sequence_file": "RACE_COST_EXTENDED.per_sequence.jsonl",
+  "diagnostics_file": "RACE_COST_EXTENDED.diagnostics.jsonl",
+  "results_sha256": "5dac002fb48ee3f037ee80637fc4dce6087a407d7630c600f8e532fb68a99ab2",
+  "per_sequence_sha256": "8010679c66b23417894d7015d21d439d3f64be7a29d8ce0af408100fa7228409",
+  "diagnostics_sha256": "90249161e3cf6b511d79ce85e7e74ba7ca4410fcee8137bcd93bc826059c0fc5"
+}

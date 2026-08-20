@@ -1,0 +1,18 @@
+{
+  "schema_version": "race_stage2_checkpoint_v1",
+  "completed_at_utc": "2026-08-20T07:02:45.305935+00:00",
+  "workload": "repeated_domain_cycle",
+  "workload_hash": "b2b85bb05a073b442b53d96807561c3ebd6dda8fb6dbc7028891c7e753ced2f6",
+  "label": "RACE_ONLINE_GLOBAL",
+  "variant_id": "race_online_global_rankloss_eta0.1_init_uniform_scope_global",
+  "frozen_config_sha256": "2ace8993dbe545080364223423768451b2d367b0221c6c93b2eb37f94ec1b2a9",
+  "conditions": 5,
+  "per_sequence_rows": 500,
+  "trajectory_rows": 0,
+  "results_file": "RACE_ONLINE_GLOBAL.results.jsonl",
+  "per_sequence_file": "RACE_ONLINE_GLOBAL.per_sequence.jsonl",
+  "diagnostics_file": "RACE_ONLINE_GLOBAL.diagnostics.jsonl",
+  "results_sha256": "b37f3baf9758832abdfb86d7d15dfe5c0ebfa0cb6e5bc3461a55afad2f5ff857",
+  "per_sequence_sha256": "0f2597b5950dda6d06141a91f81f4203d9c2ed8227e26e793c3be917452c7c0c",
+  "diagnostics_sha256": "c3724bd72a7ddf2735c2bab3170406326eb0fac4a091c9d745891aa824786d9f"
+}

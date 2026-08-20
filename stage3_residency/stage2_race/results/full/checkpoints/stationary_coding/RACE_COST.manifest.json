@@ -1,0 +1,18 @@
+{
+  "schema_version": "race_stage2_checkpoint_v1",
+  "completed_at_utc": "2026-08-20T06:46:06.334322+00:00",
+  "workload": "stationary_coding",
+  "workload_hash": "e720f3a5d2ef340ba246a36ea15e81fd383fedd3bf6ebcab44571605bb4888e0",
+  "label": "RACE_COST",
+  "variant_id": "race_cost_costloss_eta0.1_init_uniform_scope_per_layer",
+  "frozen_config_sha256": "2ace8993dbe545080364223423768451b2d367b0221c6c93b2eb37f94ec1b2a9",
+  "conditions": 5,
+  "per_sequence_rows": 400,
+  "trajectory_rows": 0,
+  "results_file": "RACE_COST.results.jsonl",
+  "per_sequence_file": "RACE_COST.per_sequence.jsonl",
+  "diagnostics_file": "RACE_COST.diagnostics.jsonl",
+  "results_sha256": "a1f6f6bbeee3565ed06c55f8eaee9f1292e7cf8646fa6e81e16ac76f5c20dda3",
+  "per_sequence_sha256": "6a6d726051dfeb5ffa5f84a451b500ddae8d620a69db749a1b219f8c9395cc14",
+  "diagnostics_sha256": "63faec5ae3bbfe550be5af570f01862ffea26fe06099b0262076583b7ccaaa70"
+}

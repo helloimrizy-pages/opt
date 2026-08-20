@@ -1,0 +1,14 @@
+{
+  "schema_version": "race_stage2_analysis_audit_v1",
+  "passed": true,
+  "checks": {
+    "report_begins_with_exact_verdict": true,
+    "verdict_is_one_of_four": true,
+    "all_required_outputs_exist": true,
+    "five_capacities_present": true,
+    "capacity8_gap_is_null": true,
+    "four_decision_capacities": true,
+    "regressions_reported": true
+  },
+  "verdict": "RACE_STAGE2_NO_GO"
+}

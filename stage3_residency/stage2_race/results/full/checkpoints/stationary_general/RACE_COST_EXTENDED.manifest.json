@@ -1,0 +1,18 @@
+{
+  "schema_version": "race_stage2_checkpoint_v1",
+  "completed_at_utc": "2026-08-20T07:18:19.378533+00:00",
+  "workload": "stationary_general",
+  "workload_hash": "9263b7b3367780da1f1c56e024de8fa41c29d475aefa2e14b305add555299fc8",
+  "label": "RACE_COST_EXTENDED",
+  "variant_id": "race_cost_extended_costloss_eta0.1_init_uniform_scope_per_layer_pool_extended",
+  "frozen_config_sha256": "2ace8993dbe545080364223423768451b2d367b0221c6c93b2eb37f94ec1b2a9",
+  "conditions": 5,
+  "per_sequence_rows": 400,
+  "trajectory_rows": 0,
+  "results_file": "RACE_COST_EXTENDED.results.jsonl",
+  "per_sequence_file": "RACE_COST_EXTENDED.per_sequence.jsonl",
+  "diagnostics_file": "RACE_COST_EXTENDED.diagnostics.jsonl",
+  "results_sha256": "669b1b82e5cbb4fd7ae20cb0500dfa3c165c5521d3f27851fd6d6d57d53cdf44",
+  "per_sequence_sha256": "14f1a7d5601013fe01e8b742b698fbfa7623fe0f3fc7d190eb66fa6bbd35eb56",
+  "diagnostics_sha256": "e46c94f00170cb4d339aaf5f9d3585a8fa238b43dbc4c54c24b8925a7fbfb214"
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "race_stage2_checkpoint_v1",
+  "completed_at_utc": "2026-08-20T06:34:43.187386+00:00",
+  "workload": "stationary_math",
+  "workload_hash": "bc3bf855f95a887e274c336238648952c1015530cbc92530ba57012e73f2cda5",
+  "label": "RACE_UNIFORM",
+  "variant_id": "race_uniform",
+  "frozen_config_sha256": "2ace8993dbe545080364223423768451b2d367b0221c6c93b2eb37f94ec1b2a9",
+  "conditions": 5,
+  "per_sequence_rows": 400,
+  "trajectory_rows": 0,
+  "results_file": "RACE_UNIFORM.results.jsonl",
+  "per_sequence_file": "RACE_UNIFORM.per_sequence.jsonl",
+  "diagnostics_file": "RACE_UNIFORM.diagnostics.jsonl",
+  "results_sha256": "d57b6cc6d034fa3f4f2296fd856f78a79428378f0688297416a88b2017aad2dc",
+  "per_sequence_sha256": "575c7967a33d184a2252b0387a255f345487d86acf0ad9108371de25876feffe",
+  "diagnostics_sha256": "abf675c08b8e6b4849134ff0b4b2953823cb8f0b1a00d7d1196dbd2f9d41bc85"
+}
