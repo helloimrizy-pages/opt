@@ -1,9 +1,11 @@
 {
   "schema_version": "race_stage0_implementation_manifest_v1",
   "stage": "RACE Stage 0: Expert Residency Oracle-Headroom Study",
-  "status": "IMPLEMENTED_AND_LOCALLY_VALIDATED_PENDING_CUDA_PILOT",
+  "status": "RACE_STAGE0_STRONG_GO",
   "created_at_utc": "2026-08-19T17:28:49Z",
+  "finalized_at_utc": "2026-08-20T03:24:38Z",
   "base_source_commit": "48fe6e2dd9b42af8b7d30cff536a06cd49181eb9",
+  "actual_stage0_runtime_commit": "0f70c61131b877dd9c297663886d563d9e27f55b",
   "stage3_source_bundle_hash": "a88d593a1ab686138b5c62e1be23b7d08200169c5f62826af272c11a5eb287d4",
   "config_hashes": {
     "smoke": "8a1444f530ad9d1dc1b4b5a485699b1ad9159c519245346b43baee870928b35d",
@@ -19,15 +21,49 @@
     "oracle_random_cases": 500,
     "oracle_maximum_cost_difference": 0.0,
     "real_decode_smoke_passed": true,
-    "real_decode_smoke_trace_hash": "0d37c56ec1e98eef8bc844d111298bc0b8bf8720dc8379bdfbe8379ae4dd6a2d"
+    "real_decode_smoke_trace_hash": "0d37c56ec1e98eef8bc844d111298bc0b8bf8720dc8379bdfbe8379ae4dd6a2d",
+    "pilot_evaluation_audit_passed": true,
+    "full_trace_raw_audit_passed": true,
+    "full_chunk_hashes_validated": 400,
+    "full_decision_conditions_replayed_exactly": 100,
+    "full_evaluation_sanity_passed": true,
+    "full_analysis_audit_passed": true
   },
   "environment": {
     "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
     "python": "3.14.3",
     "cuda_available": false,
-    "mps_available": false
+    "mps_available": false,
+    "full_run_platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.39",
+    "full_run_device": "NVIDIA A40",
+    "full_run_dtype": "bfloat16",
+    "full_run_python": "3.12.3",
+    "full_run_torch": "2.8.0+cu128"
   },
-  "scientific_result_available": false,
-  "stage0_decision": null,
-  "reason_pending": "The preregistered real 10-prompt/domain CUDA pilot and 100-prompt/domain full decode run have not executed."
+  "scientific_result_available": true,
+  "stage0_decision": "RACE_STAGE0_STRONG_GO",
+  "full_run": {
+    "trace_hash": "ccec01b2ae5059655e23d7f791427fac75b5fac21e967b9e157bb6087c639dea",
+    "frozen_evaluation_config_hash": "7ce228983b6547d61341757234e77ca7f59a4d0ba53b1e04b64243e9b2ea0971",
+    "static_hotset_score_hash": "f26bef3216f1ed5c5ae6124d993a9d4441443aba6e7842f106e4aacb1eb634e6",
+    "prompts": 400,
+    "generated_tokens": 51112,
+    "atomic_events": 817792,
+    "requested_experts": 6542336,
+    "conditions": 600,
+    "result_rows": 4800,
+    "per_sequence_rows": 82800,
+    "strong_go_budgets_by_regime": {
+      "stationary": [12, 16, 24, 32],
+      "abrupt": [12, 16, 24, 32],
+      "repeated": [12, 16, 24, 32],
+      "mixed": [12, 16, 24, 32]
+    }
+  },
+  "archival_limitations": [
+    "The pilot frozen/evaluation/audit artifacts are present, but stage3_residency/traces/pilot/ is absent. This is an archival limitation, not a failure of the validated full run.",
+    "Bootstrap intervals are conditional on the frozen workload ordering and reweight per-sequence contributions; stateful cache trajectories are not regenerated under reordered bootstrap workloads."
+  ],
+  "claim_boundary": "Results concern simulated expert residency/miss counts; no end-to-end latency improvement is claimed.",
+  "archive_manifest": "stage3_residency/reports/final_archive_manifest.json"
 }

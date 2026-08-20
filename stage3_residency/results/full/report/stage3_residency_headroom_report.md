@@ -106,12 +106,13 @@ Associations with headroom are descriptive: workloads are fixed and cache-budget
 
 ## Cost interpretation and limitations
 
-- These results are trace simulations of expert residency. They are not measured end-to-end inference latency or a runtime speedup.
+- Results concern simulated expert residency/miss counts; no end-to-end latency improvement is claimed.
 - The primary unit cost counts one transfer per missing expert. Byte-weighted cost uses actual expert parameter bytes from the loaded checkpoint. If those sizes are equal, byte cost is exactly proportional to miss count.
 - Atomic mandatory admission makes admissions equal misses. The reported lambda grid therefore rescales costs and cannot change rankings; it must not be interpreted as an independent latency model.
-- Sequence-level bootstrap intervals condition on these prompts, this model revision, this deterministic decode, and the frozen workload construction.
+- Bootstrap intervals are conditional on the frozen workload ordering and reweight per-sequence contributions; stateful cache trajectories are not regenerated under reordered bootstrap workloads.
 - Static Hotset and LFU-decay use only the disjoint calibration sequences. All evaluation caches start empty, so initial compulsory transfers are counted.
 - No defensible CUDA host-device measurement was available in this environment; hardware-weighted cost remains unavailable rather than fabricated.
+- The pilot frozen/evaluation/audit artifacts are archived, but the raw pilot trace directory is absent. This is an archival limitation, not a failure of the validated full run; the complete full raw trace is present and was independently replayed.
 
 ## Figures
 
@@ -121,14 +122,20 @@ Associations with headroom are descriptive: workloads are fixed and cache-budget
 
 ## Reproducibility
 
-- Source commit: `48fe6e2dd9b42af8b7d30cff536a06cd49181eb9`
+- Source/base commit recorded by the preregistration: `48fe6e2dd9b42af8b7d30cff536a06cd49181eb9`
+- Actual Stage 0 runtime commit recorded by the trace: `0f70c61131b877dd9c297663886d563d9e27f55b`
+- Stage 0 source bundle hash: `a88d593a1ab686138b5c62e1be23b7d08200169c5f62826af272c11a5eb287d4`
 - Model: `allenai/OLMoE-1B-7B-0924` at `6d84c48581ece794365f2b8e9cfb043c68ade9c5`
 - Trace hash: `ccec01b2ae5059655e23d7f791427fac75b5fac21e967b9e157bb6087c639dea`
 - Frozen evaluation hash: `7ce228983b6547d61341757234e77ca7f59a4d0ba53b1e04b64243e9b2ea0971`
+- Preregistered configuration hash: `17017dd4c3019e1ea625d21a7102afefdaa2c03129381f3f403c0184cc6576fc`
+- Static Hotset score hash: `f26bef3216f1ed5c5ae6124d993a9d4441443aba6e7842f106e4aacb1eb634e6`
 - Decode seed: `42`; bootstrap seed: `20260819`
 - Cache capacities per layer: `[8, 12, 16, 24, 32]`
 
 Exact commands and file layout are in `stage3_residency/README.md` and the generated trace/evaluation manifests.
+The final report and critical artifact file hashes are sealed in
+`stage3_residency/reports/final_archive_manifest.json`.
 
 ## Next action
 

@@ -1,0 +1,106 @@
+{
+  "schema_version": "race_stage0_final_archive_manifest_v1",
+  "stage": "RACE Stage 0: Expert Residency Oracle-Headroom Study",
+  "status": "RACE_STAGE0_STRONG_GO",
+  "finalized_at_utc": "2026-08-20T03:24:38Z",
+  "archive_scope": "Post-audit documentation and checksum freeze; frozen scientific traces, configurations, result rows, tables, figures, and analysis values were not changed.",
+  "provenance": {
+    "source_base_commit": "48fe6e2dd9b42af8b7d30cff536a06cd49181eb9",
+    "source_base_commit_role": "Commit recorded by the preregistered configuration as its source/base provenance.",
+    "actual_stage0_runtime_commit": "0f70c61131b877dd9c297663886d563d9e27f55b",
+    "actual_stage0_runtime_commit_role": "Commit from which the Stage 0 trace generator actually ran, as recorded by the full trace metadata and manifest.",
+    "stage3_source_bundle_hash": "a88d593a1ab686138b5c62e1be23b7d08200169c5f62826af272c11a5eb287d4",
+    "model": "allenai/OLMoE-1B-7B-0924",
+    "model_revision": "6d84c48581ece794365f2b8e9cfb043c68ade9c5"
+  },
+  "scientific_hashes": {
+    "preregistered_config_canonical_sha256": "17017dd4c3019e1ea625d21a7102afefdaa2c03129381f3f403c0184cc6576fc",
+    "full_trace_logical_sha256": "ccec01b2ae5059655e23d7f791427fac75b5fac21e967b9e157bb6087c639dea",
+    "frozen_evaluation_config_canonical_sha256": "7ce228983b6547d61341757234e77ca7f59a4d0ba53b1e04b64243e9b2ea0971",
+    "static_hotset_score_logical_sha256": "f26bef3216f1ed5c5ae6124d993a9d4441443aba6e7842f106e4aacb1eb634e6"
+  },
+  "critical_file_sha256": {
+    "stage3_residency/configs/full_preregistered.json": "c8a8ba997052391a7403fbbe1d64ad5c78c5ef76f014ef00f45708c377b1524f",
+    "stage3_residency/traces/full/routing_trace.npz": "c8ca8bff37b0bd54a94f03eed4d5f3690ed6c4c058fcb1c59e939fd081e66823",
+    "stage3_residency/traces/full/routing_trace.metadata.json": "ab48f3decfa5eba887d084d05d9d9bea27a23247721e4523301fd2dccce973d7",
+    "stage3_residency/traces/full/trace_manifest.json": "2afddc776bb355a61ef60a01cc4b16e201f98555f3b113a988ce43b18ee2e650",
+    "stage3_residency/results/full/frozen/frozen_evaluation_config.json": "fde50196598c99c5df4185d684d7260fe1ffb6630c149577b470d6f4ed811aa9",
+    "stage3_residency/results/full/frozen/frozen_evaluation_config.sha256": "f4610e4ccaed8ed0703cd3a68088f904a4662266b321fa2f60c9c1818ec965f8",
+    "stage3_residency/results/full/frozen/static_hotset_scores.npz": "52b041c97bcbab4669641dbc7d71f8e084a0e4f3261ecb8c18a86d09c43a140d",
+    "stage3_residency/results/full/evaluation/results.jsonl": "121a8a820bb3b19b994829138a520e7774aeb98fba74537cff105236fa841a02",
+    "stage3_residency/results/full/evaluation/per_sequence_results.jsonl": "2abe74512adc1379c92f2ef877da922f2ee4ff229af028a6505362e3ad464265",
+    "stage3_residency/results/full/evaluation/sanity_checks.json": "38bf9f0be374270943722d7af76e2a2c39f9666aa73b91681101ef73a41f9990",
+    "stage3_residency/results/full/evaluation/evaluation_manifest.json": "ea13bc40ad0cf894a0918f09ac1016f9dee98aaea0b2fc21f5d14ccf46596c0d",
+    "stage3_residency/results/full/report/analysis.json": "0dafad26f8b110297f0c207396dd07df31eb6c1e7eb793a125c9c85d50dc8693",
+    "stage3_residency/results/full/report/analysis_audit.json": "c94564129e1c120a04ad6a35ca50ec9a4c802f8588e3b9cbed1a11cf89367a64",
+    "stage3_residency/results/full/report/full_audit_report.md": "6e1bec36a2811a5ba5be3b7d4d5e8b76850ba37021738e0384920473caadb927",
+    "stage3_residency/results/full/report/stage3_residency_headroom_report.md": "2d03a255d6cf0e76f0e920def690b59e3b906d12ca62341e8864c5a2452da53a",
+    "stage3_residency/reports/stage3_residency_headroom_report.md": "8a17c904358b8832cdad7e86d27b15c8eb7331d8f72f61ce6e5627020b664258",
+    "stage3_residency/reports/implementation_manifest.json": "6806166330131f9c319a105c92ddf48f23113ae78a81ec67b0ab6c5683130e54"
+  },
+  "tree_hash_definition": {
+    "algorithm": "sha256_tree_v1",
+    "procedure": "Sort repository-relative POSIX file paths; for each file append UTF-8 path bytes, one NUL byte, then exact file bytes to one SHA-256 digest.",
+    "exclusions": [
+      "Any path below a .ipynb_checkpoints directory",
+      "Files ending in .sha256 for full_report_artifacts and pilot_preserved_artifacts"
+    ]
+  },
+  "tree_hashes": {
+    "full_trace_chunks": {
+      "root": "stage3_residency/traces/full/chunks",
+      "files": 800,
+      "bytes": 25788118,
+      "sha256_tree_v1": "ea6b5e14234411ce14b8249f4be4292efa5889e53d3267acd9bde234698bfd9a"
+    },
+    "full_condition_checkpoints": {
+      "root": "stage3_residency/results/full/evaluation/conditions",
+      "files": 600,
+      "bytes": 76478542,
+      "sha256_tree_v1": "23180121779f416cca59b472d743553970197f43016c985ac39a36a5c137eca9"
+    },
+    "full_report_artifacts": {
+      "root": "stage3_residency/results/full/report",
+      "files": 17,
+      "bytes": 817616,
+      "sha256_tree_v1": "6374b88f3b21dd6d088e5d7db3a4d5c273e5ec96538d3911de92068a85afb0d5"
+    },
+    "pilot_preserved_artifacts": {
+      "root": "stage3_residency/results/pilot",
+      "files": 624,
+      "bytes": 23479929,
+      "sha256_tree_v1": "de5d804339cbdf53f448be5b710289615befb0d13ad9514421f0ad54fc0d76cf"
+    }
+  },
+  "validated_counts": {
+    "prompts": 400,
+    "generated_tokens": 51112,
+    "atomic_events": 817792,
+    "requested_experts": 6542336,
+    "prompt_chunks": 400,
+    "evaluation_conditions": 600,
+    "result_rows": 4800,
+    "per_sequence_rows": 82800,
+    "raw_replayed_decision_conditions": 100
+  },
+  "audit": {
+    "full_trace_raw_audit_passed": true,
+    "full_chunk_to_aggregate_reconstruction_passed": true,
+    "calibration_replay_passed": true,
+    "decision_condition_replay_passed": true,
+    "oracle_exact_validation_passed": true,
+    "full_evaluation_sanity_passed": true,
+    "full_analysis_audit_passed": true
+  },
+  "archival_limitations": [
+    "The pilot frozen/evaluation/audit artifacts are present, but stage3_residency/traces/pilot/ is absent. This is an archival limitation, not a failure of the validated full run.",
+    "Bootstrap intervals are conditional on the frozen workload ordering and reweight per-sequence contributions; stateful cache trajectories are not regenerated under reordered bootstrap workloads."
+  ],
+  "claim_boundary": "Results concern simulated expert residency/miss counts; no end-to-end latency improvement is claimed.",
+  "checksum_sidecars": [
+    "stage3_residency/reports/final_archive_manifest.sha256",
+    "stage3_residency/reports/stage3_residency_headroom_report.sha256",
+    "stage3_residency/results/full/report/stage3_residency_headroom_report.sha256"
+  ],
+  "immutability_policy": "Any later change to a frozen report or listed artifact requires a new manifest version and regenerated checksums; do not edit this manifest in place after publication."
+}

@@ -1262,138 +1262,138 @@ Records append and fsync one at a time and per-domain losses checkpoint, so a
 crash loses at most the run in flight and a resumed run recomputes nothing it
 already finished.
 
-## RACE Stage 0 residency oracle-headroom: implemented / pending CUDA pilot
+## RACE Stage 0 residency oracle-headroom: completed / audited STRONG GO
 
-Artifact/code area: `stage3_residency/`. Durable pending report:
-`stage3_residency/reports/stage3_residency_headroom_report.md`.
-Validated implementation manifest:
-`stage3_residency/reports/implementation_manifest.json`.
+Final decision: **`RACE_STAGE0_STRONG_GO`**.
+
+Artifact/code area: `stage3_residency/`. Durable final report:
+`stage3_residency/reports/stage3_residency_headroom_report.md`. Detailed report:
+`stage3_residency/results/full/report/stage3_residency_headroom_report.md`. Frozen
+file-level archive manifest:
+`stage3_residency/reports/final_archive_manifest.json`.
 
 This is a separately authorized residency experiment, not a continuation or
 reinterpretation of the existing Stage 3 measured-damage experiment or Stage 3D
 selection-headroom diagnostics. Those frozen stages and all Stage 2A/2B/2C
-decisions remain unchanged. This stage implements no RACE optimizer, learning,
+decisions remain unchanged. Stage 0 implemented no RACE optimizer, learning,
 regret method, quantization, precision allocation, compression, fine-tuning, or
 weight change.
 
 Scientific question: whether an offline future-aware expert-residency optimum has
 enough transfer-cost headroom over strong simple policies on real OLMoE decode
 routing to justify later RACE design. The primary comparison is the best eligible
-simple policy among LRU, LFU, one globally calibration-selected LFU-decay alpha,
-and calibration-only Static Hotset versus the offline oracle. Random uses five
-fixed seeds and is descriptive, never eligible as best simple.
+simple policy among LRU, LFU, globally calibration-selected LFU-decay, and
+calibration-only Static Hotset versus the offline oracle. Random uses five fixed
+seeds and is descriptive, never eligible as best simple.
 
-Repository inspection established that every prior routing NPZ is a
-teacher-forced `[example, 16, 64]` aggregate. None contains generated-token atomic
-top-8 request sets, so no prior artifact is treated as a temporal trace. Reused
-mechanism utilities are the pinned model/tokenizer loader, structural 16-layer / 64
-expert / top-8 discovery, validated router-output parser, four domain loaders,
-atomic I/O, deterministic seed/device setup, and sequence-level bootstrap
-conventions.
+### Frozen provenance
 
-Implemented scope (2026-08-19, local host):
+The two commit identifiers have different meanings:
 
-- versioned compact real-decode trace schema with prompt/domain/generated-token/
-  layer IDs, complete atomic requested expert sets, selected router weights, token
-  IDs, lengths, schema/version metadata, exact parameter bytes, environment,
-  source/trace/config hashes, utilization summaries, and resumable per-prompt
-  chunks;
-- deterministic greedy decode whose prompt-prefill hooks are inactive and whose
-  generated tokens are each explicitly forwarded through all 16 MoE layers;
-- one independent cache per layer, using `(layer_id, expert_id)` identity and
-  capacities 8/12/16/24/32; hits/misses are computed before any top-8 member is
-  admitted, all misses are admitted atomically, current requested experts remain
-  in the post-event state, and no policy can prefetch;
-- Random (five seeds), LRU, cumulative LFU, LFU-decay alphas 0.90/0.95/0.99 with
-  one global calibration-only selection, and calibration-only Static Hotset;
-- exact tiny cache-state DP and an equal-cost generalized farthest-future oracle.
-  The dependency-light validation passed 6,690 exhaustive plus 500 fixed-seed
-  random tiny set-valued traces for lambdas 0/0.25/0.5/1.0 with maximum cost
-  difference 0.0;
-- stationary, four abrupt-shift, repeated-cycle, and fixed-seed mixed workloads,
-  with disjoint sequence-level calibration/evaluation splits;
-- unit and actual-byte costs, admissions/evictions/transfers/churn, sequence-level
-  paired bootstrap stratified by workload segment/domain, source-prompt clustering
-  across repeated regime components, strongest-simple reselection inside every
-  bootstrap replicate, concentration/locality/JS-shift diagnostics, required
-  tables/plots, independent artifact sanity gates, and an optional isolated CUDA
-  host-device copy benchmark;
-- 18 new dependency-light tests, passing locally, including a synthetic full
-  freeze/evaluate/sanity/analyze/plot/report path. The combined Pytest suite passes
-  **244/244** (the prior 226 plus the new 18). Synthetic values are never written
-  under `stage3_residency/results/` and carry no scientific decision.
+- source/base commit recorded by the preregistration:
+  `48fe6e2dd9b42af8b7d30cff536a06cd49181eb9`;
+- actual Stage 0 runtime commit recorded by the trace:
+  `0f70c61131b877dd9c297663886d563d9e27f55b`.
 
-The exact preregistered source configurations and canonical hashes are:
+Additional frozen identifiers:
 
-- pilot: `stage3_residency/configs/pilot.json`,
-  `73a18d19779e2678da5a7a6ee4663f97ccc6665273b2305166b9ed18f51e7805`;
-- full: `stage3_residency/configs/full_preregistered.json`,
-  `17017dd4c3019e1ea625d21a7102afefdaa2c03129381f3f403c0184cc6576fc`.
+- Stage 0 source bundle:
+  `a88d593a1ab686138b5c62e1be23b7d08200169c5f62826af272c11a5eb287d4`;
+- preregistered full configuration:
+  `17017dd4c3019e1ea625d21a7102afefdaa2c03129381f3f403c0184cc6576fc`;
+- full logical trace:
+  `ccec01b2ae5059655e23d7f791427fac75b5fac21e967b9e157bb6087c639dea`;
+- frozen evaluation configuration:
+  `7ce228983b6547d61341757234e77ca7f59a4d0ba53b1e04b64243e9b2ea0971`;
+- Static Hotset scores:
+  `f26bef3216f1ed5c5ae6124d993a9d4441443aba6e7842f106e4aacb1eb634e6`.
 
-Current compute finding: the local Apple ARM host exposes neither CUDA nor MPS in
-the active PyTorch build. The pinned 13 GB checkpoint loaded successfully for a
-real CPU smoke with one prompt/domain and two decoded tokens/prompt. That smoke
-produced 8 generated tokens, 128 atomic layer events, 1,024 requested experts,
-and trace hash
-`0d37c56ec1e98eef8bc844d111298bc0b8bf8720dc8379bdfbe8379ae4dd6a2d`.
-All 16 layer events/token, exact event accounting, equal 12,582,912-byte expert
-sizes, oracle dominance, oracle cache monotonicity, and unlimited-cache compulsory
-loads passed; details are in
-`stage3_residency/reports/real_decode_smoke_audit.json`. This four-prompt smoke is
-not the required pilot and carries no headroom decision. For capacities
-8/12/16/24/32, the best simple versus oracle miss counts were respectively
-619/619, 491/452, 438/408, 403/400, and 400/400; these tiny values are recorded only
-as a mechanics cross-check. The ignored raw artifacts are under
-`stage3_residency/traces/smoke/`. The actual offline generation invocation was:
+### Full execution and reconstructed command
 
-```bash
-HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 \
-PYTHONPATH=stage3_residency/src:src ../.venv/bin/python \
-  stage3_residency/scripts/generate_traces.py \
-  --config stage3_residency/configs/smoke.json \
-  --output-dir stage3_residency/traces/smoke \
-  --cache-dir ../.hf_cache \
-  --dataset-cache-dir /tmp/race-stage0-datasets-cache \
-  --local-files-only
-```
+The real full trace was generated on an NVIDIA A40 using bfloat16, Python 3.12.3,
+PyTorch 2.8.0+cu128, greedy decode seed 42, up to 128 new tokens, and the pinned
+`allenai/OLMoE-1B-7B-0924` revision
+`6d84c48581ece794365f2b8e9cfb043c68ade9c5`. Dataset revisions and exact selected
+IDs are recorded in `stage3_residency/traces/full/routing_trace.metadata.json`.
+The trace completed at 2026-08-19T22:41:22Z; evaluation completed at
+2026-08-20T01:09:31Z.
 
-The temporary dataset cache was a machine-local copy of the already cached pinned
-datasets; dataset IDs/revisions and selected examples are preserved in trace
-metadata. The mechanics audit is reproducible without loading the checkpoint:
-
-```bash
-PYTHONPATH=stage3_residency/src:src ../.venv/bin/python \
-  stage3_residency/scripts/audit_smoke.py \
-  --trace stage3_residency/traces/smoke/routing_trace.npz \
-  --output stage3_residency/reports/real_decode_smoke_audit.json
-```
-
-No pilot table, full
-table, runtime transfer calibration, or Stage 0 decision exists yet. The durable
-report therefore says
-`PENDING_REAL_DECODE_TRACE — NO STAGE 0 DECISION YET` rather than fabricating one
-of the three final outcomes.
-
-Exact pilot command on the pinned CUDA/BF16 host:
+The repository-recorded wrapper sequence reconstructing the run is:
 
 ```bash
 stage3_residency/scripts/run_pilot.sh
-```
-
-Only after its generated `sanity_checks.json` and `pilot_audit_report.md` pass:
-
-```bash
 stage3_residency/scripts/generate_traces.sh
 stage3_residency/scripts/run_full.sh
 ```
 
-The full freeze step records the exact real sample IDs, trace hash, calibration
-and evaluation IDs, workload orders, selected global decay alpha, Static Hotset
-score hash, source/environment, decision criteria, and oracle audit before any
-final policy cost is evaluated. It refuses to overwrite a different frozen run.
-The final decision remains limited to `RACE_STAGE0_STRONG_GO`,
-`RACE_STAGE0_WEAK_GO`, or `RACE_STAGE0_NO_GO`; no result may claim that RACE works
-or that trace-simulated transfer reduction is end-to-end inference speedup.
+The full trace contains 400 prompts (100/domain), 51,112 generated tokens,
+817,792 atomic token/layer events, and 6,542,336 requested experts. The full
+evaluation contains 600 policy conditions, 4,800 result rows, and 82,800
+per-sequence rows. The first 20 prompts/domain are calibration-only; the remaining
+80/domain are evaluation-only. LFU-decay `alpha=0.95` was selected once from the
+preregistered three-value calibration grid.
+
+### Validation outcome
+
+- all 400 prompt-chunk logical hashes match their metadata and their ordered
+  arrays reproduce the aggregate trace byte-for-byte;
+- aggregate event indices, sequence/token/layer ordering, atomic top-8 uniqueness,
+  expert ranges, router weights, and the full logical trace hash validate;
+- calibration LFU-decay totals, selected alpha, Static Hotset matrix, and Static
+  Hotset hash reproduce exactly from the raw calibration requests;
+- decision-driving LFU-decay and oracle simulations replay exactly from raw
+  requests across all ten workloads and five capacities, matching events,
+  requests, hits, misses, admissions, evictions, and maximum occupancy for 100
+  saved conditions;
+- generalized farthest-future matches exact DP on 6,690 exhaustive plus 500
+  fixed-seed random tiny atomic traces across lambdas 0/0.25/0.5/1.0 with maximum
+  cost difference 0.0;
+- oracle dominance, cache monotonicity, top-k capacity equivalence, zero- and
+  unlimited-cache limits, deterministic evaluation replay, event accounting,
+  calibration/evaluation separation, byte proportionality, per-sequence
+  aggregation, and five-seed Random coverage all pass.
+
+### Main comparison and decision
+
+Primary oracle headroom over the strongest eligible simple policy is:
+
+| Regime | C=8 | C=12 | C=16 | C=24 | C=32 |
+|---|---:|---:|---:|---:|---:|
+| stationary | 0.00% | 17.75% | 26.55% | 37.59% | 45.48% |
+| abrupt | 0.00% | 17.56% | 26.46% | 37.67% | 45.67% |
+| repeated | 0.00% | 17.66% | 26.42% | 37.44% | 45.65% |
+| mixed | 0.00% | 18.24% | 27.27% | 38.64% | 46.73% |
+
+The preregistered STRONG-GO rule passes at capacities 12/16/24/32 in every
+regime, so the final decision is `RACE_STAGE0_STRONG_GO`. Capacity 8 equals
+atomic top-k and therefore offers no policy freedom. Abrupt-shift headroom is
+similar to stationary headroom; the result demonstrates general future-aware
+residency headroom rather than a uniquely shift-driven effect.
+
+### Archival and claim limitations
+
+The pilot frozen configuration, evaluation, and audit outputs remain archived,
+but `stage3_residency/traces/pilot/` is absent. The pilot therefore cannot be
+independently replayed from the current checkout. This is an archival limitation,
+not a failure of the validated full run: the complete full raw trace is present,
+logically hashed, reconstructed from all 400 chunks, and independently replayed.
+
+Bootstrap intervals are conditional on the frozen workload ordering and reweight
+per-sequence contributions; stateful cache trajectories are not regenerated under
+reordered bootstrap workloads.
+
+Results concern simulated expert residency/miss counts; no end-to-end latency
+improvement is claimed.
+
+No defensible host-device transfer calibration was collected. All experts have
+equal parameter size, so byte-weighted cost is proportional to miss count and is
+not an independent latency model. The evidence is conditional on one checkpoint,
+one greedy decode panel, sequential prompt workloads, and independent per-layer
+caches.
+
+Next action: proceed to design RACE as a separately authorized stage. Do not claim
+that RACE works until an online method is implemented and evaluated, and do not
+claim inference speedup without end-to-end runtime measurement.
 
 ## Fresh-session checklist
 
@@ -1450,10 +1450,11 @@ A new Codex session should:
     reported but never decides. Seeds 46-65 select protection sets there and
     build no data split, so split seed 46 stays available. Report a surprising
     sweep result; do not investigate it further without asking.
-17. Treat `stage3_residency/configs/full_preregistered.json` as the frozen source
-    design for the separate RACE Stage 0 residency study. Existing prompt routing
-    aggregates are not valid decode traces. Do not issue a Stage 0 decision until
-    the real CUDA pilot passes every sanity/audit gate and the full configuration
-    is frozen against exact sample IDs and trace hash before evaluation. Do not
-    implement RACE in Stage 0.
+17. Treat `stage3_residency/configs/full_preregistered.json`, the complete raw
+    trace under `stage3_residency/traces/full/`, the frozen evaluation, final
+    reports, and `stage3_residency/reports/final_archive_manifest.json` as the
+    immutable audited RACE Stage 0 archive. The decision is
+    `RACE_STAGE0_STRONG_GO`. The missing raw pilot trace is an archival limitation,
+    not a failure of the validated full run. Do not implement RACE as part of
+    Stage 0; any RACE design is a separately authorized next stage.
 18. Update this handoff after every new validated run.

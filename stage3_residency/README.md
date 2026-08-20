@@ -12,13 +12,18 @@ fine-tuning, or weight modification.  The repository's earlier Stage 2A
 `SURROGATE_NO_GO`, Stage 2B `ROBUST_PRESERVATION_NO_GO`, Stage 2C
 `FRAGILITY_ROBUST_NO_GO`, and the separate Stage 3/3D artifacts are read-only.
 
-Current execution status: infrastructure and tests are complete.  The current
-host exposes neither CUDA nor MPS, so the real 10-prompt/domain pilot and the
-100-prompt/domain full run are pending a CUDA machine.  No aggregate prompt trace
-or synthetic result is substituted for decode data.  See
-[`reports/stage3_residency_headroom_report.md`](reports/stage3_residency_headroom_report.md).
-The sealed local validation and config/source hashes are in
-[`reports/implementation_manifest.json`](reports/implementation_manifest.json).
+Current execution status: the real 100-prompt/domain A40/BF16 full run is complete,
+independently audited from its raw atomic decode trace, and frozen with decision
+**`RACE_STAGE0_STRONG_GO`**. No aggregate prompt trace or synthetic result was
+substituted for decode data. See the durable
+[`reports/stage3_residency_headroom_report.md`](reports/stage3_residency_headroom_report.md),
+the detailed generated
+[`results/full/report/stage3_residency_headroom_report.md`](results/full/report/stage3_residency_headroom_report.md),
+and the frozen [`reports/final_archive_manifest.json`](reports/final_archive_manifest.json).
+
+The source/base commit carried by the preregistered configuration is
+`48fe6e2dd9b42af8b7d30cff536a06cd49181eb9`. The actual Stage 0 runtime commit
+recorded by the trace is `0f70c61131b877dd9c297663886d563d9e27f55b`.
 
 ## Reused repository components
 
@@ -54,9 +59,9 @@ stage3_residency/
     transfer_calibration.py  # optional isolated CUDA copy timing
   tests/
   scripts/
-  traces/                    # generated and gitignored
-  results/                   # generated and gitignored
-  reports/                   # durable status/final report location
+  traces/                    # archived smoke and validated full raw traces
+  results/                   # archived pilot/full evaluations and full report
+  reports/                   # durable final report and archive manifest
 ```
 
 ## Atomic event semantics
@@ -177,6 +182,10 @@ eligible simple policy, then compares its summed cost with the aligned oracle co
 Reports include absolute gap, relative headroom, 95% percentile CI, mean/median
 sequence gap, and a paired standardized effect.
 
+Bootstrap intervals are conditional on the frozen workload ordering and reweight
+per-sequence contributions; stateful cache trajectories are not regenerated under
+reordered bootstrap workloads.
+
 The frozen full decision uses unit miss cost and `lambda=0`:
 
 - `RACE_STAGE0_STRONG_GO`: at least one workload regime has point headroom ≥15%
@@ -188,6 +197,41 @@ The frozen full decision uses unit miss cost and `lambda=0`:
 
 Pilot and smoke configs have `decision_enabled=false`; they can only emit
 `PILOT_ONLY_NO_STAGE0_DECISION`.
+
+## Validated full result
+
+The completed full trace contains 400 prompts (100/domain), 51,112 generated
+tokens, 817,792 atomic token/layer events, and 6,542,336 requested experts. All
+400 prompt chunks validate individually and concatenate exactly to the aggregate
+trace. The full evaluation contains 600 policy conditions, 4,800 machine-readable
+result rows, and 82,800 per-sequence rows. Oracle dominance, cache monotonicity,
+event accounting, deterministic replay, calibration/evaluation separation,
+byte-cost proportionality, and the remaining frozen sanity gates all pass.
+
+Primary oracle headroom over the strongest eligible simple policy is:
+
+| Regime | C=8 | C=12 | C=16 | C=24 | C=32 |
+|---|---:|---:|---:|---:|---:|
+| stationary | 0.00% | 17.75% | 26.55% | 37.59% | 45.48% |
+| abrupt | 0.00% | 17.56% | 26.46% | 37.67% | 45.67% |
+| repeated | 0.00% | 17.66% | 26.42% | 37.44% | 45.65% |
+| mixed | 0.00% | 18.24% | 27.27% | 38.64% | 46.73% |
+
+The preregistered STRONG-GO rule passes at capacities 12/16/24/32 in every
+regime. Capacity 8 equals atomic top-k, so no policy has post-request residency
+freedom and oracle headroom is necessarily zero. The final decision is
+**`RACE_STAGE0_STRONG_GO`**. This establishes offline algorithmic headroom; it does
+not establish that a future online RACE method can realize it.
+
+The pilot frozen configuration, evaluation, and audit outputs remain archived,
+but `stage3_residency/traces/pilot/` is absent. Therefore the pilot cannot be
+independently replayed from this checkout. This is an archival limitation, not a
+failure of the validated full run: the complete full raw trace is present, its
+logical hash was independently recomputed, and the decision-driving policies were
+replayed exactly from it.
+
+Results concern simulated expert residency/miss counts; no end-to-end latency
+improvement is claimed.
 
 ## Commands
 
@@ -218,8 +262,8 @@ oracle agreement, workload construction, trace serialization, generation-hook
 lifecycle, metrics, byte accounting, bootstrap determinism, all sanity gates,
 figures, and reports.
 
-On the pinned CUDA/BF16 machine, run the mechanics pilot (10 prompts/domain, up to
-32 new tokens/prompt):
+To reproduce from scratch on a pinned CUDA/BF16 machine, first run the mechanics
+pilot (10 prompts/domain, up to 32 new tokens/prompt):
 
 ```bash
 stage3_residency/scripts/run_pilot.sh
@@ -294,5 +338,20 @@ checkpoints, exact hashes/manifests, and `sanity_checks.json`.  Analysis writes:
 - all three required figures as PNG and PDF; and
 - `stage3_residency_headroom_report.md` plus an audit report.
 
-Only a completed, sanity-passing, audited real full run may update
-`EXPERIMENT_STATUS.md` with a Stage 0 GO/NO-GO result.
+The completed, sanity-passing full run has been promoted to
+`RACE_STAGE0_STRONG_GO`. Its durable report and critical artifact hashes are
+frozen by `reports/final_archive_manifest.json` and
+`reports/final_archive_manifest.sha256`.
+
+Verify the sealed manifest and both report copies with:
+
+```bash
+(cd stage3_residency/reports && \
+  shasum -a 256 -c final_archive_manifest.sha256 && \
+  shasum -a 256 -c stage3_residency_headroom_report.sha256)
+(cd stage3_residency/results/full/report && \
+  shasum -a 256 -c stage3_residency_headroom_report.sha256)
+```
+
+The manifest additionally records the deterministic `sha256_tree_v1` digests for
+the complete chunk, condition-checkpoint, report, and preserved-pilot trees.

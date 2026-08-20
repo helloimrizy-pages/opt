@@ -435,16 +435,30 @@ new collector performs deterministic greedy decode and records the full top-k se
 gate weights, generated-token index, token ID, layer, prompt ID, domain, and exact
 trace/config hashes.
 
-Implementation, frozen pilot/full source configs, event semantics, tests, and
-exact commands are documented in
-[`stage3_residency/README.md`](stage3_residency/README.md). The dependency-light
-oracle validation currently passes 6,690 exhaustive and 500 fixed-seed random
-tiny set-valued traces with zero cost discrepancy against exact state-space DP. A
-real CPU smoke also passed on one prompt/domain and two generated tokens/prompt
-(128 atomic layer events; trace hash
-`0d37c56ec1e98eef8bc844d111298bc0b8bf8720dc8379bdfbe8379ae4dd6a2d`). The real
-10-prompt/domain decode pilot and 100-prompt/domain full run remain pending CUDA
-execution; no Stage 0 GO/NO-GO decision has been made.
+Implementation, frozen pilot/full source configs, event semantics, tests, exact
+commands, and the audited result are documented in
+[`stage3_residency/README.md`](stage3_residency/README.md). The completed A40/BF16
+full run contains 100 prompts/domain, 51,112 generated tokens, and 817,792 atomic
+layer events. Its trace hash is
+`ccec01b2ae5059655e23d7f791427fac75b5fac21e967b9e157bb6087c639dea`, and its
+frozen evaluation hash is
+`7ce228983b6547d61341757234e77ca7f59a4d0ba53b1e04b64243e9b2ea0971`.
+
+The audited decision is **`RACE_STAGE0_STRONG_GO`**. The oracle beat the strongest
+eligible simple policy by 17.56%--18.24% at capacity 12 and 45.48%--46.73% at
+capacity 32, with STRONG-GO support at capacities 12/16/24/32 in all four workload
+regimes. Capacity 8 has zero headroom because the mandatory atomic request itself
+contains eight experts. The source/base commit recorded by the preregistration is
+`48fe6e2dd9b42af8b7d30cff536a06cd49181eb9`; the actual Stage 0 runtime commit is
+`0f70c61131b877dd9c297663886d563d9e27f55b`.
+
+The raw pilot trace was not retained in the repository archive, although its
+frozen/evaluation/audit artifacts remain and the validated full raw trace is
+complete. This is an archival limitation, not a failure of the validated full
+run. Bootstrap intervals are conditional on the frozen workload ordering and
+reweight per-sequence contributions; stateful cache trajectories are not
+regenerated under reordered bootstrap workloads. Results concern simulated
+expert residency/miss counts; no end-to-end latency improvement is claimed.
 
 ## Outputs
 
