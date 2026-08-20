@@ -1,0 +1,9 @@
+{
+  "schema_version": "race_stage0_trace_progress_v1",
+  "config_hash": "17017dd4c3019e1ea625d21a7102afefdaa2c03129381f3f403c0184cc6576fc",
+  "completed_sequences": 400,
+  "expected_sequences": 400,
+  "last_chunk": "chunks/reasoning/sequence_0399.npz",
+  "elapsed_seconds": 3676.749924823176,
+  "updated_at_utc": "2026-08-19T22:40:57.903000+00:00"
+}

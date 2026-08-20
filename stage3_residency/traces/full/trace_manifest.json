@@ -1,0 +1,243 @@
+{
+  "schema_version": "race_stage0_trace_manifest_v1",
+  "trace_path": "routing_trace.npz",
+  "trace_hash": "ccec01b2ae5059655e23d7f791427fac75b5fac21e967b9e157bb6087c639dea",
+  "config_hash": "17017dd4c3019e1ea625d21a7102afefdaa2c03129381f3f403c0184cc6576fc",
+  "source_commit": "48fe6e2dd9b42af8b7d30cff536a06cd49181eb9",
+  "runtime_source_commit": "0f70c61131b877dd9c297663886d563d9e27f55b",
+  "stage3_source_bundle_hash": "a88d593a1ab686138b5c62e1be23b7d08200169c5f62826af272c11a5eb287d4",
+  "model": "allenai/OLMoE-1B-7B-0924",
+  "model_revision": "6d84c48581ece794365f2b8e9cfb043c68ade9c5",
+  "precision": "bfloat16",
+  "tokenizer": "GPTNeoXTokenizer",
+  "generation_settings": {
+    "max_new_tokens": 128,
+    "do_sample": false,
+    "stop_on_eos": true,
+    "seed": 42
+  },
+  "validation": {
+    "passed": true,
+    "trace_hash": "ccec01b2ae5059655e23d7f791427fac75b5fac21e967b9e157bb6087c639dea",
+    "events": 817792,
+    "sequences": 400,
+    "generated_tokens": 51112,
+    "requested_experts": 6542336,
+    "events_per_layer": {
+      "0": 51112,
+      "1": 51112,
+      "2": 51112,
+      "3": 51112,
+      "4": 51112,
+      "5": 51112,
+      "6": 51112,
+      "7": 51112,
+      "8": 51112,
+      "9": 51112,
+      "10": 51112,
+      "11": 51112,
+      "12": 51112,
+      "13": 51112,
+      "14": 51112,
+      "15": 51112
+    }
+  },
+  "expert_utilization": {
+    "0": {
+      "events": 51112,
+      "assignments": 408896,
+      "active_experts": 64,
+      "minimum_assignments": 1334,
+      "maximum_assignments": 20447,
+      "entropy_bits": 5.838178095764956,
+      "normalized_entropy": 0.9730296826274927,
+      "top_10_traffic_share": 0.3044001408671153,
+      "top_20_traffic_share": 0.4984274730004695
+    },
+    "1": {
+      "events": 51112,
+      "assignments": 408896,
+      "active_experts": 64,
+      "minimum_assignments": 3105,
+      "maximum_assignments": 23689,
+      "entropy_bits": 5.842957807158319,
+      "normalized_entropy": 0.9738263011930531,
+      "top_10_traffic_share": 0.3047547542651432,
+      "top_20_traffic_share": 0.47874276099546104
+    },
+    "2": {
+      "events": 51112,
+      "assignments": 408896,
+      "active_experts": 64,
+      "minimum_assignments": 2330,
+      "maximum_assignments": 16959,
+      "entropy_bits": 5.842258845493921,
+      "normalized_entropy": 0.9737098075823202,
+      "top_10_traffic_share": 0.30809056581624666,
+      "top_20_traffic_share": 0.4958326811707622
+    },
+    "3": {
+      "events": 51112,
+      "assignments": 408896,
+      "active_experts": 64,
+      "minimum_assignments": 786,
+      "maximum_assignments": 17735,
+      "entropy_bits": 5.7463418545953635,
+      "normalized_entropy": 0.9577236424325606,
+      "top_10_traffic_share": 0.3453494287055877,
+      "top_20_traffic_share": 0.5570952026921271
+    },
+    "4": {
+      "events": 51112,
+      "assignments": 408896,
+      "active_experts": 64,
+      "minimum_assignments": 1160,
+      "maximum_assignments": 31990,
+      "entropy_bits": 5.6199109089996355,
+      "normalized_entropy": 0.9366518181666059,
+      "top_10_traffic_share": 0.393723587415871,
+      "top_20_traffic_share": 0.586222413523243
+    },
+    "5": {
+      "events": 51112,
+      "assignments": 408896,
+      "active_experts": 64,
+      "minimum_assignments": 395,
+      "maximum_assignments": 30499,
+      "entropy_bits": 5.618993887225538,
+      "normalized_entropy": 0.9364989812042563,
+      "top_10_traffic_share": 0.3996908749413054,
+      "top_20_traffic_share": 0.5952833972452654
+    },
+    "6": {
+      "events": 51112,
+      "assignments": 408896,
+      "active_experts": 64,
+      "minimum_assignments": 281,
+      "maximum_assignments": 27848,
+      "entropy_bits": 5.500096424330975,
+      "normalized_entropy": 0.9166827373884958,
+      "top_10_traffic_share": 0.4322394936609798,
+      "top_20_traffic_share": 0.6544916066677101
+    },
+    "7": {
+      "events": 51112,
+      "assignments": 408896,
+      "active_experts": 64,
+      "minimum_assignments": 458,
+      "maximum_assignments": 29896,
+      "entropy_bits": 5.540713733880167,
+      "normalized_entropy": 0.9234522889800277,
+      "top_10_traffic_share": 0.4084534942870559,
+      "top_20_traffic_share": 0.630152899514791
+    },
+    "8": {
+      "events": 51112,
+      "assignments": 408896,
+      "active_experts": 64,
+      "minimum_assignments": 557,
+      "maximum_assignments": 34827,
+      "entropy_bits": 5.511387086207017,
+      "normalized_entropy": 0.9185645143678361,
+      "top_10_traffic_share": 0.42834852872123963,
+      "top_20_traffic_share": 0.6370372906558146
+    },
+    "9": {
+      "events": 51112,
+      "assignments": 408896,
+      "active_experts": 64,
+      "minimum_assignments": 832,
+      "maximum_assignments": 33254,
+      "entropy_bits": 5.5536603864038625,
+      "normalized_entropy": 0.9256100644006438,
+      "top_10_traffic_share": 0.418228596024417,
+      "top_20_traffic_share": 0.6250489121928314
+    },
+    "10": {
+      "events": 51112,
+      "assignments": 408896,
+      "active_experts": 64,
+      "minimum_assignments": 394,
+      "maximum_assignments": 20665,
+      "entropy_bits": 5.703927271415361,
+      "normalized_entropy": 0.9506545452358934,
+      "top_10_traffic_share": 0.37229271012678045,
+      "top_20_traffic_share": 0.5688072272656128
+    },
+    "11": {
+      "events": 51112,
+      "assignments": 408896,
+      "active_experts": 64,
+      "minimum_assignments": 853,
+      "maximum_assignments": 34849,
+      "entropy_bits": 5.604721991354625,
+      "normalized_entropy": 0.9341203318924375,
+      "top_10_traffic_share": 0.4019579550790421,
+      "top_20_traffic_share": 0.6039041712318047
+    },
+    "12": {
+      "events": 51112,
+      "assignments": 408896,
+      "active_experts": 64,
+      "minimum_assignments": 1348,
+      "maximum_assignments": 25047,
+      "entropy_bits": 5.714890464327452,
+      "normalized_entropy": 0.9524817440545753,
+      "top_10_traffic_share": 0.3631118915323211,
+      "top_20_traffic_share": 0.5652244091407106
+    },
+    "13": {
+      "events": 51112,
+      "assignments": 408896,
+      "active_experts": 64,
+      "minimum_assignments": 1649,
+      "maximum_assignments": 19564,
+      "entropy_bits": 5.770942602554269,
+      "normalized_entropy": 0.9618237670923783,
+      "top_10_traffic_share": 0.35111128502113004,
+      "top_20_traffic_share": 0.534297229613398
+    },
+    "14": {
+      "events": 51112,
+      "assignments": 408896,
+      "active_experts": 64,
+      "minimum_assignments": 1449,
+      "maximum_assignments": 14733,
+      "entropy_bits": 5.84288296058142,
+      "normalized_entropy": 0.97381382676357,
+      "top_10_traffic_share": 0.29718070120519646,
+      "top_20_traffic_share": 0.49701146501799964
+    },
+    "15": {
+      "events": 51112,
+      "assignments": 408896,
+      "active_experts": 64,
+      "minimum_assignments": 1934,
+      "maximum_assignments": 24966,
+      "entropy_bits": 5.7492285416673194,
+      "normalized_entropy": 0.9582047569445532,
+      "top_10_traffic_share": 0.33841612537173266,
+      "top_20_traffic_share": 0.5470486382845516
+    }
+  },
+  "environment": {
+    "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "python_implementation": "CPython",
+    "package_versions": {
+      "python": "3.12.3",
+      "torch": "2.8.0+cu128",
+      "transformers": "5.15.1",
+      "datasets": "5.0.1",
+      "huggingface-hub": "1.28.0",
+      "numpy": "2.1.2",
+      "scipy": "1.18.0",
+      "matplotlib": "3.11.1",
+      "safetensors": "0.8.0",
+      "accelerate": "1.14.0"
+    }
+  },
+  "elapsed_seconds": 3701.0416946988553,
+  "created_at_utc": "2026-08-19T22:41:22.194761+00:00"
+}
