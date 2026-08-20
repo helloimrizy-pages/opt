@@ -31,3 +31,17 @@ __pycache__/
 # !results/expert_domain_importance_prompts_only/**
 # !results/expert_domain_importance_with_answers/
 # !results/expert_domain_importance_with_answers/**
+
+# Optimizer-state Stage 1: downloadable datasets/checkpoints and its venv.
+optimizer_state_tta/data/
+.venv-optstate/
+
+# RACE Stage 1 aggregate per-sequence rows: 117.5 MiB, above the GitHub 100 MiB
+# per-file limit. The file is not lost. It is the byte-exact concatenation, in the
+# frozen Stage 0 workload order, of the ten committed
+# stage1_prediction/results/full/checkpoints/<workload>/per_sequence_results.jsonl
+# files, and re-running stage3_residency/stage1_prediction/scripts/run_stage1_full.sh
+# rebuilds it from those checkpoints without repeating any simulation. Its SHA-256
+# 5b4fdc8089be00d8c54c2eb70fc4604be281659ad02316afc349f47c6a5360c2 stays recorded in
+# the sealed Stage 1 archive manifest, so the reconstruction is verifiable.
+stage3_residency/stage1_prediction/results/full/per_sequence_results.jsonl
