@@ -1,0 +1,192 @@
+{
+  "schema_version": "race_stage1_frozen_config_v1",
+  "frozen_at_utc": "2026-08-20T04:10:04.570385+00:00",
+  "preregistration_hash": "cea89fba235aef8338774d85da0687ac06b61d269f16fd6238c89a3b60ef9524",
+  "preregistration_path": "stage3_residency/stage1_prediction/configs/stage1_preregistered.json",
+  "stage0_source_base_commit": "48fe6e2dd9b42af8b7d30cff536a06cd49181eb9",
+  "stage0_actual_runtime_commit": "0f70c61131b877dd9c297663886d563d9e27f55b",
+  "stage1_repository_head": "f9236cb35541f07c96a8e03b6a36eacc1f21a92c",
+  "stage1_source_bundle_hash": "669cedbf5e5f3a461531610bfb595f9283d622e6ed55a429f0e3092ec6dc75c5",
+  "trace_hash": "ccec01b2ae5059655e23d7f791427fac75b5fac21e967b9e157bb6087c639dea",
+  "stage0_frozen_config_hash": "7ce228983b6547d61341757234e77ca7f59a4d0ba53b1e04b64243e9b2ea0971",
+  "calibration_workload_hash": "c74926f84f4e95e73c5934ca3b306f011b33f65b6f79613f6c7bcbdbb07a727b",
+  "workload_hashes": {
+    "stationary_general": "9263b7b3367780da1f1c56e024de8fa41c29d475aefa2e14b305add555299fc8",
+    "stationary_coding": "e720f3a5d2ef340ba246a36ea15e81fd383fedd3bf6ebcab44571605bb4888e0",
+    "stationary_math": "bc3bf855f95a887e274c336238648952c1015530cbc92530ba57012e73f2cda5",
+    "stationary_reasoning": "8f9376e42eeed14399ae8152f459c8f2f107dd5ffb00d4327d71a9363f1081ab",
+    "general_to_coding": "47974da06c97f0f52edaf236fafada79a30c99e6728558b3c744946f2ae0d85b",
+    "coding_to_general": "d833f85aa91e4063ec4a460409be593d44a783ff023475dda8234961fba3801a",
+    "general_to_math": "4d1aa9064e265cc271702113ab113627435a1e7ea48610744be46b3a96024498",
+    "math_to_reasoning": "7d9fc6d7e2fc07d16cb678a1fd35c19ee8fdccce45da7465de7447c55122c8db",
+    "repeated_domain_cycle": "b2b85bb05a073b442b53d96807561c3ebd6dda8fb6dbc7028891c7e753ced2f6",
+    "mixed_interleaved": "79035f95954db5eeda102eba44cf66a61ebecfb5cf30d7482c67cf43d74ca144"
+  },
+  "cache_capacities": [
+    8,
+    12,
+    16,
+    24,
+    32
+  ],
+  "decision_capacities": [
+    12,
+    16,
+    24,
+    32
+  ],
+  "transition_model_path": "stage3_residency/stage1_prediction/results/calibration/transition_models.npz",
+  "transition_model_hash": "b8804d3ce5f87a6a129bdc9aa895a941c2343e5246659d506fcb01805d6b68a7",
+  "selection_path": "stage3_residency/stage1_prediction/results/calibration/selection.json",
+  "selection_file_sha256": "30739b3b9d23cfedadfa9d2bc17a8227a7d3a9134967564bbcb0ea752d8bbeb9",
+  "selected_predictor": {
+    "method": "markov_plus_ewma",
+    "horizon": 2,
+    "beta": 0.5,
+    "history_alpha": 0.95
+  },
+  "selected_predictor_id": "markov_plus_ewma_h2_beta0.5_alpha0.95",
+  "selected_by_family": {
+    "persistence": {
+      "method": "persistence"
+    },
+    "last_gate": {
+      "method": "last_gate"
+    },
+    "gate_ewma": {
+      "method": "gate_ewma",
+      "alpha": 0.95
+    },
+    "markov_1": {
+      "method": "markov_1",
+      "horizon": 1
+    },
+    "markov_h": {
+      "method": "markov_h",
+      "horizon": 2
+    },
+    "markov_plus_ewma": {
+      "method": "markov_plus_ewma",
+      "horizon": 2,
+      "beta": 0.5,
+      "history_alpha": 0.95
+    }
+  },
+  "all_causal_specs": [
+    {
+      "method": "persistence"
+    },
+    {
+      "method": "last_gate"
+    },
+    {
+      "method": "gate_ewma",
+      "alpha": 0.9
+    },
+    {
+      "method": "gate_ewma",
+      "alpha": 0.95
+    },
+    {
+      "method": "gate_ewma",
+      "alpha": 0.99
+    },
+    {
+      "method": "markov_1",
+      "horizon": 1
+    },
+    {
+      "method": "markov_h",
+      "horizon": 1
+    },
+    {
+      "method": "markov_h",
+      "horizon": 2
+    },
+    {
+      "method": "markov_h",
+      "horizon": 4
+    },
+    {
+      "method": "markov_h",
+      "horizon": 8
+    },
+    {
+      "method": "markov_h",
+      "horizon": 16
+    },
+    {
+      "method": "markov_plus_ewma",
+      "horizon": 2,
+      "beta": 0.25,
+      "history_alpha": 0.95
+    },
+    {
+      "method": "markov_plus_ewma",
+      "horizon": 2,
+      "beta": 0.5,
+      "history_alpha": 0.95
+    },
+    {
+      "method": "markov_plus_ewma",
+      "horizon": 2,
+      "beta": 0.75,
+      "history_alpha": 0.95
+    }
+  ],
+  "limited_lookahead_horizons": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32
+  ],
+  "bootstrap": {
+    "bootstrap_replicates": 1000,
+    "bootstrap_seed": 20260820,
+    "paired_unit": "source decode sequence, stratified by domain",
+    "primary_suite_aggregation": "At each capacity, sum raw costs across all ten frozen workload paths; no per-capacity or per-regime causal-method reselection.",
+    "regime_results": "also report stationary, abrupt, repeated, and mixed aggregates separately",
+    "conditionality": "Intervals reweight saved per-sequence contributions conditional on each frozen stateful workload path; stateful cache trajectories are not regenerated under reordered bootstrap workloads."
+  },
+  "decision_rule": {
+    "primary_basis": "frozen ten-workload-suite aggregate at each non-degenerate capacity",
+    "strong_go": {
+      "gap_closed_strictly_below": 0.5,
+      "gap_closed_required_capacities": 3,
+      "residual_headroom_at_least": 0.1,
+      "residual_required_capacities": 3,
+      "both_conditions_required": true
+    },
+    "no_go": {
+      "gap_closed_at_least": 0.75,
+      "gap_closed_required_capacities": 3,
+      "or_residual_headroom_strictly_below": 0.05,
+      "residual_required_capacities": 3
+    },
+    "precedence": "NO_GO if either NO_GO trigger holds; otherwise STRONG_GO if both STRONG_GO conditions hold; otherwise WEAK_GO."
+  },
+  "environment": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "python_implementation": "CPython",
+    "package_versions": {
+      "python": "3.14.3",
+      "torch": "2.13.0",
+      "transformers": "5.15.0",
+      "datasets": "5.0.1",
+      "huggingface-hub": "1.27.0",
+      "numpy": "2.5.2",
+      "scipy": "1.18.0",
+      "matplotlib": "3.11.1",
+      "safetensors": "0.8.0",
+      "accelerate": "1.14.0"
+    }
+  },
+  "lookahead_validation_hash": "eecf10cbad4ebb064ea03f771fadd92db9283bb79ef34e8dce6aede1484d7e44",
+  "calibration_results_hash": "e3660bdbcd75771340d9a2a4239923c23f753ece4a9520213c5bdd57a4bca3e6",
+  "calibration_per_sequence_hash": "195489740d0a8508924c653647d607e57ceffdb141639a4af320c96187526eb8",
+  "evaluation_started": false
+}

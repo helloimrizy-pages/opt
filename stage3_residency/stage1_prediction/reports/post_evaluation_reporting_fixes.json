@@ -1,0 +1,36 @@
+{
+  "schema_version": "race_stage1_post_evaluation_reporting_fix_v1",
+  "recorded_at_utc": "2026-08-20T04:40:15Z",
+  "frozen_evaluation_source_bundle_hash": "669cedbf5e5f3a461531610bfb595f9283d622e6ed55a429f0e3092ec6dc75c5",
+  "reconstructed_pre_fix_source_bundle_hash": "669cedbf5e5f3a461531610bfb595f9283d622e6ed55a429f0e3092ec6dc75c5",
+  "final_source_bundle_hash": "1a02f40ae5c2606f94a84643145814b7074e5c86fa36743da419d9530eba2a7b",
+  "changed_files_after_evaluation": [
+    {
+      "path": "src/race_stage1/analysis.py",
+      "scope": "reporting_only",
+      "change": "Corrected the bootstrap lookup to use the emitted keys bootstrap_scope and bootstrap_capacity rather than the nonexistent keys scope and capacity.",
+      "trigger": "The first report-generation attempt raised KeyError('scope') before a verdict or aggregate was computed."
+    },
+    {
+      "path": "src/race_stage1/archive.py",
+      "scope": "archival_only",
+      "change": "Added explicit validation and recording of this reporting-fix attestation so the final archive preserves both the frozen evaluation source hash and final reporting source hash."
+    }
+  ],
+  "reconstruction_method": "SHA-256 was recomputed over the frozen source-bundle path order after mechanically reversing only the two listed post-evaluation changes; the result exactly equals the source hash recorded before evaluation.",
+  "scientific_results_changed": false,
+  "calibration_changed": false,
+  "predictor_selection_changed": false,
+  "trace_or_workload_changed": false,
+  "simulation_or_cache_semantics_changed": false,
+  "evaluation_replayed_after_fix": false,
+  "evaluation_results_sha256": "77ee9a4e1b34d3c6deb7bec30d2292d53ca19cfb30985600d5b2e6aead2beb00",
+  "evaluation_per_sequence_results_sha256": "5b4fdc8089be00d8c54c2eb70fc4604be281659ad02316afc349f47c6a5360c2",
+  "evaluation_manifest_sha256": "056544558870a78c956e69c0a4d1c34391d745cfdac581375fcf9a05fecf7920",
+  "deterministic_selected_policy_replay": {
+    "workload": "stationary_general",
+    "capacities": [8, 12, 16, 24, 32],
+    "stored_and_replayed_misses": [743541, 589958, 484550, 328050, 213347],
+    "exact_match": true
+  }
+}

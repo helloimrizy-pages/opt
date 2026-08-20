@@ -1,0 +1,14 @@
+{
+  "schema_version": "race_stage1_workload_checkpoint_v1",
+  "completed_at_utc": "2026-08-20T04:22:11.073162+00:00",
+  "workload": "stationary_math",
+  "regime": "stationary",
+  "workload_hash": "bc3bf855f95a887e274c336238648952c1015530cbc92530ba57012e73f2cda5",
+  "frozen_config_file_sha256": "c595b061a415a9874d83f167e1e0fb7873ec8850ace8acc1a5db17f814351b83",
+  "conditions": 105,
+  "per_sequence_rows": 8400,
+  "prediction_quality_rows": 0,
+  "results_sha256": "f07083416b25794e190ba4337294a947076d4881752561c9d7a50e6455563cc0",
+  "per_sequence_results_sha256": "a905a5af28cc337846f676bcd6e8a1a3aaa7ebc932dece1b5a1dc813d063a6d5",
+  "prediction_quality_sha256": null
+}

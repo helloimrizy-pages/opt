@@ -1,0 +1,73 @@
+{
+  "schema_version": "race_stage1_sanity_checks_v1",
+  "passed": true,
+  "checks": [
+    {
+      "name": "condition_count",
+      "passed": true,
+      "details": {
+        "actual": 1050,
+        "expected": 1050
+      }
+    },
+    {
+      "name": "unique_conditions",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "event_accounting",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "capacity_invariants",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "per_sequence_aggregation",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "stage0_oracle_dominance",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "capacity8_degenerate_sanity",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "perfect_score_matches_full_oracle",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "limited_lookahead_nondegradation",
+      "passed": true,
+      "details": {
+        "violations": [],
+        "interpretation_if_present": "Receding finite-horizon first actions are each horizon-optimal, but deterministic terminal ties can produce nonmonotone realized full-path costs."
+      }
+    },
+    {
+      "name": "causal_diagnostic_labels",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "calibration_evaluation_isolation",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "stage0_inputs_hash_verified",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "bootstrap_scope": "Subsequent intervals reweight per-sequence contributions conditional on frozen stateful workload paths; trajectories are not replayed under reordered bootstrap paths."
+}

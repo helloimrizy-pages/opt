@@ -1,0 +1,18 @@
+{
+  "schema_version": "race_stage1_lookahead_validation_v1",
+  "passed": true,
+  "exhaustive_cases": 37052,
+  "random_cases": 300,
+  "action_checks": 873444,
+  "maximum_cost_difference": 0.0,
+  "seed": 20260820,
+  "horizons": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32
+  ],
+  "stage0_exact_solver_reference": true
+}

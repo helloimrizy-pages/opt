@@ -1,0 +1,14 @@
+{
+  "schema_version": "race_stage1_workload_checkpoint_v1",
+  "completed_at_utc": "2026-08-20T04:29:17.823089+00:00",
+  "workload": "repeated_domain_cycle",
+  "regime": "repeated",
+  "workload_hash": "b2b85bb05a073b442b53d96807561c3ebd6dda8fb6dbc7028891c7e753ced2f6",
+  "frozen_config_file_sha256": "c595b061a415a9874d83f167e1e0fb7873ec8850ace8acc1a5db17f814351b83",
+  "conditions": 105,
+  "per_sequence_rows": 10500,
+  "prediction_quality_rows": 0,
+  "results_sha256": "7c7920b0966c72df375c139081c1832d51215322ab6fc288c09ed74021559a81",
+  "per_sequence_results_sha256": "3ffe878ab21bdfbc05dcabb898192ccfbcc26e2aca46acc846e12d21c9229624",
+  "prediction_quality_sha256": null
+}

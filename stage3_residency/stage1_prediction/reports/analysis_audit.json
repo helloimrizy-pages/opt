@@ -1,0 +1,12 @@
+{
+  "schema_version": "race_stage1_analysis_audit_v1",
+  "passed": true,
+  "checks": {
+    "report_begins_with_exact_verdict": true,
+    "all_required_outputs_exist": true,
+    "five_capacities_present": true,
+    "capacity8_gap_is_null": true,
+    "four_decision_capacities": true
+  },
+  "verdict": "RACE_STAGE1_STRONG_GO"
+}
