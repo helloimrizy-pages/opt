@@ -8,6 +8,7 @@ tested transition, including negative results, is carried through.
 from __future__ import annotations
 
 import argparse
+import gzip
 import json
 import sys
 from collections import defaultdict
@@ -48,7 +49,7 @@ def load_rows(raw_dirs: List[Path]) -> Dict[str, pd.DataFrame]:
                     # tolerate a torn final line while a run is still writing
                     skipped += 1
                     continue
-                obj["_file"] = path.name
+                obj["_file"] = path.name[:-3] if path.name.endswith(".gz") else path.name
                 buckets[obj.get("type", "unknown")].append(obj)
     if skipped:
         print(f"warning: skipped {skipped} unparseable JSONL line(s)", file=sys.stderr)
@@ -58,6 +59,14 @@ def load_rows(raw_dirs: List[Path]) -> Dict[str, pd.DataFrame]:
         if "adapted_param_names" in df.columns:
             df = df.drop(columns=["adapted_param_names"])
         out[k] = df
+    # Stamp every row with the backend its run used, so a grid assembled from
+    # more than one device is visible in the data rather than silently mixed.
+    meta = out.get("run_meta")
+    if meta is not None and "device" in meta.columns:
+        dev = dict(zip(meta["_file"], meta["device"]))
+        for k, df in out.items():
+            if k != "run_meta" and "_file" in df.columns:
+                df["run_device"] = df["_file"].map(dev)
     return out
 
 
@@ -145,6 +154,8 @@ def main() -> int:
 
     report: Dict[str, object] = {
         "n_raw_files": int(summ["_file"].nunique()),
+        "run_devices": (summ.groupby("run_device")["_file"].nunique().to_dict()
+                        if "run_device" in summ.columns else None),
         "windows": list(WINDOWS),
         "primary_window": PRIMARY_WINDOW,
         "reference_intervention": REF,

@@ -6,6 +6,12 @@
 #
 # Stages can be skipped with environment variables, e.g.
 #   SKIP_PRIMARY=1 SKIP_BETA1=1 bash .../run_optimizer_state_stage1.sh
+#
+# On a multi-GPU host, set N_GPUS (and optionally WORKERS_PER_GPU) to run the
+# experiment grid through the worker pool in scripts/run_parallel.py instead of
+# the sequential loops.  The runs are independent, so this changes only
+# scheduling, never results:
+#   N_GPUS=2 WORKERS_PER_GPU=2 bash .../run_optimizer_state_stage1.sh
 set -euo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -22,6 +28,9 @@ LOGS="$PROJ/logs"
 mkdir -p "$RAW/boundary" "$RAW/baseline" "$RAW/toy" "$LOGS" \
          "$PROJ/figures/optimizer_state_stage1" "$PROJ/reports"
 
+N_GPUS="${N_GPUS:-0}"                   # 0 = sequential, single device
+WORKERS_PER_GPU="${WORKERS_PER_GPU:-1}"
+DEVICE="${DEVICE:-auto}"
 SEEDS="${SEEDS:-0 1 2}"
 ORDERS="${ORDERS:-conventional perm1 perm2 perm3}"
 SWEEP_DOMAINS="${SWEEP_DOMAINS:-8}"     # 7 boundaries for the beta1 / lr subsets
@@ -88,12 +97,37 @@ run_boundary () {  # mode order seed beta1 lr max_domains
   "$PY" -W ignore "$HERE/run_boundary_experiment.py" \
       --mode "$mode" --order "$order" --seed "$seed" --beta1 "$b1" --lr "$lr" \
       --max-domains "$maxd" --data-dir "$DATA_DIR" --ckpt-dir "$CKPT_DIR" \
-      --out "$RAW/boundary" --tag "$tag" 2>&1 | tee -a "$LOGS/boundary.log"
+      --out "$RAW/boundary" --tag "$tag" --device "$DEVICE" \
+      2>&1 | tee -a "$LOGS/boundary.log"
 }
 
 # Stage order front-loads the decision-critical arms (H1 -> H2 -> H4) so partial
 # results are already interpretable; runs are independent, so order does not
 # affect any result.
+
+if [ "$N_GPUS" -gt 0 ]; then
+  banner "5-9. experiment grid on $N_GPUS GPU(s) x $WORKERS_PER_GPU worker(s)"
+  STAGES=""
+  [ -z "${SKIP_PRIMARY:-}"  ] && STAGES="$STAGES primary"
+  [ -z "${SKIP_CONTROL:-}"  ] && STAGES="$STAGES control"
+  [ -z "${SKIP_BETA1:-}"    ] && STAGES="$STAGES beta1"
+  [ -z "${SKIP_LR:-}"       ] && STAGES="$STAGES lr"
+  [ -z "${SKIP_GRADUAL:-}"  ] && STAGES="$STAGES gradual"
+  [ -z "${SKIP_SEQUENCE:-}" ] && STAGES="$STAGES sequence"
+  if [ -n "$STAGES" ]; then
+    GRID_DEVICE="$DEVICE"
+    [ "$GRID_DEVICE" = "auto" ] && GRID_DEVICE="cuda"
+    "$PY" -W ignore "$HERE/run_parallel.py" \
+        --gpus "$N_GPUS" --workers-per-gpu "$WORKERS_PER_GPU" \
+        --device "$GRID_DEVICE" --stages $STAGES \
+        --data-dir "$DATA_DIR" --ckpt-dir "$CKPT_DIR" \
+        --out "$RAW/boundary" --log-dir "$LOGS/jobs" --python "$PY" \
+        2>&1 | tee "$LOGS/parallel.log"
+  fi
+  SKIP_PRIMARY=1; SKIP_CONTROL=1; SKIP_BETA1=1
+  SKIP_LR=1; SKIP_GRADUAL=1; SKIP_SEQUENCE=1
+fi
+
 if [ -z "${SKIP_PRIMARY:-}" ]; then
   banner "5a. primary matched-branch boundary experiment, conventional order (ORACLE_BOUNDARY_DIAGNOSTIC)"
   for seed in $SEEDS; do

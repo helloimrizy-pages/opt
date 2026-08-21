@@ -76,6 +76,54 @@ baseline reproduction, the primary experiment, the stationary control, the
 figures and the verdict. Completed runs are skipped on re-invocation, so it is
 resumable. Stages can be skipped with `SKIP_PRIMARY=1`, `SKIP_BETA1=1`, etc.
 
+### Running the grid on GPUs
+
+The grid is 51 independent runs totalling **119,175** Tent optimizer steps
+(WRN-28-10, batch 200, forward + backward + Adam step). They share no state, so
+they parallelise perfectly:
+
+```bash
+# on the machine that already has the data, bundle it for transfer
+bash optimizer_state_tta/scripts/stage_assets.sh
+
+# on the GPU host, after copying and extracting the bundle
+bash optimizer_state_tta/scripts/setup_gpu_host.sh
+N_GPUS=2 WORKERS_PER_GPU=2 bash optimizer_state_tta/scripts/run_optimizer_state_stage1.sh
+```
+
+`setup_gpu_host.sh` provisions the environment, stages or downloads the assets,
+runs the tests and the determinism check, and finishes with a throughput probe
+that prints ms/step and the implied wall-clock for the full grid, so
+`WORKERS_PER_GPU` can be tuned from measurement rather than guesswork. This
+workload under-occupies a datacentre GPU — the model is 146 MB and the batch is
+200 images at 32x32 — so 2-3 workers per device is usually worth roughly another
+factor of two.
+
+`scripts/run_parallel.py` is the worker pool underneath; `--dry-run` prints the
+plan and the step budget without running anything. It only changes scheduling,
+never results.
+
+Two host-specific notes:
+
+- **Staging beats downloading.** The RobustBench checkpoints come from Google
+  Drive through `gdown`, which is regularly rate-limited from datacentre IPs.
+  `stage_assets.sh` bundles only what this study reads — the 15 standard
+  corruptions, `labels.npy` and the checkpoints — and writes a SHA-256 sidecar.
+- **`CUBLAS_WORKSPACE_CONFIG`** is set to `:4096:8` before any CUDA context is
+  created (`optstate.env.prepare_cuda_determinism`), because cuBLAS only reads
+  it when the handle is first created and `use_deterministic_algorithms(True)`
+  raises without it.
+
+### Mixing backends
+
+Each run is self-contained, and the matched-branch comparison is internally
+valid on whatever device produced it, so a grid assembled from more than one
+backend is not wrong — but it is an avoidable confound. Every row in
+`summary.csv` carries a `run_device` column and `aggregate.json` reports
+`run_devices`, so the composition is always visible. The recommended practice is
+to run one complete grid per backend and treat a second backend as an
+independent replication rather than merging the two.
+
 ## Reports
 
 - `reports/optimizer_state_related_work.md` — novelty / overlap audit

@@ -128,6 +128,20 @@ def set_seed(seed: int) -> None:
             pass
 
 
+def prepare_cuda_determinism() -> None:
+    """Set the cuBLAS workspace config before any CUDA context is created.
+
+    ``torch.use_deterministic_algorithms(True)`` raises on CUDA >= 10.2 unless
+    ``CUBLAS_WORKSPACE_CONFIG`` is set, and the variable is only read when the
+    cuBLAS handle is first created, so it has to be in place before the first
+    CUDA call rather than at the point determinism is requested.
+    """
+    os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
+
+
+prepare_cuda_determinism()
+
+
 def enable_determinism(strict: bool = False) -> Dict[str, Any]:
     """Prefer deterministic kernels where the backend supports them.
 
@@ -139,6 +153,7 @@ def enable_determinism(strict: bool = False) -> Dict[str, Any]:
     achieved: Dict[str, Any] = {"strict_requested": strict}
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
+    achieved["cublas_workspace_config"] = os.environ.get("CUBLAS_WORKSPACE_CONFIG")
     try:
         torch.use_deterministic_algorithms(strict, warn_only=not strict)
         achieved["use_deterministic_algorithms"] = strict
@@ -147,8 +162,9 @@ def enable_determinism(strict: bool = False) -> Dict[str, Any]:
     achieved["cudnn_deterministic"] = True
     achieved["note"] = (
         "PyTorch does not provide deterministic-algorithm guarantees on the MPS "
-        "backend. Matched branches are made comparable by construction (identical "
-        "weights, identical batch order) rather than by global determinism."
+        "backend; on CUDA it does, given CUBLAS_WORKSPACE_CONFIG. Either way, "
+        "matched branches are comparable by construction (identical weights, "
+        "identical batch order) rather than by global determinism."
     )
     return achieved
 
