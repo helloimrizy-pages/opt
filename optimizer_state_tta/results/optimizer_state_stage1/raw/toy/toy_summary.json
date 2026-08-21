@@ -117,7 +117,7 @@
       "name": "arm",
       "type": "mps"
     },
-    "git_commit": "f9236cb35541f07c96a8e03b6a36eacc1f21a92c",
+    "git_commit": "3c4c9ee8907a7008a7c64a0e5ffb1097703fa214",
     "git_dirty": true,
     "machine": "arm64",
     "matplotlib_version": "3.11.1",

@@ -29,8 +29,9 @@
     144
   ],
   "determinism_settings": {
+    "cublas_workspace_config": ":4096:8",
     "cudnn_deterministic": true,
-    "note": "PyTorch does not provide deterministic-algorithm guarantees on the MPS backend. Matched branches are made comparable by construction (identical weights, identical batch order) rather than by global determinism.",
+    "note": "PyTorch does not provide deterministic-algorithm guarantees on the MPS backend; on CUDA it does, given CUBLAS_WORKSPACE_CONFIG. Either way, matched branches are comparable by construction (identical weights, identical batch order) rather than by global determinism.",
     "strict_requested": false,
     "use_deterministic_algorithms": false
   },
@@ -42,7 +43,7 @@
       "name": "arm",
       "type": "mps"
     },
-    "git_commit": "f9236cb35541f07c96a8e03b6a36eacc1f21a92c",
+    "git_commit": "3c4c9ee8907a7008a7c64a0e5ffb1097703fa214",
     "git_dirty": true,
     "machine": "arm64",
     "matplotlib_version": "3.11.1",
